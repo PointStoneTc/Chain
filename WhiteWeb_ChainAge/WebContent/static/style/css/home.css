@@ -1,0 +1,254 @@
+.news_banner{
+  color: #FFF;
+}
+.news_banner  .banner_left img{
+  width: 100%;
+  height: 4.85rem;
+}
+.news_banner  .banner_right img{
+  width: 100%;
+  height: 2.413rem;
+}
+.news_banner .banner_left,
+.news_banner .banner_right{
+  padding: 0;
+}
+.news_banner .banner_left{
+  padding-right: 0.05rem;
+  position: relative;
+}
+.banner_left .news_banner_con {
+  position: absolute;
+  top: 1.95rem;
+  left: 26%;
+}
+.news_banner a{
+  color: #FFF;
+}
+/*.banner_left .news_time{*/
+/*position: absolute;*/
+/*top: 1.95rem;*/
+/*left: 26%;*/
+/*}*/
+.banner_left .new_title{
+  /*position: absolute;*/
+  /*left: 26%;*/
+  /*top: 2.31rem;*/
+  width: 88%;
+  font-size: 0.48rem;
+}
+.news_time .icon_time{
+  width: 0.22rem;
+  height: 0.22rem;
+  display: inline-block;
+  background: url("../../img/icon_time.png") no-repeat center;
+  background-size:  cover;
+  vertical-align: sub;
+  margin-left: 0.3rem;
+}
+.pr{
+  position: relative;
+}
+.bg{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: 0;
+  background: rgba(39,57,130,0.65);
+}
+.banner_left .bg{
+  right: 0.05rem;
+}
+.banner_right .bg{
+  left: 0;
+}
+.banner_right .news_banner_con {
+  position: absolute;
+  top: 1.25rem;
+  /*margin: 0 auto;*/
+}
+.banner_right .news_time {
+  /*position: absolute;*/
+  /*top: 1.25rem;*/
+  /*margin: 0 auto;*/
+  width: 100%;
+  padding: 0 1rem;
+  text-align: center;
+}
+.banner_right .new_title {
+  width: 85%;
+  font-size: 0.24rem;
+  /*position: absolute;*/
+  /*top: 1.62rem;*/
+  text-align: center;
+  width: 85%;
+  margin-left: 7.5%;
+}
+.message_show{
+  font-size: 0.14rem;
+  color: #000;
+}
+.markIcon{
+  width: 0.16rem;
+  height: 0.16rem;
+  display: inline-block;
+  background:#25C891 ;
+  border-radius: 50%;
+}
+.up_color {
+  background: #25C891;
+}
+.down_color {
+  background: #D22930;
+}
+.message_show{
+  background: #F6F6F6;
+}
+.message_show .price{
+  font-weight: bold;
+  font-size: 0.23rem;
+}
+.message_show ul{
+  margin: 0;
+  margin: 0 auto;
+  padding: 0 0.4rem;
+}
+.message_show li{
+  width: 16.6%;
+  float: left;
+  /*height: 0.85rem;*/
+  border-left: 1px solid #e4e4e4;
+  text-align: center;
+  padding-top: 0.06rem;
+}
+.contain,.news_show_contain{
+  width: 62.79%;
+  margin: 0 auto;
+}
+@media (min-width: 768px) {
+  .contain{
+    width: 90%;
+  }
+  .news_show_contain{
+    width:92%;
+  }
+}
+@media (min-width: 992px) {
+  .contain{
+    width: 80%;
+  }
+  .news_show_contain{
+    width: 82%;
+  }
+}
+@media (min-width: 1200px) {
+  .contain{
+    width: 62.79%;
+  }
+  .news_show_contain{
+    width: 64.79%;
+  }
+}
+.news_show{
+
+  background: #3761BD;
+  padding: 0.34rem 0;
+}
+
+.news_show .contain div{
+  display: inline-block;
+  background: #3761BD;
+}
+
+.bd-inwork-item {
+  cursor: pointer;
+  /*margin-right: 24px !important;*/
+  border: none;
+  border-radius: 0;
+  font-size: 16px;
+  color: #ffffff;
+  line-height: 16px;
+  text-align: center;
+  background-color: transparent;
+}
+.bd-card-mod .card-img {
+  width: 100%;
+  height: 1.16rem;
+}
+
+.news_contain .news_header{
+  padding-left: 0.15rem;
+  height: 1.5rem;
+  line-height: 1.52rem;
+  font-size: 0.32rem;
+  color: #000000;
+}
+.news_contain .benefit_box{
+  margin-bottom: 0.55rem;
+}
+.news_contain .benefit_box .benefit_box_con{
+  border: 1px solid #CECECE;
+  border-radius: 5px;
+  background: #FFF;
+  padding: 0.15rem 0;
+}
+.p20{
+  padding:0 0.2rem ;
+}
+.news_contain .benefit_box_tit{
+  font-size: 0.12rem;
+  color: #928F92;
+}
+.news_contain .benefit_box_com{
+  font-size: 0.18rem;
+  color: #111118;
+}
+.news_contain .benefit_box_from{
+  font-size: 0.14rem;
+  color: #757575;
+}
+.news_contain .news_dec{
+  margin-top: 0.1rem;
+  margin-bottom: 0;
+}
+.more_btn{
+  width: 3.6rem;
+  height: 0.56rem;
+  line-height: 0.56rem;
+  text-align: center;
+  border:1px solid rgba(206,206,206,1);
+  background:linear-gradient(180deg,rgba(255,255,255,1) 0%,rgba(238,238,238,1) 31%,rgba(226,226,226,1) 65%,rgba(222,222,222,1) 100%);
+  margin: 0 auto;
+  margin-top: 0.04rem;
+  cursor: pointer;
+}
+.news_contain .new_list_icon {
+  width: 0.32rem;
+  height: 0.32rem;
+  display: inline-block;
+  background: url("../../img/chainge_editer.png") no-repeat center;
+  background-size: cover;
+  vertical-align: bottom;
+  margin-right: 0.1rem;
+}
+.news_contain .new_list_time {
+  width: 0.11rem;
+  height: 0.10rem;
+  display: inline-block;
+  background: url("../../img/news_time.png") no-repeat center;
+  background-size: cover;
+  margin-right: 0.06rem;
+  margin-left: 0.5rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,96 @@
+ .summary-con{
+   width: 100%;
+   background: #F6F6F6;
+   padding-top: 30px;
+ }
+ a {
+   color: #333;
+
+ }
+ a:hover{
+  text-decoration: none;
+}
+ .content {
+  width: 68%;
+  margin: 0 auto;
+ }
+ .summary {
+   /* width:95%; */
+   background-color: #fff;
+   box-shadow: 0 0 5px #E6E6E6;
+   border-radius: 2px;
+   padding: 60px 0 20px 7px;
+ }
+ .list-group-item {
+  padding: 10px 6px;
+ }
+ .summary-con .media-object{
+   width: 50px;
+   height: 50px;
+ }
+ .mt_h_container {
+   font-size: 24px;
+   text-align: center;
+   margin-bottom: 5px;
+ }
+ .summary .button{
+  display: inline-block;
+  width: 55px;
+  margin: 3px 0;
+  padding: 0 6px;
+  background-color: #f0f0f0;
+  color: #646464;
+  font-size: 12px;
+  text-align: center;
+  border-radius: 2px;
+ }
+ .summary .button:hover {
+  background-color: #282828;
+  color: #fff;
+  text-decoration: none;
+}
+#ml_container {
+  padding: 20px 30px 0 30px;
+}
+
+.ml {
+  display: inline-block;
+  padding: 1px 25px;
+  text-align: center;
+  background: #f0f0f0;
+}
+
+.ml>div {
+  display: block
+}
+
+.ml .pri-name {
+  margin-top: 7px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+
+
+.ml .pri-code-list {
+  margin-bottom: 2px;
+  font-size: 16px;
+}
+
+.ml .src-desc,
+.ml .volume-desc {
+  display: inline-block;
+  margin-bottom: 7px;
+  padding: 0 7px;
+  font-size: 12px;
+}
+
+.ml .volume {
+  margin-top: -6px;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+.market-list .media{
+  padding-right: 5px;
+}
+

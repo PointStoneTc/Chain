@@ -1,0 +1,28 @@
+{
+	"url": "https://www.chainage.jp/wp-json/wp/v2/posts",
+	"datatype": "json",
+	"schema": {
+		"status": 403
+	},
+	"arguments": [{
+			"name": "per_page",
+			"value": 3,
+			"desc": "xxxx"
+		},
+		{
+			"name": "order",
+			"value": "desc",
+			"desc": "xxxx"
+		},
+		{
+			"name": "orderby",
+			"value": "date",
+			"desc": "xxxx"
+		},
+		{
+			"name": "categories",
+			"value": 99,
+			"desc": "xxxx"
+		}
+	]
+}
