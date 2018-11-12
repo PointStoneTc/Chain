@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css"
+	href="static/plug-in/jquery-easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css"
+	href="static/plug-in/jquery-easyui/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="static/style/css/style.css">
+<script type="text/javascript"
+	src="static/plug-in/jquery/jquery-1.8.3.min.js"></script>
+<script type="text/javascript"
+	src="static/plug-in/jquery-easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="static/plug-in/Map.js"></script>
+<title>Insert title here</title>
+
+</head>
+<body class="easyui-layout">
+	<div data-options="region:'south',title:'其他'" style="height: 100px;"></div>
+	<div data-options="region:'east',title:'接口说明'" style="width: 450px; padding: 0 10px" id="api_desc">
+		<div id="d_1">
+			<h3>請求地址</h3>
+			<p></p>
+		</div>
+		<div id="d_2">
+			<h3>參數</h3>
+			<p></p>
+		</div>
+	</div>
+	<div data-options="region:'west',title:'Chainage Api清单'"
+		style="width: 300px;">
+		<ul class="codeList">
+			<li>
+				<dl>
+					<dd>home</dd>
+					<dt id="h1">
+						<a href="javascript:void(0)">置顶固定新闻(3个) </a>
+					</dt>
+					<dt id="h2">
+						<a href="javascript:void(0)">图片新闻(3)</a>
+					</dt>
+					<dt id="h3">
+						<a href="javascript:void(0)">列表新闻(9)</a>
+					</dt>
+					<dt id="h4">
+						<a href="javascript:void(0)">广告(1)</a>
+					</dt>
+				</dl>
+			</li>
+
+			<li>
+				<dl>
+					<dd>home-events</dd>
+					<dt id="h5">
+						<a href="javascript:void(0)">精选events</a>
+					</dt>
+					<dt id="h6">
+						<a href="javascript:void(0)">即将开始events</a>
+					</dt>
+				</dl>
+			</li>
+
+			<li>
+				<dl>
+					<dd>home-coin</dd>
+					<dt id="h7">
+						<a href="javascript:void(0)">热门排行</a>
+					</dt>
+					<dt id="h8">
+						<a href="javascript:void(0)">交易排行</a>
+					</dt>
+					<dt id="h9">
+						<a href="javascript:void(0)">交易排行</a>
+					</dt>
+				</dl>
+			</li>
+
+			<li>
+				<dl>
+					<dd>home-exchange</dd>
+					<dt id="h10">
+						<a href="javascript:void(0)">交易所排行</a>
+					</dt>
+				</dl>
+			</li>
+		</ul>
+	</div>
+	<div data-options="region:'center',title:'请求返回结果'"
+		style="padding: 5px; background: #eee;"></div>
+</body>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		var apis = $('.codeList dt');
+
+		$.each(apis, function(e, n) {
+			$(this).on('click', getView);
+		});
+
+	});
+
+	function getView() {
+		$.getJSON('api-standard/' + $(this).attr('id') + '.json',
+				function(data) {
+					$('#d_1 p').html(data.url);
+					var content = '<ul>';
+					$.each(data.arguments, function(e, n) {
+						content += '<li><span class="a_name">' + n.name
+								+ '</span><span class="a_desc">' + n.desc
+								+ '</span><span calss="a_value">' + n.value
+								+ '</span></li>';
+					});
+					content += '</ul>';
+					$('#d_2 p').html(content);
+				});
+	}
+</script>
+</html>
