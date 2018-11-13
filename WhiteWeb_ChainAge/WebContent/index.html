@@ -38,29 +38,26 @@
 			<li>
 				<dl>
 					<dd>home</dd>
-					<dt id="h1">
+					<dt id="h1" alt="1">
 						<a href="javascript:void(0)">置顶固定新闻(3个) </a>
 					</dt>
-					<dt id="h2">
+					<dt id="h2" alt="2">
 						<a href="javascript:void(0)">图片新闻(3)</a>
 					</dt>
-					<dt id="h3">
-						<a href="javascript:void(0)">列表新闻(9)</a>
+					<dt id="h3" alt="2">
+						<a href="javascript:void(0)">列表新闻(6)</a>
 					</dt>
-					<dt id="h4">
-						<a href="javascript:void(0)">广告(1)</a>
+					<dt id="h4" alt="3">
+						<a href="javascript:void(0)">广告位(1)</a>
 					</dt>
-				</dl>
-			</li>
-
-			<li>
-				<dl>
-					<dd>home-events</dd>
-					<dt id="h5">
-						<a href="javascript:void(0)">精选events</a>
+					<dt id="h5" alt="2">
+						<a href="javascript:void(0)">特集(6)</a>
 					</dt>
-					<dt id="h6">
-						<a href="javascript:void(0)">即将开始events</a>
+					<dt id="h6" alt="3">
+						<a href="javascript:void(0)">广告位(2)</a>
+					</dt>
+					<dt id="h7" alt="2">
+						<a href="javascript:void(0)">ChainAge Channel(6)</a>
 					</dt>
 				</dl>
 			</li>
@@ -107,6 +104,7 @@
 
     function getView() {
         var id = $(this).attr('id');
+        var alt = $(this).attr('alt');
         $.getJSON('api-standard/' + id + '.json', function(data) {
             $('#d_1 p').html(data.url);
             var content = '<ul>';
@@ -130,7 +128,8 @@
             content += '</ul>';
             $('#d_4 p').html(content);
 
-            $.getJSON('api-standard/' + id + '_result.json', function(data) {
+            $('#json-renderer').html('');
+            $.getJSON('api-standard/h' + alt + '_result.json', function(data) {
                 var options = {
                     collapsed: $('#collapsed').is(':checked'),
                     withQuotes: $('#with-quotes').is(':checked')};
