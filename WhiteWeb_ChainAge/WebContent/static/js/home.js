@@ -23,6 +23,7 @@ var homePage = {
     init: function () {
         this.getNewsBannerData(99);
         this.getCategoreType(99);
+        this.getPicNewsData(99);
     },
     // 请求数据
     getNewsBannerData: function getData(categories) {
@@ -63,6 +64,32 @@ var homePage = {
             success: function (data) {
                 if (data) {
                     $(".news_banner .new_catelage").text(data.name);
+                }
+            }
+        });
+    },
+    // 获取图片新闻
+    getPicNewsData: function getData(categories) {
+        var url = 'https://www.chainage.jp/wp-json/wp/v2/posts?per_page=3&order=desc&orderby=date&categories=' + categories;
+        $.ajax({
+            type: 'GET',
+            url: url,
+            async: true,
+            error: function () {
+            },
+            success: function (data) {
+                if (data) {
+                    var data=[{persion:"20%"},{persion:"-20%"},{persion:"-20%"},{persion:"20%"},{persion:-"20%"}]
+                    // data.forEach(function (i,item) {
+                    //     if(item.persion>=0){
+                    //         data[i].percentClass="up_color";
+                    //     }else{
+                    //         data[i].percentClass="down_color";
+                    //     }
+                    // });
+                    console.log(data)
+                    var newsFuc= template($("#message_show").html(),{data:data});
+                    $(".message_show ul").html(newsFuc);
                 }
             }
         });

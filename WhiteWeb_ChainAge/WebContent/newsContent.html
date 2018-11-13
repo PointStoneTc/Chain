@@ -311,31 +311,38 @@
 
     </div>
     <div class=" hidden-xs news_con_right">
+        <div style="height: 6.5rem;margin-bottom: 0.32rem">
+            <img src="static/img/banner_l.png" style="width: 100%;height: 100%;">
+        </div>
         <div class="list-group new-list">
             <a href="#" class="list-group-item active" style="padding:6px;background:#2257C9;">
-                最热新闻
-            </a>
-
-        </div>
-
-        <div class="list-group market-list">
-            <a href="#" class="list-group-item active" style="padding:6px;background:#2257C9;">
-                热门货币交易市场（基准货币：JPY）
+                热门文章
             </a>
         </div>
-
-        <div class="list-group latest-news-list">
-            <a href="#" class="list-group-item active" style="padding:6px;background:#2257C9;">
-                最新新闻
-            </a>
+        <div style="height: 3.5rem;margin-bottom: 0.32rem">
+            <img src="static/img/banner_l.png" style="width: 100%;height: 100%;">
         </div>
-
-        <div class="list-group exchange-list">
-            <a href="#" class="list-group-item active" style="padding:6px;background:#2257C9;">
-                交易所排名
-            </a>
-
+        <div style="height: 3.2rem;">
+            <img src="static/img/banner_l.png" style="width: 100%;height: 100%;">
         </div>
+        <!--<div class="list-group market-list">-->
+        <!--<a href="#" class="list-group-item active" style="padding:6px;background:#2257C9;">-->
+        <!--热门货币交易市场（基准货币：JPY）-->
+        <!--</a>-->
+        <!--</div>-->
+
+        <!--<div class="list-group latest-news-list">-->
+        <!--<a href="#" class="list-group-item active" style="padding:6px;background:#2257C9;">-->
+        <!--最新新闻-->
+        <!--</a>-->
+        <!--</div>-->
+
+        <!--<div class="list-group exchange-list">-->
+        <!--<a href="#" class="list-group-item active" style="padding:6px;background:#2257C9;">-->
+        <!--交易所排名-->
+        <!--</a>-->
+
+        <!--</div>-->
     </div>
 </div>
 
@@ -351,85 +358,15 @@
                 <div>仮想通貨交換業者のテックビューロ
                     （大阪市）は２０日、システムへの不
                 </div>
-                <div style="color:#999"><span class="time_icon"></span>5 hours ago</div>
+                <div style="color:#999;"><span class="time_icon"></span>5 hours ago</div>
             </div>
         </div>
     </a>
     <%}%>
+    <a href="#" class="list-group-item" style="height:0.4rem;text-align:center;cursor:pointer;"></a>
 
 </script>
-<script type="text/template" id="market">
-    <%for(var i in model){%>
-    <a href="#" class="list-group-item">
-        <div class="row">
-            <div class="media col-lg-6">
-                <div class="media-left media-middle">
-                    <img class="" src="static/img/coin/64/1.png" style="width:0.32rem; height:0.32rem;">
-                </div>
-                <div class="media-body">
-                    <div style="">
-                        <span>Bitcoin</span> | <span style="color:#999;">BTC</span>
-                    </div>
-                    <div style="color:#999">价格 JPY 721,573</div>
-                </div>
-            </div>
-            <div class=" col-lg-6">
-                <div style="color:#E66E76">今日涨幅 -2.74%</div>
-                <div style="color:#999">454,006 BTC 24h交易量</div>
-            </div>
-        </div>
-    </a>
 
-    <%}%>
-    <a href="#" class="list-group-item" style="text-align:center;cursor:pointer;">查看全部</a>
-
-</script>
-<script type="text/template" id="latestNews">
-    <%for(var i in model){%>
-    <a href="#" class="list-group-item">
-        <div class="media">
-            <div class="media-left media-middle">
-                <img class="media-object" src="static/img/aa.png" style="width:0.8rem;height:0.8rem">
-            </div>
-            <div class="media-body">
-                <div style="color:#999;"><span class="hot_icon"></span>1999ビュー</div>
-                <div>仮想通貨交換業者のテックビューロ
-                    （大阪市）は２０日、システムへの不
-                </div>
-                <div style="color:#999"><span class="time_icon"></span>5 hours ago</div>
-            </div>
-        </div>
-    </a>
-    <%}%>
-    <a href="#" class="list-group-item" style="text-align:center;cursor:pointer;">查看全部</a>
-</script>
-<script type="text/template" id="exchange">
-    <%for(var i in model){%>
-    <a href="#" class="list-group-item">
-        <div class="row">
-            <div class="media col-lg-8" style="padding-right: 0;">
-                <div class="media-left media-middle">
-                    <img class="" src="static/img/aa.png" style="width:0.32rem; height:0.32rem;">
-                </div>
-                <div class="media-body">
-                    <div style=";">
-                        <span>Bitcoin</span> &nbsp;&nbsp;<span style="color:#999;">24h交易总值</span>
-                    </div>
-                    <div style="color:#999">535,161.39 BTC
-                    </div>
-                </div>
-            </div>
-            <div class=" col-lg-4">
-
-                <div style="color:#999">交易占比 17.08 %</div>
-            </div>
-        </div>
-    </a>
-
-    <%}%>
-    <a href="#" class="list-group-item" style="text-align:center;cursor: pointer;">查看全部</a>
-
-</script>
 <!--底部部分-->
 <div class="footer-con">
     <div class="footer-top">
