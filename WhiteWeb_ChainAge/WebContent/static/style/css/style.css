@@ -56,7 +56,7 @@ h3 {
 
 #api_desc .a_desc::before {
 	content: '(';
-	pading-right: .5em;
+	padding-right: .5em;
 }
 
 #api_desc .a_desc::after {
