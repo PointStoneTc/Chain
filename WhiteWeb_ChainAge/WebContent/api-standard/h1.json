@@ -54,5 +54,660 @@
 			"value": "String",
 			"desc": "背景图片"
 		}
+	],
+	"result": [
+		{
+			"id": 5458,
+			"date": "2018-11-13T10:56:59",
+			"date_gmt": "2018-11-13T01:56:59",
+			"guid": {
+				"rendered": "https://www.chainage.jp/?p=5458"
+			},
+			"modified": "2018-11-13T10:56:59",
+			"modified_gmt": "2018-11-13T01:56:59",
+			"slug": "bitcoin-atms-4000-globally",
+			"status": "publish",
+			"type": "post",
+			"link": "https://www.chainage.jp/bitcoin-atms-4000-globally.html",
+			"title": {
+				"rendered": "ビットコインATMが全世界で4000台に拡大へ"
+			},
+			"content": {
+				"rendered": "<p><strong>仮想通貨産業の成熟度はさまざまな面から知ることができる。全世界で増え続けるビットコインATMは常に記録を塗り替えている。今月、その設置台数が4,000台という記録を突破する見込みだ。</strong></p>\n<h2>ビットコインATMに関するもう一つの記録</h2>\n<p>仮想通貨の利便性を高めることは最優先課題の一つである。ここで役に立つのがビットコインATMだ。この機械によって、ビットコインやアルトコインを法定通貨で購入しやすくなる。全世界で約4,000台が利用可能となっている。</p>\n<p>銀行のATMに比べれば数は少ないが、毎日、オンラインに接続されている機械は増え続けている。現在は一日あたり6台以上のビットコインATMが新たにつながっているのだ。</p>\n<p>Bitcoinistは5月に、全世界でビットコインATMの設置台数が3,000台に達したと報じている。</p>\n<p>ビットコインATMを利用できる場所といえば北アメリカだ。現時点でこの大陸は市場の71.3％を占めている。</p>\n<p>驚くべきことに、リストの二番目はヨーロッパ。4台のATMのうち1台はヨーロッパの都市に設置されている計算だ。仮想通貨取引の中心地ともいえるアジアはすべてのビットコインATMの2.56％が設置されているにすぎず、オセアニア、南アメリカ、そしてアフリカはさらに下のランクとなっている。</p>\n<p>注目すべき傾向の一つとしては、開発業者がビットコインだけに焦点を当てているわけではないというものだ。10台中6台は多様なアルトコインにも対応している。最も人気の高いのはライトコインで、イーサリアムとビットコインキャッシュがそれに続く。ダッシュ、モネロ、ドージコイン、さらにジーキャッシュも増えているようだ。加えて、10台中4台のATMでユーザーは仮想通貨を買うことも売ることもできる。</p>\n<h2>加熱する業者間の争い</h2>\n<p>ビットコインATMが導入された当初は、Lamassuが最も有名な企業だった。しかし次第に状況は変わってきている。現在の同社のシェアは10.96％で、製造業者としては第3位の知名度だ。現時点ではGenesisCoinがGeneral Bytesにわずかなリードを保っている。</p>\n<p>リストのそれより下側では、BitAccess、Coinsource、Covault、そしてOrderbobATMといった企業が市場シェアを獲得しようとしている。ここ数年は新規の製造業者も市場に参入している。勢いがあるのはBitxATM、CoinOutlet、Bitnovo、そしてDOBI ATMだ。こうした競争のレベルもビットコインの成熟度を示すものだ。仮想通貨を人目につきやすくすることは、それを一般の人々に利用してもらう上での重要なステップとなるだろう。</p>\n<p>ビットコインATMのサービスで改善すべき点の一つは手数料だ。仮想通貨を購入する際の平均手数料は8.85％。売却時はわずかに低く、7.9％となっている。通常の取引に比べると、このコストはきわめて高い。同時に、利便性も場所によってかなり異なっている。金融業界においては一般的に、利便性が高まるほど手数料が増えてしまう傾向にある。</p>\n<p>参考元：<a href=\"https://bitcoinist.com/bitcoin-atms-4000-globally/\" target=\"_blank\">Bitcoinist.com</a></p>\n<p>&nbsp;</p>\n<p style=\"text-align: right\"><span style=\"color: #999999\">©2018 Worldgo,kk. All Rights Reserved.</span></p>\n<p>&nbsp;</p>\n",
+				"protected": false
+			},
+			"excerpt": {
+				"rendered": "<p>仮想通貨産業の成熟度はさまざまな面から知ることができる。全世界で増え続けるビット&hellip;</p>\n",
+				"protected": false
+			},
+			"author": 17,
+			"featured_media": 5460,
+			"comment_status": "open",
+			"ping_status": "open",
+			"sticky": false,
+			"template": "",
+			"format": "standard",
+			"meta": [],
+			"categories": [
+				99
+			],
+			"tags": [
+				133,
+				129,
+				139
+			],
+			"metadata": {
+				"_vc_post_settings": [
+					"a:1:{s:10:\"vc_grid_id\";a:0:{}}"
+				],
+				"_wpcom_is_markdown": [
+					"1"
+				],
+				"_edit_lock": [
+					"1542075210:1"
+				],
+				"_edit_last": [
+					"11"
+				],
+				"slide_template": [
+					"default"
+				],
+				"trx_addons_options": [
+					"a:1:{s:4:\"icon\";s:0:\"\";}"
+				],
+				"eg_sources_html5_mp4": [
+					""
+				],
+				"eg_sources_html5_ogv": [
+					""
+				],
+				"eg_sources_html5_webm": [
+					""
+				],
+				"eg_sources_youtube": [
+					""
+				],
+				"eg_sources_vimeo": [
+					""
+				],
+				"eg_sources_wistia": [
+					""
+				],
+				"eg_sources_image": [
+					""
+				],
+				"eg_sources_iframe": [
+					""
+				],
+				"eg_sources_soundcloud": [
+					""
+				],
+				"eg_vimeo_ratio": [
+					"0"
+				],
+				"eg_youtube_ratio": [
+					"0"
+				],
+				"eg_wistia_ratio": [
+					"0"
+				],
+				"eg_html5_ratio": [
+					"0"
+				],
+				"eg_soundcloud_ratio": [
+					"0"
+				],
+				"eg_settings_custom_meta_skin": [
+					""
+				],
+				"eg_settings_custom_meta_element": [
+					""
+				],
+				"eg_settings_custom_meta_setting": [
+					""
+				],
+				"eg_settings_custom_meta_style": [
+					""
+				],
+				"eg_custom_meta_216": [
+					"true"
+				],
+				"hoverex_options": [
+					"a:0:{}"
+				],
+				"_expiration-date-status": [
+					"saved"
+				],
+				"trx_addons_post_views_count": [
+					"8"
+				],
+				"trx_addons_post_likes_count": [
+					"0"
+				],
+				"_thumbnail_id": [
+					"5460"
+				],
+				"_wp_old_date": [
+					"2018-11-12"
+				],
+				"_wpas_mess": [
+					"新しいニュースを追加しました。\r\n＃仮想通貨　＃ビットコイン"
+				],
+				"_publicize_twitter_user": [
+					"@ChainAgeJP"
+				],
+				"_wpas_done_all": [
+					"1"
+				]
+			},
+			"jetpack_featured_media_url": "https://www.chainage.jp/wp-content/uploads/2018/11/bitcoin-3137984_1280_1.jpg",
+			"_links": {
+				"self": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/posts/5458"
+					}
+				],
+				"collection": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/posts"
+					}
+				],
+				"about": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/types/post"
+					}
+				],
+				"author": [
+					{
+						"embeddable": true,
+						"href": "https://www.chainage.jp/wp-json/wp/v2/users/17"
+					}
+				],
+				"replies": [
+					{
+						"embeddable": true,
+						"href": "https://www.chainage.jp/wp-json/wp/v2/comments?post=5458"
+					}
+				],
+				"version-history": [
+					{
+						"count": 5,
+						"href": "https://www.chainage.jp/wp-json/wp/v2/posts/5458/revisions"
+					}
+				],
+				"predecessor-version": [
+					{
+						"id": 5483,
+						"href": "https://www.chainage.jp/wp-json/wp/v2/posts/5458/revisions/5483"
+					}
+				],
+				"wp:featuredmedia": [
+					{
+						"embeddable": true,
+						"href": "https://www.chainage.jp/wp-json/wp/v2/media/5460"
+					}
+				],
+				"wp:attachment": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/media?parent=5458"
+					}
+				],
+				"wp:term": [
+					{
+						"taxonomy": "category",
+						"embeddable": true,
+						"href": "https://www.chainage.jp/wp-json/wp/v2/categories?post=5458"
+					},
+					{
+						"taxonomy": "post_tag",
+						"embeddable": true,
+						"href": "https://www.chainage.jp/wp-json/wp/v2/tags?post=5458"
+					}
+				],
+				"curies": [
+					{
+						"name": "wp",
+						"href": "https://api.w.org/{rel}",
+						"templated": true
+					}
+				]
+			}
+		},
+		{
+			"id": 5466,
+			"date": "2018-11-12T20:08:52",
+			"date_gmt": "2018-11-12T11:08:52",
+			"guid": {
+				"rendered": "https://www.chainage.jp/?p=5466"
+			},
+			"modified": "2018-11-12T20:19:11",
+			"modified_gmt": "2018-11-12T11:19:11",
+			"slug": "news_fsa_regulation-of-wallet",
+			"status": "publish",
+			"type": "post",
+			"link": "https://www.chainage.jp/news_fsa_regulation-of-wallet.html",
+			"title": {
+				"rendered": "仮想通貨のウォレット業者に「登録制」導入へ｜金融庁の研究会"
+			},
+			"content": {
+				"rendered": "<p><strong>金融庁の「仮想通貨交換業等に関する研究会」は12日、同庁内で９回目の会合を開き、仮想通貨のウォレット業者に「登録制」を導入するなど、一定の規制を課していくことで大筋一致した。</strong></p>\n<p><span style=\"font-weight: 400;\">仮想通貨ウォレットは、いわば仮想通貨の保管場所。ウェブ上で仮想通貨を管理する「オンラインウォレット」や、個人のデバイスにソフトウェアをダウンロードして使う「ソフトウェアウォレット」、USBデバイスなどの「ハードウェアウォレット」、作成したアドレスを紙に印刷してつくる「ペーパーウォレット」の種類がある。</span></p>\n<p><span style=\"font-weight: 400;\">金融庁では、仮想通貨のウォレット業者に関して、「支払・決算手段を顧客が指定する者に移転させる行為を行うものであり、決済に関連するサービスとして金融規制の導入が期待される」として、具体的に以下のような規制を検討する。</span></p>\n<ul>\n<li><span style=\"font-weight: 400;\">登録制</span></li>\n<li><span style=\"font-weight: 400;\">内部管理体制の整備</span></li>\n<li><span style=\"font-weight: 400;\">業者の仮想通貨と顧客の仮想通貨の分別管理</span></li>\n<li><span style=\"font-weight: 400;\">分別管理監査、財務諸表監査</span></li>\n<li><span style=\"font-weight: 400;\">仮想通貨流出時の対応方針の公表、弁済原資の保持</span></li>\n<li><span style=\"font-weight: 400;\">取り扱う仮想通貨の制限</span></li>\n<li><span style=\"font-weight: 400;\">顧客の本人確認、疑わしい取引の金融庁への届け出 </span></li>\n</ul>\n<p><span style=\"font-weight: 400;\">研究会の席上、メンバーからは「ウォレット業者には仮想通貨交換業者と同様のリスクをはらんでいる。規制の対象にするべきだ」として、金融庁の方針に賛同する意見が相次いだ。また、「ウォレットの種別ごとのリスクを勘案し、適切な規制を」「国際的な規制枠組みの検討も必要」との声も上がった。</span></p>\n<p><span style=\"font-weight: 400;\">なお、仮想通貨ウォレット業者の登録制を導入するにあたり、金融庁では交換業業者と同様の「みなし登録」も設ける方針。みなし業者に対しては、①業務内容や取り扱い仮想通貨の追加禁止②新規顧客獲得の禁止③サイト上に登録を受けていない旨を明記――といった措置がなされるようだ。</span></p>\n<p><strong>・金融庁のプレスリリースは<a href=\"https://www.chainage.jp/fsa\">こちら</a></strong></p>\n<p><strong>・第８回「仮想通貨交換業等に関する研究会」の内容は<a href=\"https://www.chainage.jp/news_fsa_ico_regulation.html\">こちら</a></strong></p>\n<p><strong>・第７回「仮想通貨交換業等に関する研究会」の内容は<a href=\"https://www.chainage.jp/news_fsa_regulation-of-leverage.html\">こちら</a></strong></p>\n<p><strong>・第６回「仮想通貨交換業等に関する研究会」の内容は<a href=\"https://www.chainage.jp/news_fsa-study-group_crypto-currency_regulation_6.htm\">こちら</a></strong></p>\n<p style=\"text-align: right;\"><span style=\"color: #999999;\">©2018 Worldgo.kk All Rights Reserved.</span></p>\n<p>&nbsp;</p>\n",
+				"protected": false
+			},
+			"excerpt": {
+				"rendered": "<p>金融庁の「仮想通貨交換業等に関する研究会」は12日、同庁内で９回目の会合を開き、&hellip;</p>\n",
+				"protected": false
+			},
+			"author": 11,
+			"featured_media": 5303,
+			"comment_status": "open",
+			"ping_status": "open",
+			"sticky": false,
+			"template": "",
+			"format": "standard",
+			"meta": [],
+			"categories": [
+				99
+			],
+			"tags": [
+				183,
+				129,
+				155,
+				143
+			],
+			"metadata": {
+				"_vc_post_settings": [
+					"a:1:{s:10:\"vc_grid_id\";a:0:{}}"
+				],
+				"_wpcom_is_markdown": [
+					"1"
+				],
+				"_edit_lock": [
+					"1542021926:11"
+				],
+				"_edit_last": [
+					"11"
+				],
+				"slide_template": [
+					"default"
+				],
+				"trx_addons_options": [
+					"a:1:{s:4:\"icon\";s:0:\"\";}"
+				],
+				"eg_sources_html5_mp4": [
+					""
+				],
+				"eg_sources_html5_ogv": [
+					""
+				],
+				"eg_sources_html5_webm": [
+					""
+				],
+				"eg_sources_youtube": [
+					""
+				],
+				"eg_sources_vimeo": [
+					""
+				],
+				"eg_sources_wistia": [
+					""
+				],
+				"eg_sources_image": [
+					""
+				],
+				"eg_sources_iframe": [
+					""
+				],
+				"eg_sources_soundcloud": [
+					""
+				],
+				"eg_vimeo_ratio": [
+					"0"
+				],
+				"eg_youtube_ratio": [
+					"0"
+				],
+				"eg_wistia_ratio": [
+					"0"
+				],
+				"eg_html5_ratio": [
+					"0"
+				],
+				"eg_soundcloud_ratio": [
+					"0"
+				],
+				"eg_settings_custom_meta_skin": [
+					""
+				],
+				"eg_settings_custom_meta_element": [
+					""
+				],
+				"eg_settings_custom_meta_setting": [
+					""
+				],
+				"eg_settings_custom_meta_style": [
+					""
+				],
+				"eg_custom_meta_216": [
+					"true"
+				],
+				"hoverex_options": [
+					"a:0:{}"
+				],
+				"_expiration-date-status": [
+					"saved"
+				],
+				"trx_addons_post_views_count": [
+					"10"
+				],
+				"trx_addons_post_likes_count": [
+					"0"
+				],
+				"_publicize_twitter_user": [
+					"@ChainAgeJP"
+				],
+				"_thumbnail_id": [
+					"5303"
+				],
+				"_wpas_mess": [
+					"仮想通貨のウォレット業者に「登録制」導入か｜金融庁の研究会"
+				],
+				"_wpas_skip_21406753": [
+					"1"
+				],
+				"_wpas_done_all": [
+					"1"
+				],
+				"_wpas_skip_21401044": [
+					"1"
+				]
+			},
+			"jetpack_featured_media_url": "https://www.chainage.jp/wp-content/uploads/2018/11/金融庁.jpg",
+			"_links": {
+				"self": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/posts/5466"
+					}
+				],
+				"collection": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/posts"
+					}
+				],
+				"about": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/types/post"
+					}
+				],
+				"author": [
+					{
+						"embeddable": true,
+						"href": "https://www.chainage.jp/wp-json/wp/v2/users/11"
+					}
+				],
+				"replies": [
+					{
+						"embeddable": true,
+						"href": "https://www.chainage.jp/wp-json/wp/v2/comments?post=5466"
+					}
+				],
+				"version-history": [
+					{
+						"count": 6,
+						"href": "https://www.chainage.jp/wp-json/wp/v2/posts/5466/revisions"
+					}
+				],
+				"predecessor-version": [
+					{
+						"id": 5472,
+						"href": "https://www.chainage.jp/wp-json/wp/v2/posts/5466/revisions/5472"
+					}
+				],
+				"wp:featuredmedia": [
+					{
+						"embeddable": true,
+						"href": "https://www.chainage.jp/wp-json/wp/v2/media/5303"
+					}
+				],
+				"wp:attachment": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/media?parent=5466"
+					}
+				],
+				"wp:term": [
+					{
+						"taxonomy": "category",
+						"embeddable": true,
+						"href": "https://www.chainage.jp/wp-json/wp/v2/categories?post=5466"
+					},
+					{
+						"taxonomy": "post_tag",
+						"embeddable": true,
+						"href": "https://www.chainage.jp/wp-json/wp/v2/tags?post=5466"
+					}
+				],
+				"curies": [
+					{
+						"name": "wp",
+						"href": "https://api.w.org/{rel}",
+						"templated": true
+					}
+				]
+			}
+		},
+		{
+			"id": 5453,
+			"date": "2018-11-12T19:30:55",
+			"date_gmt": "2018-11-12T10:30:55",
+			"guid": {
+				"rendered": "https://www.chainage.jp/?p=5453"
+			},
+			"modified": "2018-11-12T20:18:49",
+			"modified_gmt": "2018-11-12T11:18:49",
+			"slug": "news_bch_hard-fork",
+			"status": "publish",
+			"type": "post",
+			"link": "https://www.chainage.jp/news_bch_hard-fork.html",
+			"title": {
+				"rendered": "ビットコインキャッシュがハードフォークへ｜その理由と各取引所の対応まとめ"
+			},
+			"content": {
+				"rendered": "<p>11月16日未明、ビットコインキャッシュ（BCH）のハードフォークが予定されています。そもそもどうしてハードフォークすることに至ったのでしょうか。この記事では、その理由を解説するとともに、ハードフォークに伴う国内外の主な取引所の対応をまとめます。 ※時間は24時間表記 <div id=\"toc_container\" class=\"toc_black no_bullets\"><p class=\"toc_title\">目次</p><ul class=\"toc_list\"><li><a href=\"#i\"><span class=\"toc_number toc_depth_1\">1</span> ビットコインキャッシュハードフォークの理由</a></li><li><a href=\"#i-2\"><span class=\"toc_number toc_depth_1\">2</span> 国内の取引所の対応</a><ul><li><a href=\"#bitFlyer\"><span class=\"toc_number toc_depth_2\">2.1</span> bitFlyer</a></li><li><a href=\"#Liquid_by_QUONINE\"><span class=\"toc_number toc_depth_2\">2.2</span> Liquid by QUONINE</a></li><li><a href=\"#Coincheck\"><span class=\"toc_number toc_depth_2\">2.3</span> Coincheck</a></li><li><a href=\"#Zaif\"><span class=\"toc_number toc_depth_2\">2.4</span> Zaif</a></li><li><a href=\"#bitbank\"><span class=\"toc_number toc_depth_2\">2.5</span> bitbank</a></li><li><a href=\"#BitPoint\"><span class=\"toc_number toc_depth_2\">2.6</span> BitPoint</a></li><li><a href=\"#GMO\"><span class=\"toc_number toc_depth_2\">2.7</span> GMOコイン</a></li><li><a href=\"#DMM_Bitcoin\"><span class=\"toc_number toc_depth_2\">2.8</span> DMM Bitcoin</a></li><li><a href=\"#SBIVC\"><span class=\"toc_number toc_depth_2\">2.9</span> SBIVC</a></li><li><a href=\"#i-3\"><span class=\"toc_number toc_depth_2\">2.10</span> フィスコ仮想通貨取引所</a></li><li><a href=\"#Bit_Trade\"><span class=\"toc_number toc_depth_2\">2.11</span> Bit Trade</a></li><li><a href=\"#i-4\"><span class=\"toc_number toc_depth_2\">2.12</span> みんなのビットコイン</a></li></ul></li><li><a href=\"#i-5\"><span class=\"toc_number toc_depth_1\">3</span> 海外の取引所の対応</a><ul><li><a href=\"#Binance\"><span class=\"toc_number toc_depth_2\">3.1</span> Binance</a></li><li><a href=\"#Poloniex\"><span class=\"toc_number toc_depth_2\">3.2</span> Poloniex</a></li><li><a href=\"#Coinbase\"><span class=\"toc_number toc_depth_2\">3.3</span> Coinbase</a></li><li><a href=\"#Huobi_Global\"><span class=\"toc_number toc_depth_2\">3.4</span> Huobi Global</a></li></ul></li><li><a href=\"#i-6\"><span class=\"toc_number toc_depth_1\">4</span> まとめ</a></li></ul></div>\n</p>\n<h2><span id=\"i\">ビットコインキャッシュハードフォークの理由</span></h2>\n<p>11月16日のアップグレードをめぐって、BitcoinABCと呼ばれるグループとBitcoinSVと呼ばれるグループとの技術的対立が原因となっています。 今回のアップグレードでBitcoinABCグループは、「OP_CHECKDATASIGVERIFY(DSV)」という異なるブロックチェーン上の資産を交換できることを可能にできる技術を提案しました。しかしこの技術に反対をしたのが、BitcoinSVのグループです。 BitcoinSVグループは、サトシ・ナカモトが描いた本来のビットコインの姿がからかけ離れているとして、反対。結果11月15日のアップグレードの際に分裂が起こるとされています。</p>\n<h2><span id=\"i-2\">国内の取引所の対応</span></h2>\n<h3><span id=\"bitFlyer\"><u>bitFlyer</u></span></h3>\n<p>15日午後10:00頃からビットコインキャッシュの預け入れと送付を停止。販売所、bitFlyer lightningによる売買は通常通り。16日午前1:40ごろから保有残高（スナイプショット）の記録を行う。 新しいチェーンへの移行は自動的に行われるのでユーザーが手続きする必要はない。</p>\n<h3><span id=\"Liquid_by_QUONINE\"><u>Liquid by QUONINE</u></span></h3>\n<p>ハードフォークが始まる予定時間の24時間前、2018年11月15日からビットコインキャッシュの出入金を停止。ハードフォークが完了した約24時間後11月17日1:40頃から出入金を開始する予定。ハードフォークの際に誕生する新通貨をサポートする予定はない。</p>\n<h3><span id=\"Coincheck\"><u>Coincheck</u></span></h3>\n<p>2018年11月14日12:00からビットコインキャッシュの入出金と売買を一時停止。仮に入金してしまった場合、残高への反映は入出金再開後となる。現時点でハードフォークにより発生した新通貨の付与は未定。</p>\n<h3><span id=\"Zaif\"><u>Zaif</u></span></h3>\n<p>2018年11月16日1:40頃からスナイプショットの取得。入出金処理は9月から停止中。チェーンの分岐により誕生する新通貨の付与は現時点で未定。</p>\n<h3><span id=\"bitbank\"><u>bitbank</u></span></h3>\n<p>2018年11月16日1:40頃からスナイプショットの取得。2018年11月15日22:00よりビットコインキャッシュの出入金を停止。売買に関しては通常通り利用可能。新通貨への対応は未定。</p>\n<h3><span id=\"BitPoint\"><u>BitPoint</u></span></h3>\n<p>アップグレードによってビットコインキャッシュに係るサービスの安定稼働に支障をきたすと判断した場合、送付、預入のサービスを一時的に停止。売買については平常通り。</p>\n<h3><span id=\"GMO\"><u>GMOコイン</u></span></h3>\n<p>2018年11月15日12:00よりビットコインキャッシュの預け入れと送付を停止。2018年11月16日1:40よりスナイプショットの取得。預入や送付以外が通常通りのサービスを提供する予定。</p>\n<h3><span id=\"DMM_Bitcoin\"><u>DMM Bitcoin</u></span></h3>\n<p>ビットコインキャッシュはレバレッジ取引のみの取り扱い。アップグレード前後でも取引をすることが可能。</p>\n<h3><span id=\"SBIVC\"><u>SBIVC</u></span></h3>\n<p>2018年11月13日7:00からビットコインキャッシュの売買を停止。資産の安全と取引に支障がないと判断した時点で再開する。具体的な日時は11月11日現在、未定でハードフォーク後SBIVCよりお知らせ。 ビットコインキャッシュ保有者はビットコインキャッシュ保有量に応じた形で新通貨を供給する予定。ただし現金による支払いになる可能性も。</p>\n<h3><span id=\"i-3\"><u>フィスコ仮想通貨取引所</u></span></h3>\n<p>2018年11月15日12:00頃、ハードフォーク実施見込みの約1位間前からビットコインキャッシュの入出金と新規アドレス取得の停止。取引所は通常通り売買が可能。 入手金の再開は、ビットコインキャッシュのブロックチェーンが安定稼働したのを確認した後となる。</p>\n<h3><span id=\"Bit_Trade\"><u>Bit Trade</u></span></h3>\n<p>2018年11月16日1:40スナイプショットの取得、2018年11月15日22:00よりビットコインキャッシュの預入と引き出しを停止。売買は通常通り。預入と引き出し停止の解除日時は改めて通知する。</p>\n<h3><span id=\"i-4\"><u>みんなのビットコイン</u></span></h3>\n<p>2018年11月15日1:40から11月17日1:40までビットコインキャッシュの入出金を停止。停止時間または再開時間はハードフォークの状況によって変化する可能性がある。ハードフォークによって誕生する新通貨のサポートはない。</p>\n<h2><span id=\"i-5\">海外の取引所の対応</span></h2>\n<h3><span id=\"Binance\"><u>Binance</u></span></h3>\n<p>ハードフォークをサポートする方針。日本時間11月16日1:40ごろスナイプショットを行う予定。ビットコインキャッシュの入出金は日本時間11月16日0:00から一時停止。入出金再開は別途通知。</p>\n<h3><span id=\"Poloniex\"><u>Poloniex</u></span></h3>\n<p>すでに11月7日からハードフォークで分裂する2つの通貨の取引を開始しているため、ハードフォーク後もサポートすることになっている。日本時間11月15日23:00にビットコインキャッシュの入出金を停止。未処理の注文をキャンセルし、スナイプショットに記録。入出金再開2つの通貨のブロックチェーンネットワークが安定した時点で告知をすることになっている。</p>\n<h3><span id=\"Coinbase\"><u>Coinbase</u></span></h3>\n<p>ハードフォークをサポートする準備をしていると発表しているが、安全基準を満たすまでは顧客の損害を最小限にすることを第一優先とするとのこと。日本時間11月16日1:00にiOSアプリ、Androidアプリの両ウォレットの入出金をハードフォーク開始の約一時間に停止。ハードフォークを確認した後で適切な対応を検討する。</p>\n<h3><span id=\"Huobi_Global\"><u>Huobi Global</u></span></h3>\n<p>ハードフォークをサポートする方針。日本時間11月16日9:40にスナイプショットを行い、11月16日8:40に入出金を停止。再開は別途通知。</p>\n<h2><span id=\"i-6\">まとめ</span></h2>\n<p>未定の取引所や発表していない取引所はあるものの、どちらかというと日本の取引所は今回のハードフォークのサポートをする取引所は少なくなっています。日本でハードフォークの際、誕生する通貨の付与予定の取引所はSBIVCしかありません。 新しい通貨の付与を期待するのならば、Binanceなどの海外の取引所にできるだけ早く、送金しておかなければならないでしょう。</p>\n<p>&nbsp;</p>\n<p style=\"text-align: right;\"><span style=\"color: #999999;\">©2018 Worldgo,kk. All Rights Reserved.</span></p>\n<p>&nbsp;</p>\n",
+				"protected": false
+			},
+			"excerpt": {
+				"rendered": "<p>11月16日未明、ビットコインキャッシュ（BCH）のハードフォークが予定されてい&hellip;</p>\n",
+				"protected": false
+			},
+			"author": 17,
+			"featured_media": 5456,
+			"comment_status": "open",
+			"ping_status": "open",
+			"sticky": false,
+			"template": "",
+			"format": "standard",
+			"meta": [],
+			"categories": [
+				99
+			],
+			"tags": [
+				156,
+				123,
+				129,
+				145
+			],
+			"metadata": {
+				"_vc_post_settings": [
+					"a:1:{s:10:\"vc_grid_id\";a:0:{}}"
+				],
+				"_wpcom_is_markdown": [
+					"1"
+				],
+				"_edit_last": [
+					"11"
+				],
+				"slide_template": [
+					"default"
+				],
+				"trx_addons_options": [
+					"a:1:{s:4:\"icon\";s:0:\"\";}"
+				],
+				"eg_sources_html5_mp4": [
+					""
+				],
+				"eg_sources_html5_ogv": [
+					""
+				],
+				"eg_sources_html5_webm": [
+					""
+				],
+				"eg_sources_youtube": [
+					""
+				],
+				"eg_sources_vimeo": [
+					""
+				],
+				"eg_sources_wistia": [
+					""
+				],
+				"eg_sources_image": [
+					""
+				],
+				"eg_sources_iframe": [
+					""
+				],
+				"eg_sources_soundcloud": [
+					""
+				],
+				"eg_vimeo_ratio": [
+					"0"
+				],
+				"eg_youtube_ratio": [
+					"0"
+				],
+				"eg_wistia_ratio": [
+					"0"
+				],
+				"eg_html5_ratio": [
+					"0"
+				],
+				"eg_soundcloud_ratio": [
+					"0"
+				],
+				"eg_settings_custom_meta_skin": [
+					""
+				],
+				"eg_settings_custom_meta_element": [
+					""
+				],
+				"eg_settings_custom_meta_setting": [
+					""
+				],
+				"eg_settings_custom_meta_style": [
+					""
+				],
+				"eg_custom_meta_216": [
+					"true"
+				],
+				"hoverex_options": [
+					"a:0:{}"
+				],
+				"_expiration-date-status": [
+					"saved"
+				],
+				"trx_addons_post_views_count": [
+					"8"
+				],
+				"trx_addons_post_likes_count": [
+					"0"
+				],
+				"_edit_lock": [
+					"1542021390:11"
+				],
+				"_thumbnail_id": [
+					"5456"
+				],
+				"_wpas_skip_21406753": [
+					"1"
+				],
+				"_wpas_done_all": [
+					"1"
+				],
+				"_wpas_skip_21401044": [
+					"1"
+				]
+			},
+			"jetpack_featured_media_url": "https://www.chainage.jp/wp-content/uploads/2018/11/blockchain-3747529_1920_1.jpg",
+			"_links": {
+				"self": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/posts/5453"
+					}
+				],
+				"collection": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/posts"
+					}
+				],
+				"about": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/types/post"
+					}
+				],
+				"author": [
+					{
+						"embeddable": true,
+						"href": "https://www.chainage.jp/wp-json/wp/v2/users/17"
+					}
+				],
+				"replies": [
+					{
+						"embeddable": true,
+						"href": "https://www.chainage.jp/wp-json/wp/v2/comments?post=5453"
+					}
+				],
+				"version-history": [
+					{
+						"count": 5,
+						"href": "https://www.chainage.jp/wp-json/wp/v2/posts/5453/revisions"
+					}
+				],
+				"predecessor-version": [
+					{
+						"id": 5465,
+						"href": "https://www.chainage.jp/wp-json/wp/v2/posts/5453/revisions/5465"
+					}
+				],
+				"wp:featuredmedia": [
+					{
+						"embeddable": true,
+						"href": "https://www.chainage.jp/wp-json/wp/v2/media/5456"
+					}
+				],
+				"wp:attachment": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/media?parent=5453"
+					}
+				],
+				"wp:term": [
+					{
+						"taxonomy": "category",
+						"embeddable": true,
+						"href": "https://www.chainage.jp/wp-json/wp/v2/categories?post=5453"
+					},
+					{
+						"taxonomy": "post_tag",
+						"embeddable": true,
+						"href": "https://www.chainage.jp/wp-json/wp/v2/tags?post=5453"
+					}
+				],
+				"curies": [
+					{
+						"name": "wp",
+						"href": "https://api.w.org/{rel}",
+						"templated": true
+					}
+				]
+			}
+		}
 	]
 }

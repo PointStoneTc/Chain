@@ -17,7 +17,7 @@ a:hover {
 }
 
 h3 {
-	font-size: .75em;
+	font-size: 1em;
 }
 
 .codeList {
@@ -35,33 +35,35 @@ h3 {
 }
 
 .codeList dl dt {
-	font-size: .75em;
+	font-size: 1em;
 	margin: .40em auto;
 }
 
-#api_desc span{
-	display: inline-block;	
+#api_desc span {
+	display: inline-block;
 }
 
 #api_desc .a_name {
 	min-width: 7em;
 	padding: 0 .25em;
-	color:#4a3af0;
+	color: #4a3af0;
 }
 
-#api_desc .a_desc{
+#api_desc .a_desc {
 	min-width: 6em;
 	padding: 0 .25em;
 }
 
 #api_desc .a_desc::before {
 	content: '(';
+	pading-right: .5em;
 }
 
 #api_desc .a_desc::after {
 	content: '):';
+	padding-left: .5em;
 }
 
-#api_desc .a_value{
-	color:red;
+#api_desc .a_value {
+	color: red;
 }
