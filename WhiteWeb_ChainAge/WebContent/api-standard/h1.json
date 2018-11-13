@@ -1,28 +1,58 @@
 {
 	"url": "https://www.chainage.jp/wp-json/wp/v2/posts",
 	"datatype": "json",
-	"schema": {
-		"status": 403
-	},
-	"arguments": [{
+	"arguments": [
+		{
 			"name": "per_page",
 			"value": 3,
-			"desc": "xxxx"
+			"desc": "分页一页数量"
 		},
 		{
 			"name": "order",
 			"value": "desc",
-			"desc": "xxxx"
+			"desc": "排序方式[升序/降序]"
 		},
 		{
 			"name": "orderby",
 			"value": "date",
-			"desc": "xxxx"
+			"desc": "排序字段"
 		},
 		{
 			"name": "categories",
 			"value": 99,
-			"desc": "xxxx"
+			"desc": "文章分类定位key"
+		},
+		{
+			"name": "status",
+			"value": "publish",
+			"desc": "发布状态"
+		}
+	],
+	"schema": [
+		{
+			"name": "title",
+			"value": "String",
+			"desc": "文章标题"
+		},
+		{
+			"name": "date",
+			"value": "string datetime",
+			"desc": "发布时间"
+		},
+		{
+			"name": "categories",
+			"value": "array",
+			"desc": "分类"
+		},
+		{
+			"name": "metadata",
+			"value": "json",
+			"desc": "元数据"
+		},
+		{
+			"name": "jetpack_featured_media_url",
+			"value": "String",
+			"desc": "背景图片"
 		}
 	]
 }
