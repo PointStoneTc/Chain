@@ -19,15 +19,54 @@ $(document).ready(function () {
 });
 
 var homePage = {
-    pageSize: 3,
+    pageSize: 6,
+    categories: [],
+    newCounts:[],
+    users:[],
     init: function () {
-        this.getNewsBannerData(99);
-        this.getCategoreType(99);
-        this.getPicNewsData(99);
+        this.getCategoreType();
+        this.getUsers();
+        $('.news_list_con .news_container').data('num',0)
+        // 置顶新闻
+        this.getNewsData({per_page:3,order:'desc',orderby:'date',categories:99},function(data){
+            $(".news_banner .banner_left img").attr("src", data[0].jetpack_featured_media_url);
+            $(".news_banner .banner_left a").attr("href", './newsContent.html?id=' + data[0].id);
+            $(".news_banner .banner_left .new_title").text(data[0].title.rendered);
+            $(".news_banner .banner_left .time_fabu").text(homePage.timeonverseFunc(new Date(data[0].date).getTime()));
+            $(".news_banner .banner_r_top img").attr("src", data[1].jetpack_featured_media_url);
+            $(".news_banner .banner_r_top a").attr("href", './newsContent.html?id=' + data[1].id);
+            $(".news_banner .banner_r_top .new_title").text(data[1].title.rendered);
+            $(".news_banner .banner_r_top .time_fabu").text(homePage.timeonverseFunc(new Date(data[1].date).getTime()));
+            $(".news_banner .banner_r_bot img").attr("src", data[2].jetpack_featured_media_url);
+            $(".news_banner .banner_r_bot a").attr("href", './newsContent.html?id=' + data[2].id);
+            $(".news_banner .banner_r_bot .new_title").text(data[2].title.rendered);
+            $(".news_banner .banner_r_bot .time_fabu").text(homePage.timeonverseFunc(new Date(data[2].date).getTime()));
+
+            $(".news_banner .banner_left .new_catelage").text(homePage.categories[data[0].categories[0]]);
+            $(".news_banner .banner_r_top .new_catelage").text(homePage.categories[data[1].categories[0]]);
+            $(".news_banner .banner_r_bot .new_catelage").text(homePage.categories[data[2].categories[0]]);
+        });
+        // 排行
+        this.getRankingData(99);
+        // 图片新闻
+        this.getNewsData({per_page:3,order:'desc',orderby:'date',categories:99},function(data){
+           var html='';
+            for(var i=0;i<data.length;i++){
+                var linkUrl='./newsContent.html?id=' + data[i].id;
+               html+='<div class="col-sm-4 bd-card-mod">'
+                   +'<a href=" '+linkUrl+' ">'
+                   + '<img class="card-img lazy" src="'+data[i].jetpack_featured_media_url+'" style="display: inline;">'
+                   +'</a>'
+                   + '</div>';
+           }
+           $(".news_show .news_show_contain").html(html);
+        });
+        this.getNewsListData();
+
     },
-    // 请求数据
-    getNewsBannerData: function getData(categories) {
-        var url = 'https://www.chainage.jp/wp-json/wp/v2/posts?per_page=3&order=desc&orderby=date&categories=' + categories;
+    // 请求新闻数据
+    getNewsData: function getData(param,callback) {
+        var url = 'https://www.chainage.jp/wp-json/wp/v2/posts?per_page='+param.per_page+'&order='+param.order+'&orderby='+param.orderby+'&categories=' + param.categories;
         $.ajax({
             type: 'GET',
             url: url,
@@ -36,25 +75,17 @@ var homePage = {
             },
             success: function (data) {
                 if (data) {
-                    $(".news_banner .banner_left img").attr("src", data[0].jetpack_featured_media_url);
-                    $(".news_banner .banner_left a").attr("href", data[0].link);
-                    $(".news_banner .banner_left .new_title").text(data[0].title.rendered);
-                    $(".news_banner .banner_left .time_fabu").text(homePage.timeonverseFunc(new Date(data[0].date_gmt).getTime()));
-                    $(".news_banner .banner_r_top img").attr("src", data[0].jetpack_featured_media_url);
-                    $(".news_banner .banner_r_top a").attr("href", data[0].link);
-                    $(".news_banner .banner_r_top .new_title").text(data[0].title.rendered);
-                    $(".news_banner .banner_r_top .time_fabu").text(homePage.timeonverseFunc(new Date(data[0].date_gmt).getTime()));
-                    $(".news_banner .banner_r_bot img").attr("src", data[0].jetpack_featured_media_url);
-                    $(".news_banner .banner_r_bot a").attr("href", data[0].link);
-                    $(".news_banner .banner_r_bot .new_title").text(data[0].title.rendered);
-                    $(".news_banner .banner_r_bot .time_fabu").text(homePage.timeonverseFunc(new Date(data[0].date_gmt).getTime()));
+                    if(callback){
+                        callback(data,param);
+                    }
                 }
             }
         });
     },
     // 获取分类名称
-    getCategoreType: function (categories) {
-        var url = 'https://www.chainage.jp/wp-json/wp/v2/categories/' + categories;
+    getCategoreType: function () {
+        var url = 'https://www.chainage.jp/wp-json/wp/v2/categories?per_page=50';
+        var self = this;
         $.ajax({
             type: 'GET',
             url: url,
@@ -63,13 +94,39 @@ var homePage = {
             },
             success: function (data) {
                 if (data) {
-                    $(".news_banner .new_catelage").text(data.name);
+                    for (var i = 0; i <data.length; i++) {
+                        var id=data[i].id;
+                        var c = self.categories[id] = data[i].name;
+                        var d = self.newCounts[id] = data[i].count;
+                        self.categories.push(c);
+                        self.newCounts.push(d)
+                    }
                 }
             }
         });
     },
-    // 获取图片新闻
-    getPicNewsData: function getData(categories) {
+    getUsers:function(){
+        var url = 'https://www.chainage.jp/wp-json/wp/v2/users';
+        var self = this;
+        $.ajax({
+            type: 'GET',
+            url: url,
+            async: true,
+            error: function () {
+            },
+            success: function (data) {
+                if (data) {
+                    for (var i = 0; i <data.length; i++) {
+                        var id=data[i].id;
+                        var c = self.users[id] = data[i].name;
+                        self.users.push(c);
+                    }
+                }
+            }
+        });
+    },
+    // 获取排行
+    getRankingData: function getData(categories) {
         var url = 'https://www.chainage.jp/wp-json/wp/v2/posts?per_page=3&order=desc&orderby=date&categories=' + categories;
         $.ajax({
             type: 'GET',
@@ -79,28 +136,27 @@ var homePage = {
             },
             success: function (data) {
                 if (data) {
-                    var data=[{persion:"20%"},{persion:"20%"},{persion:"-20%"},{persion:"-20%"},{persion:"20%"},{persion:-"20%"}]
-                   for(var i=0;i<data.length;i++){
-                       if(data[i].persion>=0){
-                           data[i].percentClass="up_color";
-                       }else{
-                           data[i].percentClass="down_color";
-                       }
-                   }
+                    var data = [{persion: "20%"}, {persion: "20%"}, {persion: "-20%"}, {persion: "-20%"}, {persion: "20%"}, {persion: "20%"}];
                     // 注册关注 template方法
-                    template.registerFunction('percent', function (arr, valueText) {
+                    template.registerFunction('percent', function (valueText) {
                         var str = "up_color";
-                        if(arr>=0){
-                            str="up_color";
-                        }else{
-                            str="down_color";
+                        if (parseInt(valueText) >= 0) {
+                            str = "up_color";
+                        } else {
+                            str = "down_color";
                         }
                         return str;
                     });
-                    var newsFuc= template($("#message_show").html(),{data:data});
+                    var newsFuc = template($("#message_show").html(), {data: data});
                     $(".message_show ul").html(newsFuc);
                 }
             }
+        });
+    },
+    getNewsListData:function(){
+        // 列表新闻
+        this.getNewsData({per_page:6,order:'desc',orderby:'date',categories:99},function(data,param){
+            homePage.loadNewSData(data,param);
         });
     },
     // 计算多长时间之前
@@ -141,59 +197,42 @@ var homePage = {
         return result;
 
     },
-    // 请求ニュース数据
-    getNewsData: function getData(param) {
-        var url = 'http://data.chainage.jp/caweb/cc/currencyApiController.do?assetTrend';
-        $.ajax({
-            type: 'GET',
-            url: url,
-            async: true,
-            dataType: "text",
-            error: function () {
-
-            },
-            success: function (data) {
-                if (data) {
-                    homePage.loadNewSData(us009);
-                }
-            }
-        });
-    },
     // 加载新闻数据
-    loadNewSData: function (data) {
-        var more = '<div class="more_btn">もっと読む</div>';
+    loadNewSData: function (data,param) {
         var htm = '';
         if (data.length > 0) {
             for (var i = 0; i < data.length; i++) {
                 htm += '<div class="col-md-4 benefit_box">'
                     + '<div class="benefit_box_con">'
-                    + '<p class="p20 benefit_box_tit">ニュース</p>'
-                    + '<p class="p20 benefit_box_com">Zaif関連ニュースまとめ｜金融庁立ち入り検査、麻生財務相発言など</p>'
-                    + '<p class="p20 benefit_box_from"><span class="new_list_icon"></span><span>ChainAge Editor</span><span class="new_list_time"></span><span>5 hours ago</span>'
+                    + '<p class="p20 benefit_box_tit">'+homePage.categories[data[i].categories[0]]+'</p>'
+                    + '<p class="p20 benefit_box_com">'+data[i].title.rendered+'</p>'
+                    + '<p class="p20 benefit_box_from">'
+                    +'<span class="new_list_icon"></span>'
+                    +'<span>'+homePage.users[data[i].author]+'</span>'
+                    +'<div class="time_right"><span class="new_list_time"></span>'
+                    +'<span>'+homePage.timeonverseFunc(new Date(data[1].date))+'</span></div>'
                     + '</p>'
-                    + '<img style="width: 100%; height: 1.52rem;" src="../img/aa.png">'
-                    + '<p class="p20 benefit_box_com news_dec">仮想通貨交換業者のテックビューロ（大阪市）は２０日、システムへの不正アクセスにより、ビッ</p>'
-                    + '<p class="p20" style="font-size: 0.18rem;color: #999">トコインなど仮想通貨が外部に流出したと発表した。</p>'
+                    + '<img style="width: 100%; height: 1.52rem;" src="'+data[i].jetpack_featured_media_url+'">'
+                    + '<div class="p20 benefit_box_com news_dec">'+data[i].excerpt.rendered+'</div>'
                     + '</div>'
                     + '</div>';
             }
-            $('.news_contain .news_container').append(htm);
+            $('.news_list_con .news_container').append(htm);
         }
-        var num = $('#_userOnlineTable.t-table-striped tbody').data('num');
+        var num = $('.news_list_con .news_container').data('num');
+
         //判断是否需要显示加载更多的按钮
-        if (data.trueCount - ((homePage.pageSize) * num + homePage.pageSize) > 0) {
-            $('.news_contain ').after(more);
-            $(".news_contain .more_btn").unbind('click').on('click', function () {
-                $('.more_btn').remove();  //移除加载更多按钮
-                $('.news_contain .news_container').data('num', num + 1);
-                homePage.getNewsData({
-                    "start": (homePage.pageSize) * num + homePage.pageSize,
-                    "isLoadMore": true
+        if (homePage.newCounts[param.categories] - ((homePage.pageSize) * num + homePage.pageSize) > 0) {
+            $('.listMoreBtn').unbind('click').on('click', function () {
+                $('.news_list_con .news_container').data('num', num + 1);
+                homePage.getNewsListData({
+                    "start": (homePage.pageSize) * num + homePage.pageSize
                 });
             });
         } else {
-            $('.more_btn').remove(); // 移除加载更多按钮
+            $('.listMoreBtn').remove(); // 移除加载更多按钮
         }
     },
+
 }
 homePage.init();

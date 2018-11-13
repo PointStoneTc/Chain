@@ -206,6 +206,14 @@
 .news_contain .benefit_box_from{
   font-size: 0.14rem;
   color: #757575;
+  float: left;
+}
+.news_contain .time_right{
+  font-size: 0.14rem;
+  color: #757575;
+  float: right;
+  margin-top: 7px;
+  margin-right: 0.2rem;
 }
 .news_contain .news_dec{
   margin-top: 0.1rem;
@@ -232,15 +240,17 @@
   margin-right: 0.1rem;
 }
 .news_contain .new_list_time {
-  width: 0.11rem;
-  height: 0.10rem;
+  width: 12px;
+  height: 12px;
   display: inline-block;
   background: url("../../img/news_time.png") no-repeat center;
   background-size: cover;
   margin-right: 0.06rem;
-  margin-left: 0.5rem;
+  
 }
-
+.message_show li:last-child{
+  border-right: 1px solid #e4e4e4;
+}
 
 
 
