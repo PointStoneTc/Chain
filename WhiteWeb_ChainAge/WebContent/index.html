@@ -2,33 +2,38 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css"
-	href="static/plug-in/jquery-easyui/themes/default/easyui.css">
-<link rel="stylesheet" type="text/css"
-	href="static/plug-in/jquery-easyui/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="static/plug-in/jquery-easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="static/plug-in/jquery-easyui/themes/icon.css">
 <link rel="stylesheet" type="text/css" href="static/style/css/style.css">
-<script type="text/javascript"
-	src="static/plug-in/jquery/jquery-1.8.3.min.js"></script>
-<script type="text/javascript"
-	src="static/plug-in/jquery-easyui/jquery.easyui.min.js"></script>
+<link href="static/plug-in/json-viewer/jquery.json-viewer.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="static/plug-in/jquery/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="static/plug-in/jquery-easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="static/plug-in/Map.js"></script>
-<title>Insert title here</title>
+<script src="static/plug-in/json-viewer/jquery.json-viewer.js"></script>
+<title>接口说明</title>
 
 </head>
 <body class="easyui-layout">
 	<div data-options="region:'south',title:'其他'" style="height: 100px;"></div>
 	<div data-options="region:'east',title:'接口说明'" style="width: 450px; padding: 0 10px" id="api_desc">
 		<div id="d_1">
-			<h3>請求地址</h3>
+			<h3>请求地址</h3>
 			<p></p>
 		</div>
 		<div id="d_2">
-			<h3>參數</h3>
+			<h3>参数说明</h3>
+			<p></p>
+		</div>
+		<div id="d_3">
+			<h3>返回结果</h3>
+			<p></p>
+		</div>
+		<div id="d_4">
+			<h3>业务逻辑</h3>
 			<p></p>
 		</div>
 	</div>
-	<div data-options="region:'west',title:'Chainage Api清单'"
-		style="width: 300px;">
+	<div data-options="region:'west',title:'ChainAge Api清单'" style="width: 300px;">
 		<ul class="codeList">
 			<li>
 				<dl>
@@ -85,34 +90,53 @@
 			</li>
 		</ul>
 	</div>
-	<div data-options="region:'center',title:'请求返回结果'"
-		style="padding: 5px; background: #eee;"></div>
+	<div data-options="region:'center',title:'请求返回结果'" style="padding: 5px; background: #eee;">
+		<p id="json-renderer"></p>
+	</div>
 </body>
 
 <script type="text/javascript">
-	$(document).ready(function() {
-		var apis = $('.codeList dt');
+    $(document).ready(function() {
+        var apis = $('.codeList dt');
 
-		$.each(apis, function(e, n) {
-			$(this).on('click', getView);
-		});
+        $.each(apis, function(e, n) {
+            $(this).on('click', getView);
+        });
 
-	});
+    });
 
-	function getView() {
-		$.getJSON('api-standard/' + $(this).attr('id') + '.json',
-				function(data) {
-					$('#d_1 p').html(data.url);
-					var content = '<ul>';
-					$.each(data.arguments, function(e, n) {
-						content += '<li><span class="a_name">' + n.name
-								+ '</span><span class="a_desc">' + n.desc
-								+ '</span><span calss="a_value">' + n.value
-								+ '</span></li>';
-					});
-					content += '</ul>';
-					$('#d_2 p').html(content);
-				});
-	}
+    function getView() {
+        var id = $(this).attr('id');
+        $.getJSON('api-standard/' + id + '.json', function(data) {
+            $('#d_1 p').html(data.url);
+            var content = '<ul>';
+            $.each(data.arguments, function(e, n) {
+                content += '<li><span class="a_name">' + n.name + '</span><span class="a_desc">' + n.desc + '</span><span class="a_value">' + n.value + '</span></li>';
+            });
+            content += '</ul>';
+            $('#d_2 p').html(content);
+
+            content = '<ul>';
+            $.each(data.schema, function(e, n) {
+                content += '<li><span class="a_name">' + n.name + '</span><span class="a_desc">' + n.desc + '</span><span class="a_value">' + n.value + '</span></li>';
+            });
+            content += '</ul>';
+            $('#d_3 p').html(content);
+
+            content = '<ul>';
+            $.each(data.use_guide, function(e, n) {
+                content += '<li><span>' + ++e + ':</span><span class="a_name">' + n + '</span></li>';
+            });
+            content += '</ul>';
+            $('#d_4 p').html(content);
+
+            $.getJSON('api-standard/' + id + '_result.json', function(data) {
+                var options = {
+                    collapsed: $('#collapsed').is(':checked'),
+                    withQuotes: $('#with-quotes').is(':checked')};
+                $('#json-renderer').jsonViewer(data.result, options);
+            });
+        });
+    }
 </script>
 </html>

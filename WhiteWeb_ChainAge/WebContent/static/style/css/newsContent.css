@@ -391,8 +391,8 @@ body {
     font-size: 0.12rem;
 }
 .news_con_right .hot_icon{
-    width: 15px;
-    height: 10px;
+    width: 8px;
+    height: 11px;
     display: inline-block;
     background: url("../../img/hot_icon.png") no-repeat center;
     background-size: cover;
