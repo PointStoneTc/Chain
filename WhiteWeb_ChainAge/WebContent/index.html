@@ -28,8 +28,12 @@
 			<h3>返回结果</h3>
 			<p></p>
 		</div>
+		<div id="d_4">
+			<h3>业务逻辑</h3>
+			<p></p>
+		</div>
 	</div>
-	<div data-options="region:'west',title:'Chainage Api清单'" style="width: 300px;">
+	<div data-options="region:'west',title:'ChainAge Api清单'" style="width: 300px;">
 		<ul class="codeList">
 			<li>
 				<dl>
@@ -102,7 +106,8 @@
     });
 
     function getView() {
-        $.getJSON('api-standard/' + $(this).attr('id') + '.json', function(data) {
+        var id = $(this).attr('id');
+        $.getJSON('api-standard/' + id + '.json', function(data) {
             $('#d_1 p').html(data.url);
             var content = '<ul>';
             $.each(data.arguments, function(e, n) {
@@ -118,10 +123,19 @@
             content += '</ul>';
             $('#d_3 p').html(content);
 
-            var options = {
-                collapsed: $('#collapsed').is(':checked'),
-                withQuotes: $('#with-quotes').is(':checked')};
-            $('#json-renderer').jsonViewer(data.result, options);
+            content = '<ul>';
+            $.each(data.use_guide, function(e, n) {
+                content += '<li><span>' + ++e + ':</span><span class="a_name">' + n + '</span></li>';
+            });
+            content += '</ul>';
+            $('#d_4 p').html(content);
+
+            $.getJSON('api-standard/' + id + '_result.json', function(data) {
+                var options = {
+                    collapsed: $('#collapsed').is(':checked'),
+                    withQuotes: $('#with-quotes').is(':checked')};
+                $('#json-renderer').jsonViewer(data.result, options);
+            });
         });
     }
 </script>
