@@ -79,15 +79,24 @@ var homePage = {
             },
             success: function (data) {
                 if (data) {
-                    var data=[{persion:"20%"},{persion:"-20%"},{persion:"-20%"},{persion:"20%"},{persion:-"20%"}]
-                    // data.forEach(function (i,item) {
-                    //     if(item.persion>=0){
-                    //         data[i].percentClass="up_color";
-                    //     }else{
-                    //         data[i].percentClass="down_color";
-                    //     }
-                    // });
-                    console.log(data)
+                    var data=[{persion:"20%"},{persion:"20%"},{persion:"-20%"},{persion:"-20%"},{persion:"20%"},{persion:-"20%"}]
+                   for(var i=0;i<data.length;i++){
+                       if(data[i].persion>=0){
+                           data[i].percentClass="up_color";
+                       }else{
+                           data[i].percentClass="down_color";
+                       }
+                   }
+                    // 注册关注 template方法
+                    template.registerFunction('percent', function (arr, valueText) {
+                        var str = "up_color";
+                        if(arr>=0){
+                            str="up_color";
+                        }else{
+                            str="down_color";
+                        }
+                        return str;
+                    });
                     var newsFuc= template($("#message_show").html(),{data:data});
                     $(".message_show ul").html(newsFuc);
                 }
