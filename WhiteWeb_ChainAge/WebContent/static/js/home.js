@@ -92,10 +92,11 @@ var homePage = {
     },
     // 请求新闻数据
     getNewsData: function getData(param,callback) {
-        var url = 'https://www.chainage.jp/wp-json/wp/v2/posts?per_page='+param.per_page+'&order='+param.order+'&orderby='+param.orderby+'&categories=' + param.categories;
+        var url = 'https://www.chainage.jp/wp-json/wp/v2/posts';
         $.ajax({
             type: 'GET',
             url: url,
+            data:param,
             async: true,
             error: function () {
             },
@@ -179,9 +180,13 @@ var homePage = {
             }
         });
     },
-    getNewsListData:function(){
+    getNewsListData:function(param){
+        var paramData={per_page:6,order:'desc',orderby:'date',categories:99};
+        if(param){
+            paramData.page=param.page;
+        }
         // 列表新闻
-        this.getNewsData({per_page:6,order:'desc',orderby:'date',categories:99},function(data,param){
+        this.getNewsData(paramData,function(data,param){
             homePage.loadNewSData(data,param);
         });
     },
@@ -190,7 +195,7 @@ var homePage = {
         var htm = '';
         if (data.length > 0) {
             for (var i = 0; i < data.length; i++) {
-                htm += '<a href="'+ './newsContent.html?id=' + data[i].id+'"><div class="col-md-4 benefit_box">'
+                htm += '<div class="col-md-4 benefit_box"><a href="'+ './newsContent.html?id=' + data[i].id+'">'
                     + '<div class="benefit_box_con">'
                     + '<p class="p20 benefit_box_tit">'+homePage.categories[data[i].categories[0]]+'</p>'
                     + '<p class="p20 benefit_box_com">'+data[i].title.rendered+'</p>'
@@ -203,7 +208,7 @@ var homePage = {
                     + '<img style="width: 100%; height: 1.52rem;" src="'+data[i].jetpack_featured_media_url+'">'
                     + '<div class="p20 benefit_box_com news_dec">'+data[i].excerpt.rendered+'</div>'
                     + '</div>'
-                    + '</div></a>';
+                    + '</a></div>';
             }
             $('.news_list_con .news_container').append(htm);
         }
@@ -213,8 +218,9 @@ var homePage = {
         if (homePage.newCounts[param.categories] - ((homePage.pageSize) * num + homePage.pageSize) > 0) {
             $('.listMoreBtn').unbind('click').on('click', function () {
                 $('.news_list_con .news_container').data('num', num + 1);
+                console.log($('.news_list_con .news_container').data('num'))
                 homePage.getNewsListData({
-                    "start": (homePage.pageSize) * num + homePage.pageSize
+                    "page": $('.news_list_con .news_container').data('num')+1
                 });
             });
         } else {
@@ -276,8 +282,12 @@ var homePage = {
             }
         });
     },
-    getTejiData:function(){
-        this.getNewsData({per_page:6,order:'desc',orderby:'date',categories:99},function(data,param){
+    getTejiData:function(param){
+        var paramData={per_page:6,order:'desc',orderby:'date',categories:99};
+        if(param){
+            paramData.page=param.page;
+        }
+        this.getNewsData(paramData,function(data,param){
             homePage.loadTejiData(data,param);
         });
     },
@@ -286,7 +296,7 @@ var homePage = {
         var htm = '';
         if (data.length > 0) {
             for (var i = 0; i < data.length; i++) {
-                htm += '<div class="col-md-4 benefit_box">'
+                htm += '<div class="col-md-4 benefit_box"><a href="'+ './newsContent.html?id=' + data[i].id+'">'
                     + '<div class="benefit_box_con">'
                     + '<p class="p20 benefit_box_tit">'+homePage.categories[data[i].categories[0]]+'</p>'
                     + '<p class="p20 benefit_box_com">'+data[i].title.rendered+'</p>'
@@ -299,7 +309,7 @@ var homePage = {
                     + '<img style="width: 100%; height: 1.52rem;" src="'+data[i].jetpack_featured_media_url+'">'
                     + '<div class="p20 benefit_box_com news_dec">'+data[i].excerpt.rendered+'</div>'
                     + '</div>'
-                    + '</div>';
+                    + '</a></div>';
             }
             $('.teji_list .news_container').append(htm);
         }
@@ -310,7 +320,7 @@ var homePage = {
             $('.tejiBtn').unbind('click').on('click', function () {
                 $('.teji_list .news_container').data('num', num + 1);
                 homePage.getTejiData({
-                    "start": (homePage.pageSize) * num + homePage.pageSize
+                    "page": $('.teji_list .news_container').data('num')+1
                 });
             });
         } else {

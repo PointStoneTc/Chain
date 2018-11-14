@@ -19,11 +19,13 @@ $(document).ready(function () {
 });
 
 var listNewsPage = {
+    pageFlag:1,
     pageSize: 15,
     categories: [],
     newCounts:[],
     users:[],
     init: function () {
+        this.pageFlag=this.getQueryString("pageFlag");
         this.getCategoreType();
         this.getUsers();
         this.eventInit();
@@ -63,17 +65,17 @@ var listNewsPage = {
             $(".news_show .news_show_contain").html(html);
         });
         //新闻、交易所....
-        if(this.getQueryString('pageFlag')==1){
+        if(this.pageFlag==1){
             $(".news_title").text("ニュース");
             // 请求
             this.getNewsListData({per_page:15,order:'desc',orderby:'date',categories:99},function(param){
                 listNewsPage.setPagination(param);
             });
-        }else if(this.getQueryString('pageFlag')==2){
+        }else if(this.pageFlag==2){
             $(".news_title").text("取引所");
             // 请求
             this.getNewsListData({per_page:15,order:'desc',orderby:'date',categories:99});
-        }else if(this.getQueryString('pageFlag')==3){
+        }else if(this.pageFlag==3){
             $(".news_title").text("基础知识");
             $(".new_tabs li:eq(0)").text("コインリスト");
             $(".new_tabs li:eq(1)").text("用語解説");
@@ -82,7 +84,7 @@ var listNewsPage = {
             this.getNewsListData({per_page:15,order:'desc',orderby:'date',categories:99},function(param){
                 listNewsPage.setPagination(param);
             });
-        }else if(this.getQueryString('pageFlag')==4){
+        }else if(this.pageFlag==4){
             $(".news_title").text("ChainAge Channel");
             $(".new_tabs li:eq(0)").text("Moive");
             $(".new_tabs li:eq(1)").text("漫画");
@@ -91,7 +93,7 @@ var listNewsPage = {
             this.getNewsListData({per_page:15,order:'desc',orderby:'date',categories:99},function(param){
                 listNewsPage.setPagination(param);
             });
-        }else if(this.getQueryString('pageFlag')==5){
+        }else if(this.pageFlag==5){
             $(".news_title").text("政府团体");
             $(".new_tabs li:eq(0)").text("金融厅");
             $(".new_tabs li:eq(1)").remove()
@@ -110,10 +112,11 @@ var listNewsPage = {
     },
     // 请求新闻数据
     getNewsData: function getData(param,callback) {
-        var url = 'https://www.chainage.jp/wp-json/wp/v2/posts?per_page='+param.per_page+'&order='+param.order+'&orderby='+param.orderby+'&categories=' + param.categories;
+        var url = 'https://www.chainage.jp/wp-json/wp/v2/posts?per_page';
         $.ajax({
             type: 'GET',
             url: url,
+            data:param,
             async: true,
             error: function () {
             },
@@ -201,7 +204,30 @@ var listNewsPage = {
         $('.new_tabs li').click(function() {
             $(this).addClass('current').siblings().removeClass('current');
             // 判断1234 等于5不处理
-            listNewsPage.getNewsData();
+            if(listNewsPage.pageFlag==1){
+                listNewsPage.getNewsListData({per_page:15,order:'desc',orderby:'date',categories:99},function(param){
+                    listNewsPage.setPagination(param);
+                });
+            }else if(listNewsPage.pageFlag==2){
+
+                listNewsPage.getNewsListData({per_page:15,order:'desc',orderby:'date',categories:103});
+            }else if(listNewsPage.pageFlag==3){
+
+                listNewsPage.getNewsListData({per_page:15,order:'desc',orderby:'date',categories:100},function(param){
+                    listNewsPage.setPagination(param);
+                });
+            }else if(listNewsPage.pageFlag==4){
+
+                listNewsPage.getNewsListData({per_page:15,order:'desc',orderby:'date',categories:148},function(param){
+                    listNewsPage.setPagination(param);
+                });
+            }else if(listNewsPage.pageFlag==5){
+
+            }else{
+                listNewsPage.getNewsListData({per_page:15,order:'desc',orderby:'date',categories:99},function(param){
+                    listNewsPage.setPagination(param);
+                });
+            }
         });
     },
     // 计算多长时间之前
@@ -287,8 +313,8 @@ var listNewsPage = {
             'next_text': "»",
             'call_callback_at_once': false,
             'callback': $.proxy(function (pageIndex, $page) {
-                param = $.extend(param, {start: pageIndex * 15, limit: '15'});
-                console.log(param);
+                console.log($page);
+                param = $.extend(param, {page: pageIndex+1});
                 listNewsPage.getNewsListData(param);
             }, this)
         });

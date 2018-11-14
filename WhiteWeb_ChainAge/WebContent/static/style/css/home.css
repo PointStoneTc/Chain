@@ -1,6 +1,9 @@
 .news_banner{
   color: #FFF;
 }
+a:hover{
+  text-decoration: none;
+}
 .news_banner  .banner_left img{
   width: 100%;
   height: 4.85rem;
@@ -191,6 +194,14 @@
   border-radius: 5px;
   background: #FFF;
   padding: 0.15rem 0 0.43rem 0;
+  height: 4.5rem;
+}
+.new_catelage{
+  background: #FFFFFF;
+  color: #000;
+  padding: 0 0.15rem;
+  font-size: 0.14rem;
+  display: inline-block;
 }
 .p20{
   padding:0 0.2rem ;
@@ -198,6 +209,7 @@
 .news_contain .benefit_box_tit{
   font-size: 0.12rem;
   color: #928F92;
+
 }
 .news_contain .benefit_box_com{
   font-size: 0.18rem;
@@ -231,7 +243,7 @@
 }
 .news_contain .news_dec p:after{
   position: absolute;
-  bottom: 0.5rem;
+  bottom: 0.4rem;
   left: 0.36rem;
   width: 83%;
   height: 22px;
