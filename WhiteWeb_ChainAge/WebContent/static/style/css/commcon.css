@@ -15,6 +15,7 @@ ul {
   font-size: 0.12rem;
   background:rgba(26,41,89,1);
   padding: 0.06rem 0.22rem 0.06rem 0.2rem;
+  margin-right: 0;
 }
 .header-left{
   display: inline-block;

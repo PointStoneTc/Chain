@@ -27,6 +27,7 @@ var homePage = {
         this.getCategoreType();
         this.getUsers();
         $('.news_list_con .news_container').data('num',0)
+        $('.teji_list .news_container').data('num',0)
         // 置顶新闻
         this.getNewsData({per_page:3,order:'desc',orderby:'date',categories:99},function(data){
             $(".news_banner .banner_left img").attr("src", data[0].jetpack_featured_media_url);
@@ -62,7 +63,32 @@ var homePage = {
            $(".news_show .news_show_contain").html(html);
         });
         this.getNewsListData();
-
+        this.getAdvertData();
+        // 特集列表
+        this.getTejiData();
+        // ChainAge Channel列表
+        this.getNewsData({per_page:6,order:'desc',orderby:'date',categories:99},function(data,param){
+            var htm = '';
+            if (data.length > 0) {
+                for (var i = 0; i < data.length; i++) {
+                    htm += '<div class="col-md-4 benefit_box">'
+                        + '<div class="benefit_box_con">'
+                        + '<p class="p20 benefit_box_tit">'+homePage.categories[data[i].categories[0]]+'</p>'
+                        + '<p class="p20 benefit_box_com">'+data[i].title.rendered+'</p>'
+                        + '<p class="p20 benefit_box_from">'
+                        +'<span class="new_list_icon"></span>'
+                        +'<span>'+homePage.users[data[i].author]+'</span>'
+                        +'<div class="time_right"><span class="new_list_time"></span>'
+                        +'<span>'+homePage.timeonverseFunc(new Date(data[1].date))+'</span></div>'
+                        + '</p>'
+                        + '<img style="width: 100%; height: 1.52rem;" src="'+data[i].jetpack_featured_media_url+'">'
+                        + '<div class="p20 benefit_box_com news_dec">'+data[i].excerpt.rendered+'</div>'
+                        + '</div>'
+                        + '</div>';
+                }
+                $('.channel_list .news_container').append(htm);
+            }
+        });
     },
     // 请求新闻数据
     getNewsData: function getData(param,callback) {
@@ -159,6 +185,42 @@ var homePage = {
             homePage.loadNewSData(data,param);
         });
     },
+    // 加载更多新闻数据
+    loadNewSData: function (data,param) {
+        var htm = '';
+        if (data.length > 0) {
+            for (var i = 0; i < data.length; i++) {
+                htm += '<a href="'+ './newsContent.html?id=' + data[i].id+'"><div class="col-md-4 benefit_box">'
+                    + '<div class="benefit_box_con">'
+                    + '<p class="p20 benefit_box_tit">'+homePage.categories[data[i].categories[0]]+'</p>'
+                    + '<p class="p20 benefit_box_com">'+data[i].title.rendered+'</p>'
+                    + '<p class="p20 benefit_box_from">'
+                    +'<span class="new_list_icon"></span>'
+                    +'<span>'+homePage.users[data[i].author]+'</span>'
+                    +'<div class="time_right"><span class="new_list_time"></span>'
+                    +'<span>'+homePage.timeonverseFunc(new Date(data[1].date))+'</span></div>'
+                    + '</p>'
+                    + '<img style="width: 100%; height: 1.52rem;" src="'+data[i].jetpack_featured_media_url+'">'
+                    + '<div class="p20 benefit_box_com news_dec">'+data[i].excerpt.rendered+'</div>'
+                    + '</div>'
+                    + '</div></a>';
+            }
+            $('.news_list_con .news_container').append(htm);
+        }
+        var num = $('.news_list_con .news_container').data('num');
+
+        //判断是否需要显示加载更多的按钮
+        if (homePage.newCounts[param.categories] - ((homePage.pageSize) * num + homePage.pageSize) > 0) {
+            $('.listMoreBtn').unbind('click').on('click', function () {
+                $('.news_list_con .news_container').data('num', num + 1);
+                homePage.getNewsListData({
+                    "start": (homePage.pageSize) * num + homePage.pageSize
+                });
+            });
+        } else {
+            $('.listMoreBtn').remove(); // 移除加载更多按钮
+        }
+    },
     // 计算多长时间之前
     timeonverseFunc: function (dateTimeStamp) {
         var minute = 1000 * 60;
@@ -197,8 +259,30 @@ var homePage = {
         return result;
 
     },
-    // 加载新闻数据
-    loadNewSData: function (data,param) {
+    getAdvertData:function(param,callback){
+        var url = '';
+        $.ajax({
+            type: 'GET',
+            url: url,
+            async: true,
+            error: function () {
+            },
+            success: function (data) {
+                if (data) {
+                    if(callback){
+                        callback(data);
+                    }
+                }
+            }
+        });
+    },
+    getTejiData:function(){
+        this.getNewsData({per_page:6,order:'desc',orderby:'date',categories:99},function(data,param){
+            homePage.loadTejiData(data,param);
+        });
+    },
+    // 加载更多特集数据
+    loadTejiData: function (data,param) {
         var htm = '';
         if (data.length > 0) {
             for (var i = 0; i < data.length; i++) {
@@ -217,20 +301,20 @@ var homePage = {
                     + '</div>'
                     + '</div>';
             }
-            $('.news_list_con .news_container').append(htm);
+            $('.teji_list .news_container').append(htm);
         }
-        var num = $('.news_list_con .news_container').data('num');
+        var num = $('.teji_list .news_container').data('num');
 
         //判断是否需要显示加载更多的按钮
         if (homePage.newCounts[param.categories] - ((homePage.pageSize) * num + homePage.pageSize) > 0) {
-            $('.listMoreBtn').unbind('click').on('click', function () {
-                $('.news_list_con .news_container').data('num', num + 1);
-                homePage.getNewsListData({
+            $('.tejiBtn').unbind('click').on('click', function () {
+                $('.teji_list .news_container').data('num', num + 1);
+                homePage.getTejiData({
                     "start": (homePage.pageSize) * num + homePage.pageSize
                 });
             });
         } else {
-            $('.listMoreBtn').remove(); // 移除加载更多按钮
+            $('.tejiBtn').remove(); // 移除加载更多按钮
         }
     },
 

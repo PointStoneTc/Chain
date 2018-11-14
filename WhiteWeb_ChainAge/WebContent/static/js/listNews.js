@@ -19,53 +19,158 @@ $(document).ready(function () {
 });
 
 var listNewsPage = {
-    pageSize: 3,
+    pageSize: 15,
+    categories: [],
+    newCounts:[],
+    users:[],
     init: function () {
+        this.getCategoreType();
+        this.getUsers();
+        this.eventInit();
+
+        // 置顶新闻
+        this.getNewsData({per_page:3,order:'desc',orderby:'date',categories:99},function(data){
+            $(".news_banner .banner_left img").attr("src", data[0].jetpack_featured_media_url);
+            $(".news_banner .banner_left a").attr("href", './newsContent.html?id=' + data[0].id);
+            $(".news_banner .banner_left .new_title").text(data[0].title.rendered);
+            $(".news_banner .banner_left .time_fabu").text(listNewsPage.timeonverseFunc(new Date(data[0].date).getTime()));
+            $(".news_banner .banner_r_top img").attr("src", data[1].jetpack_featured_media_url);
+            $(".news_banner .banner_r_top a").attr("href", './newsContent.html?id=' + data[1].id);
+            $(".news_banner .banner_r_top .new_title").text(data[1].title.rendered);
+            $(".news_banner .banner_r_top .time_fabu").text(listNewsPage.timeonverseFunc(new Date(data[1].date).getTime()));
+            $(".news_banner .banner_r_bot img").attr("src", data[2].jetpack_featured_media_url);
+            $(".news_banner .banner_r_bot a").attr("href", './newsContent.html?id=' + data[2].id);
+            $(".news_banner .banner_r_bot .new_title").text(data[2].title.rendered);
+            $(".news_banner .banner_r_bot .time_fabu").text(listNewsPage.timeonverseFunc(new Date(data[2].date).getTime()));
+
+            $(".news_banner .banner_left .new_catelage").text(listNewsPage.categories[data[0].categories[0]]);
+            $(".news_banner .banner_r_top .new_catelage").text(listNewsPage.categories[data[1].categories[0]]);
+            $(".news_banner .banner_r_bot .new_catelage").text(listNewsPage.categories[data[2].categories[0]]);
+        });
+        // 排行
+        this.getRankingData(99);
+        // 图片新闻
+        this.getNewsData({per_page:3,order:'desc',orderby:'date',categories:99},function(data){
+            var html='';
+            for(var i=0;i<data.length;i++){
+                var linkUrl='./newsContent.html?id=' + data[i].id;
+                html+='<div class="col-sm-4 bd-card-mod">'
+                    +'<a href=" '+linkUrl+' ">'
+                    + '<img class="card-img lazy" src="'+data[i].jetpack_featured_media_url+'" style="display: inline;">'
+                    +'</a>'
+                    + '</div>';
+            }
+            $(".news_show .news_show_contain").html(html);
+        });
         //新闻、交易所....
         if(this.getQueryString('pageFlag')==1){
-            $(".pageFlag").text("ニュース");
+            $(".news_title").text("ニュース");
             // 请求
-            this.getNewsData();
+            this.getNewsListData({per_page:15,order:'desc',orderby:'date',categories:99},function(param){
+                listNewsPage.setPagination(param);
+            });
         }else if(this.getQueryString('pageFlag')==2){
-            $(".pageFlag").text("取引所");
+            $(".news_title").text("取引所");
             // 请求
-            this.getNewsData();
+            this.getNewsListData({per_page:15,order:'desc',orderby:'date',categories:99});
         }else if(this.getQueryString('pageFlag')==3){
-            $(".pageFlag").text("基础知识");
+            $(".news_title").text("基础知识");
             $(".new_tabs li:eq(0)").text("コインリスト");
             $(".new_tabs li:eq(1)").text("用語解説");
             $(".new_tabs li").width("1.6rem");
             // 请求
-            this.getNewsData();
+            this.getNewsListData({per_page:15,order:'desc',orderby:'date',categories:99},function(param){
+                listNewsPage.setPagination(param);
+            });
         }else if(this.getQueryString('pageFlag')==4){
-            $(".pageFlag").text("ChainAge Channel");
+            $(".news_title").text("ChainAge Channel");
             $(".new_tabs li:eq(0)").text("Moive");
             $(".new_tabs li:eq(1)").text("漫画");
             // 请求
-            this.getNewsData();
-        }else{
-            $(".pageFlag").text("ChainAge Channel");
-            $(".new_tabs li:eq(0)").text("Moive");
+            // 请求
+            this.getNewsListData({per_page:15,order:'desc',orderby:'date',categories:99},function(param){
+                listNewsPage.setPagination(param);
+            });
+        }else if(this.getQueryString('pageFlag')==5){
+            $(".news_title").text("政府团体");
+            $(".new_tabs li:eq(0)").text("金融厅");
             $(".new_tabs li:eq(1)").remove()
             $(".news_contain").hide()
             $(".page_con").hide();
             $(".government_con").show();
-           // 请求 政府
+            // 请求 政府
+        }else{
+            $(".news_title").text("ニュース");
+            // 请求
+            this.getNewsListData({per_page:15,order:'desc',orderby:'date',categories:99},function(param){
+                listNewsPage.setPagination(param);
+            });
         }
-        this.eventInit();
-        this.getNewsBannerData(99);
-        this.getCategoreType(99);
 
     },
-    eventInit:function(){
-        $('.new_tabs li').click(function() {
-            $(this).addClass('current').siblings().removeClass('current');
-            // 判断1234 等于5不处理
-            listNewsPage.getNewsData();
+    // 请求新闻数据
+    getNewsData: function getData(param,callback) {
+        var url = 'https://www.chainage.jp/wp-json/wp/v2/posts?per_page='+param.per_page+'&order='+param.order+'&orderby='+param.orderby+'&categories=' + param.categories;
+        $.ajax({
+            type: 'GET',
+            url: url,
+            async: true,
+            error: function () {
+            },
+            success: function (data) {
+                if (data) {
+                    if(callback){
+                        callback(data,param);
+                    }
+                }
+            }
         });
     },
-    // 请求数据
-    getNewsBannerData: function getData(categories) {
+    // 获取分类名称
+    getCategoreType: function () {
+        var url = 'https://www.chainage.jp/wp-json/wp/v2/categories?per_page=50';
+        var self = this;
+        $.ajax({
+            type: 'GET',
+            url: url,
+            async: true,
+            error: function () {
+            },
+            success: function (data) {
+                if (data) {
+                    for (var i = 0; i <data.length; i++) {
+                        var id=data[i].id;
+                        var c = self.categories[id] = data[i].name;
+                        var d = self.newCounts[id] = data[i].count;
+                        self.categories.push(c);
+                        self.newCounts.push(d)
+                    }
+                }
+            }
+        });
+    },
+    getUsers:function(){
+        var url = 'https://www.chainage.jp/wp-json/wp/v2/users';
+        var self = this;
+        $.ajax({
+            type: 'GET',
+            url: url,
+            async: true,
+            error: function () {
+            },
+            success: function (data) {
+                if (data) {
+                    for (var i = 0; i <data.length; i++) {
+                        var id=data[i].id;
+                        var c = self.users[id] = data[i].name;
+                        self.users.push(c);
+                    }
+                }
+            }
+        });
+    },
+    // 获取排行
+    getRankingData: function getData(categories) {
         var url = 'https://www.chainage.jp/wp-json/wp/v2/posts?per_page=3&order=desc&orderby=date&categories=' + categories;
         $.ajax({
             type: 'GET',
@@ -75,36 +180,28 @@ var listNewsPage = {
             },
             success: function (data) {
                 if (data) {
-                    $(".news_banner .banner_left img").attr("src", data[0].jetpack_featured_media_url);
-                    $(".news_banner .banner_left a").attr("href", data[0].link);
-                    $(".news_banner .banner_left .new_title").text(data[0].title.rendered);
-                    $(".news_banner .banner_left .time_fabu").text(listNewsPage.timeonverseFunc(new Date(data[0].date_gmt).getTime()));
-                    $(".news_banner .banner_r_top img").attr("src", data[0].jetpack_featured_media_url);
-                    $(".news_banner .banner_r_top a").attr("href", data[0].link);
-                    $(".news_banner .banner_r_top .new_title").text(data[0].title.rendered);
-                    $(".news_banner .banner_r_top .time_fabu").text(listNewsPage.timeonverseFunc(new Date(data[0].date_gmt).getTime()));
-                    $(".news_banner .banner_r_bot img").attr("src", data[0].jetpack_featured_media_url);
-                    $(".news_banner .banner_r_bot a").attr("href", data[0].link);
-                    $(".news_banner .banner_r_bot .new_title").text(data[0].title.rendered);
-                    $(".news_banner .banner_r_bot .time_fabu").text(listNewsPage.timeonverseFunc(new Date(data[0].date_gmt).getTime()));
+                    var data = [{persion: "20%"}, {persion: "20%"}, {persion: "-20%"}, {persion: "-20%"}, {persion: "20%"}, {persion: "20%"}];
+                    // 注册关注 template方法
+                    template.registerFunction('percent', function (valueText) {
+                        var str = "up_color";
+                        if (parseInt(valueText) >= 0) {
+                            str = "up_color";
+                        } else {
+                            str = "down_color";
+                        }
+                        return str;
+                    });
+                    var newsFuc = template($("#message_show").html(), {data: data});
+                    $(".message_show ul").html(newsFuc);
                 }
             }
         });
     },
-    // 获取分类名称
-    getCategoreType: function (categories) {
-        var url = 'https://www.chainage.jp/wp-json/wp/v2/categories/' + categories;
-        $.ajax({
-            type: 'GET',
-            url: url,
-            async: true,
-            error: function () {
-            },
-            success: function (data) {
-                if (data) {
-                    $(".news_banner .new_catelage").text(data.name);
-                }
-            }
+    eventInit:function(){
+        $('.new_tabs li').click(function() {
+            $(this).addClass('current').siblings().removeClass('current');
+            // 判断1234 等于5不处理
+            listNewsPage.getNewsData();
         });
     },
     // 计算多长时间之前
@@ -145,43 +242,54 @@ var listNewsPage = {
         return result;
 
     },
-    // 请求ニュース数据
-    getNewsData: function getData(param) {
-        var url = 'http://data.chainage.jp/caweb/cc/currencyApiController.do?assetTrend';
-        $.ajax({
-            type: 'GET',
-            url: url,
-            async: true,
-            dataType: "text",
-            error: function () {
-
-            },
-            success: function (data) {
-                if (data) {
-                    listNewsPage.setPagination();
+    getNewsListData:function(param,callback){
+        // 列表新闻
+        this.getNewsData(param,function(data){
+            var htm = '';
+            if (data.length > 0) {
+                for (var i = 0; i < data.length; i++) {
+                    htm += '<a href="'+ './newsContent.html?id=' + data[i].id+'"><div class="col-md-4 benefit_box">'
+                        + '<div class="benefit_box_con">'
+                        + '<p class="p20 benefit_box_tit">'+listNewsPage.categories[data[i].categories[0]]+'</p>'
+                        + '<p class="p20 benefit_box_com">'+data[i].title.rendered+'</p>'
+                        + '<p class="p20 benefit_box_from">'
+                        +'<span class="new_list_icon"></span>'
+                        +'<span>'+listNewsPage.users[data[i].author]+'</span>'
+                        +'<div class="time_right"><span class="new_list_time"></span>'
+                        +'<span>'+listNewsPage.timeonverseFunc(new Date(data[1].date))+'</span></div>'
+                        + '</p>'
+                        + '<img style="width: 100%; height: 1.52rem;" src="'+data[i].jetpack_featured_media_url+'">'
+                        + '<div class="p20 benefit_box_com news_dec">'+data[i].excerpt.rendered+'</div>'
+                        + '</div>'
+                        + '</div></a>';
                 }
+                $('.news_list_con .news_container').html(htm);
+            }
+            if(callback){
+                callback(param);
             }
         });
     },
+    // 加载更多新闻数据
+    loadNewSData: function (data,param) {
+
+    },
     // 分页显示
-    setPagination:function(data){
-        $(".page").pagination(100, {
-            'items_per_page': 10,
+    setPagination:function(param){
+        $(".page").pagination(listNewsPage.newCounts[param.categories], {
+            'items_per_page': 15,
             'current_page': 0,
             'num_display_entries': 6,
             'num_edge_entries': 3,
             'link_to': 'javascript:;',
-            'total': '共' + 100 + '条',
+            'total': '共' + listNewsPage.newCounts[param.categories] + '条',
             'prev_text': "",
             'next_text': "»",
             'call_callback_at_once': false,
             'callback': $.proxy(function (pageIndex, $page) {
-                param = $.extend(param, {start: pageIndex * 10, limit: '10'});
-                if (param.level == '1') {
-                    getList('/ngvlcs/front/sh/menu!execute?uid=a0001', param);
-                } else {
-                    getListTwo('/ngvlcs/front/sh/menu!execute?uid=a0001', param);
-                }
+                param = $.extend(param, {start: pageIndex * 15, limit: '15'});
+                console.log(param);
+                listNewsPage.getNewsListData(param);
             }, this)
         });
     },
