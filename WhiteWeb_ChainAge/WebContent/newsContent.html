@@ -98,8 +98,8 @@
     <div class="col-xs-12 news_con_left">
         <article class="post_item_single">
             <div class="post_header">
-                <div class="post_category">分类栏</div>
-                <div class="post_title">Zaif関連ニュースまとめ｜金融庁立ち入り検査、麻生財務相発言など</div>
+                <div class="post_category"></div>
+                <div class="post_title"></div>
                 <div class="post_meta">
                    <span class="post_meta_itrem">
                        <span class="post_icon1"></span>
@@ -128,10 +128,9 @@
                 </div>
             </div>
             <div class="post_featured">
-                <img src="static/img/aa.png" width="100%" height="100%">
+                <img src="" width="100%" height="100%">
             </div>
             <div class="post_desc">
-                仮想通貨交換業者のテックビューロ（大阪市）は２０日、システムへの不正アクセスにより、ビットコインなど仮想通貨が外部に流出したと発表した。流出額は６７億円相当とみられる。このうち顧客から預かった仮想通貨は４５億円相当で、同社は顧客に返還する方針。経営陣は責任を明確にするため、顧客への資産返還などを終えた後、引責辞任する。金融庁は２０日、同社への立ち入り検査に着手、詳細な状況を調べる。
             </div>
             <div class="post_content">
                 <div style="border-bottom: 1px dashed #707070;">
@@ -324,40 +323,21 @@
         <div style="height: 3.2rem;">
             <img src="static/img/banner_l.png" style="width: 100%;height: 100%;">
         </div>
-        <!--<div class="list-group market-list">-->
-        <!--<a href="#" class="list-group-item active" style="padding:6px;background:#2257C9;">-->
-        <!--热门货币交易市场（基准货币：JPY）-->
-        <!--</a>-->
-        <!--</div>-->
 
-        <!--<div class="list-group latest-news-list">-->
-        <!--<a href="#" class="list-group-item active" style="padding:6px;background:#2257C9;">-->
-        <!--最新新闻-->
-        <!--</a>-->
-        <!--</div>-->
-
-        <!--<div class="list-group exchange-list">-->
-        <!--<a href="#" class="list-group-item active" style="padding:6px;background:#2257C9;">-->
-        <!--交易所排名-->
-        <!--</a>-->
-
-        <!--</div>-->
     </div>
 </div>
 
 <script type="text/html" id="news">
-    <%for(var i in model){%>
-    <a href="#" class="list-group-item">
+    <%for(var i in data){%>
+    <a href="newsContent.html?id=<%=data[i].id%>" class="list-group-item">
         <div class="media">
             <div class="media-left media-middle">
-                <img class="media-object" src="static/img/aa.png" style="width:0.8rem ;height:0.8rem">
+                <img class="media-object" src="<%=data[i].jetpack_featured_media_url)%>" style="width:0.8rem ;height:0.8rem">
             </div>
             <div class="media-body">
                 <div style="color:#999;"><span class="hot_icon"></span>1999ビュー</div>
-                <div>仮想通貨交換業者のテックビューロ
-                    （大阪市）は２０日、システムへの不
-                </div>
-                <div style="color:#999;"><span class="time_icon"></span>5 hours ago</div>
+                <div class="hot_posts_title"><%=data[i].title.rendered)%></div>
+                <div style="color:#999;"><span class="time_icon"></span><%=date(data[i].date)%></div>
             </div>
         </div>
     </a>
@@ -384,6 +364,7 @@
 <script src="static/plug-in/jquery/jquery.pagination.js"></script>
 <script src="static/plug-in/jquery/jquery.i18n.properties.js"></script>
 <script src="static/plug-in/template/template.js"></script>
+<script src="static/js/common.js"></script>
 <script src="static/js/newsContent.js"></script>
 </body>
 

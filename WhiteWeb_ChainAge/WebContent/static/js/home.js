@@ -20,37 +20,34 @@ $(document).ready(function () {
 
 var homePage = {
     pageSize: 6,
-    categories: [],
-    newCounts:[],
-    users:[],
     init: function () {
-        this.getCategoreType();
-        this.getUsers();
+        Common.getCategoreType();
+        Common.getUsers();
         $('.news_list_con .news_container').data('num',0)
         $('.teji_list .news_container').data('num',0)
         // 置顶新闻
-        this.getNewsData({per_page:3,order:'desc',orderby:'date',categories:99},function(data){
+        Common.getNewsData({per_page:3,order:'desc',orderby:'date',categories:99},function(data){
             $(".news_banner .banner_left img").attr("src", data[0].jetpack_featured_media_url);
             $(".news_banner .banner_left a").attr("href", './newsContent.html?id=' + data[0].id);
             $(".news_banner .banner_left .new_title").text(data[0].title.rendered);
-            $(".news_banner .banner_left .time_fabu").text(homePage.timeonverseFunc(new Date(data[0].date).getTime()));
+            $(".news_banner .banner_left .time_fabu").text(Common.timeonverseFunc(new Date(data[0].date).getTime()));
             $(".news_banner .banner_r_top img").attr("src", data[1].jetpack_featured_media_url);
             $(".news_banner .banner_r_top a").attr("href", './newsContent.html?id=' + data[1].id);
             $(".news_banner .banner_r_top .new_title").text(data[1].title.rendered);
-            $(".news_banner .banner_r_top .time_fabu").text(homePage.timeonverseFunc(new Date(data[1].date).getTime()));
+            $(".news_banner .banner_r_top .time_fabu").text(Common.timeonverseFunc(new Date(data[1].date).getTime()));
             $(".news_banner .banner_r_bot img").attr("src", data[2].jetpack_featured_media_url);
             $(".news_banner .banner_r_bot a").attr("href", './newsContent.html?id=' + data[2].id);
             $(".news_banner .banner_r_bot .new_title").text(data[2].title.rendered);
-            $(".news_banner .banner_r_bot .time_fabu").text(homePage.timeonverseFunc(new Date(data[2].date).getTime()));
+            $(".news_banner .banner_r_bot .time_fabu").text(Common.timeonverseFunc(new Date(data[2].date).getTime()));
 
-            $(".news_banner .banner_left .new_catelage").text(homePage.categories[data[0].categories[0]]);
-            $(".news_banner .banner_r_top .new_catelage").text(homePage.categories[data[1].categories[0]]);
-            $(".news_banner .banner_r_bot .new_catelage").text(homePage.categories[data[2].categories[0]]);
+            $(".news_banner .banner_left .new_catelage").text(Common.categories[data[0].categories[0]]);
+            $(".news_banner .banner_r_top .new_catelage").text(Common.categories[data[1].categories[0]]);
+            $(".news_banner .banner_r_bot .new_catelage").text(Common.categories[data[2].categories[0]]);
         });
         // 排行
         this.getRankingData(99);
         // 图片新闻
-        this.getNewsData({per_page:3,order:'desc',orderby:'date',categories:99},function(data){
+        Common.getNewsData({per_page:3,order:'desc',orderby:'date',categories:99},function(data){
            var html='';
             for(var i=0;i<data.length;i++){
                 var linkUrl='./newsContent.html?id=' + data[i].id;
@@ -67,19 +64,19 @@ var homePage = {
         // 特集列表
         this.getTejiData();
         // ChainAge Channel列表
-        this.getNewsData({per_page:6,order:'desc',orderby:'date',categories:99},function(data,param){
+        Common.getNewsData({per_page:6,order:'desc',orderby:'date',categories:99},function(data,param){
             var htm = '';
             if (data.length > 0) {
                 for (var i = 0; i < data.length; i++) {
                     htm += '<div class="col-md-4 benefit_box">'
                         + '<div class="benefit_box_con">'
-                        + '<p class="p20 benefit_box_tit">'+homePage.categories[data[i].categories[0]]+'</p>'
+                        + '<p class="p20 benefit_box_tit">'+Common.categories[data[i].categories[0]]+'</p>'
                         + '<p class="p20 benefit_box_com">'+data[i].title.rendered+'</p>'
                         + '<p class="p20 benefit_box_from">'
                         +'<span class="new_list_icon"></span>'
-                        +'<span>'+homePage.users[data[i].author]+'</span>'
+                        +'<span>'+Common.users[data[i].author]+'</span>'
                         +'<div class="time_right"><span class="new_list_time"></span>'
-                        +'<span>'+homePage.timeonverseFunc(new Date(data[1].date))+'</span></div>'
+                        +'<span>'+Common.timeonverseFunc(new Date(data[1].date))+'</span></div>'
                         + '</p>'
                         + '<img style="width: 100%; height: 1.52rem;" src="'+data[i].jetpack_featured_media_url+'">'
                         + '<div class="p20 benefit_box_com news_dec">'+data[i].excerpt.rendered+'</div>'
@@ -87,68 +84,6 @@ var homePage = {
                         + '</div>';
                 }
                 $('.channel_list .news_container').append(htm);
-            }
-        });
-    },
-    // 请求新闻数据
-    getNewsData: function getData(param,callback) {
-        var url = 'https://www.chainage.jp/wp-json/wp/v2/posts';
-        $.ajax({
-            type: 'GET',
-            url: url,
-            data:param,
-            async: true,
-            error: function () {
-            },
-            success: function (data) {
-                if (data) {
-                    if(callback){
-                        callback(data,param);
-                    }
-                }
-            }
-        });
-    },
-    // 获取分类名称
-    getCategoreType: function () {
-        var url = 'https://www.chainage.jp/wp-json/wp/v2/categories?per_page=50';
-        var self = this;
-        $.ajax({
-            type: 'GET',
-            url: url,
-            async: true,
-            error: function () {
-            },
-            success: function (data) {
-                if (data) {
-                    for (var i = 0; i <data.length; i++) {
-                        var id=data[i].id;
-                        var c = self.categories[id] = data[i].name;
-                        var d = self.newCounts[id] = data[i].count;
-                        self.categories.push(c);
-                        self.newCounts.push(d)
-                    }
-                }
-            }
-        });
-    },
-    getUsers:function(){
-        var url = 'https://www.chainage.jp/wp-json/wp/v2/users';
-        var self = this;
-        $.ajax({
-            type: 'GET',
-            url: url,
-            async: true,
-            error: function () {
-            },
-            success: function (data) {
-                if (data) {
-                    for (var i = 0; i <data.length; i++) {
-                        var id=data[i].id;
-                        var c = self.users[id] = data[i].name;
-                        self.users.push(c);
-                    }
-                }
             }
         });
     },
@@ -186,7 +121,7 @@ var homePage = {
             paramData.page=param.page;
         }
         // 列表新闻
-        this.getNewsData(paramData,function(data,param){
+        Common.getNewsData(paramData,function(data,param){
             homePage.loadNewSData(data,param);
         });
     },
@@ -197,13 +132,13 @@ var homePage = {
             for (var i = 0; i < data.length; i++) {
                 htm += '<div class="col-md-4 benefit_box"><a href="'+ './newsContent.html?id=' + data[i].id+'">'
                     + '<div class="benefit_box_con">'
-                    + '<p class="p20 benefit_box_tit">'+homePage.categories[data[i].categories[0]]+'</p>'
+                    + '<p class="p20 benefit_box_tit">'+Common.categories[data[i].categories[0]]+'</p>'
                     + '<p class="p20 benefit_box_com">'+data[i].title.rendered+'</p>'
                     + '<p class="p20 benefit_box_from">'
                     +'<span class="new_list_icon"></span>'
-                    +'<span>'+homePage.users[data[i].author]+'</span>'
+                    +'<span>'+Common.users[data[i].author]+'</span>'
                     +'<div class="time_right"><span class="new_list_time"></span>'
-                    +'<span>'+homePage.timeonverseFunc(new Date(data[1].date))+'</span></div>'
+                    +'<span>'+Common.timeonverseFunc(new Date(data[1].date))+'</span></div>'
                     + '</p>'
                     + '<img style="width: 100%; height: 1.52rem;" src="'+data[i].jetpack_featured_media_url+'">'
                     + '<div class="p20 benefit_box_com news_dec">'+data[i].excerpt.rendered+'</div>'
@@ -215,7 +150,7 @@ var homePage = {
         var num = $('.news_list_con .news_container').data('num');
 
         //判断是否需要显示加载更多的按钮
-        if (homePage.newCounts[param.categories] - ((homePage.pageSize) * num + homePage.pageSize) > 0) {
+        if (Common.newCounts[param.categories] - ((homePage.pageSize) * num + homePage.pageSize) > 0) {
             $('.listMoreBtn').unbind('click').on('click', function () {
                 $('.news_list_con .news_container').data('num', num + 1);
                 console.log($('.news_list_con .news_container').data('num'))
@@ -227,44 +162,7 @@ var homePage = {
             $('.listMoreBtn').remove(); // 移除加载更多按钮
         }
     },
-    // 计算多长时间之前
-    timeonverseFunc: function (dateTimeStamp) {
-        var minute = 1000 * 60;
-        var hour = minute * 60;
-        var day = hour * 24;
-        var month = day * 30;
-        var result = '';
 
-        var now = new Date().getTime();
-        var diffValue = now - dateTimeStamp;
-        if (diffValue < 0) {
-            //若日期不符则弹出窗口告之
-            //alert("结束日期不能小于开始日期！");
-        }
-        var monthC = diffValue / month;
-        var weekC = diffValue / (7 * day);
-        var dayC = diffValue / day;
-        var hourC = diffValue / hour;
-        var minC = diffValue / minute;
-        if (monthC >= 1) {
-            result = parseInt(monthC) + "个月前";
-        }
-        else if (weekC >= 1) {
-            result = parseInt(weekC) + " week ago";
-        }
-        else if (dayC >= 1) {
-            result = parseInt(dayC) + " days ago";
-        }
-        else if (hourC >= 1) {
-            result = parseInt(hourC) + " hours ago";
-        }
-        else if (minC >= 1) {
-            result = parseInt(minC) + " minutes ago";
-        } else
-            result = "刚刚";
-        return result;
-
-    },
     getAdvertData:function(param,callback){
         var url = '';
         $.ajax({
@@ -287,7 +185,7 @@ var homePage = {
         if(param){
             paramData.page=param.page;
         }
-        this.getNewsData(paramData,function(data,param){
+        Common.getNewsData(paramData,function(data,param){
             homePage.loadTejiData(data,param);
         });
     },
@@ -298,13 +196,13 @@ var homePage = {
             for (var i = 0; i < data.length; i++) {
                 htm += '<div class="col-md-4 benefit_box"><a href="'+ './newsContent.html?id=' + data[i].id+'">'
                     + '<div class="benefit_box_con">'
-                    + '<p class="p20 benefit_box_tit">'+homePage.categories[data[i].categories[0]]+'</p>'
+                    + '<p class="p20 benefit_box_tit">'+Common.categories[data[i].categories[0]]+'</p>'
                     + '<p class="p20 benefit_box_com">'+data[i].title.rendered+'</p>'
                     + '<p class="p20 benefit_box_from">'
                     +'<span class="new_list_icon"></span>'
-                    +'<span>'+homePage.users[data[i].author]+'</span>'
+                    +'<span>'+Common.users[data[i].author]+'</span>'
                     +'<div class="time_right"><span class="new_list_time"></span>'
-                    +'<span>'+homePage.timeonverseFunc(new Date(data[1].date))+'</span></div>'
+                    +'<span>'+Common.timeonverseFunc(new Date(data[1].date))+'</span></div>'
                     + '</p>'
                     + '<img style="width: 100%; height: 1.52rem;" src="'+data[i].jetpack_featured_media_url+'">'
                     + '<div class="p20 benefit_box_com news_dec">'+data[i].excerpt.rendered+'</div>'
@@ -316,7 +214,7 @@ var homePage = {
         var num = $('.teji_list .news_container').data('num');
 
         //判断是否需要显示加载更多的按钮
-        if (homePage.newCounts[param.categories] - ((homePage.pageSize) * num + homePage.pageSize) > 0) {
+        if (Common.newCounts[param.categories] - ((homePage.pageSize) * num + homePage.pageSize) > 0) {
             $('.tejiBtn').unbind('click').on('click', function () {
                 $('.teji_list .news_container').data('num', num + 1);
                 homePage.getTejiData({

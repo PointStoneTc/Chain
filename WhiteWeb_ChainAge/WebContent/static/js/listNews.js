@@ -21,38 +21,35 @@ $(document).ready(function () {
 var listNewsPage = {
     pageFlag:1,
     pageSize: 15,
-    categories: [],
-    newCounts:[],
-    users:[],
     init: function () {
-        this.pageFlag=this.getQueryString("pageFlag");
-        this.getCategoreType();
-        this.getUsers();
+        this.pageFlag=Common.getQueryString("pageFlag");
+        Common.getCategoreType();
+        Common.getUsers();
         this.eventInit();
 
         // 置顶新闻
-        this.getNewsData({per_page:3,order:'desc',orderby:'date',categories:99},function(data){
+        Common.getNewsData({per_page:3,order:'desc',orderby:'date',categories:99},function(data){
             $(".news_banner .banner_left img").attr("src", data[0].jetpack_featured_media_url);
             $(".news_banner .banner_left a").attr("href", './newsContent.html?id=' + data[0].id);
             $(".news_banner .banner_left .new_title").text(data[0].title.rendered);
-            $(".news_banner .banner_left .time_fabu").text(listNewsPage.timeonverseFunc(new Date(data[0].date).getTime()));
+            $(".news_banner .banner_left .time_fabu").text(Common.timeonverseFunc(new Date(data[0].date).getTime()));
             $(".news_banner .banner_r_top img").attr("src", data[1].jetpack_featured_media_url);
             $(".news_banner .banner_r_top a").attr("href", './newsContent.html?id=' + data[1].id);
             $(".news_banner .banner_r_top .new_title").text(data[1].title.rendered);
-            $(".news_banner .banner_r_top .time_fabu").text(listNewsPage.timeonverseFunc(new Date(data[1].date).getTime()));
+            $(".news_banner .banner_r_top .time_fabu").text(Common.timeonverseFunc(new Date(data[1].date).getTime()));
             $(".news_banner .banner_r_bot img").attr("src", data[2].jetpack_featured_media_url);
             $(".news_banner .banner_r_bot a").attr("href", './newsContent.html?id=' + data[2].id);
             $(".news_banner .banner_r_bot .new_title").text(data[2].title.rendered);
-            $(".news_banner .banner_r_bot .time_fabu").text(listNewsPage.timeonverseFunc(new Date(data[2].date).getTime()));
+            $(".news_banner .banner_r_bot .time_fabu").text(Common.timeonverseFunc(new Date(data[2].date).getTime()));
 
-            $(".news_banner .banner_left .new_catelage").text(listNewsPage.categories[data[0].categories[0]]);
-            $(".news_banner .banner_r_top .new_catelage").text(listNewsPage.categories[data[1].categories[0]]);
-            $(".news_banner .banner_r_bot .new_catelage").text(listNewsPage.categories[data[2].categories[0]]);
+            $(".news_banner .banner_left .new_catelage").text(Common.categories[data[0].categories[0]]);
+            $(".news_banner .banner_r_top .new_catelage").text(Common.categories[data[1].categories[0]]);
+            $(".news_banner .banner_r_bot .new_catelage").text(Common.categories[data[2].categories[0]]);
         });
         // 排行
         this.getRankingData(99);
         // 图片新闻
-        this.getNewsData({per_page:3,order:'desc',orderby:'date',categories:99},function(data){
+        Common.getNewsData({per_page:3,order:'desc',orderby:'date',categories:99},function(data){
             var html='';
             for(var i=0;i<data.length;i++){
                 var linkUrl='./newsContent.html?id=' + data[i].id;
@@ -110,68 +107,7 @@ var listNewsPage = {
         }
 
     },
-    // 请求新闻数据
-    getNewsData: function getData(param,callback) {
-        var url = 'https://www.chainage.jp/wp-json/wp/v2/posts?per_page';
-        $.ajax({
-            type: 'GET',
-            url: url,
-            data:param,
-            async: true,
-            error: function () {
-            },
-            success: function (data) {
-                if (data) {
-                    if(callback){
-                        callback(data,param);
-                    }
-                }
-            }
-        });
-    },
-    // 获取分类名称
-    getCategoreType: function () {
-        var url = 'https://www.chainage.jp/wp-json/wp/v2/categories?per_page=50';
-        var self = this;
-        $.ajax({
-            type: 'GET',
-            url: url,
-            async: true,
-            error: function () {
-            },
-            success: function (data) {
-                if (data) {
-                    for (var i = 0; i <data.length; i++) {
-                        var id=data[i].id;
-                        var c = self.categories[id] = data[i].name;
-                        var d = self.newCounts[id] = data[i].count;
-                        self.categories.push(c);
-                        self.newCounts.push(d)
-                    }
-                }
-            }
-        });
-    },
-    getUsers:function(){
-        var url = 'https://www.chainage.jp/wp-json/wp/v2/users';
-        var self = this;
-        $.ajax({
-            type: 'GET',
-            url: url,
-            async: true,
-            error: function () {
-            },
-            success: function (data) {
-                if (data) {
-                    for (var i = 0; i <data.length; i++) {
-                        var id=data[i].id;
-                        var c = self.users[id] = data[i].name;
-                        self.users.push(c);
-                    }
-                }
-            }
-        });
-    },
+
     // 获取排行
     getRankingData: function getData(categories) {
         var url = 'https://www.chainage.jp/wp-json/wp/v2/posts?per_page=3&order=desc&orderby=date&categories=' + categories;
@@ -184,7 +120,7 @@ var listNewsPage = {
             success: function (data) {
                 if (data) {
                     var data = [{persion: "20%"}, {persion: "20%"}, {persion: "-20%"}, {persion: "-20%"}, {persion: "20%"}, {persion: "20%"}];
-                    // 注册关注 template方法
+                    // 注册 template方法
                     template.registerFunction('percent', function (valueText) {
                         var str = "up_color";
                         if (parseInt(valueText) >= 0) {
@@ -230,59 +166,22 @@ var listNewsPage = {
             }
         });
     },
-    // 计算多长时间之前
-    timeonverseFunc: function (dateTimeStamp) {
-        var minute = 1000 * 60;
-        var hour = minute * 60;
-        var day = hour * 24;
-        var month = day * 30;
-        var result = '';
 
-        var now = new Date().getTime();
-        var diffValue = now - dateTimeStamp;
-        if (diffValue < 0) {
-            //若日期不符则弹出窗口告之
-            //alert("结束日期不能小于开始日期！");
-        }
-        var monthC = diffValue / month;
-        var weekC = diffValue / (7 * day);
-        var dayC = diffValue / day;
-        var hourC = diffValue / hour;
-        var minC = diffValue / minute;
-        if (monthC >= 1) {
-            result = parseInt(monthC) + "个月前";
-        }
-        else if (weekC >= 1) {
-            result = parseInt(weekC) + " week ago";
-        }
-        else if (dayC >= 1) {
-            result = parseInt(dayC) + " days ago";
-        }
-        else if (hourC >= 1) {
-            result = parseInt(hourC) + " hours ago";
-        }
-        else if (minC >= 1) {
-            result = parseInt(minC) + " minutes ago";
-        } else
-            result = "刚刚";
-        return result;
-
-    },
     getNewsListData:function(param,callback){
         // 列表新闻
-        this.getNewsData(param,function(data){
+        Common.getNewsData(param,function(data){
             var htm = '';
             if (data.length > 0) {
                 for (var i = 0; i < data.length; i++) {
                     htm += '<a href="'+ './newsContent.html?id=' + data[i].id+'"><div class="col-md-4 benefit_box">'
                         + '<div class="benefit_box_con">'
-                        + '<p class="p20 benefit_box_tit">'+listNewsPage.categories[data[i].categories[0]]+'</p>'
+                        + '<p class="p20 benefit_box_tit">'+Common.categories[data[i].categories[0]]+'</p>'
                         + '<p class="p20 benefit_box_com">'+data[i].title.rendered+'</p>'
                         + '<p class="p20 benefit_box_from">'
                         +'<span class="new_list_icon"></span>'
-                        +'<span>'+listNewsPage.users[data[i].author]+'</span>'
+                        +'<span>'+Common.users[data[i].author]+'</span>'
                         +'<div class="time_right"><span class="new_list_time"></span>'
-                        +'<span>'+listNewsPage.timeonverseFunc(new Date(data[1].date))+'</span></div>'
+                        +'<span>'+Common.timeonverseFunc(new Date(data[1].date))+'</span></div>'
                         + '</p>'
                         + '<img style="width: 100%; height: 1.52rem;" src="'+data[i].jetpack_featured_media_url+'">'
                         + '<div class="p20 benefit_box_com news_dec">'+data[i].excerpt.rendered+'</div>'
@@ -296,19 +195,16 @@ var listNewsPage = {
             }
         });
     },
-    // 加载更多新闻数据
-    loadNewSData: function (data,param) {
 
-    },
     // 分页显示
     setPagination:function(param){
-        $(".page").pagination(listNewsPage.newCounts[param.categories], {
+        $(".page").pagination(Common.newCounts[param.categories], {
             'items_per_page': 15,
             'current_page': 0,
             'num_display_entries': 6,
             'num_edge_entries': 3,
             'link_to': 'javascript:;',
-            'total': '共' + listNewsPage.newCounts[param.categories] + '条',
+            'total': '共' + Common.newCounts[param.categories] + '条',
             'prev_text': "",
             'next_text': "»",
             'call_callback_at_once': false,
@@ -319,12 +215,6 @@ var listNewsPage = {
             }, this)
         });
     },
-    // 获取地址栏参数
-    getQueryString: function (name) {
-        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-        var r = window.location.search.substr(1).match(reg);
-        if (r != null) return decodeURIComponent(r[2]);
-        return '';
-    }
+
 }
 listNewsPage.init();

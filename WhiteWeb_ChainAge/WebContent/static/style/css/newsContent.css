@@ -1,7 +1,10 @@
 body {
     background: #FFFFFF;
 }
-
+p{
+    margin: 0;
+    padding: 0;
+}
 .contain {
     width: 63.6%;
     margin: 0 auto;
@@ -410,4 +413,11 @@ body {
 
 .media-left img{
     border-radius: 0.05rem;
+}
+.hot_posts_title{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
