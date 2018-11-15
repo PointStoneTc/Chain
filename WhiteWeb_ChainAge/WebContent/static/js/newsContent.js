@@ -5,7 +5,7 @@ var newsContent={
         this.postsShow();
         // 热门文章
         this.getHotPostsData();
-        // this.getPostsListData();
+        this.getPostsListData();
     },
     // 文章内容
     postsShow:function(){
@@ -34,20 +34,11 @@ var newsContent={
             var htm = '';
             if (data.length > 0) {
                 for (var i = 0; i < data.length; i++) {
-                    htm += '<a href="'+ './newsContent.html?id=' + data[i].id+'"><div class="col-md-4 benefit_box">'
-                        + '<div class="benefit_box_con">'
-                        + '<p class="p20 benefit_box_tit">'+Common.categories[data[i].categories[0]]+'</p>'
-                        + '<p class="p20 benefit_box_com">'+data[i].title.rendered+'</p>'
-                        + '<p class="p20 benefit_box_from">'
-                        +'<span class="new_list_icon"></span>'
-                        +'<span>'+Common.users[data[i].author]+'</span>'
-                        +'<div class="time_right"><span class="new_list_time"></span>'
-                        +'<span>'+Common.timeonverseFunc(new Date(data[1].date))+'</span></div>'
-                        + '</p>'
-                        + '<img style="width: 100%; height: 1.52rem;" src="'+data[i].jetpack_featured_media_url+'">'
-                        + '<div class="p20 benefit_box_com news_dec">'+data[i].excerpt.rendered+'</div>'
-                        + '</div>'
-                        + '</div></a>';
+                    htm+=' <div class="col-md-4 benefit_box"><a href="newsContent.html?id=' + data[i].id+'"><div class="benefit_box_con">'
+                        +'<img style="width: 100%; height: 0.94rem;" src="'+data[i].jetpack_featured_media_url+'">'
+                        +'<p class="p10 benefit_box_com news_tit">'+data[i].title.rendered+'</p>'
+                        +'<div class="p10 benefit_box_com news_dec">'+data[i].excerpt.rendered+'</div>'
+                        +'</div></a></div>';
                 }
                 $('.news_contain').html(htm);
             }

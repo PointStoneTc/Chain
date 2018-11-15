@@ -121,7 +121,7 @@ var Common={
             success: function (data) {
                 if (data) {
                     if(callback){
-                        callback(data,param);
+                        callback(data);
                     }
                 }
             }
