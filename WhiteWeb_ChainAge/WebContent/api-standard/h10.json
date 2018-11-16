@@ -1,0 +1,66 @@
+{
+	"url": "http://data.chainage.jp/caweb/cc/currencyApiController.do?exchangeMarketInfo",
+	"datatype": "txt",
+	"arguments": [
+		{
+			"name": "id",
+			"value": "?",
+			"desc": "交易所id"
+		}
+	],
+	"schema": [
+		{
+			"name": "markInfoList.numNarketPairs",
+			"value": "int",
+			"desc": "市场数量"
+		},
+		{
+			"name": "markInfoList.marketPair",
+			"value": "string",
+			"desc": "配对市场名称"
+		},
+		{
+			"name": "markInfoList.marketPair",
+			"value": "string",
+			"desc": "配对市场名称"
+		},
+		{
+			"name": "markInfoList.marketPairBaseSymbol",
+			"value": "string",
+			"desc": "基准货币符号"
+		},
+		{
+			"name": "markInfoList.marketPairQuoteSymbol",
+			"value": "string",
+			"desc": "对比货币符号"
+		},
+		{
+			"name": "markInfoList.quoteVolume24hBase",
+			"value": "double",
+			"desc": "基准货币24小时交易量"
+		},
+		{
+			"name": "markInfoList.quoteVolume24hQuote",
+			"value": "double",
+			"desc": "对比货币24小时交易量"
+		},
+		{
+			"name": "exchange.name",
+			"value": "double",
+			"desc": "交易所名称"
+		},
+		{
+			"name": "exchange.slug",
+			"value": "double",
+			"desc": "交易所符号"
+		},
+		{
+			"name": "exchange.exchangeid",
+			"value": "int",
+			"desc": "交易所id"
+		}
+	],
+	"use_guide": [
+		"json返回的数据有两个对象markInfoList、exchange"
+	]
+}

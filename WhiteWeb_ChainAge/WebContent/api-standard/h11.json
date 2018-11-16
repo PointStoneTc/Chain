@@ -1,0 +1,56 @@
+{
+	"url": "http://data.chainage.jp/caweb/cc/currencyApiController.do?marketInfoExchange",
+	"datatype": "txt",
+	"arguments": [
+		{
+			"name": "base",
+			"value": "?",
+			"desc": "基准货币id"
+		},
+		{
+			"name": "quot",
+			"value": "?",
+			"desc": "对比货币id"
+		},
+		{
+			"name": "page",
+			"value": "?",
+			"desc": "页码"
+		}
+	],
+	"schema": [
+		{
+			"name": "num_market_pairs",
+			"value": "int",
+			"desc": "总共配对数量"
+		},
+		{
+			"name": "exchangeList.exchange.name",
+			"value": "string",
+			"desc": "交易所名称"
+		},
+		{
+			"name": "exchangeList.exchange.slug",
+			"value": "string",
+			"desc": "交易所符号"
+		},
+		{
+			"name": "exchangeList.exchange.exchangeid",
+			"value": "int",
+			"desc": "交易所符号"
+		},
+		{
+			"name": "marketPair",
+			"value": "string",
+			"desc": "配对名称"
+		},
+		{
+			"name": "quotePirce",
+			"value": "double",
+			"desc": "基准货币价格"
+		}
+	],
+	"use_guide": [
+		"json返回的数据有两个对象markInfoList、exchange"
+	]
+}

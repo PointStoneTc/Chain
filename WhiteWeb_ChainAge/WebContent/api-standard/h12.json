@@ -1,0 +1,46 @@
+{
+	"url": "http://data.chainage.jp/caweb/cc/currencyApiController.do?btcMonitorLineOHLCV",
+	"datatype": "txt",
+	"arguments": [],
+	"schema": [
+		{
+			"name": "line_his_queue.priceJpy",
+			"value": "double",
+			"desc": "BTC兑换日元价格"
+		},
+		{
+			"name": "line_his_queue.lastUpdated",
+			"value": "date",
+			"desc": "更新时间"
+		},
+		{
+			"name": "ohlcv_his_queue.open",
+			"value": "double",
+			"desc": "开盘价"
+		},
+		{
+			"name": "ohlcv_his_queue.high",
+			"value": "double",
+			"desc": "最高价"
+		},
+		{
+			"name": "ohlcv_his_queue.low",
+			"value": "double",
+			"desc": "最低价"
+		},
+		{
+			"name": "ohlcv_his_queue.close",
+			"value": "double",
+			"desc": "收盘价"
+		},
+		{
+			"name": "ohlcv_his_queue.lastUpdated",
+			"value": "date",
+			"desc": "跟新时间"
+		}
+	],
+	"use_guide": [
+		"K线图和ohlcv都是5分钟取一个点位，一天最多288个点位",
+		"ohlcv中红色代表跌，绿色代表涨"
+	]
+}

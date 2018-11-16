@@ -5,7 +5,7 @@
 	"schema": [
 		{
 			"name": "title",
-			"value": "String",
+			"value": "string",
 			"desc": "文章标题"
 		},
 		{
@@ -25,12 +25,12 @@
 		},
 		{
 			"name": "jetpack_featured_media_url",
-			"value": "String",
+			"value": "string",
 			"desc": "背景图片"
 		},
 		{
 			"name": "ontent.rendered",
-			"value": "String",
+			"value": "string",
 			"desc": "文章内容"
 		},
 		{

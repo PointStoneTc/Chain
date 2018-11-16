@@ -1,0 +1,60 @@
+{
+	"url": "http://data.chainage.jp/caweb/cc/currencyApiController.do?assetTrend",
+	"datatype": "txt",
+	"arguments": [],
+	"schema": [
+		{
+			"name": "specificRate.baseId",
+			"value": "int",
+			"desc": "数字货币id"
+		},
+		{
+			"name": "specificRate.baseName",
+			"value": "string",
+			"desc": "名称"
+		},
+		{
+			"name": "specificRate.baseSymbol",
+			"value": "string",
+			"desc": "符号"
+		},
+		{
+			"name": "specificRate.price",
+			"value": "double",
+			"desc": "价格"
+		},
+		{
+			"name": "specificRate.volume24h",
+			"value": "double",
+			"desc": "24小时交易量"
+		},
+		{
+			"name": "specificRate.volume24h",
+			"value": "double",
+			"desc": "24小时交易量"
+		},
+		{
+			"name": "specificRate.marketCap",
+			"value": "double",
+			"desc": "市场总量"
+		},
+		{
+			"name": "specificRate.percentChange24h",
+			"value": "double",
+			"desc": "24小时变化率"
+		},
+		{
+			"name": "specificRate.percentChange7d",
+			"value": "double",
+			"desc": "7天变化率"
+		},
+		{
+			"name": "series",
+			"value": "array",
+			"desc": "曲线散列点"
+		}
+	],
+	"use_guide": [
+		"虚拟货币的图标用'baseId+.png'获取"
+	]
+}

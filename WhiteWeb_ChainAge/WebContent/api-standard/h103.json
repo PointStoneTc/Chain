@@ -5,7 +5,7 @@
 	"schema": [
 		{
 			"name": "name",
-			"value": "String",
+			"value": "string",
 			"desc": "分类名称"
 		},
 		{

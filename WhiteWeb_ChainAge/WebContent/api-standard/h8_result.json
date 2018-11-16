@@ -1,0 +1,435 @@
+{
+	"result": [{
+			"specificRate": {
+				"createDate": "2018-11-16 07:03",
+				"updateDate": null,
+				"baseSymbol": "BTC",
+				"price": 636155.8597092017,
+				"volume24h": 7.466382391503938E11,
+				"lastUpdated": "2018-11-16 07:00:07",
+				"quoteSymbol": "JPY",
+				"baseId": 1,
+				"percentChange1h": 0.069,
+				"percentChange24h": -0.5818,
+				"marketCap": 1.10553550884739E13,
+				"percentChange7d": -14.4977,
+				"baseName": "Bitcoin",
+				"id": "8a1280826677576a01671b547a232328"
+			},
+			"series": [
+				635655.3888922186,
+				635773.4968842443,
+				634775.5659731161,
+				635502.6782535431,
+				636475.3598514551,
+				637434.343276359,
+				637245.8287001542
+			]
+		},
+		{
+			"specificRate": {
+				"createDate": "2018-11-16 07:03",
+				"updateDate": null,
+				"baseSymbol": "BCH",
+				"price": 47425.175202904364,
+				"volume24h": 1.0370151504883342E11,
+				"lastUpdated": "2018-11-16 07:00:07",
+				"quoteSymbol": "JPY",
+				"baseId": 1831,
+				"percentChange1h": -8.0E-4,
+				"percentChange24h": -4.6232,
+				"marketCap": 8.280992836235736E11,
+				"percentChange7d": -38.239,
+				"baseName": "Bitcoin Cash",
+				"id": "8a1280826677576a01671b547a232329"
+			},
+			"series": [
+				47370.54786945288,
+				47336.720588072654,
+				47292.01268279164,
+				47366.14565615231,
+				47500.86534221737,
+				47530.939147043166,
+				47499.38782058513
+			]
+		},
+		{
+			"specificRate": {
+				"createDate": "2018-11-16 07:03",
+				"updateDate": null,
+				"baseSymbol": "ETH",
+				"price": 20334.77085695314,
+				"volume24h": 2.8038057541580786E11,
+				"lastUpdated": "2018-11-16 07:00:07",
+				"quoteSymbol": "JPY",
+				"baseId": 1027,
+				"percentChange1h": -0.0467,
+				"percentChange24h": 0.4166,
+				"marketCap": 2.099173069623991E12,
+				"percentChange7d": -18.1112,
+				"baseName": "Ethereum",
+				"id": "8a1280826677576a01671b547a23232a"
+			},
+			"series": [
+				20326.631443696777,
+				20301.050188942816,
+				20266.01361303382,
+				20327.413287576594,
+				20373.315852233776,
+				20384.704230131345,
+				20374.474448862413
+			]
+		},
+		{
+			"specificRate": {
+				"createDate": "2018-11-16 07:03",
+				"updateDate": null,
+				"baseSymbol": "ETC",
+				"price": 870.221158359148,
+				"volume24h": 2.6318198982407303E10,
+				"lastUpdated": "2018-11-16 07:00:07",
+				"quoteSymbol": "JPY",
+				"baseId": 1321,
+				"percentChange1h": -0.3685,
+				"percentChange24h": 0.3078,
+				"marketCap": 9.230154397192871E10,
+				"percentChange7d": -23.787,
+				"baseName": "Ethereum Classic",
+				"id": "8a1280826677576a01671b547a23232b"
+			},
+			"series": [
+				869.5188912496359,
+				868.8025613755926,
+				866.6808977782082,
+				867.8630900219956,
+				876.3491195000475,
+				875.2119750969254,
+				873.6090306493072
+			]
+		},
+		{
+			"specificRate": {
+				"createDate": "2018-11-16 07:03",
+				"updateDate": null,
+				"baseSymbol": "XRP",
+				"price": 54.039081523509076,
+				"volume24h": 1.0008081854644524E11,
+				"lastUpdated": "2018-11-16 07:00:07",
+				"quoteSymbol": "JPY",
+				"baseId": 52,
+				"percentChange1h": 0.2755,
+				"percentChange24h": 3.6382,
+				"marketCap": 2.1762483244412236E12,
+				"percentChange7d": -5.833,
+				"baseName": "XRP",
+				"id": "8a1280826677576a01671b547a23232c"
+			},
+			"series": [
+				54.00957103010505,
+				53.949205583276324,
+				53.72704630877589,
+				53.83549759872661,
+				53.93235372283531,
+				54.10325441653876,
+				54.08907552261039
+			]
+		},
+		{
+			"specificRate": {
+				"createDate": "2018-11-16 07:03",
+				"updateDate": null,
+				"baseSymbol": "EOS",
+				"price": 524.7412668303226,
+				"volume24h": 1.4056195233490033E11,
+				"lastUpdated": "2018-11-16 07:00:07",
+				"quoteSymbol": "JPY",
+				"baseId": 1765,
+				"percentChange1h": 0.0286,
+				"percentChange24h": 0.8664,
+				"marketCap": 4.755442110682187E11,
+				"percentChange7d": -18.7699,
+				"baseName": "EOS",
+				"id": "8a1280826677576a01671b547a23232d"
+			},
+			"series": [
+				524.8588403682509,
+				523.9071008836386,
+				522.138917254703,
+				523.725264776467,
+				525.7844783291993,
+				527.1769269203927,
+				526.0005146768383
+			]
+		},
+		{
+			"specificRate": {
+				"createDate": "2018-11-16 07:03",
+				"updateDate": null,
+				"baseSymbol": "MIOTA",
+				"price": 47.7821541116541,
+				"volume24h": 1.8457386722878864E9,
+				"lastUpdated": "2018-11-16 07:00:07",
+				"quoteSymbol": "JPY",
+				"baseId": 1720,
+				"percentChange1h": -0.1652,
+				"percentChange24h": 3.7888,
+				"marketCap": 1.3281194434031554E11,
+				"percentChange7d": -14.6815,
+				"baseName": "IOTA",
+				"id": "8a1280826677576a01671b547a23232e"
+			},
+			"series": [
+				47.80943979430188,
+				47.826366343167365,
+				47.93727916605365,
+				47.86043733361066,
+				47.85383582239324,
+				48.02281886035946,
+				47.91218861776802
+			]
+		},
+		{
+			"specificRate": {
+				"createDate": "2018-11-16 07:03",
+				"updateDate": null,
+				"baseSymbol": "XLM",
+				"price": 27.597740697906964,
+				"volume24h": 1.2240485799710302E10,
+				"lastUpdated": "2018-11-16 07:00:07",
+				"quoteSymbol": "JPY",
+				"baseId": 512,
+				"percentChange1h": 0.2312,
+				"percentChange24h": 5.1073,
+				"marketCap": 5.225419992446401E11,
+				"percentChange7d": -7.1147,
+				"baseName": "Stellar",
+				"id": "8a1280826677576a01671b547a23232f"
+			},
+			"series": [
+				27.558915942944715,
+				27.52777341635411,
+				27.51566192866044,
+				27.52726556900092,
+				27.550703618705093,
+				27.621562839901404,
+				27.580826455520835
+			]
+		},
+		{
+			"specificRate": {
+				"createDate": "2018-11-16 07:03",
+				"updateDate": null,
+				"baseSymbol": "LTC",
+				"price": 4918.7457960275315,
+				"volume24h": 5.852735926449119E10,
+				"lastUpdated": "2018-11-16 07:00:07",
+				"quoteSymbol": "JPY",
+				"baseId": 2,
+				"percentChange1h": -0.0439,
+				"percentChange24h": 0.7691,
+				"marketCap": 2.910867681350244E11,
+				"percentChange7d": -20.6179,
+				"baseName": "Litecoin",
+				"id": "8a1280826677576a01671b547a232330"
+			},
+			"series": [
+				4913.847847947151,
+				4909.861600372589,
+				4915.921217757949,
+				4916.714114649912,
+				4927.749205507852,
+				4930.849203930794,
+				4921.194675376095
+			]
+		},
+		{
+			"specificRate": {
+				"createDate": "2018-11-16 07:03",
+				"updateDate": null,
+				"baseSymbol": "ADA",
+				"price": 7.05370268036697,
+				"volume24h": 5.377157618720275E9,
+				"lastUpdated": "2018-11-16 07:00:07",
+				"quoteSymbol": "JPY",
+				"baseId": 2010,
+				"percentChange1h": -0.2351,
+				"percentChange24h": 0.8386,
+				"marketCap": 1.8288184694795413E11,
+				"percentChange7d": -22.9642,
+				"baseName": "Cardano",
+				"id": "8a1280826677576a01671b547a232331"
+			},
+			"series": [
+				7.048202634117828,
+				7.045074014104521,
+				7.027730395187951,
+				7.0695287968953044,
+				7.073832617701072,
+				7.086226034661737,
+				7.0868087972502
+			]
+		},
+		{
+			"specificRate": {
+				"createDate": "2018-11-16 07:03",
+				"updateDate": null,
+				"baseSymbol": "XMR",
+				"price": 10025.03162849312,
+				"volume24h": 3.658264280271332E9,
+				"lastUpdated": "2018-11-16 07:00:07",
+				"quoteSymbol": "JPY",
+				"baseId": 328,
+				"percentChange1h": 0.1337,
+				"percentChange24h": -1.1476,
+				"marketCap": 1.6615056150729132E11,
+				"percentChange7d": -21.1391,
+				"baseName": "Monero",
+				"id": "8a1280826677576a01671b547a232332"
+			},
+			"series": [
+				10016.367587312565,
+				10027.022446997555,
+				9993.46634586648,
+				10008.41215884734,
+				10039.957931259003,
+				9989.767351581926,
+				10001.231050359196
+			]
+		},
+		{
+			"specificRate": {
+				"createDate": "2018-11-16 07:03",
+				"updateDate": null,
+				"baseSymbol": "DASH",
+				"price": 15689.152181074449,
+				"volume24h": 2.2530488763735004E10,
+				"lastUpdated": "2018-11-16 07:00:07",
+				"quoteSymbol": "JPY",
+				"baseId": 131,
+				"percentChange1h": -0.7097,
+				"percentChange24h": -1.1727,
+				"marketCap": 1.3252264995837863E11,
+				"percentChange7d": -17.9601,
+				"baseName": "Dash",
+				"id": "8a1280826677576a01671b547a232333"
+			},
+			"series": [
+				15679.417920588809,
+				15691.787407096079,
+				15695.623031662335,
+				15789.112015128001,
+				15831.820181043759,
+				15821.015053172248,
+				15871.464377763961
+			]
+		},
+		{
+			"specificRate": {
+				"createDate": "2018-11-16 07:03",
+				"updateDate": null,
+				"baseSymbol": "TRX",
+				"price": 2.177533823764481,
+				"volume24h": 9.006806271502264E9,
+				"lastUpdated": "2018-11-16 07:00:07",
+				"quoteSymbol": "JPY",
+				"baseId": 1958,
+				"percentChange1h": 0.0102,
+				"percentChange24h": 2.0052,
+				"marketCap": 1.431687369558486E11,
+				"percentChange7d": -20.2928,
+				"baseName": "TRON",
+				"id": "8a1280826677576a01671b547a232334"
+			},
+			"series": [
+				2.174023846584455,
+				2.171944911803083,
+				2.1697635555429673,
+				2.174607376312019,
+				2.180527196227402,
+				2.18845144512651,
+				2.1786575117985185
+			]
+		},
+		{
+			"specificRate": {
+				"createDate": "2018-11-16 07:03",
+				"updateDate": null,
+				"baseSymbol": "NEO",
+				"price": 1460.488032362236,
+				"volume24h": 2.0797665588600037E10,
+				"lastUpdated": "2018-11-16 07:00:07",
+				"quoteSymbol": "JPY",
+				"baseId": 1376,
+				"percentChange1h": -0.3363,
+				"percentChange24h": -1.1394,
+				"marketCap": 9.493172210354533E10,
+				"percentChange7d": -25.8487,
+				"baseName": "NEO",
+				"id": "8a1280826677576a01671b547a232335"
+			},
+			"series": [
+				1465.0475572972912,
+				1459.740963853948,
+				1456.576062689754,
+				1463.9047431549116,
+				1468.5530346533308,
+				1471.3687189505158,
+				1467.9759569703951
+			]
+		},
+		{
+			"specificRate": {
+				"createDate": "2018-11-16 07:03",
+				"updateDate": null,
+				"baseSymbol": "XEM",
+				"price": 10.735313546808703,
+				"volume24h": 1.6637319247119908E9,
+				"lastUpdated": "2018-11-16 07:00:07",
+				"quoteSymbol": "JPY",
+				"baseId": 873,
+				"percentChange1h": -0.6066,
+				"percentChange24h": 0.8362,
+				"marketCap": 9.661782191054301E10,
+				"percentChange7d": 2.0138,
+				"baseName": "NEM",
+				"id": "8a1280826677576a01671b547a232336"
+			},
+			"series": [
+				10.74551742605404,
+				10.712883711422748,
+				10.7319751042691,
+				10.797581895774004,
+				10.823686586501925,
+				10.806999065782083,
+				10.82395793493307
+			]
+		},
+		{
+			"specificRate": {
+				"createDate": "2018-11-16 07:03",
+				"updateDate": null,
+				"baseSymbol": "VET",
+				"price": 0.8788527717919102,
+				"volume24h": 1.3746919068144853E9,
+				"lastUpdated": "2018-11-16 07:00:07",
+				"quoteSymbol": "JPY",
+				"baseId": 3077,
+				"percentChange1h": -1.1704,
+				"percentChange24h": -2.1138,
+				"marketCap": 4.873654738796531E10,
+				"percentChange7d": -33.6913,
+				"baseName": "VeChain",
+				"id": "8a1280826677576a01671b547a232337"
+			},
+			"series": [
+				0.8776072586090179,
+				0.8753997121882231,
+				0.8791913140565158,
+				0.8836028158066456,
+				0.8945540103617746,
+				0.8978206762395898,
+				0.8958578437960387
+			]
+		}
+	]
+}

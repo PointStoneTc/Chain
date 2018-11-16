@@ -1,0 +1,37 @@
+{
+	"url": "http://data.chainage.jp/caweb/cc/currencyApiController.do?topFloatingExchange",
+	"datatype": "txt",
+	"arguments": [],
+	"schema": [
+		{
+			"name": "exchangeId",
+			"value": "int",
+			"desc": "数字货币id"
+		},
+		{
+			"name": "name",
+			"value": "string",
+			"desc": "名称"
+		},
+		{
+			"name": "slug",
+			"value": "string",
+			"desc": "符号"
+		},
+		{
+			"name": "volume24hUnitA",
+			"value": "double",
+			"desc": "对BTC24小时交易量"
+		},
+		{
+			"name": "volume24hUnitB",
+			"value": "double",
+			"desc": "对JPY24小时交易量"
+		}
+	],
+	"use_guide": [
+		"交易所的图标用'exchangeId+.png'获取",
+		"共20组数据，前10个是交易量高的从高到低（降序）",
+		"共20组数据，后10个是交易量低的从低到高（升序）"
+	]
+}
