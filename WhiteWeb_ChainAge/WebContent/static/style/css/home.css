@@ -229,7 +229,7 @@ a:hover{
   font-size: 0.14rem;
   color: #757575;
   float: right;
-  margin-top: 7px;
+  margin-top: 3px;
   margin-right: 0.2rem;
 }
 .news_contain .news_dec{
@@ -243,7 +243,6 @@ a:hover{
 }
 .news_contain .news_dec p:after{
   position: absolute;
-  bottom: 0.4rem;
   left: 0.36rem;
   width: 83%;
   height: 22px;
@@ -269,7 +268,7 @@ a:hover{
   display: inline-block;
   background: url("../../img/chainge_editer.png") no-repeat center;
   background-size: cover;
-  vertical-align: bottom;
+  vertical-align: middle;
   margin-right: 0.1rem;
 }
 .news_contain .new_list_time {
