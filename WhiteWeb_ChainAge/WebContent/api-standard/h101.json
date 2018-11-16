@@ -1,0 +1,22 @@
+{
+	"url": "https://www.chainage.jp/wp-json/wp/v2/users",
+	"datatype": "json",
+	"arguments": [],
+	"schema": [
+		{
+			"name": "name",
+			"value": "String",
+			"desc": "作者名称"
+		},
+		{
+			"name": "avatar_urls",
+			"value": "object",
+			"desc": "用户头像"
+		}
+	],
+	"use_guide": [
+		"直接在url后面录入用户的id",
+		"用户头像取值为48的"
+		
+	]
+}

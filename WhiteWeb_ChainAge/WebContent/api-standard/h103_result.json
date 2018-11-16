@@ -1,0 +1,394 @@
+{
+	"result": [
+		{
+			"id": 166,
+			"count": 0,
+			"description": "",
+			"link": "https://www.chainage.jp/tag/airdrop",
+			"name": "AirDrop",
+			"slug": "airdrop",
+			"taxonomy": "post_tag",
+			"meta": [],
+			"_links": {
+				"self": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/tags/166"
+					}
+				],
+				"collection": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/tags"
+					}
+				],
+				"about": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/taxonomies/post_tag"
+					}
+				],
+				"wp:post_type": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/posts?tags=166"
+					}
+				],
+				"curies": [
+					{
+						"name": "wp",
+						"href": "https://api.w.org/{rel}",
+						"templated": true
+					}
+				]
+			}
+		},
+		{
+			"id": 149,
+			"count": 2,
+			"description": "",
+			"link": "https://www.chainage.jp/tag/etf",
+			"name": "ETF",
+			"slug": "etf",
+			"taxonomy": "post_tag",
+			"meta": [],
+			"_links": {
+				"self": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/tags/149"
+					}
+				],
+				"collection": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/tags"
+					}
+				],
+				"about": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/taxonomies/post_tag"
+					}
+				],
+				"wp:post_type": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/posts?tags=149"
+					}
+				],
+				"curies": [
+					{
+						"name": "wp",
+						"href": "https://api.w.org/{rel}",
+						"templated": true
+					}
+				]
+			}
+		},
+		{
+			"id": 161,
+			"count": 2,
+			"description": "",
+			"link": "https://www.chainage.jp/tag/zaif",
+			"name": "Zaif",
+			"slug": "zaif",
+			"taxonomy": "post_tag",
+			"meta": [],
+			"_links": {
+				"self": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/tags/161"
+					}
+				],
+				"collection": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/tags"
+					}
+				],
+				"about": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/taxonomies/post_tag"
+					}
+				],
+				"wp:post_type": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/posts?tags=161"
+					}
+				],
+				"curies": [
+					{
+						"name": "wp",
+						"href": "https://api.w.org/{rel}",
+						"templated": true
+					}
+				]
+			}
+		},
+		{
+			"id": 135,
+			"count": 11,
+			"description": "",
+			"link": "https://www.chainage.jp/tag/%e3%82%a2%e3%83%a1%e3%83%aa%e3%82%ab",
+			"name": "アメリカ",
+			"slug": "%e3%82%a2%e3%83%a1%e3%83%aa%e3%82%ab",
+			"taxonomy": "post_tag",
+			"meta": [],
+			"_links": {
+				"self": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/tags/135"
+					}
+				],
+				"collection": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/tags"
+					}
+				],
+				"about": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/taxonomies/post_tag"
+					}
+				],
+				"wp:post_type": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/posts?tags=135"
+					}
+				],
+				"curies": [
+					{
+						"name": "wp",
+						"href": "https://api.w.org/{rel}",
+						"templated": true
+					}
+				]
+			}
+		},
+		{
+			"id": 156,
+			"count": 5,
+			"description": "",
+			"link": "https://www.chainage.jp/tag/%e3%82%a2%e3%83%ab%e3%83%88%e3%82%b3%e3%82%a4%e3%83%b3",
+			"name": "アルトコイン",
+			"slug": "%e3%82%a2%e3%83%ab%e3%83%88%e3%82%b3%e3%82%a4%e3%83%b3",
+			"taxonomy": "post_tag",
+			"meta": [],
+			"_links": {
+				"self": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/tags/156"
+					}
+				],
+				"collection": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/tags"
+					}
+				],
+				"about": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/taxonomies/post_tag"
+					}
+				],
+				"wp:post_type": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/posts?tags=156"
+					}
+				],
+				"curies": [
+					{
+						"name": "wp",
+						"href": "https://api.w.org/{rel}",
+						"templated": true
+					}
+				]
+			}
+		},
+		{
+			"id": 140,
+			"count": 4,
+			"description": "",
+			"link": "https://www.chainage.jp/tag/%e3%82%a4%e3%83%bc%e3%82%b5%e3%83%aa%e3%82%a2%e3%83%a0",
+			"name": "イーサリアム",
+			"slug": "%e3%82%a4%e3%83%bc%e3%82%b5%e3%83%aa%e3%82%a2%e3%83%a0",
+			"taxonomy": "post_tag",
+			"meta": [],
+			"_links": {
+				"self": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/tags/140"
+					}
+				],
+				"collection": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/tags"
+					}
+				],
+				"about": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/taxonomies/post_tag"
+					}
+				],
+				"wp:post_type": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/posts?tags=140"
+					}
+				],
+				"curies": [
+					{
+						"name": "wp",
+						"href": "https://api.w.org/{rel}",
+						"templated": true
+					}
+				]
+			}
+		},
+		{
+			"id": 131,
+			"count": 10,
+			"description": "",
+			"link": "https://www.chainage.jp/tag/%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88",
+			"name": "イベント",
+			"slug": "%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88",
+			"taxonomy": "post_tag",
+			"meta": [],
+			"_links": {
+				"self": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/tags/131"
+					}
+				],
+				"collection": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/tags"
+					}
+				],
+				"about": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/taxonomies/post_tag"
+					}
+				],
+				"wp:post_type": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/posts?tags=131"
+					}
+				],
+				"curies": [
+					{
+						"name": "wp",
+						"href": "https://api.w.org/{rel}",
+						"templated": true
+					}
+				]
+			}
+		},
+		{
+			"id": 159,
+			"count": 1,
+			"description": "",
+			"link": "https://www.chainage.jp/tag/%e3%82%a4%e3%83%b3%e3%82%bf%e3%83%93%e3%83%a5%e3%83%bc",
+			"name": "インタビュー",
+			"slug": "%e3%82%a4%e3%83%b3%e3%82%bf%e3%83%93%e3%83%a5%e3%83%bc",
+			"taxonomy": "post_tag",
+			"meta": [],
+			"_links": {
+				"self": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/tags/159"
+					}
+				],
+				"collection": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/tags"
+					}
+				],
+				"about": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/taxonomies/post_tag"
+					}
+				],
+				"wp:post_type": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/posts?tags=159"
+					}
+				],
+				"curies": [
+					{
+						"name": "wp",
+						"href": "https://api.w.org/{rel}",
+						"templated": true
+					}
+				]
+			}
+		},
+		{
+			"id": 183,
+			"count": 1,
+			"description": "",
+			"link": "https://www.chainage.jp/tag/%e3%82%a6%e3%82%a9%e3%83%ac%e3%83%83%e3%83%88",
+			"name": "ウォレット",
+			"slug": "%e3%82%a6%e3%82%a9%e3%83%ac%e3%83%83%e3%83%88",
+			"taxonomy": "post_tag",
+			"meta": [],
+			"_links": {
+				"self": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/tags/183"
+					}
+				],
+				"collection": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/tags"
+					}
+				],
+				"about": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/taxonomies/post_tag"
+					}
+				],
+				"wp:post_type": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/posts?tags=183"
+					}
+				],
+				"curies": [
+					{
+						"name": "wp",
+						"href": "https://api.w.org/{rel}",
+						"templated": true
+					}
+				]
+			}
+		},
+		{
+			"id": 132,
+			"count": 1,
+			"description": "",
+			"link": "https://www.chainage.jp/tag/%e3%82%b2%e3%83%bc%e3%83%a0",
+			"name": "ゲーム",
+			"slug": "%e3%82%b2%e3%83%bc%e3%83%a0",
+			"taxonomy": "post_tag",
+			"meta": [],
+			"_links": {
+				"self": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/tags/132"
+					}
+				],
+				"collection": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/tags"
+					}
+				],
+				"about": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/taxonomies/post_tag"
+					}
+				],
+				"wp:post_type": [
+					{
+						"href": "https://www.chainage.jp/wp-json/wp/v2/posts?tags=132"
+					}
+				],
+				"curies": [
+					{
+						"name": "wp",
+						"href": "https://api.w.org/{rel}",
+						"templated": true
+					}
+				]
+			}
+		}
+	]
+}
