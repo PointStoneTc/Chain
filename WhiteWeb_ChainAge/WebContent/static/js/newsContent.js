@@ -14,6 +14,8 @@ var newsContent={
             $(".post_header .post_title").text(data.title.rendered);
             $(".post_featured img").attr("src",data.jetpack_featured_media_url);
             $(".post_desc").html(data.excerpt.rendered);
+            $(".post_autor").text(Common.users[data.author]);
+            $(".post_meta_time").text(Common.timeonverseFunc(new Date(data.date).getTime(),1));
         })
 
     },

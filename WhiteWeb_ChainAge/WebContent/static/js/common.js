@@ -65,7 +65,7 @@ var Common={
         });
     },
     // 计算多长时间之前
-    timeonverseFunc: function (dateTimeStamp) {
+    timeonverseFunc: function (dateTimeStamp,flag) {
         var minute = 1000 * 60;
         var hour = minute * 60;
         var day = hour * 24;
@@ -84,23 +84,43 @@ var Common={
         var hourC = diffValue / hour;
         var minC = diffValue / minute;
         if (monthC >= 1) {
-            result = parseInt(monthC) + "个月前";
+            if(flag){
+                result = parseInt(monthC) + " 月前";
+            }else{
+                result = parseInt(monthC) + " month ago";
+            }
         }
         else if (weekC >= 1) {
-            result = parseInt(weekC) + " week ago";
+            if(flag){
+                result = parseInt(weekC) + " 週間 前";
+            }else{
+                result = parseInt(weekC) + " week ago";
+            }
         }
         else if (dayC >= 1) {
-            result = parseInt(dayC) + " days ago";
+            if(flag){
+                result = parseInt(dayC) + " 日 前";
+            }else{
+                result = parseInt(dayC) + " days ago";
+            }
         }
         else if (hourC >= 1) {
-            result = parseInt(hourC) + " hours ago";
+            if(flag){
+                result = parseInt(hourC) + " 時間 前";
+            }else{
+                result = parseInt(hourC) + " hours ago";
+            }
         }
         else if (minC >= 1) {
-            result = parseInt(minC) + " minutes ago";
-        } else
-            result = "刚刚";
+            if(flag){
+                result = parseInt(minC) + " 分 前";
+            }else{
+                result = parseInt(minC) + " minutes ago";
+            }
+        } else{
+            result = "ちょうど";
+        }
         return result;
-
     },
     // 获取地址栏参数
     getQueryString: function (name) {
