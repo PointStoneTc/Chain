@@ -42,7 +42,17 @@ a:hover{
 .header-right li{
   float: left;
 }
-
+#navbar{
+  padding-right: 0;
+}
+.navbar-form{
+  overflow: hidden;
+  padding: 0;
+  padding-left: 20px;
+}
+.input-group{
+  width: 100%;
+}
 .share_icon{
   margin-right: 0.1rem;
   display: inline-block;
@@ -113,25 +123,25 @@ a:hover{
     background-size:  cover;
   }
   .share_icon1{
-    width: 0.15rem;
-    height: 0.15rem;
+    width: 0.17rem;
+    height: 0.17rem;
     background: url('../../img/share_704.png') no-repeat center;
     background-size:  cover;
   }
   .share_icon2{
-    width: 0.14rem;
-    height: 0.1rem;
+    width: 0.16rem;
+    height: 0.16rem;
     background: url('../../img/share_b.png') no-repeat center;
     background-size:  cover;
   }
   .share_icon3{
-    width: 0.08rem;
-    height: 0.14rem;
+    width: 0.1rem;
+    height: 0.16rem;
     background: url('../../img/share_f.png') no-repeat center;
     background-size:  cover;
   }
   .share_icon4{
-    width: 0.16rem;
+    width: 0.17rem;
     height: 0.17rem;
     background: url('../../img/share_y.png') no-repeat center;
     background-size:  cover;
@@ -145,7 +155,7 @@ a:hover{
 .nav-center{
   min-height: 0.6rem;
   background: #fff;
-  padding:0.08rem 0.27rem 0 0.27rem;
+  padding:0.08rem 0 0 0.27rem;
   border: none;
   margin: 0;
 }
@@ -163,6 +173,9 @@ a:hover{
 .nav-center .form-control, .nav-center .btn{
   height: 0.3rem;
   padding: 0;
+}
+.input-group input{
+  padding-left: 10px;
 }
 .navbar-toggle{
   margin-top: -0.1rem;

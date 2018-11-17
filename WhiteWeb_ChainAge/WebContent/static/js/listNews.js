@@ -55,7 +55,7 @@ var listNewsPage = {
                 var linkUrl='./newsContent.html?id=' + data[i].id;
                 html+='<div class="col-sm-4 bd-card-mod">'
                     +'<a href=" '+linkUrl+' ">'
-                    + '<img class="card-img lazy" src="'+data[i].jetpack_featured_media_url+'" style="display: inline;">'
+                    +'<div class="card-img lazy" style="background-image:url('+data[i].jetpack_featured_media_url+') " ></div>>'
                     +'</a>'
                     + '</div>';
             }
@@ -173,20 +173,20 @@ var listNewsPage = {
             var htm = '';
             if (data.length > 0) {
                 for (var i = 0; i < data.length; i++) {
-                    htm += '<a href="'+ './newsContent.html?id=' + data[i].id+'"><div class="col-md-4 benefit_box">'
+                    htm += '<div class="col-md-4 benefit_box"><a href="'+ './newsContent.html?id=' + data[i].id+'">'
                         + '<div class="benefit_box_con">'
                         + '<p class="p20 benefit_box_tit">'+Common.categories[data[i].categories[0]]+'</p>'
-                        + '<p class="p20 benefit_box_com">'+data[i].title.rendered+'</p>'
+                        + '<p class="p20 benefit_box_hea">'+data[i].title.rendered+'</p>'
                         + '<p class="p20 benefit_box_from">'
                         +'<span class="new_list_icon"><img src="'+Common.userImgs[data[i].author]+'" ></span>'
                         +'<span>'+Common.users[data[i].author]+'</span>'
                         +'<div class="time_right"><span class="new_list_time"></span>'
                         +'<span>'+Common.timeonverseFunc(new Date(data[1].date))+'</span></div>'
-                        + '</p>'
-                        + '<img style="width: 100%; height: 1.52rem;" src="'+data[i].jetpack_featured_media_url+'">'
+                        + '</p><div style="clear: both"></div>'
+                        + '<div class="benefit_box_img" style="background-image:url('+data[i].jetpack_featured_media_url+') "></div>'
                         + '<div class="p20 benefit_box_com news_dec">'+data[i].excerpt.rendered+'</div>'
                         + '</div>'
-                        + '</div></a>';
+                        + '</a></div>';
                 }
                 $('.news_list_con .news_container').html(htm);
             }

@@ -45,7 +45,7 @@
             style="color:#FFF"> USD 13.2B</span>
     </div>
 
-    <div class="col-md-1  header-right fr">
+    <div class=" header-right fr">
         <span class="share_icon share_icon1"></span>
         <span class="share_icon share_icon2"></span>
         <span class="share_icon share_icon3"></span>
@@ -73,7 +73,7 @@
         <ul class="nav navbar-nav navbar-left">
             <li><a class="" href="listNews.html?pageFlag=1">ニュース</a></li>
             <li><a href="#">特集</a></li>
-            <li><a href="listNews.html?pageFlag=22">取引所</a></li>
+            <li><a href="listNews.html?pageFlag=2">取引所</a></li>
             <li><a href="#">チャート</a></li>
             <li><a href="#">ビギナー</a></li>
             <li><a href="listNews.html?pageFlag=5">政府・団体</a></li>
@@ -284,7 +284,7 @@
                 <img class="media-object" src="<%=data[i].jetpack_featured_media_url%>" style="width:0.8rem ;height:0.8rem">
             </div>
             <div class="media-body">
-                <div style="color:#999;"><span class="hot_icon"></span>1999ビュー</div>
+                <div style="color:#999;"><span class="hot_icon"></span><%=year(data[i].date)%>ビュー</div>
                 <div class="hot_posts_title"><%=data[i].title.rendered%></div>
                 <div style="color:#999;"><span class="time_icon"></span><%=date(data[i].date)%></div>
             </div>
