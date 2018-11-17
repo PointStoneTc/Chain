@@ -1,21 +1,26 @@
 var newsContent={
+    id:null,
     init:function () {
+        this.id=Common.getQueryString("id");
         Common.getCategoreType();
         Common.getUsers();
         this.postsShow();
         // 热门文章
         this.getHotPostsData();
         this.getPostsListData();
+        this.getTagsData();
     },
     // 文章内容
     postsShow:function(){
-        Common.getSingleData(Common.getQueryString("id"),function(data){
+        Common.getSingleData(newsContent.id,function(data){
             $(".post_header .post_category").text(Common.categories[data.categories[0]]);
             $(".post_header .post_title").text(data.title.rendered);
             $(".post_featured img").attr("src",data.jetpack_featured_media_url);
-            $(".post_desc").html(data.excerpt.rendered);
+            $(".post_desc").html(data.content.rendered);
+            $(".post_icon1 img").attr("src",Common.userImgs[data.author])
             $(".post_autor").text(Common.users[data.author]);
             $(".post_meta_time").text(Common.timeonverseFunc(new Date(data.date).getTime(),1));
+            $(".post_count").text(data._links["version-history"][0].count);
         })
 
     },
@@ -45,6 +50,26 @@ var newsContent={
                 $('.news_contain').html(htm);
             }
         });
+    },
+    // 获取标签
+    getTagsData:function(){
+       var url='https://www.chainage.jp/wp-json/wp/v2/tags?post='+newsContent.id;
+       $.ajax({
+                type: 'GET',
+                url: url,
+                async: true,
+                error: function () {
+                },
+                success: function (data) {
+                    if (data && data.length>0) {
+                        var html='';
+                        for(var i=0;i<data.length;i++){
+                            html+='<span>'+data[i].name+'</span>';
+                        }
+                        $(".tags_name").html(html);
+                    }
+                }
+            });
     }
 
 }

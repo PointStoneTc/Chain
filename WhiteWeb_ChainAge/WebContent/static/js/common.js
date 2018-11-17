@@ -2,6 +2,7 @@ var Common={
     categories: [],
     newCounts:[],
     users:[],
+    userImgs:[],
     // 请求新闻数据
     getNewsData: function getData(param,callback) {
         var url = 'https://www.chainage.jp/wp-json/wp/v2/posts';
@@ -58,7 +59,9 @@ var Common={
                     for (var i = 0; i <data.length; i++) {
                         var id=data[i].id;
                         var c = self.users[id] = data[i].name;
+                        var d = self.userImgs[id] = data[i].avatar_urls["96"];
                         self.users.push(c);
+                        self.userImgs.push(d);
                     }
                 }
             }
@@ -85,35 +88,35 @@ var Common={
         var minC = diffValue / minute;
         if (monthC >= 1) {
             if(flag){
-                result = parseInt(monthC) + " 月前";
+                result = parseInt(monthC) + "月前";
             }else{
                 result = parseInt(monthC) + " month ago";
             }
         }
         else if (weekC >= 1) {
             if(flag){
-                result = parseInt(weekC) + " 週間 前";
+                result = parseInt(weekC) + "週間 前";
             }else{
                 result = parseInt(weekC) + " week ago";
             }
         }
         else if (dayC >= 1) {
             if(flag){
-                result = parseInt(dayC) + " 日 前";
+                result = parseInt(dayC) + "日 前";
             }else{
                 result = parseInt(dayC) + " days ago";
             }
         }
         else if (hourC >= 1) {
             if(flag){
-                result = parseInt(hourC) + " 時間 前";
+                result = parseInt(hourC) + "時間 前";
             }else{
                 result = parseInt(hourC) + " hours ago";
             }
         }
         else if (minC >= 1) {
             if(flag){
-                result = parseInt(minC) + " 分 前";
+                result = parseInt(minC) + "分 前";
             }else{
                 result = parseInt(minC) + " minutes ago";
             }

@@ -178,7 +178,7 @@ var listNewsPage = {
                         + '<p class="p20 benefit_box_tit">'+Common.categories[data[i].categories[0]]+'</p>'
                         + '<p class="p20 benefit_box_com">'+data[i].title.rendered+'</p>'
                         + '<p class="p20 benefit_box_from">'
-                        +'<span class="new_list_icon"></span>'
+                        +'<span class="new_list_icon"><img src="'+Common.userImgs[data[i].author]+'" ></span>'
                         +'<span>'+Common.users[data[i].author]+'</span>'
                         +'<div class="time_right"><span class="new_list_time"></span>'
                         +'<span>'+Common.timeonverseFunc(new Date(data[1].date))+'</span></div>'
