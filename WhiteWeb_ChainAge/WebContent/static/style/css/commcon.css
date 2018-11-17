@@ -50,6 +50,12 @@ a:hover{
   padding: 0;
   padding-left: 20px;
 }
+.navbar .homeBtn{
+    display: none;
+}
+.navbar .homeBtn {
+    color: #000;
+}
 .input-group{
   width: 100%;
 }
@@ -104,10 +110,10 @@ a:hover{
     background: url('../../img/share_y.png') no-repeat center;
     background-size:  cover;
   }
-  .navbar-header img {
-    width: 4rem;
-    margin-top: 0.4rem;
-  }
+  /*.navbar-header img {*/
+    /*width: 4rem;*/
+    /*margin-top: 0.4rem;*/
+  /*}*/
 }
 @media (min-width: 768px) {
   .header .icon1{
@@ -146,10 +152,10 @@ a:hover{
     background: url('../../img/share_y.png') no-repeat center;
     background-size:  cover;
   }
-  .navbar-header img {
-    width: 1.77rem;
-    margin-top: 0;
-  }
+  /*.navbar-header img {*/
+    /*width: 1.77rem;*/
+    /*margin-top: 0;*/
+  /*}*/
 }
 
 .nav-center{
@@ -218,4 +224,32 @@ a:hover{
   line-height: 0.76rem;
   background-color: #000;
   text-align: center;
+}
+@media only screen and (max-width: 1024px){
+    .header{
+        display: none;
+    }
+
+    .navbar-header img {
+        width: 4rem;
+        margin-top: 0.4rem;
+    }
+    .navbar{
+        background-color: #1A2959;
+    }
+    .navbar .navbar-toggle{
+        float: left;
+    }
+    .navbar .homeBtn{
+        float: left;
+        display: block;
+        margin-top: 6px;
+        margin-left: 10px;
+    }
+    .navbar .homeBtn a{
+        color: #FFFFFF;
+    }
+    .navbar-img{
+        float: right;
+    }
 }
