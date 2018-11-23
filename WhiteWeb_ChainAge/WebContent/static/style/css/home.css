@@ -23,14 +23,15 @@ a:hover{
 .banner_left .news_banner_con {
   position: absolute;
   top: 1.95rem;
-  left: 26%;
+  width: 90%;
+  text-align: center;
+  left: 4.5%;
 }
 .news_banner a{
   color: #FFF;
 }
 
 .banner_left .new_title{
-  width: 89%;
   font-size: 0.48rem;
 }
 .news_time .icon_time{

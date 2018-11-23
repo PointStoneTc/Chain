@@ -15,7 +15,7 @@ p{
 }
 
 .news_container .news_con_left{
-    border: 0.02rem solid #e4e4e4;
+    border: 1px solid #e4e4e4;
     border-radius: 0.02rem;
     padding: 0;
 }
@@ -197,7 +197,7 @@ p{
     float: left;
 }
 .news_comment{
-    border:2px solid rgba(228,228,228,1);
+    border:1px solid rgba(228,228,228,1);
     margin-top: 0.37rem;
     border-radius: 0.05rem;
     font-size: 0.14rem;
@@ -365,7 +365,7 @@ p{
     -webkit-box-orient: vertical;
 }
 .news_contain{
-    border:2px solid rgba(228,228,228,1);
+    border:1px solid rgba(228,228,228,1);
     margin-top: 0.6rem;
     padding: 0.48rem 0.08rem 0.25rem 0.08rem;
     border-radius: 0.05rem;
