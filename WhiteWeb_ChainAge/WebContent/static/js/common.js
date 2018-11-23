@@ -3,6 +3,24 @@ var Common={
     newCounts:[],
     users:[],
     userImgs:[],
+    // 获取首页数据
+    getHomeData:function(callback){
+        var url='http://data.chainage.jp/blockchain/data/home';
+        $.ajax({
+            type: 'GET',
+            url: url,
+            async: true,
+            error: function () {
+            },
+            success: function (data) {
+                if (data) {
+                    if (callback) {
+                        callback(data);
+                    }
+                }
+            }
+        });
+    },
     // 请求新闻数据
     getNewsData: function getData(param,callback) {
         var url = 'https://www.chainage.jp/wp-json/wp/v2/posts';
