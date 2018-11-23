@@ -7,7 +7,7 @@ var newsContent={
         this.postsShow();
         // 热门文章
         this.getHotPostsData();
-        this.getPostsListData();
+        // this.getPostsListData();
         this.getTagsData();
     },
     // 文章内容
