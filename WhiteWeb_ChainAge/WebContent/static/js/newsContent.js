@@ -20,6 +20,7 @@ var newsContent={
             $(".post_icon1 img").attr("src",Common.userImgs[data.author])
             $(".post_autor").text(Common.users[data.author]);
             $(".post_meta_time").text(Common.timeonverseFunc(new Date(data.date).getTime(),1));
+            $(".post_read_time").text(parseInt(data.content.rendered.length/400));
             $(".post_count").text(data._links["version-history"][0].count);
         })
     },
