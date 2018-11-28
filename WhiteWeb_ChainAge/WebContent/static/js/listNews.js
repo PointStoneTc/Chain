@@ -98,6 +98,9 @@ var listNewsPage = {
             $(".page_con").hide();
             $(".government_con").show();
             // 请求 政府
+            Common.getNewsData({per_page:30,order:'desc',orderby:'date',categories:99},function(data){
+                listNewsPage.getGovernmentGroup(data);
+            });
         }else{
             $(".news_title").text("ニュース");
             // 请求
@@ -195,7 +198,34 @@ var listNewsPage = {
             }
         });
     },
+    getGovernmentGroup:function(data){
+        var governmentData=[{year:"2019",data:[]},{year:"2018",data:[]},{year:"2017",data:[]}];
+        var lenght=data.length;
+        for(var i=0;i<lenght;i++){
+                switch (data[i].date.substr(0,4)) {
+                    case "2019":
+                        data[i].date=Common.dataFormat(data[i].date);
+                    governmentData[0].data.push(data[i]);
+                    break;
+                    case "2018":
+                        data[i].date=Common.dataFormat(data[i].date);
+                        governmentData[1].data.push(data[i]);
+                        break;
+                    case "2017":
+                        data[i].date=Common.dataFormat(data[i].date);
+                        governmentData[2].data.push(data[i]);
+                        break;
+                }
+        }
+        for(i=0;i<governmentData.length;i++){
+            if(governmentData[i].data.length<=0){
+                governmentData.splice(i,1);
+            }
+        }
+        var governmentFuc = template($("#governmentShow").html(), {data: governmentData});
+        $(".government_con").html(governmentFuc);
 
+    },
     // 分页显示
     setPagination:function(param){
         $(".page").pagination(Common.newCounts[param.categories], {

@@ -129,12 +129,17 @@
             color: #333333;
             padding: 0.25rem 0;
             border-bottom: 1px dashed #DDDDDD;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .government_con .news_list_date {
             margin-right: 0.8rem;
         }
-
+        a{
+            color: #000000;
+        }
         @media only screen and (max-width: 1024px) {
             .news_banner, .message_show, .news_show {
                 display: none;
@@ -310,17 +315,9 @@
     <div class="page pagination"></div>
 </div>
 
+<!--政府团体-->
 <div class="government_con contain">
-    <div class="nes_year_data">2018年</div>
-    <div class="news_list">
-        <div><span class="news_list_date">11月１日</span><span>「仮想通貨交換業等に関する研究会」（第８回）議事次第</span></div>
-        <div><span class="news_list_date">11月１日</span><span>「仮想通貨交換業等に関する研究会」（第８回）議事次第</span></div>
-        <div><span class="news_list_date">11月１日</span><span>「仮想通貨交換業等に関する研究会」（第８回）議事次第</span></div>
-        <div><span class="news_list_date">11月１日</span><span>「仮想通貨交換業等に関する研究会」（第８回）議事次第</span></div>
-        <div><span class="news_list_date">11月１日</span><span>「仮想通貨交換業等に関する研究会」（第８回）議事次第</span></div>
-        <div><span class="news_list_date">11月１日</span><span>「仮想通貨交換業等に関する研究会」（第８回）議事次第</span></div>
-        <div><span class="news_list_date">11月１日</span><span>「仮想通貨交換業等に関する研究会」（第８回）議事次第</span></div>
-    </div>
+
 </div>
 
 <div class="contain" style="height: 3.21rem;margin-bottom: 0.55rem">
@@ -352,6 +349,16 @@
             <span>1.34%</span>
         </div>
     </li>
+    <%}%>
+</script>
+<script type="text/html" id="governmentShow">
+    <%for(var i in data){%>
+    <div class="nes_year_data"><%=data[i].year%></div>
+    <div class="news_list">
+        <%for(var j in data[i].data){%>
+        <div><a href="newsContent.html?id=<%=data[i].data[j].id%>"><span class="news_list_date"><%=data[i].data[j].date%></span><%=data[i].data[j].title.rendered%></span></a></div>
+        <%}%>
+    </div>
     <%}%>
 </script>
 <script src="static/plug-in/jquery/jquery-3.3.1.min.js"></script>

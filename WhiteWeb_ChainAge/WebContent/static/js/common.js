@@ -1,11 +1,11 @@
-var Common={
+var Common = {
     categories: [],
-    newCounts:[],
-    users:[],
-    userImgs:[],
+    newCounts: [],
+    users: [],
+    userImgs: [],
     // 获取首页数据
-    getHomeData:function(callback){
-        var url='http://data.chainage.jp/blockchain/data/home';
+    getHomeData: function (callback) {
+        var url = 'http://data.chainage.jp/blockchain/data/home';
         $.ajax({
             type: 'GET',
             url: url,
@@ -22,19 +22,19 @@ var Common={
         });
     },
     // 请求新闻数据
-    getNewsData: function getData(param,callback) {
+    getNewsData: function getData(param, callback) {
         var url = 'https://www.chainage.jp/wp-json/wp/v2/posts';
         $.ajax({
             type: 'GET',
             url: url,
-            data:param,
+            data: param,
             async: true,
             error: function () {
             },
             success: function (data) {
-                if (data && data.length>0) {
-                    if(callback){
-                        callback(data,param);
+                if (data && data.length > 0) {
+                    if (callback) {
+                        callback(data, param);
                     }
                 }
             }
@@ -51,9 +51,9 @@ var Common={
             error: function () {
             },
             success: function (data) {
-                if (data && data.length>0) {
-                    for (var i = 0; i <data.length; i++) {
-                        var id=data[i].id;
+                if (data && data.length > 0) {
+                    for (var i = 0; i < data.length; i++) {
+                        var id = data[i].id;
                         var c = self.categories[id] = data[i].name;
                         var d = self.newCounts[id] = data[i].count;
                         self.categories.push(c);
@@ -63,7 +63,7 @@ var Common={
             }
         });
     },
-    getUsers:function(){
+    getUsers: function () {
         var url = 'https://www.chainage.jp/wp-json/wp/v2/users';
         var self = this;
         $.ajax({
@@ -73,9 +73,9 @@ var Common={
             error: function () {
             },
             success: function (data) {
-                if (data && data.length>0) {
-                    for (var i = 0; i <data.length; i++) {
-                        var id=data[i].id;
+                if (data && data.length > 0) {
+                    for (var i = 0; i < data.length; i++) {
+                        var id = data[i].id;
                         var c = self.users[id] = data[i].name;
                         var d = self.userImgs[id] = data[i].avatar_urls["96"];
                         self.users.push(c);
@@ -86,7 +86,7 @@ var Common={
         });
     },
     // 计算多长时间之前
-    timeonverseFunc: function (dateTimeStamp,flag) {
+    timeonverseFunc: function (dateTimeStamp, flag) {
         var minute = 1000 * 60;
         var hour = minute * 60;
         var day = hour * 24;
@@ -105,40 +105,40 @@ var Common={
         var hourC = diffValue / hour;
         var minC = diffValue / minute;
         if (monthC >= 1) {
-            if(flag){
+            if (flag) {
                 result = parseInt(monthC) + "月前";
-            }else{
+            } else {
                 result = parseInt(monthC) + " month ago";
             }
         }
         else if (weekC >= 1) {
-            if(flag){
+            if (flag) {
                 result = parseInt(weekC) + "週間 前";
-            }else{
+            } else {
                 result = parseInt(weekC) + " week ago";
             }
         }
         else if (dayC >= 1) {
-            if(flag){
+            if (flag) {
                 result = parseInt(dayC) + "日 前";
-            }else{
+            } else {
                 result = parseInt(dayC) + " days ago";
             }
         }
         else if (hourC >= 1) {
-            if(flag){
+            if (flag) {
                 result = parseInt(hourC) + "時間 前";
-            }else{
+            } else {
                 result = parseInt(hourC) + " hours ago";
             }
         }
         else if (minC >= 1) {
-            if(flag){
+            if (flag) {
                 result = parseInt(minC) + "分 前";
-            }else{
+            } else {
                 result = parseInt(minC) + " minutes ago";
             }
-        } else{
+        } else {
             result = "ちょうど";
         }
         return result;
@@ -151,8 +151,8 @@ var Common={
         return '';
     },
     // 获取单个文章
-    getSingleData: function getData(id,callback) {
-        var url = 'https://www.chainage.jp/wp-json/wp/v2/posts/'+id;
+    getSingleData: function getData(id, callback) {
+        var url = 'https://www.chainage.jp/wp-json/wp/v2/posts/' + id;
         $.ajax({
             type: 'GET',
             url: url,
@@ -161,11 +161,18 @@ var Common={
             },
             success: function (data) {
                 if (data) {
-                    if(callback){
+                    if (callback) {
                         callback(data);
                     }
                 }
             }
         });
     },
+    dataFormat: function (shijianchuo) {
+      //shijianchuo是整数，否则要parseInt转换
+        var time = new Date(shijianchuo);
+        var m = time.getMonth() + 1;
+        var d = time.getDate();
+        return  m + '月' + d+'日' ;
+    }
 }

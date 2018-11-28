@@ -9,6 +9,8 @@ var newsContent={
         this.getHotPostsData();
         // this.getPostsListData();
         this.getTagsData();
+        // 广告
+        this.getAdvertData();
     },
     // 文章内容
     postsShow:function(){
@@ -73,6 +75,19 @@ var newsContent={
                     }
                 }
             });
+    },
+    getAdvertData:function(){
+        var param = {
+            categories: 192,
+            per_page: 1,
+            order: 'desc',
+            orderby: 'date',
+            status: 'publish'
+        }
+        Common.getNewsData(param,function(data){
+            $(".post_advert img").attr("src",data[0].jetpack_featured_media_url);
+            $(".post_advert").show();
+        })
     }
 
 }

@@ -585,6 +585,9 @@ var homePage = {
            }
            $(".news_show .news_show_contain").html(html);
         // });
+
+        // 广告1
+        this.getAdvertData();
     },
     topNewsShow:function(json){
         var data=json.postMap["99"];
@@ -634,22 +637,28 @@ var homePage = {
         //     }
         // });
     },
-    getAdvertData:function(param,callback){
-        var url = '';
-        $.ajax({
-            type: 'GET',
-            url: url,
-            async: true,
-            error: function () {
-            },
-            success: function (data) {
-                if (data) {
-                    if(callback){
-                        callback(data);
-                    }
-                }
-            }
+    getAdvertData:function(){
+        var param1 = {
+            categories: 186,
+            per_page: 1,
+            order: 'desc',
+            orderby: 'date',
+            status: 'publish'
+        }
+        Common.getNewsData(param1,function (data) {
+            $(".advert1 img").attr("src",data[0].jetpack_featured_media_url);
         });
+        var param2 = {
+            categories: 187,
+            per_page: 1,
+            order: 'desc',
+            orderby: 'date',
+            status: 'publish'
+        }
+        Common.getNewsData(param2,function (data) {
+            $(".advert2 img").attr("src",data[0].jetpack_featured_media_url);
+        })
+
     },
     newsListShow:function(data,element){
         var htm = '';
@@ -657,7 +666,10 @@ var homePage = {
             for (var i = 0; i < 6; i++) {
                 var title=JSON.parse(data[i].title).rendered;
                 var topicurl=data[i].author.avatar_urls["24"];
-                var imgurl=data[i].featuredmedia.media_details[1].source_url;
+                var imgurl=data[i].jetpack_featured_media_url;
+                if(data[i].featuredmedia){
+                    imgurl=data[i].featuredmedia.media_details[1].source_url;
+                }
 
                 htm = '<div class="col-md-4 benefit_box"><a href="'+ './newsContent.html?id=' + data[i].id+'">'
                     + '<div class="benefit_box_con">'
