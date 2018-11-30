@@ -110,7 +110,7 @@ function xx(data) {
         card.find(' .volume .numberVolume').text(dataStr(n.specificRate.volume24h));
         card.find(' .volume .unit').text(n.specificRate.quoteSymbol);
         card.find(' .logo img').attr('src', 'static/img/coin/128/' + n.specificRate.baseId + '.png');
-        card.find(' .chart').draw(xxxxxxx(n.series), '#E5E5E5','#C4C4C4');
+        card.find(' .chart').draw(xxxxxxx(n.series), '#EFEFEF','#EFEFEF');
     });
 }
 
@@ -175,19 +175,7 @@ function dongyici() {
     });
 }
 
-var rankingCon = [];
-var rankingHtml = ['<li>',
-    '<span class="icon">¥</span>',
-    '<span class="name">JPY</span>',
-    '<span class="name-full">Japanese Yen</span>',
-    '<span class="ranking">1</span>',
-    '<span style="width:400px">24h交易量价值（BTC）：<span class="transaction">526,676.72</span> BTC</span>',
-    '<span >全球占比：<span class="percentage">47.55%</span></span>',
-    '</li>'];
-for (var i = 0; i < 10; i++) {
-    rankingCon.push(rankingHtml.join(""));
-}
-$(".global-share ul").html(rankingCon);
+
 
 // 交易所排行
 function getRankData() {
@@ -224,10 +212,6 @@ function rankShowFunc(data) {
             + '</div>'
             + '<div class="ranking-name">' + data[i].name + '</div>'
             + '<div class="ranking-value">24h交易总值：JPY ' + parseFloat(data[i].volume24hUnitB.toFixed(2)).toLocaleString() + '</div>'
-            // + '<div class="">'
-            // + '<span>24h交易值/率：+ 206.05 (+ 3.48%)</span>'
-            // + '<span class="n-mark arrow-top"></span>'
-            // + '</div>'
             + '</a></div>';
     }
 
@@ -238,11 +222,7 @@ function rankShowFunc(data) {
             + '  <img src="static/img/coin/128/' + data[i].exchangeId + '.png" alt="" width="20px" height="20px">'
             + '</div>'
             + '<div class="ranking-name">' + data[i].name + '</div>'
-            + '<div class="ranking-value">24h交易总值：BTC ' + parseFloat(data[i].volume24hUnitA.toFixed(2)).toLocaleString() + '</div>'
-            // + '<div class="">'
-            // + '<span>24h交易值/率：+ 206.05 (+ 3.48%)</span>'
-            // + '<span class="n-mark arrow-top"></span>'
-            // + '</div>'
+            + '<div class="ranking-value">24h交易总值：JPY ' + parseFloat(data[i].volume24hUnitB.toFixed(2)).toLocaleString() + '</div>'
             + '</a></div>';
     }
     $(".exchange-ranking .rankL").html(rankLHtml);
@@ -250,3 +230,30 @@ function rankShowFunc(data) {
 }
 
 getRankData();
+
+// 广告
+function getAddvertData() {
+    var param = {
+        categories: 99,
+        per_page: 1,
+        order: 'desc',
+        orderby: 'date',
+        status: 'publish'
+    }
+    var url = 'https://www.chainage.jp/wp-json/wp/v2/posts';
+    $.ajax({
+        type: 'GET',
+        url: url,
+        data: param,
+        async: true,
+        error: function () {
+        },
+        success: function (data) {
+            if (data && data.length > 0) {
+                $(".advert-con img").attr("src",data[0].jetpack_featured_media_url);
+            }
+        }
+    });
+
+}
+getAddvertData();
