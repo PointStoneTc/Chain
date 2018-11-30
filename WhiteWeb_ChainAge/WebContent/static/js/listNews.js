@@ -55,7 +55,7 @@ var listNewsPage = {
                 var linkUrl='./newsContent.html?id=' + data[i].id;
                 html+='<div class="col-sm-4 bd-card-mod">'
                     +'<a href=" '+linkUrl+' ">'
-                    +'<div class="card-img lazy" style="background-image:url('+data[i].jetpack_featured_media_url+') " ></div>>'
+                    +'<div class="card-img lazy" style="background-image:url('+data[i].jetpack_featured_media_url+') " ></div>'
                     +'</a>'
                     + '</div>';
             }
@@ -144,25 +144,52 @@ var listNewsPage = {
             $(this).addClass('current').siblings().removeClass('current');
             // 判断1234 等于5不处理
             if(listNewsPage.pageFlag==1){
-                listNewsPage.getNewsListData({per_page:15,order:'desc',orderby:'date',categories:99},function(param){
+                var categories=188;
+                if($(this).text()=="国内"){
+                    categories=188;
+                }else{
+                    categories=189;
+                }
+                listNewsPage.getNewsListData({per_page:15,order:'desc',orderby:'date',categories:categories},function(param){
                     listNewsPage.setPagination(param);
                 });
             }else if(listNewsPage.pageFlag==2){
-
+                var categories=188;
+                if($(this).text()=="国内"){
+                    categories=188;
+                }else{
+                    categories=189;
+                }
                 listNewsPage.getNewsListData({per_page:15,order:'desc',orderby:'date',categories:103});
             }else if(listNewsPage.pageFlag==3){
-
+                var categories=188;
+                if($(this).text()=="国内"){
+                    categories=188;
+                }else{
+                    categories=189;
+                }
                 listNewsPage.getNewsListData({per_page:15,order:'desc',orderby:'date',categories:100},function(param){
                     listNewsPage.setPagination(param);
                 });
             }else if(listNewsPage.pageFlag==4){
-
+                var categories=188;
+                if($(this).text()=="国内"){
+                    categories=188;
+                }else{
+                    categories=189;
+                }
                 listNewsPage.getNewsListData({per_page:15,order:'desc',orderby:'date',categories:148},function(param){
                     listNewsPage.setPagination(param);
                 });
             }else if(listNewsPage.pageFlag==5){
 
             }else{
+                var categories=99;
+                if($(this).text()=="国内"){
+                    categories=99;
+                }else{
+                    categories=99;
+                }
                 listNewsPage.getNewsListData({per_page:15,order:'desc',orderby:'date',categories:99},function(param){
                     listNewsPage.setPagination(param);
                 });
@@ -192,6 +219,8 @@ var listNewsPage = {
                         + '</a></div>';
                 }
                 $('.news_list_con .news_container').html(htm);
+            }else{
+                $('.news_list_con .news_container').html('');
             }
             if(callback){
                 callback(param);

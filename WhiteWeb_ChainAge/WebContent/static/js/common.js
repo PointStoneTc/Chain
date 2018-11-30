@@ -32,7 +32,7 @@ var Common = {
             error: function () {
             },
             success: function (data) {
-                if (data && data.length > 0) {
+                if (data ) {
                     if (callback) {
                         callback(data, param);
                     }

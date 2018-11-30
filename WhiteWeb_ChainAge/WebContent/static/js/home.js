@@ -579,7 +579,7 @@ var homePage = {
                 var linkUrl='./newsContent.html?id=' + data[i].id;
                html+='<div class="col-sm-4 bd-card-mod">'
                    +'<a href=" '+linkUrl+' ">'
-                   +'<div class="card-img lazy" style="background-image:url(./static/img/banner_l.png) " ></div>>'
+                   +'<div class="card-img lazy" style="background-image:url("./static/img/banner_l.png") " ></div>'
                    +'</a>'
                    + '</div>';
            }

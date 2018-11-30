@@ -5,6 +5,9 @@ p{
     margin: 0;
     padding: 0;
 }
+img {
+    width: 100%;
+}
 .contain {
     width: 63.6%;
     margin: 0 auto;
@@ -163,9 +166,9 @@ p{
     padding: 0.1rem 0;
 }
 .post_tags .tags_name span{
-    height: 0.25rem;
+    height: 25px;
     display: inline-block;
-    line-height: 150%;
+    line-height: 25px;
     background: #E5E5E5;
     font-size: 0.12rem;
     color: #FFFFFF;
