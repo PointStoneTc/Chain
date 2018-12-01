@@ -24,15 +24,40 @@
             document.addEventListener('DOMContentLoaded', _self.changePage, false);
         })(document);
     </script>
-    <title>Starter Template for Bootstrap</title>
+    <title>FinalMarket</title>
     <link rel="stylesheet" href="static/plug-in/bootstrap-3.3.7-dist/css/bootstrap.css">
     <link rel="stylesheet" href="static/style/css/commcon.css">
-    <link rel="stylesheet" href="static/style/css/market.css">
+    <link rel="stylesheet" href="static/style/css/marketDetail.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- [if lt IE 9]>
-    <script src="../lib/html5shiv/html5shiv.js"></script>
-    <script src="../lib/respond/respond.js"></script>
+    <!-- [if lt IE 9]--!>
+      <script src="../lib/html5shiv/html5shiv.js"></script>
+      <script src="../lib/respond/respond.js"></script>
     <![endif] -->
+    <style>
+        .exchange .name{
+            font-size: 0.21rem;
+            text-align: center;
+            margin: 0.55rem 0 0.15rem 0;
+        }
+        .exchange .sel-list{
+            position: relative;
+            left: 50%;
+            float: left;
+            margin-bottom: 0.7rem;
+        }
+        .exchange .sel-list div{
+            width: 1.2rem;
+            height: 23px;
+            line-height: 23px;
+            font-size: 0.14rem;
+            text-align: center;
+            float: left;
+            margin-right: 2px;
+            background: #F6F6F6;
+            position: relative;
+            left: -50%;
+        }
+    </style>
 </head>
 
 <body>
@@ -69,7 +94,6 @@
             <div class="homeBtn"><a href="home.html">首页</a></div>
         </div>
 
-
         <a class="navbar-img" href="home.html">
             <img src="static/img/header_logo.png" alt="">
         </a>
@@ -97,43 +121,43 @@
         </form>
     </div>
     <!--/.nav-collapse -->
-
 </nav>
-<div class="bread_crumbs">BTC/AED BTC/ARS BTC/AUD XBT/EUR XBT/GBP</div>
 <div class="summary-con row">
     <div class="row contain">
-        <div class="market news_con_left col-xs-12">
-            <div class="mt_h_container"><span class="market_name">BTC Markets</span> 交易平台的市场</div>
-            <div class="row">
-                <div class="col-lg-6 ">
-                    <div class="currency_name">基准货币</div>
-                    <div class="sel-list">
-                        <span>BTC</span>
-                        <span>ETC</span>
-                        <span>ECH</span>
-                        <span>LEC</span>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="currency_name">引用货币</div>
-                    <div class="sel-list">
-                        <span>BTC</span>
-                        <span>XBT</span>
-                    </div>
-                </div>
-            </div>
+        <div class="market news_con_left col-xs-12" >
+            <div class="mt_h_container">Ethereum Ether / Australian Dollar 市场</div>
             <div class="row cspa">
-                <div class="name">24小时 <span class="market_name">BTC Markets</span> 交易总量为</div>
-                <div class="price">222.01</div>
+                <div class="col-lg-1 "></div>
+                <div class="col-lg-5 ">
+                    <div class="name">ETH / BDC</div>
+                    <div class="price">222.01</div>
+                    <div class="price-cange">-9.24%</div>
+                </div>
+                <div class="col-lg-5 cspa_r">
+                    <div class="name">ETH / AUD</div>
+                    <div class="price"> 25,014.08</div>
+                    <div class="price-cange">-9.24%</div>
+                </div>
+                <div class="col-lg-1 "></div>
+            </div>
+            <div class="exchange">
+                <div class="name">支持 ETH / AUD 的交易所</div>
+                <div class="sel-list">
+                    <div>BTC Market</div>
+                    <div>ACX</div>
+                    <div>Liquid</div>
+                    <div>Remitano</div>
+                </div>
+                <div style="clear: both"></div>
             </div>
 
             <!-- 内容 -->
             <div class="mr-container">
-                <div class="mr-title">基准市场：United Arab （AED）</div>
-                <div class=" mr-list">
+                <div class="mr-title">基准市场：United Arab Emirates Dirham（AED）</div>
+                <div class="row mr-list">
                     <div class="mr-normal" style="width:30%;">
                         <div style="font-size:22px;">ETH / AED</div>
-                        <div style="color:#BCBCBC;"> Ethereum Ether / Australian Dollar</div>
+                        <div style="color:#999;"> Ethereum Ether / Australian Dollar</div>
                     </div>
                     <div class="mr-normal" style="color:#427ADB;width: 20%;">
                         Remitano
@@ -147,8 +171,6 @@
                         <div>677,237 AUD</div>
                     </div>
                 </div>
-
-
             </div>
 
         </div>
@@ -192,8 +214,7 @@
     <a href="newsContent.html?id=<%=data[i].id%>" class="list-group-item">
         <div class="media">
             <div class="media-left media-middle">
-                <img class="media-object" src="<%=data[i].jetpack_featured_media_url%>"
-                     style="width:0.8rem ;height:0.8rem">
+                <img class="media-object" src="<%=data[i].jetpack_featured_media_url%>" style="width:0.8rem ;height:0.8rem">
             </div>
             <div class="media-body">
                 <div style="color:#999;"><span class="hot_icon"></span><%=year(data[i].date)%>ビュー</div>
@@ -207,36 +228,14 @@
 
 </script>
 
-<script type="text/html" id="marketList">
-    <%for(var i in data){%>
-    <div class="mr-title">基准市场：United Arab （<%=data[i].marketPairBaseSymbol%>）</div>
-    <div class=" mr-list">
-        <div class="mr-normal" style="width:30%;">
-            <div style="font-size:22px;">ETH / AED</div>
-            <div style="color:#BCBCBC;"> Ethereum Ether / Australian Dollar</div>
-        </div>
-        <div class="mr-normal" style="color:#427ADB;width: 20%;">
-            Remitano
-        </div>
-        <div class="mr-normal" style="color:#DB2B37;">
-            <div> 850.88 AED</div>
-            <div> -1.37%</div>
-        </div>
-        <div class="mr-normal" style="">
-            <div>2,216.45 ETH</div>
-            <div>677,237 AUD</div>
-        </div>
-    </div>
-    <%}%>
-
-</script>
-
 <script src="static/plug-in/jquery/jquery-3.3.1.min.js"></script>
 <script src="static/plug-in/template/template.js"></script>
 <script src="static/plug-in/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
 <script src="static/plug-in/jquery/jquery.i18n.properties.js"></script>
+<script src="static/plug-in/jquery/jquery.pagination.js"></script>
 <script src="static/js/common.js"></script>
-<script src="static/js/market.js"></script>
+<script src="static/js/draw.js"></script>
+<script src="static/js/marketDetaul.js"></script>
 </body>
 
 </html>
