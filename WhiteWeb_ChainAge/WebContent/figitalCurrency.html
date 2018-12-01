@@ -24,10 +24,10 @@
             document.addEventListener('DOMContentLoaded', _self.changePage, false);
         })(document);
     </script>
-    <title>Starter Template for Bootstrap</title>
+    <title>数字货币概要</title>
     <link rel="stylesheet" href="static/plug-in/bootstrap-3.3.7-dist/css/bootstrap.css">
     <link rel="stylesheet" href="static/style/css/commcon.css">
-    <link rel="stylesheet" href="static/style/css/market.css">
+    <link rel="stylesheet" href="static/style/css/digitalCurrency.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- [if lt IE 9]>
     <script src="../lib/html5shiv/html5shiv.js"></script>
@@ -99,58 +99,38 @@
     <!--/.nav-collapse -->
 
 </nav>
-<div class="bread_crumbs">BTC/AED BTC/ARS BTC/AUD XBT/EUR XBT/GBP</div>
+
 <div class="summary-con row">
     <div class="row contain">
-        <div class="market news_con_left col-xs-12">
-            <div class="mt_h_container"><span class="market_name">BTC Markets</span> 交易平台的市场</div>
-            <div class="row">
-                <div class="col-lg-6 ">
-                    <div class="currency_name">基准货币</div>
-                    <div class="sel-list">
-                        <span>BTC</span>
-                        <span>ETC</span>
-                        <span>ECH</span>
-                        <span>LEC</span>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="currency_name">引用货币</div>
-                    <div class="sel-list">
-                        <span>BTC</span>
-                        <span>XBT</span>
-                    </div>
-                </div>
+        <div class="summary news_con_left col-xs-12">
+            <div class="mt_h_container">数字货币概要</div>
+            <div class="filter_title"><img src="static/img/filter_icon.png"> 按名称过滤</div>
+            <div class="filter_con">
+                <a href="/zh/market/code/" class="button">All</a>
+                <a class="button " href="/zh/market/code/0-9/">0-9</a>
+                <a class="button " href="/zh/market/code/a-c/">A-C</a>
+                <a class="button " href="/zh/market/code/d-f/">D-F</a>
+                <a class="button " href="/zh/market/code/g-i/">G-I</a>
+                <a class="button " href="/zh/market/code/j-l/">J-L</a>
+                <a class="button " href="/zh/market/code/m-o/">M-O</a>
+                <a class="button " href="/zh/market/code/p-r/">P-R</a>
+                <a class="button " href="/zh/market/code/s-u/">S-U</a>
+                <a class="button " href="/zh/market/code/v-z/">V-Z</a>
             </div>
-            <div class="row cspa">
-                <div class="name">24小时 <span class="market_name">BTC Markets</span> 交易总量为</div>
-                <div class="price">222.01</div>
+            <div class="filter_title"><img src="static/img/filter_icon.png" > 24消失交易量过滤（转换成BTC）</div>
+            <div class="filter_con">
+                <a href="/zh/market/volume/" class="button">All</a>
+                <a class="button " href="/zh/market/volume/0-1/">0-1</a>
+                <a class="button " href="/zh/market/volume/1-10/">1-10</a>
+                <a class="button " href="/zh/market/volume/10-100/">10-100</a>
+                <a class="button selected" href="/zh/market/volume/100-/">100+ </a>
             </div>
 
             <!-- 内容 -->
-            <div class="mr-container">
-                <div class="mr-title">基准市场：United Arab （AED）</div>
-                <div class=" mr-list">
-                    <div class="mr-normal" style="width:30%;">
-                        <div style="font-size:22px;">ETH / AED</div>
-                        <div style="color:#BCBCBC;"> Ethereum Ether / Australian Dollar</div>
-                    </div>
-                    <div class="mr-normal" style="color:#427ADB;width: 20%;">
-                        Remitano
-                    </div>
-                    <div class="mr-normal" style="color:#DB2B37;">
-                        <div> 850.88 AED</div>
-                        <div> -1.37%</div>
-                    </div>
-                    <div class="mr-normal" style="">
-                        <div>2,216.45 ETH</div>
-                        <div>677,237 AUD</div>
-                    </div>
-                </div>
-
-
+            <div id="ml_container"></div>
+            <div class="more_btn">
+                <img src="static/img/more_icon.png" >
             </div>
-
         </div>
         <div class=" hidden-xs news_con_right">
             <div style="height: 6.5rem;margin-bottom: 0.32rem">
@@ -207,25 +187,15 @@
 
 </script>
 
-<script type="text/html" id="marketList">
+<script type="text/html" id="mlContainer">
     <%for(var i in data){%>
-    <div class="mr-title">基准市场：United Arab （<%=data[i].marketPairBaseSymbol%>）</div>
-    <div class=" mr-list">
-        <div class="mr-normal" style="width:30%;">
-            <div style="font-size:22px;">ETH / AED</div>
-            <div style="color:#BCBCBC;"> Ethereum Ether / Australian Dollar</div>
-        </div>
-        <div class="mr-normal" style="color:#427ADB;width: 20%;">
-            Remitano
-        </div>
-        <div class="mr-normal" style="color:#DB2B37;">
-            <div> 850.88 AED</div>
-            <div> -1.37%</div>
-        </div>
-        <div class="mr-normal" style="">
-            <div>2,216.45 ETH</div>
-            <div>677,237 AUD</div>
-        </div>
+    <div style="width:24.3%;margin:0 auto;display:inline-block;margin-bottom: 2.2%;text-align:center;">
+        <a id="ml_template" class="ml">
+            <div class="pri-name">Bitcoin</div>
+            <div class="pri-code-list">BTC,XBT</div>
+            <div class="volume-desc">24h交易量</div>
+            <div class="volume c-bitcoin">1,061,392</div>
+        </a>
     </div>
     <%}%>
 
@@ -236,7 +206,7 @@
 <script src="static/plug-in/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
 <script src="static/plug-in/jquery/jquery.i18n.properties.js"></script>
 <script src="static/js/common.js"></script>
-<script src="static/js/market.js"></script>
+<script src="static/js/digitalCurrency.js"></script>
 </body>
 
 </html>

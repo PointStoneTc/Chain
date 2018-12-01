@@ -62,11 +62,6 @@ a:hover {
     text-decoration: none;
 }
 
-.content {
-    width: 63.6%;
-    margin: 0 auto;
-}
-
 .market {
     background-color: #fff;
     box-shadow: 0 0 5px #E6E6E6;
@@ -264,4 +259,29 @@ a:hover {
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+}
+/*下箭头*/
+.down-arrow {
+    display :inline-block;
+    position: relative;
+    width: 40px;
+    height: 30px;
+    margin-right: 20px;
+}
+
+.down-arrow::after {
+    display: inline-block;
+    content: " ";
+    height: 18px;
+    width: 18px;
+    border-width: 0 2px 2px 0;
+    border-color: #FFF;
+    border-style: solid;
+    transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+    transform-origin: center;
+    transition: transform .3s;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    margin-top: -10px;
 }
