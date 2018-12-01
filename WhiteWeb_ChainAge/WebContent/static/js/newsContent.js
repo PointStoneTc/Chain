@@ -78,15 +78,17 @@ var newsContent={
     },
     getAdvertData:function(){
         var param = {
-            categories: 192,
+            categories: 99,
             per_page: 1,
             order: 'desc',
             orderby: 'date',
             status: 'publish'
         }
         Common.getNewsData(param,function(data){
-            $(".post_advert img").attr("src",data[0].jetpack_featured_media_url);
-            $(".post_advert").show();
+            if(data.length>0){
+                $(".post_advert img").attr("src",data[0].jetpack_featured_media_url);
+                $(".post_advert").show();
+            }
         })
     }
 
