@@ -37,6 +37,8 @@ var homePage = {
                 html+='<div class="col-sm-4 bd-card-mod">'
                     +'<a href=" '+linkUrl+' ">'
                     +'<div class="card-img lazy" style="background-image:url('+data[i].jetpack_featured_media_url+') " ></div>'
+                    +'<div class="bg"></div>'
+                    +'<div class="news_title">'+data[i].title.rendered+'</div>'
                     +'</a>'
                     + '</div>';
            }
@@ -96,25 +98,27 @@ var homePage = {
     },
     getAdvertData:function(){
         var param1 = {
-            categories: 186,
+            categories: 99,
             per_page: 1,
             order: 'desc',
             orderby: 'date',
             status: 'publish'
         }
         Common.getNewsData(param1,function (data) {
-            $(".advert1 img").attr("src",data[0].jetpack_featured_media_url);
+            var html='<a href="newsContent.html?id='+data[0].id+'" ><img src="'+data[0].jetpack_featured_media_url+'" width="100%" height="100%"></a>';
+            $(".advert1").html(html);
         });
         var param2 = {
-            categories: 187,
+            categories: 99,
             per_page: 1,
             order: 'desc',
             orderby: 'date',
             status: 'publish'
         }
         Common.getNewsData(param2,function (data) {
-            $(".advert2 img").attr("src",data[0].jetpack_featured_media_url);
-        })
+            var html = '<a href="newsContent.html?id=' + data[0].id + '" ><img src="' + data[0].jetpack_featured_media_url + '" width="100%" height="100%"></a>';
+            $(".advert2").html(html);
+        });
 
     },
     newsListShow:function(data,element){

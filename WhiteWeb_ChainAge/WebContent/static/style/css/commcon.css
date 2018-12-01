@@ -8,6 +8,10 @@ ul {
 a:hover{
   text-decoration: none;
 }
+
+img[src=""],img:not([src]) {
+  opacity: 0;
+}
 .fl{
   float: left;
 }

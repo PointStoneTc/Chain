@@ -37,6 +37,8 @@ var listNewsPage = {
                 html+='<div class="col-sm-4 bd-card-mod">'
                     +'<a href=" '+linkUrl+' ">'
                     +'<div class="card-img lazy" style="background-image:url('+data[i].jetpack_featured_media_url+') " ></div>'
+                    +'<div class="bg"></div>'
+                    +'<div class="news_title">'+data[i].title.rendered+'</div>'
                     +'</a>'
                     + '</div>';
             }
@@ -90,7 +92,7 @@ var listNewsPage = {
                 listNewsPage.setPagination(param);
             });
         }
-
+        this.getAdvertLastesData();
     },
 
     // 获取排行
@@ -249,6 +251,22 @@ var listNewsPage = {
         Common.getNewsData(param,function(data){
             if(data){
                 listNewsPage.advertData=data;
+            }
+        })
+    },
+    // 获取最下面广告
+    getAdvertLastesData:function(){
+        var param = {
+            categories: 99,
+            per_page: 1,
+            order: 'desc',
+            orderby: 'date',
+            status: 'publish'
+        }
+        Common.getNewsData(param,function(data){
+            if(data){
+                var html='<a href="newsContent.html?id='+data[0].id+'" ><img src="'+data[0].jetpack_featured_media_url+'" width="100%" height="100%"></a>';
+                $(".advert").html(html);
             }
         })
     },
