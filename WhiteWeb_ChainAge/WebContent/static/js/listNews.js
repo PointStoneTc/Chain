@@ -1,6 +1,7 @@
 var listNewsPage = {
     pageFlag:1,
-    pageSize: 15,
+    pageSize: 12,
+    advertData:[],
     init: function () {
         this.pageFlag=Common.getQueryString("pageFlag");
         Common.getCategoreType();
@@ -41,24 +42,26 @@ var listNewsPage = {
             }
             $(".news_show .news_show_contain").html(html);
         });
+        // 三个广告
+        this.getAdvertData({per_page:3,order:'desc',orderby:'date',categories:99});
         //新闻、交易所....
         if(this.pageFlag==1){
             $(".news_title").text("ニュース");
             // 请求
-            this.getNewsListData({per_page:15,order:'desc',orderby:'date',categories:99},function(param){
+            this.getNewsListData({per_page:12,order:'desc',orderby:'date',categories:99},function(param){
                 listNewsPage.setPagination(param);
             });
         }else if(this.pageFlag==2){
             $(".news_title").text("取引所");
             // 请求
-            this.getNewsListData({per_page:15,order:'desc',orderby:'date',categories:99});
+            this.getNewsListData({per_page:12,order:'desc',orderby:'date',categories:99});
         }else if(this.pageFlag==3){
             $(".news_title").text("基础知识");
             $(".new_tabs li:eq(0)").text("コインリスト");
             $(".new_tabs li:eq(1)").text("用語解説");
             $(".new_tabs li").width("1.6rem");
             // 请求
-            this.getNewsListData({per_page:15,order:'desc',orderby:'date',categories:99},function(param){
+            this.getNewsListData({per_page:12,order:'desc',orderby:'date',categories:99},function(param){
                 listNewsPage.setPagination(param);
             });
         }else if(this.pageFlag==4){
@@ -66,8 +69,7 @@ var listNewsPage = {
             $(".new_tabs li:eq(0)").text("Moive");
             $(".new_tabs li:eq(1)").text("漫画");
             // 请求
-            // 请求
-            this.getNewsListData({per_page:15,order:'desc',orderby:'date',categories:99},function(param){
+            this.getNewsListData({per_page:12,order:'desc',orderby:'date',categories:99},function(param){
                 listNewsPage.setPagination(param);
             });
         }else if(this.pageFlag==5){
@@ -84,7 +86,7 @@ var listNewsPage = {
         }else{
             $(".news_title").text("ニュース");
             // 请求
-            this.getNewsListData({per_page:15,order:'desc',orderby:'date',categories:99},function(param){
+            this.getNewsListData({per_page:12,order:'desc',orderby:'date',categories:99},function(param){
                 listNewsPage.setPagination(param);
             });
         }
@@ -124,13 +126,13 @@ var listNewsPage = {
             $(this).addClass('current').siblings().removeClass('current');
             // 判断1234 等于5不处理
             if(listNewsPage.pageFlag==1){
-                var categories=188;
+                var categories=99;
                 if($(this).text()=="国内"){
-                    categories=188;
+                    categories=99;
                 }else{
-                    categories=189;
+                    categories=99;
                 }
-                listNewsPage.getNewsListData({per_page:15,order:'desc',orderby:'date',categories:categories},function(param){
+                listNewsPage.getNewsListData({per_page:12,order:'desc',orderby:'date',categories:categories},function(param){
                     listNewsPage.setPagination(param);
                 });
             }else if(listNewsPage.pageFlag==2){
@@ -140,7 +142,7 @@ var listNewsPage = {
                 }else{
                     categories=189;
                 }
-                listNewsPage.getNewsListData({per_page:15,order:'desc',orderby:'date',categories:103});
+                listNewsPage.getNewsListData({per_page:12,order:'desc',orderby:'date',categories:103});
             }else if(listNewsPage.pageFlag==3){
                 var categories=188;
                 if($(this).text()=="国内"){
@@ -148,7 +150,7 @@ var listNewsPage = {
                 }else{
                     categories=189;
                 }
-                listNewsPage.getNewsListData({per_page:15,order:'desc',orderby:'date',categories:100},function(param){
+                listNewsPage.getNewsListData({per_page:12,order:'desc',orderby:'date',categories:100},function(param){
                     listNewsPage.setPagination(param);
                 });
             }else if(listNewsPage.pageFlag==4){
@@ -158,7 +160,7 @@ var listNewsPage = {
                 }else{
                     categories=189;
                 }
-                listNewsPage.getNewsListData({per_page:15,order:'desc',orderby:'date',categories:148},function(param){
+                listNewsPage.getNewsListData({per_page:12,order:'desc',orderby:'date',categories:148},function(param){
                     listNewsPage.setPagination(param);
                 });
             }else if(listNewsPage.pageFlag==5){
@@ -170,16 +172,16 @@ var listNewsPage = {
                 }else{
                     categories=99;
                 }
-                listNewsPage.getNewsListData({per_page:15,order:'desc',orderby:'date',categories:99},function(param){
+                listNewsPage.getNewsListData({per_page:13,order:'desc',orderby:'date',categories:99},function(param){
                     listNewsPage.setPagination(param);
                 });
             }
         });
     },
-
     getNewsListData:function(param,callback){
         // 列表新闻
         Common.getNewsData(param,function(data){
+            data.splice(6, 0,listNewsPage.advertData[0] , listNewsPage.advertData[1],listNewsPage.advertData[2]);
             var htm = '';
             if (data.length > 0) {
                 for (var i = 0; i < data.length; i++) {
@@ -207,6 +209,7 @@ var listNewsPage = {
             }
         });
     },
+    // 政府团体
     getGovernmentGroup:function(data){
         var governmentData=[{year:"2019",data:[]},{year:"2018",data:[]},{year:"2017",data:[]}];
         var lenght=data.length;
@@ -235,10 +238,24 @@ var listNewsPage = {
         $(".government_con").html(governmentFuc);
 
     },
+    // 获取广告
+    getAdvertData:function(){
+        var param = {
+            categories: 99,
+            per_page: 3,
+            order: 'desc',
+            orderby: 'date'
+        }
+        Common.getNewsData(param,function(data){
+            if(data){
+                listNewsPage.advertData=data;
+            }
+        })
+    },
     // 分页显示
     setPagination:function(param){
         $(".page").pagination(Common.newCounts[param.categories], {
-            'items_per_page': 15,
+            'items_per_page': 12,
             'current_page': 0,
             'num_display_entries': 6,
             'num_edge_entries': 3,
