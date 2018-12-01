@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        (function (_D) {
+            var _self = {};
+            _self.resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
+            _self.Html = _D.getElementsByTagName("html")[0];
+            var whdef = 100 / 1920;// 表示1920的设计图,使用100PX的默认值
+            var wW = _D.documentElement.clientWidth;// 当前窗口的宽度
+            var rem = wW * whdef;
+
+            _self.changePage = function () {
+                _self.Html.setAttribute("style", "font-size:" + rem + "px");
+                // _self.correctPx();
+            };
+            _self.changePage();
+            if (!document.addEventListener) return;
+            window.addEventListener(_self.resizeEvt, _self.changePage, false);
+            document.addEventListener('DOMContentLoaded', _self.changePage, false);
+        })(document);
+    </script>
+    <title>Starter Template for Bootstrap</title>
+    <link rel="stylesheet" href="static/plug-in/bootstrap-3.3.7-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="static/style/css/commcon.css">
+    <link rel="stylesheet" href="static/style/css/doshboard.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- [if lt IE 9]>
+    <script src="../lib/html5shiv/html5shiv.js"></script>
+    <script src="../lib/respond/respond.js"></script>
+    <![endif] -->
+</head>
+
+<body>
+<div class="header row">
+    <div class="col-md-9  header-left">
+        <span class="header_icon icon1"></span><span style="color:#999"> 市場キャップ：</span><span style="color:#FFF">USD
+        236.98B</span>
+        <span class="header_line">|</span> <span class="header_icon icon2"></span><span
+            style="color:#999"> 24時間の容積：</span><span
+            style="color:#FFF"> USD 13.2B</span>
+    </div>
+
+    <div class="header-right fr">
+        <span class="share_icon share_icon1"></span>
+        <span class="share_icon share_icon2"></span>
+        <span class="share_icon share_icon3"></span>
+        <span class="share_icon share_icon4"></span>
+    </div>
+
+</div>
+
+<nav class="navbar navbar-default nav-center">
+
+    <div class="navbar-header">
+        <div data-toggle="collapse" data-target="#navbar" style="float: left">
+            <button type="button" class="navbar-toggle collapsed"
+                    aria-expanded="false"
+                    aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="homeBtn"><a href="home.html">首页</a></div>
+        </div>
+
+
+
+        <a class="navbar-img" href="home.html">
+            <img src="static/img/header_logo.png" alt="">
+        </a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
+        <ul class="nav navbar-nav navbar-left">
+            <li><a class="" href="listNews.html?pageFlag=1">ニュース</a></li>
+            <li><a href="#">特集</a></li>
+            <li><a href="listNews.html?pageFlag=2">取引所</a></li>
+            <li><a href="#">チャート</a></li>
+            <li><a href="#">ビギナー</a></li>
+            <li><a href="listNews.html?pageFlag=5">政府・団体</a></li>
+            <li><a href="#">イベント</a></li>
+            <li><a href="listNews.html?pageFlag=4">ChainAge Channel</a></li>
+        </ul>
+        <form class="navbar-form">
+            <div class="input-group">
+                <input type="text" class="form-control">
+                <span class="input-group-btn">
+            <button class="btn btn-default" type="button">
+              <span class="icon_search" aria-hidden="true"></span>
+            </button>
+          </span>
+            </div>
+        </form>
+    </div>
+    <!--/.nav-collapse -->
+
+</nav>
+
+<div class="data-view">
+    <div class="row content" style="padding:3rem 0 2.60rem 0;">
+        <div class="col-lg-7">
+            <div class="data-vlue">6,682.72</div>
+            <div  style="font-size:0.66rem;color: #fff;">
+                <span>-13.70p</span>
+                <span> / </span>
+                <span>-0.20%</span>
+                <span class="glyphicon down-arrow" ></span>
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+        <div class="col-lg-4">
+            <div class="data-number">6,582.72</div>
+            <div  style="font-size:0.32rem;color: #fff;margin-bottom: 45px;">
+                <span>-13.70p</span>
+                <span> / </span>
+                <span>-0.20%</span>
+            </div>
+            <div class="data-number">740,997.04</div>
+            <div  style="font-size:0.32rem;color: #fff;">
+                <span>-13.70p</span>
+                <span> / </span>
+                <span>-0.20%</span>
+            </div>
+
+        </div>
+    </div>
+</div>
+<ul class="view-tottle">
+    <li>
+        <img src="static/img/candlestick.png" alt="">
+    </li>
+    <li class="active">
+        <img src="static/img/time_active_icon.png" alt="">
+    </li>
+    <li>
+        <img src="static/img/line_icon.png" alt="">
+    </li>
+</ul>
+<!-- 折线 -->
+<div class="data-line ">
+    <div id="charts-line" style="width:86.5%;height:630px;display: inline-block">
+
+    </div>
+    <div style="width:13%;height:630px;background:#1D284C;display: inline-block">
+        <div class="line-data" style="position:absolute;">
+            <div  style="color: #FFF;"><span class="usdData"></span>（BTC/USD）</div>
+            <div  style="color: #b46496"><span class="jpyData"></span>（BTC/JPY）</div>
+            <div  style="color: #d2c88c;"><span class="eurData"></span>（BTC/EUR）</div>
+        </div>
+    </div>
+</div>
+
+<!-- 烛台 -->
+<div class="data-candlestick ">
+    <div id="charts-candlestick" style="width: 86.5%;height:230px;display: inline-block">
+
+    </div>
+    <div style="width:13%;height:100%;background:#1D284C;float: right;">
+        <div class="line-data" style="position:absolute;">
+            <div  style="color: #FFF;margin-bottom: 20px;"><span class="titData"></span>  UTC</div>
+            <div  style="color: #FFF;">Open &nbsp;<span class="openData"></span></div>
+            <div  style="color: #06C78B;">High &nbsp;<span class="highData"></span></div>
+            <div  style="color: #AD2949">Low &nbsp;<span class="lowData"></span></div>
+            <div  style="color: #fff;">Close &nbsp;<span class="closeData"></span></div>
+        </div>
+    </div>
+</div>
+
+<div class="currency_container">
+
+</div>
+
+<!--底部部分-->
+<div class="footer-con">
+    <div class="footer-top">
+        <div>
+            <span class="share_icon share_icon1"></span>
+            <span class="share_icon share_icon2"></span>
+            <span class="share_icon share_icon3"></span>
+            <span class="share_icon share_icon4"></span>
+        </div>
+        <div style="text-align: center;margin-top: 0.1rem;">利用規約 / プライバシーポリシー / 運営会社情報</div>
+    </div>
+    <div class="footer-bottom">©2018 Worldgo.kk All Rights Reserved.</div>
+</div>
+
+
+<script src="static/plug-in/jquery/jquery-3.3.1.min.js"></script>
+<script src="static/plug-in/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+<script src="static/plug-in/jquery/jquery.i18n.properties.js"></script>
+<script src="static/plug-in/echart/echarts.min.js"></script>
+<script src="static/js/doshboard.js"></script>
+</body>
+
+</html>
+
