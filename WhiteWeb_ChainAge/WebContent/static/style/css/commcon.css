@@ -224,12 +224,12 @@ img[src=""], img:not([src]) {
     }
 
     .navbar-header img {
-        width: 58px;
+        width: 65px;
     }
 
     .navbar {
         background-color: #1A2959;
-        padding: 0;
+        padding: 0.1rem 0;
     }
 
     .navbar .navbar-toggle {
@@ -241,7 +241,7 @@ img[src=""], img:not([src]) {
     .navbar .homeBtn {
         float: left;
         display: block;
-        margin-top: 0.31rem;
+        margin-top: 0.3rem;
         margin-left: 10px;
     }
 
@@ -253,7 +253,8 @@ img[src=""], img:not([src]) {
     }
     .navbar-img {
         float: right;
-        margin-top: 5px;
+        margin-top: 2px;
+        margin-right: 6px;
     }
 
     .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
@@ -371,5 +372,10 @@ img[src=""], img:not([src]) {
     }
     .carousel-inner > .item{
         height: 100%;
+    }
+    .footer-bottom{
+        padding: 1rem 0;
+        height: auto;
+        line-height: initial;
     }
 }
