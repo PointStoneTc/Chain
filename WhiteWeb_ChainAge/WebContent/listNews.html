@@ -137,28 +137,35 @@
         .government_con .news_list_date {
             margin-right: 0.8rem;
         }
-        a{
+
+        a {
             color: #000000;
         }
+
         @media only screen and (max-width: 1024px) {
             .news_banner, .message_show, .news_show {
                 display: none;
             }
-            .news_nav{
+
+            .news_nav {
                 padding: 0;
                 height: 1.4rem;
             }
-            .news_title{
+
+            .news_title {
                 float: right;
                 margin-right: 0;
             }
-            .contain{
+
+            .contain {
                 width: 81%;
             }
-            .new_tabs{
+
+            .new_tabs {
                 padding-left: 0;
             }
-            .news_container{
+
+            .news_container {
                 width: 87%;
                 margin: 0 auto;
                 float: none;
@@ -192,18 +199,14 @@
 
     <div class="navbar-header">
         <div data-toggle="collapse" data-target="#navbar" style="float: left">
-            <button type="button" class="navbar-toggle collapsed"
-                    aria-expanded="false"
-                    aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <div class="homeBtn"><a href="home.html">首页</a></div>
+            <span type="button" class="navbar-toggle collapsed icon-bar"
+                  aria-expanded="false"
+                  aria-controls="navbar">
+            </span>
         </div>
 
-
+        <div class="homeBtn"><a href="home.html">首页</a></div>
+        <div class="share_btn"></div>
         <a class="navbar-img" href="home.html">
             <img src="static/img/header_logo.png" alt="">
         </a>
@@ -229,16 +232,25 @@
           </span>
             </div>
         </form>
+        <div class="nav_footer" style="display: none;">
+            <span>利用規約</span> <span>プライバシーポリシー</span> <span>運営会社情報</span>
+        </div>
     </div>
     <!--/.nav-collapse -->
-
 </nav>
-
+<div class="share_con">
+    <ul>
+        <li><span class="share_icon_con"><span class="share_icon share_icon1"></span></span>twitter</li>
+        <li><span class="share_icon_con"><span class="share_icon share_icon2"></span></span>youtube</li>
+        <li><span class="share_icon_con"><span class="share_icon share_icon3"></span></span>facebook</li>
+        <li><span class="share_icon_con"><span class="share_icon share_icon4"></span></span>instagram</li>
+    </ul>
+</div>
 <!--置顶新闻-->
-<div class="news_banner clearfix">
+<div class="news_banner clearfix hidden-xs">
     <div class="col-sm-6 col-xs-12 banner_left">
         <a href="">
-            <img 12>
+            <img>
             <div class="bg" style="right: 0.05rem;"></div>
             <div class="news_banner_con">
                 <div class="news_time">
@@ -253,7 +265,7 @@
     <div class=" col-sm-6 hidden-xs banner_right">
         <div class="pr banner_r_top" style="margin-bottom:0.02rem;">
             <a href="">
-                <img  >
+                <img>
                 <div class="bg"></div>
                 <div class="news_banner_con">
                     <div class="news_time">
@@ -267,7 +279,7 @@
         </div>
         <div class="pr banner_r_bot">
             <a href="">
-                <img  >
+                <img>
                 <div class="bg"></div>
                 <div class="news_banner_con">
                     <div class="news_time">
@@ -281,15 +293,36 @@
         </div>
     </div>
 </div>
+<!--手机端轮播图-->
+<div id="myCarousel" class="carousel slide visible-xs">
+    <!-- 轮播（Carousel）指标 -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <!-- 轮播（Carousel）项目 -->
+    <div class="carousel-inner">
 
-<div class="message_show clearfix">
+    </div>
+    <!-- 轮播（Carousel）导航 -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+<div class="message_show clearfix hidden-xs">
     <div class="col-xs-2 col-lg-0 "></div>
     <ul class="col-xs-12 col-lg-8 ">
 
     </ul>
 </div>
 <!--图片新闻-->
-<div class="news_show bd-home-inwork  clearfix">
+<div class="news_show bd-home-inwork  clearfix hidden-xs">
     <div class="news_show_contain">
 
     </div>
@@ -353,11 +386,36 @@
     <div class="nes_year_data"><%=data[i].year%></div>
     <div class="news_list">
         <%for(var j in data[i].data){%>
-        <div><a href="newsContent.html?id=<%=data[i].data[j].id%>"><span class="news_list_date"><%=data[i].data[j].date%></span><%=data[i].data[j].title.rendered%></span></a></div>
+        <div><a href="newsContent.html?id=<%=data[i].data[j].id%>"><span class="news_list_date"><%=data[i].data[j].date%></span><%=data[i].data[j].title.rendered%></span>
+        </a></div>
         <%}%>
     </div>
     <%}%>
 </script>
+<script type="text/html" id="news_slider">
+    <div class="item active">
+        <a href="newsContent.html?id=<%=data[0].id%>">
+            <img src="<%=data[0].jetpack_featured_media_url%>">
+            <div class="bg" style="right: 0.02rem;"></div>
+            <div class="carousel-caption"><%=data[0].title.rendered%></div>
+        </a>
+    </div>
+    <div class="item">
+        <a href="newsContent.html?id=<%=data[1].id%>">
+            <img src="<%=data[1].jetpack_featured_media_url%>">
+            <div class="bg" style="right: 0.02rem;"></div>
+            <div class="carousel-caption"><%=data[1].title.rendered%></div>
+        </a>
+    </div>
+    <div class="item">
+        <a href="newsContent.html?id=<%=data[2].id%>">
+            <img src="<%=data[2].jetpack_featured_media_url%>">
+            <div class="bg" style="right: 0.02rem;"></div>
+            <div class="carousel-caption"><%=data[2].title.rendered%></div>
+        </a>
+    </div>
+</script>
+
 <script src="static/plug-in/jquery/jquery-3.3.1.min.js"></script>
 <script src="static/plug-in/template/template.js"></script>
 <script src="static/plug-in/bootstrap-3.3.7-dist/js/bootstrap.js"></script>

@@ -26,6 +26,10 @@ var listNewsPage = {
             $(".news_banner .banner_left .new_catelage").text(Common.categories[data[0].categories[0]]);
             $(".news_banner .banner_r_top .new_catelage").text(Common.categories[data[1].categories[0]]);
             $(".news_banner .banner_r_bot .new_catelage").text(Common.categories[data[2].categories[0]]);
+
+            // 手机端
+            var newsFuc = template($("#news_slider").html(), {data: data});
+            $(".carousel-inner").html(newsFuc);
         });
         // 排行
         this.getRankingData(99);

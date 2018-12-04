@@ -13,7 +13,6 @@
             var whdef = 100 / 1920;// 表示1920的设计图,使用100PX的默认值
             var wW = _D.documentElement.clientWidth;// 当前窗口的宽度
             var rem = wW * whdef;
-
             _self.changePage = function () {
                 _self.Html.setAttribute("style", "font-size:" + rem + "px");
                 // _self.correctPx();
@@ -58,19 +57,14 @@
 
     <div class="navbar-header">
         <div data-toggle="collapse" data-target="#navbar" style="float: left">
-            <button type="button" class="navbar-toggle collapsed"
-                    aria-expanded="false"
-                    aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <div class="homeBtn"><a href="home.html">首页</a></div>
+            <span type="button" class="navbar-toggle collapsed icon-bar"
+                  aria-expanded="false"
+                  aria-controls="navbar">
+            </span>
         </div>
 
-
-
+        <div class="homeBtn"><a href="home.html">首页</a></div>
+        <div class="share_btn"></div>
         <a class="navbar-img" href="home.html">
             <img src="static/img/header_logo.png" alt="">
         </a>
@@ -96,12 +90,22 @@
           </span>
             </div>
         </form>
+        <div class="nav_footer" style="display: none;">
+            <span>利用規約</span> <span>プライバシーポリシー</span> <span>運営会社情報</span>
+        </div>
     </div>
     <!--/.nav-collapse -->
-
 </nav>
+<div class="share_con">
+    <ul>
+        <li><span class="share_icon_con"><span class="share_icon share_icon1"></span></span>twitter</li>
+        <li><span class="share_icon_con"><span class="share_icon share_icon2"></span></span>youtube</li>
+        <li><span class="share_icon_con"><span class="share_icon share_icon3"></span></span>facebook</li>
+        <li><span class="share_icon_con"><span class="share_icon share_icon4"></span></span>instagram</li>
+    </ul>
+</div>
 <!--置顶新闻-->
-<div class="news_banner clearfix">
+<div class="news_banner clearfix hidden-xs ">
     <div class="col-sm-6 col-xs-12 banner_left">
         <a href="">
             <img src="">
@@ -148,21 +152,43 @@
     </div>
 </div>
 
-<div class="message_show clearfix">
+<!--手机端轮播图-->
+<div id="myCarousel" class="carousel slide visible-xs">
+    <!-- 轮播（Carousel）指标 -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <!-- 轮播（Carousel）项目 -->
+    <div class="carousel-inner">
+
+    </div>
+    <!-- 轮播（Carousel）导航 -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+<div class="message_show clearfix hidden-xs">
     <div class="col-xs-2 col-lg-0 "></div>
     <ul class="col-xs-12 col-lg-8 ">
 
     </ul>
 </div>
 <!--图片新闻-->
-<div class="news_show bd-home-inwork  clearfix">
+<div class="news_show bd-home-inwork  clearfix hidden-xs">
     <div class="news_show_contain">
 
     </div>
 </div>
 <!--新闻列表-->
-<div class="news_contain news_list_con clearfix " >
-    <div class="col-xs-8 col-xs-offset-2 col-md-8 col-md-offset-2 news_container" >
+<div class="news_contain news_list_con clearfix ">
+    <div class="col-xs-8 col-xs-offset-2 col-md-8 col-md-offset-2 news_container">
         <div class="news_header">ニュース</div>
 
     </div>
@@ -214,6 +240,31 @@
     </li>
     <%}%>
 </script>
+
+<script type="text/html" id="news_slider">
+    <div class="item active">
+        <a href="newsContent.html?id=<%=data[0].id%>">
+            <img src="<%=data[0].featuredmedia.media_details[2].source_url%>">
+            <div class="bg" style="right: 0.02rem;"></div>
+            <div class="carousel-caption"><%=data[0].title.rendered%></div>
+        </a>
+    </div>
+    <div class="item">
+        <a href="newsContent.html?id=<%=data[1].id%>">
+            <img src="<%=data[1].featuredmedia.media_details[2].source_url%>">
+            <div class="bg" style="right: 0.02rem;"></div>
+            <div class="carousel-caption"><%=data[1].title.rendered%></div>
+        </a>
+    </div>
+    <div class="item">
+        <a href="newsContent.html?id=<%=data[2].id%>">
+            <img src="<%=data[2].featuredmedia.media_details[2].source_url%>">
+            <div class="bg" style="right: 0.02rem;"></div>
+            <div class="carousel-caption"><%=data[2].title.rendered%></div>
+        </a>
+    </div>
+</script>
+
 
 <script src="static/plug-in/jquery/jquery-3.3.1.min.js"></script>
 <script src="static/plug-in/template/template.js"></script>

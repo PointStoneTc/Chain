@@ -3,6 +3,11 @@ var Common = {
     newCounts: [],
     users: [],
     userImgs: [],
+    eventInit:function(){
+        $("body").on("click",".share_btn",function(){
+            $(".share_con").toggle();
+        });
+    },
     // 获取首页数据
     getHomeData: function (callback) {
         var url = 'http://data.chainage.jp/blockchain/data/home';
@@ -176,3 +181,4 @@ var Common = {
         return  m + '月' + d+'日' ;
     }
 }
+Common.eventInit();

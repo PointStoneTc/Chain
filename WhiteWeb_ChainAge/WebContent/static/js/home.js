@@ -67,7 +67,10 @@ var homePage = {
         $(".news_banner .banner_r_top .new_catelage").text(data[1].categories[0].name);
         $(".news_banner .banner_r_bot .new_catelage").text(data[2].categories[0].name);
 
-    },
+        // 手机端
+        var newsFuc = template($("#news_slider").html(), {data: data});
+        $(".carousel-inner").html(newsFuc);
+        },
     // 获取排行
     getRankingData: function getData(categories) {
         // var url = 'https://www.chainage.jp/wp-json/wp/v2/posts?per_page=3&order=desc&orderby=date&categories=' + categories;
