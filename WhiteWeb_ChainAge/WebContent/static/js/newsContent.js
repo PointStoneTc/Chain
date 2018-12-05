@@ -7,7 +7,7 @@
             Common.getUsers();
             this.postsShow();
             // 文章图片
-            Common.getImgData([this.id,192,193,194],function(data){
+            Common.getImgData([this.id,5495,6176,6178],function(data){
                 $(".post_featured img").attr("src",data[0].source_url);
                 // 广告
                 newsContent.getAdvertData(data);
