@@ -189,6 +189,23 @@ var Common = {
             }
         });
     },
+    // 获取图片
+    getImgData:function(imgArr,callback){
+        var url = 'http://chainage.cc/wp-json/wp/v2/media?per_page='+imgArr.length+'&parent='+imgArr.join(',');
+        $.ajax({
+            type: 'GET',
+            url: url,
+            async: true,
+            error: function () {
+            },
+            success: function (data) {
+                if (data) {
+                    callback(data);
+                }
+            }
+        });
+
+    },
     dataFormat: function (shijianchuo) {
       //shijianchuo是整数，否则要parseInt转换
         var time = new Date(shijianchuo);

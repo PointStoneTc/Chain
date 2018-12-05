@@ -6,13 +6,18 @@
             Common.getCategoreType();
             Common.getUsers();
             this.postsShow();
+            // 文章图片
+            Common.getImgData([this.id,192,193,194],function(data){
+                $(".post_featured img").attr("src",data[0].source_url);
+                // 广告
+                newsContent.getAdvertData(data);
+            });
             // 热门文章
             this.getHotPostsData();
-            // 品论下方新闻
-            this.getPostsListData();
+            // 评论下方新闻
+            // this.getPostsListData();
             this.getTagsData();
-            // 广告
-            this.getAdvertData();
+
         },
         // 文章内容
         postsShow:function(){
@@ -24,7 +29,6 @@
                 }
 
                 $(".post_header .post_title").text(data.title.rendered);
-                $(".post_featured img").attr("src",data.jetpack_featured_media_url);
                 $(".post_desc").html(data.content.rendered);
                 $(".post_icon1 img").attr("src",Common.userImgs[data.author]);
                 $(".post_autor").text(Common.users[data.author]);
@@ -94,20 +98,51 @@
                 }
             });
         },
-        getAdvertData:function(){
-            var param = {
-                categories: 99,
+        getAdvertData:function(imgData){
+            var param1 = {
+                categories: 192,
                 per_page: 1,
                 order: 'desc',
                 orderby: 'date',
                 status: 'publish'
-            }
-            Common.getNewsData(param,function(data){
-                if(data.length>0){
-                  var html='<a href="newsContent.html?id='+data[0].id+'&cat='+Common.categories[99]+'" ><img src="'+data[0].jetpack_featured_media_url+'" width="100%" height="100%" style="border-radius: 5px"></a>';
+            };
+
+            Common.getNewsData(param1,function(data){
+                if(data){
+                  var html='<a href="newsContent.html?id='+data[0].id+'&cat='+Common.categories[192]+'" ><img src="'+imgData[1].source_url+'" width="100%" height="100%" style="border-radius: 5px"></a>';
                   $(".post_advert").append(html);
                 }
-            })
+            });
+
+            var param2 = {
+                categories: 193,
+                per_page: 1,
+                order: 'desc',
+                orderby: 'date',
+                status: 'publish'
+            };
+            Common.getNewsData(param2,function(data){
+                if(data){
+                    var html='<a href="newsContent.html?id='+data[0].id+'&cat='+Common.categories[193]+'" ><img src="'+imgData[2].media_details.sizes["hoverex-thumb-extra"].source_url+'" width="100%" height="100%" ></a>';
+                    $(".post_advert_top").append(html);
+                }
+            });
+
+            var param3 = {
+                categories: 194,
+                per_page: 1,
+                order: 'desc',
+                orderby: 'date',
+                status: 'publish'
+            };
+
+            Common.getNewsData(param3,function(data){
+                if(data){
+                    var html='<a href="newsContent.html?id='+data[0].id+'&cat='+Common.categories[194]+'" ><img src="'+imgData[3].media_details.sizes["hoverex-thumb-extra"].source_url+'" width="100%" height="100%" ></a>';
+                    $(".post_advert_bot").append(html);
+                }
+            });
+
         }
 
     }
