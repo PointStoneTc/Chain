@@ -19,20 +19,20 @@ var listNewsPage = {
         if(this.pageFlag==1){
             $(".news_title").text("ニュース");
             // 请求
-            this.getNewsListData({per_page:12,order:'desc',orderby:'date',categories:99},function(param){
+            this.getNewsListData({per_page:12,order:'desc',orderby:'date',categories:188},function(param){
                 listNewsPage.setPagination(param);
             });
         }else if(this.pageFlag==2){
             $(".news_title").text("取引所");
             // 请求
-            this.getNewsListData({per_page:12,order:'desc',orderby:'date',categories:99});
+            this.getNewsListData({per_page:12,order:'desc',orderby:'date',categories:195});
         }else if(this.pageFlag==3){
             $(".news_title").text("基础知识");
             $(".new_tabs li:eq(0)").text("コインリスト");
             $(".new_tabs li:eq(1)").text("用語解説");
             $(".new_tabs li").width("1.6rem");
             // 请求
-            this.getNewsListData({per_page:12,order:'desc',orderby:'date',categories:99},function(param){
+            this.getNewsListData({per_page:12,order:'desc',orderby:'date',categories:198},function(param){
                 listNewsPage.setPagination(param);
             });
         }else if(this.pageFlag==4){
@@ -40,7 +40,7 @@ var listNewsPage = {
             $(".new_tabs li:eq(0)").text("Moive");
             $(".new_tabs li:eq(1)").text("漫画");
             // 请求
-            this.getNewsListData({per_page:12,order:'desc',orderby:'date',categories:99},function(param){
+            this.getNewsListData({per_page:12,order:'desc',orderby:'date',categories:200},function(param){
                 listNewsPage.setPagination(param);
             });
         }else if(this.pageFlag==5){
@@ -140,53 +140,53 @@ var listNewsPage = {
             $(this).addClass('current').siblings().removeClass('current');
             // 判断1234 等于5不处理
             if(listNewsPage.pageFlag==1){
-                var categories=99;
+                var categories=188;
                 if($(this).text()=="国内"){
-                    categories=99;
+                    categories=188;
                 }else{
-                    categories=99;
+                    categories=189;
                 }
                 listNewsPage.getNewsListData({per_page:12,order:'desc',orderby:'date',categories:categories},function(param){
                     listNewsPage.setPagination(param);
                 });
             }else if(listNewsPage.pageFlag==2){
-                var categories=188;
+                var categories=195;
                 if($(this).text()=="国内"){
-                    categories=188;
+                    categories=195;
                 }else{
-                    categories=189;
+                    categories=196;
                 }
-                listNewsPage.getNewsListData({per_page:12,order:'desc',orderby:'date',categories:103});
+                listNewsPage.getNewsListData({per_page:12,order:'desc',orderby:'date',categories:categories});
             }else if(listNewsPage.pageFlag==3){
-                var categories=188;
-                if($(this).text()=="国内"){
-                    categories=188;
+                var categories=198;
+                if($(this).text()=="コインリスト"){
+                    categories=198;
                 }else{
-                    categories=189;
+                    categories=199;
                 }
-                listNewsPage.getNewsListData({per_page:12,order:'desc',orderby:'date',categories:100},function(param){
+                listNewsPage.getNewsListData({per_page:12,order:'desc',orderby:'date',categories:categories},function(param){
                     listNewsPage.setPagination(param);
                 });
             }else if(listNewsPage.pageFlag==4){
-                var categories=188;
-                if($(this).text()=="国内"){
-                    categories=188;
+                var categories=200;
+                if($(this).text()=="Moive"){
+                    categories=200;
                 }else{
-                    categories=189;
+                    categories=147;
                 }
-                listNewsPage.getNewsListData({per_page:12,order:'desc',orderby:'date',categories:148},function(param){
+                listNewsPage.getNewsListData({per_page:12,order:'desc',orderby:'date',categories:categories},function(param){
                     listNewsPage.setPagination(param);
                 });
             }else if(listNewsPage.pageFlag==5){
 
             }else{
-                var categories=99;
+                var categories=188;
                 if($(this).text()=="国内"){
-                    categories=99;
+                    categories=188;
                 }else{
-                    categories=99;
+                    categories=189;
                 }
-                listNewsPage.getNewsListData({per_page:13,order:'desc',orderby:'date',categories:99},function(param){
+                listNewsPage.getNewsListData({per_page:13,order:'desc',orderby:'date',categories:categories},function(param){
                     listNewsPage.setPagination(param);
                 });
             }
@@ -196,12 +196,22 @@ var listNewsPage = {
         // 列表新闻
         Common.getNewsData(param,function(data){
             data.splice(6, 0,listNewsPage.advertData[0] , listNewsPage.advertData[1],listNewsPage.advertData[2]);
-            var htm = '';
-            if (data.length > 0) {
+            var imgId=[];
+            for(var i=0;i<data.length;i++){
+                imgId.push(data[i].id);
+            }
+
+            listNewsPage.getImgData(imgId,function (imgUrl) {
+                var htm='';
+                $('.news_list_con .news_container').html('');
                 for (var i = 0; i < data.length; i++) {
-                    htm += '<div class="col-md-4 benefit_box"><a href="'+ './newsContent.html?id=' + data[i].id+'">'
+                    var picUrl=imgUrl[i].source_url;
+                    if(imgUrl[i].media_details.sizes["hoverex-thumb-extra"]){
+                        picUrl=imgUrl[i].media_details.sizes["hoverex-thumb-extra"].source_url;
+                    }
+                    htm = '<div class="col-md-4 benefit_box"><a href="'+ './newsContent.html?id=' + data[i].id+'">'
                         + '<div class="benefit_box_con">'
-                        + '<p class="p20 benefit_box_tit">'+Common.categories[data[i].categories[0]]+'</p>'
+                        + '<p class="p20 benefit_box_tit">'+Common.categories[ param.categories]+'</p>'
                         + '<p class="p20 benefit_box_hea">'+data[i].title.rendered+'</p>'
                         + '<p class="p20 benefit_box_from">'
                         +'<span class="new_list_icon"><img src="'+Common.userImgs[data[i].author]+'" ></span>'
@@ -209,22 +219,36 @@ var listNewsPage = {
                         +'<div class="time_right"><span class="new_list_time"></span>'
                         +'<span>'+Common.timeonverseFunc(new Date(data[1].date))+'</span></div>'
                         + '</p><div style="clear: both"></div>'
-                        + '<div class="benefit_box_img" style="background-image:url('+data[i].jetpack_featured_media_url+') "></div>'
+                        + '<div class="benefit_box_img" style="background-image:url('+picUrl+') "></div>'
                         + '<div class="p20 benefit_box_com news_dec">'+data[i].excerpt.rendered+'</div>'
                         + '</div>'
                         + '</a></div>';
+                    $('.news_list_con .news_container').append(htm);
                 }
-                $('.news_list_con .news_container').html(htm);
-            }else{
-                $('.news_list_con .news_container').html('');
-            }
+                // $('.news_list_con .news_container').html(htm);
+            });
+
+
             if(callback){
                 callback(param);
             }
         });
     },
     // 获取图片
-    getImgData:function(){
+    getImgData:function(imgId,callback){
+        var url = 'http://chainage.cc/wp-json/wp/v2/media?per_page='+imgId.length+'&parent='+imgId.join(',');
+        $.ajax({
+            type: 'GET',
+            url: url,
+            async: true,
+            error: function () {
+            },
+            success: function (data) {
+                if (data) {
+                 callback(data);
+                }
+            }
+        });
 
     },
     // 政府团体
@@ -243,7 +267,6 @@ var listNewsPage = {
                 }
             }
         });
-
     },
     // 获取广告
     getAdvertData:function(){
@@ -262,7 +285,7 @@ var listNewsPage = {
     // 获取最下面广告
     getAdvertLastesData:function(){
         var param = {
-            categories: 99,
+            categories: 191,
             per_page: 1,
             order: 'desc',
             orderby: 'date',
@@ -270,8 +293,17 @@ var listNewsPage = {
         }
         Common.getNewsData(param,function(data){
             if(data){
-                var html='<a href="newsContent.html?id='+data[0].id+'" ><img src="'+data[0].jetpack_featured_media_url+'" width="100%" height="100%"></a>';
-                $(".advert").html(html);
+                var arr=[];
+                arr.push(data[0].id);
+                listNewsPage.getImgData(arr,function(json){
+                    var imgUrl='static/img/aa.png';
+                    if(json.length>0 && json[0].source_url){
+                        imgUrl=json[0].source_url;
+                    }
+                    var html='<a href="newsContent.html?id='+data[0].id+'" ><img src="'+imgUrl+'" width="100%" height="100%"></a>';
+                    $(".advert").html(html);
+                });
+
             }
         })
     },
