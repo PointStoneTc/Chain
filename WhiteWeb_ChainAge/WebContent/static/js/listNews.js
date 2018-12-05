@@ -71,22 +71,21 @@ var listNewsPage = {
             imgUrl= data[2].featuredmedia.media_details[2].source_url;
         }
         $(".news_banner .banner_left img").attr("src", data[0].featuredmedia.media_details[2].source_url);
-        $(".news_banner .banner_left a").attr("href", './newsContent.html?id=' + data[0].id);
+        $(".news_banner .banner_left a").attr("href", './newsContent.html?id=' + data[0].id+'&cat='+Common.categories[180]);
         $(".news_banner .banner_left .new_title").text(JSON.parse(data[0].title).rendered);
         $(".news_banner .banner_left .time_fabu").text(Common.timeonverseFunc(new Date(data[0].date).getTime()));
         $(".news_banner .banner_r_top img").attr("src", data[1].featuredmedia.media_details[2].source_url);
-        $(".news_banner .banner_r_top a").attr("href", './newsContent.html?id=' + data[1].id);
+        $(".news_banner .banner_r_top a").attr("href", './newsContent.html?id=' + data[1].id+'&cat='+Common.categories[180]);
         $(".news_banner .banner_r_top .new_title").text(JSON.parse(data[0].title).rendered);
         $(".news_banner .banner_r_top .time_fabu").text(Common.timeonverseFunc(new Date(data[1].date).getTime()));
         $(".news_banner .banner_r_bot img").attr("src", imgUrl );
-        $(".news_banner .banner_r_bot a").attr("href", './newsContent.html?id=' + data[2].id);
+        $(".news_banner .banner_r_bot a").attr("href", './newsContent.html?id=' + data[2].id+'&cat='+Common.categories[180]);
         $(".news_banner .banner_r_bot .new_title").text(JSON.parse(data[0].title).rendered);
         $(".news_banner .banner_r_bot .time_fabu").text(Common.timeonverseFunc(new Date(data[2].date).getTime()));
-
         $(".news_banner .banner_left .new_catelage").text(Common.categories[180]);
         $(".news_banner .banner_r_top .new_catelage").text(Common.categories[180]);
         $(".news_banner .banner_r_bot .new_catelage").text(Common.categories[180]);
-
+        data[0].cat=Common.categories[180];
         // 手机端
         var newsFuc = template($("#news_slider").html(), {data: data});
         $(".carousel-inner").html(newsFuc);
@@ -95,7 +94,7 @@ var listNewsPage = {
     imgNewsShow:function(data){
         var html = '';
         for (var i = 0; i < data.length; i++) {
-            var linkUrl = './newsContent.html?id=' + data[i].id;
+            var linkUrl = './newsContent.html?id=' + data[i].id+'&cat='+Common.categories[181];
             html += '<div class="col-sm-4 bd-card-mod">'
                 + '<a href=" ' + linkUrl + ' ">'
                 + '<div class="card-img lazy" style="background-image:url(' + data[i].featuredmedia.media_details[7].source_url + ') " ></div>'
@@ -209,9 +208,9 @@ var listNewsPage = {
                     if(imgUrl[i].media_details.sizes["hoverex-thumb-extra"]){
                         picUrl=imgUrl[i].media_details.sizes["hoverex-thumb-extra"].source_url;
                     }
-                    htm = '<div class="col-md-4 benefit_box"><a href="'+ './newsContent.html?id=' + data[i].id+'">'
+                    htm = '<div class="col-md-4 benefit_box"><a href="'+ './newsContent.html?id=' + data[i].id+'&cat='+Common.categories[param.categories]+'">'
                         + '<div class="benefit_box_con">'
-                        + '<p class="p20 benefit_box_tit">'+Common.categories[ param.categories]+'</p>'
+                        + '<p class="p20 benefit_box_tit">'+Common.categories[param.categories]+'</p>'
                         + '<p class="p20 benefit_box_hea">'+data[i].title.rendered+'</p>'
                         + '<p class="p20 benefit_box_from">'
                         +'<span class="new_list_icon"><img src="'+Common.userImgs[data[i].author]+'" ></span>'
@@ -300,7 +299,7 @@ var listNewsPage = {
                     if(json.length>0 && json[0].source_url){
                         imgUrl=json[0].source_url;
                     }
-                    var html='<a href="newsContent.html?id='+data[0].id+'" ><img src="'+imgUrl+'" width="100%" height="100%"></a>';
+                    var html='<a href="newsContent.html?id='+data[0].id+'&cat='+Common.categories[191]+'" ><img src="'+imgUrl+'" width="100%" height="100%"></a>';
                     $(".advert").html(html);
                 });
 
@@ -320,7 +319,6 @@ var listNewsPage = {
             'next_text': "»",
             'call_callback_at_once': false,
             'callback': $.proxy(function (pageIndex, $page) {
-                console.log($page);
                 param = $.extend(param, {page: pageIndex+1});
                 listNewsPage.getNewsListData(param);
             }, this)

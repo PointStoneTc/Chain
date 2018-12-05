@@ -52,7 +52,7 @@ var Common = {
         $.ajax({
             type: 'GET',
             url: url,
-            async: true,
+            async: false,
             error: function () {
             },
             success: function (data) {
@@ -169,6 +169,22 @@ var Common = {
                     if (callback) {
                         callback(data);
                     }
+                }
+            }
+        });
+    },
+    // 获取热门文章
+    getHotPostsData:function(callback){
+        var url = 'http://data.chainage.jp/blockchain/data/rightPopular';
+        $.ajax({
+            type: 'GET',
+            url: url,
+            async: false,
+            error: function () {
+            },
+            success: function (data) {
+                if (data) {
+                    callback(data);
                 }
             }
         });

@@ -49,22 +49,22 @@ var homePage = {
            imgUrl= data[2].featuredmedia.media_details[2].source_url;
         }
         $(".news_banner .banner_left img").attr("src", data[0].featuredmedia.media_details[2].source_url);
-        $(".news_banner .banner_left a").attr("href", './newsContent.html?id=' + data[0].id);
+        $(".news_banner .banner_left a").attr("href", './newsContent.html?id=' + data[0].id+'&cat='+Common.categories[180]);
         $(".news_banner .banner_left .new_title").text(JSON.parse(data[0].title).rendered);
         $(".news_banner .banner_left .time_fabu").text(Common.timeonverseFunc(new Date(data[0].date).getTime()));
         $(".news_banner .banner_r_top img").attr("src", data[1].featuredmedia.media_details[2].source_url);
-        $(".news_banner .banner_r_top a").attr("href", './newsContent.html?id=' + data[1].id);
+        $(".news_banner .banner_r_top a").attr("href", './newsContent.html?id=' + data[1].id+'&cat='+Common.categories[180]);
         $(".news_banner .banner_r_top .new_title").text(JSON.parse(data[0].title).rendered);
         $(".news_banner .banner_r_top .time_fabu").text(Common.timeonverseFunc(new Date(data[1].date).getTime()));
         $(".news_banner .banner_r_bot img").attr("src", imgUrl );
-        $(".news_banner .banner_r_bot a").attr("href", './newsContent.html?id=' + data[2].id);
+        $(".news_banner .banner_r_bot a").attr("href", './newsContent.html?id=' + data[2].id+'&cat='+Common.categories[180]);
         $(".news_banner .banner_r_bot .new_title").text(JSON.parse(data[0].title).rendered);
         $(".news_banner .banner_r_bot .time_fabu").text(Common.timeonverseFunc(new Date(data[2].date).getTime()));
 
         $(".news_banner .banner_left .new_catelage").text(Common.categories[180]);
         $(".news_banner .banner_r_top .new_catelage").text(Common.categories[180]);
         $(".news_banner .banner_r_bot .new_catelage").text(Common.categories[180]);
-
+        data[0].cat=Common.categories[180];
         // 手机端
         var newsFuc = template($("#news_slider").html(), {data: data});
         $(".carousel-inner").html(newsFuc);
@@ -101,7 +101,7 @@ var homePage = {
     imgNewsShow:function(data){
         var html = '';
         for (var i = 0; i < data.length; i++) {
-            var linkUrl = './newsContent.html?id=' + data[i].id;
+            var linkUrl = './newsContent.html?id=' + data[i].id+'&cat='+Common.categories[181];
             html += '<div class="col-sm-4 bd-card-mod">'
                 + '<a href=" ' + linkUrl + ' ">'
                 + '<div class="card-img lazy" style="background-image:url(' + data[i].featuredmedia.media_details[7].source_url + ') " ></div>'
@@ -116,10 +116,10 @@ var homePage = {
     getAdvertData: function (data) {
         var data1=data.postMap["186"];
         var data2=data.postMap["187"];
-         var html = '<a href="newsContent.html?id=' + data1[0].id + '" ><img src="' + data.postMap["99"][3].featuredmedia.media_details[5].source_url + '" width="100%" height="100%"></a>';
+         var html = '<a href="newsContent.html?id=' + data1[0].id + '&cat='+Common.categories[186]+'" ><img src="' + data.postMap["99"][3].featuredmedia.media_details[5].source_url + '" width="100%" height="100%"></a>';
          $(".advert1").html(html);
 
-         var html = '<a href="newsContent.html?id=' + data2[0].id + '" ><img src="' + data.postMap["99"][3].featuredmedia.media_details[5].source_url + '" width="100%" height="100%"></a>';
+         var html = '<a href="newsContent.html?id=' + data2[0].id + '&cat='+Common.categories[187]+'"><img src="' + data.postMap["99"][3].featuredmedia.media_details[5].source_url + '" width="100%" height="100%"></a>';
          $(".advert2").html(html);
 
     },
@@ -133,7 +133,7 @@ var homePage = {
                 if(data[i].featuredmedia){
                     imgurl = data[i].featuredmedia.media_details[1].source_url;
                 }
-                htm = '<div class="col-md-4 benefit_box"><a href="' + './newsContent.html?id=' + data[i].id + '">'
+                htm = '<div class="col-md-4 benefit_box"><a href="' + './newsContent.html?id=' + data[i].id + '&cat='+Common.categories[categories]+'">'
                     + '<div class="benefit_box_con">'
                     + '<p class="p20 benefit_box_tit">' + Common.categories[categories] + '</p>'
                     + '<p class="p20 benefit_box_hea">' + title + '</p>'
@@ -164,7 +164,7 @@ var homePage = {
                 }
 
                 htm = '<div style=" border-bottom: 1px dashed #CECECE;margin-bottom: 25px;">'
-                    + '<a href="newsContent.html?id=' + data[i].id + '" class="new_mobile_con">'
+                    + '<a href="newsContent.html?id=' + data[i].id + '&cat='+Common.categories[categories]+'" class="new_mobile_con">'
                     + '<div class="media">'
                     + '<div class="media-left media-middle">'
                     + '<div class="benefit_box_img" style="background-image:url(' + imgurl + ') "></div>'

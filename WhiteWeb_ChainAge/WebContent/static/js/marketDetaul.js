@@ -17,8 +17,19 @@ var market={
         template.registerFunction('year', function (valueText) {
             return valueText.substr(0,4);
         });
-        Common.getNewsData({per_page:10,order:'desc',orderby:'date',categories:99},function(data){
-            var newsFuc= template($("#news").html(),{data:data});
+        template.registerFunction('title', function (valueText) {
+            return JSON.parse(valueText).rendered;
+        });
+        template.registerFunction('imgUrl', function (valueText) {
+            var imgUrl="static/img/aa.png";
+            if(valueText.featuredmedia){
+                imgurl = valueText.featuredmedia.media_details[1].source_url;
+            }
+            return imgUrl;
+        });
+
+        Common.getHotPostsData(function(data){
+            var newsFuc= template($("#news").html(),{data:data.list});
             $(".news_con_right .new-list").append(newsFuc);
         })
     },

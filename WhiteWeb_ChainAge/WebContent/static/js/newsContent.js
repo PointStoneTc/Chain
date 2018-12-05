@@ -17,7 +17,12 @@
         // 文章内容
         postsShow:function(){
             Common.getSingleData(newsContent.id,function(data){
-                $(".post_header .post_category").text(Common.categories[data.categories[0]]);
+                if(Common.getQueryString("cat")){
+                    $(".post_header .post_category").text(Common.getQueryString("cat"));
+                }else{
+                    $(".post_header .post_category").text(Common.categories[data.categories[0]]);
+                }
+
                 $(".post_header .post_title").text(data.title.rendered);
                 $(".post_featured img").attr("src",data.jetpack_featured_media_url);
                 $(".post_desc").html(data.content.rendered);
@@ -37,8 +42,19 @@
             template.registerFunction('year', function (valueText) {
                 return valueText.substr(0,4);
             });
-            Common.getNewsData({per_page:10,order:'desc',orderby:'date',categories:99},function(data){
-                var newsFuc= template($("#news").html(),{data:data});
+            template.registerFunction('title', function (valueText) {
+                return JSON.parse(valueText).rendered;
+            });
+            template.registerFunction('imgUrl', function (valueText) {
+                var imgUrl="static/img/aa.png";
+                if(valueText.featuredmedia){
+                    imgurl = valueText.featuredmedia.media_details[1].source_url;
+                }
+                return imgUrl;
+            });
+
+            Common.getHotPostsData(function(data){
+                var newsFuc= template($("#news").html(),{data:data.list});
                 $(".news_con_right .new-list").append(newsFuc);
             })
         },
@@ -48,7 +64,7 @@
                 var htm = '';
                 if (data.length > 0) {
                     for (var i = 0; i < data.length; i++) {
-                        htm+=' <div class="col-md-4 benefit_box"><a href="newsContent.html?id=' + data[i].id+'"><div class="benefit_box_con">'
+                        htm+=' <div class="col-md-4 benefit_box"><a href="newsContent.html?id=' + data[i].id+'&cat='+Common.categories[99]+'"><div class="benefit_box_con">'
                             +'<img style="width: 100%; height: 0.94rem;" src="'+data[i].jetpack_featured_media_url+'">'
                             +'<p class="p10 benefit_box_com news_tit">'+data[i].title.rendered+'</p>'
                             +'<div class="p10 benefit_box_com news_dec">'+data[i].excerpt.rendered+'</div>'
@@ -88,7 +104,7 @@
             }
             Common.getNewsData(param,function(data){
                 if(data.length>0){
-                  var html='<a href="newsContent.html?id='+data[0].id+'" ><img src="'+data[0].jetpack_featured_media_url+'" width="100%" height="100%" style="border-radius: 5px"></a>';
+                  var html='<a href="newsContent.html?id='+data[0].id+'&cat='+Common.categories[99]+'" ><img src="'+data[0].jetpack_featured_media_url+'" width="100%" height="100%" style="border-radius: 5px"></a>';
                   $(".post_advert").append(html);
                 }
             })

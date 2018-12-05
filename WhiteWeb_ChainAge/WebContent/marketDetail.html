@@ -281,11 +281,11 @@
     <a href="newsContent.html?id=<%=data[i].id%>" class="list-group-item">
         <div class="media">
             <div class="media-left media-middle">
-                <img class="media-object" src="<%=data[i].jetpack_featured_media_url%>" style="width:0.8rem ;height:0.8rem">
+                <img class="media-object" src="<%=imgUrl(data[i])%>" style="width:0.8rem ;height:0.8rem">
             </div>
             <div class="media-body">
                 <div style="color:#999;"><span class="hot_icon"></span><%=year(data[i].date)%>ビュー</div>
-                <div class="hot_posts_title"><%=data[i].title.rendered%></div>
+                <div class="hot_posts_title"><%=title(data[i].title)%></div>
                 <div style="color:#999;"><span class="time_icon"></span><%=date(data[i].date)%></div>
             </div>
         </div>
