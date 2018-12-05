@@ -382,15 +382,13 @@
     <%}%>
 </script>
 <script type="text/html" id="governmentShow">
-    <%for(var i in data){%>
-    <div class="nes_year_data"><%=data[i].year%></div>
+    <div class="nes_year_data">2018</div>
     <div class="news_list">
-        <%for(var j in data[i].data){%>
-        <div><a href="newsContent.html?id=<%=data[i].data[j].id%>"><span class="news_list_date"><%=data[i].data[j].date%></span><%=data[i].data[j].title.rendered%></span>
+        <%for(var i in data){%>
+        <div><a href="<%=data[i].href%>"><span class="news_list_date"><%=data[i].publishDate%></span><%=data[i].title%></span>
         </a></div>
         <%}%>
     </div>
-    <%}%>
 </script>
 <script type="text/html" id="news_slider">
     <div class="item active">

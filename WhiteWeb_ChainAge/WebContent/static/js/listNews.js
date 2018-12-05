@@ -101,7 +101,7 @@ var listNewsPage = {
 
     // 获取排行
     getRankingData: function getData(categories) {
-        var url = 'https://www.chainage.jp/wp-json/wp/v2/posts?per_page=3&order=desc&orderby=date&categories=' + categories;
+        var url = 'http://chainage.cc/wp-json/wp/v2/posts?per_page=3&order=desc&orderby=date&categories=' + categories;
         $.ajax({
             type: 'GET',
             url: url,
@@ -217,31 +217,20 @@ var listNewsPage = {
     },
     // 政府团体
     getGovernmentGroup:function(data){
-        var governmentData=[{year:"2019",data:[]},{year:"2018",data:[]},{year:"2017",data:[]}];
-        var lenght=data.length;
-        for(var i=0;i<lenght;i++){
-                switch (data[i].date.substr(0,4)) {
-                    case "2019":
-                        data[i].date=Common.dataFormat(data[i].date);
-                    governmentData[0].data.push(data[i]);
-                    break;
-                    case "2018":
-                        data[i].date=Common.dataFormat(data[i].date);
-                        governmentData[1].data.push(data[i]);
-                        break;
-                    case "2017":
-                        data[i].date=Common.dataFormat(data[i].date);
-                        governmentData[2].data.push(data[i]);
-                        break;
+        var url = 'http://data.chainage.jp/blockchain/data/financeDepart';
+        $.ajax({
+            type: 'GET',
+            url: url,
+            async: true,
+            error: function () {
+            },
+            success: function (data) {
+                if (data) {
+                    var governmentFuc = template($("#governmentShow").html(), {data: data.array});
+                    $(".government_con").html(governmentFuc);
                 }
-        }
-        for(i=0;i<governmentData.length;i++){
-            if(governmentData[i].data.length<=0){
-                governmentData.splice(i,1);
             }
-        }
-        var governmentFuc = template($("#governmentShow").html(), {data: governmentData});
-        $(".government_con").html(governmentFuc);
+        });
 
     },
     // 获取广告

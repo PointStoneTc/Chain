@@ -28,7 +28,7 @@ var Common = {
     },
     // 请求新闻数据
     getNewsData: function getData(param, callback) {
-        var url = 'https://www.chainage.jp/wp-json/wp/v2/posts';
+        var url = 'http://chainage.cc/wp-json/wp/v2/posts';
         $.ajax({
             type: 'GET',
             url: url,
@@ -47,7 +47,7 @@ var Common = {
     },
     // 获取分类名称
     getCategoreType: function () {
-        var url = 'https://www.chainage.jp/wp-json/wp/v2/categories?per_page=50';
+        var url = 'http://chainage.cc/wp-json/wp/v2/categories?per_page=50';
         var self = this;
         $.ajax({
             type: 'GET',
@@ -69,7 +69,7 @@ var Common = {
         });
     },
     getUsers: function () {
-        var url = 'https://www.chainage.jp/wp-json/wp/v2/users';
+        var url = 'http://chainage.cc/wp-json/wp/v2/users';
         var self = this;
         $.ajax({
             type: 'GET',
@@ -157,7 +157,7 @@ var Common = {
     },
     // 获取单个文章
     getSingleData: function getData(id, callback) {
-        var url = 'https://www.chainage.jp/wp-json/wp/v2/posts/' + id;
+        var url = 'http://chainage.cc/wp-json/wp/v2/posts/' + id;
         $.ajax({
             type: 'GET',
             url: url,

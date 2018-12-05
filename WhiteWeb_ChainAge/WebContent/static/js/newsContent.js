@@ -60,7 +60,7 @@
         },
         // 获取标签
         getTagsData:function(){
-            var url='https://www.chainage.jp/wp-json/wp/v2/tags?post='+newsContent.id;
+            var url='http://chainage.cc/wp-json/wp/v2/tags?post='+newsContent.id;
             $.ajax({
                 type: 'GET',
                 url: url,
