@@ -19,24 +19,25 @@ $(document).ready(function () {
 
 var homePage = {
     pageSize: 6,
+    caterories:{},
     init: function () {
+        Common.getCategoreType();
         Common.getHomeData(function (data) {
             homePage.topNewsShow(data);
             homePage.imgNewsShow(data.postMap["181"]);
 
             if ($(".news_mobile_container").is(':hidden')) {
-                homePage.newsListShow(data.postMap["99"], $('.news_list_con .news_container'));
-                homePage.newsListShow(data.postMap["184"], $('.teji_list .news_container'));
-                homePage.newsListShow(data.postMap["185"], $('.channel_list .news_container'));
+                homePage.newsListShow(data.postMap["99"], $('.news_list_con .news_container'),99);
+                homePage.newsListShow(data.postMap["184"], $('.teji_list .news_container'),184);
+                homePage.newsListShow(data.postMap["185"], $('.channel_list .news_container'),185);
             } else {
-                homePage.mobileNewsListShow(data.postMap["99"], $('.news_list_con .news_mobile_container'));
-                homePage.mobileNewsListShow(data.postMap["184"], $('.teji_list .news_mobile_container'));
-                homePage.mobileNewsListShow(data.postMap["185"], $('.channel_list .news_mobile_container'));
+                homePage.mobileNewsListShow(data.postMap["99"], $('.news_list_con .news_mobile_container'),99);
+                homePage.mobileNewsListShow(data.postMap["184"], $('.teji_list .news_mobile_container'),184);
+                homePage.mobileNewsListShow(data.postMap["185"], $('.channel_list .news_mobile_container'),185);
             }
             homePage.getAdvertData(data);
 
         });
-
         // 排行
         this.getRankingData(99);
     },
@@ -60,9 +61,9 @@ var homePage = {
         $(".news_banner .banner_r_bot .new_title").text(JSON.parse(data[0].title).rendered);
         $(".news_banner .banner_r_bot .time_fabu").text(Common.timeonverseFunc(new Date(data[2].date).getTime()));
 
-        $(".news_banner .banner_left .new_catelage").text(data[0].categories[0].name);
-        $(".news_banner .banner_r_top .new_catelage").text(data[1].categories[0].name);
-        $(".news_banner .banner_r_bot .new_catelage").text(data[2].categories[0].name);
+        $(".news_banner .banner_left .new_catelage").text(Common.categories[180]);
+        $(".news_banner .banner_r_top .new_catelage").text(Common.categories[180]);
+        $(".news_banner .banner_r_bot .new_catelage").text(Common.categories[180]);
 
         // 手机端
         var newsFuc = template($("#news_slider").html(), {data: data});
@@ -122,7 +123,7 @@ var homePage = {
          $(".advert2").html(html);
 
     },
-    newsListShow: function (data, element) {
+    newsListShow: function (data, element,categories) {
         var htm = '';
         if (data.length > 0) {
             for (var i = 0; i < 6; i++) {
@@ -134,7 +135,7 @@ var homePage = {
                 }
                 htm = '<div class="col-md-4 benefit_box"><a href="' + './newsContent.html?id=' + data[i].id + '">'
                     + '<div class="benefit_box_con">'
-                    + '<p class="p20 benefit_box_tit">' + data[i].categories[0].name + '</p>'
+                    + '<p class="p20 benefit_box_tit">' + Common.categories[categories] + '</p>'
                     + '<p class="p20 benefit_box_hea">' + title + '</p>'
                     + '<p class="p20 benefit_box_from">'
                     + '<span class="new_list_icon"><img src="' + topicurl + '"></span>'
@@ -151,7 +152,7 @@ var homePage = {
 
         }
     },
-    mobileNewsListShow: function (data, element) {
+    mobileNewsListShow: function (data, element,categories) {
         var htm = '';
         if (data.length > 0) {
             for (var i = 0; i < 6; i++) {
@@ -176,7 +177,7 @@ var homePage = {
                     + '<img src="' + topicurl + '" alt="">'
                     + '<div class="edit_detail">'
                     + '<div>' + data[i].author.name + '</div>'
-                    + '<div>' + data[i].categories[0].name + '</div>'
+                    + '<div>' + Common.categories[categories] + '</div>'
                     + '</div>'
                     + '<div style="float: right;margin-top: 0.35rem;">'
                     + '<span class="new_list_time"></span>'

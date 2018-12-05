@@ -83,14 +83,15 @@ var listNewsPage = {
         $(".news_banner .banner_r_bot .new_title").text(JSON.parse(data[0].title).rendered);
         $(".news_banner .banner_r_bot .time_fabu").text(Common.timeonverseFunc(new Date(data[2].date).getTime()));
 
-        $(".news_banner .banner_left .new_catelage").text(data[0].categories[0].name);
-        $(".news_banner .banner_r_top .new_catelage").text(data[1].categories[0].name);
-        $(".news_banner .banner_r_bot .new_catelage").text(data[2].categories[0].name);
+        $(".news_banner .banner_left .new_catelage").text(Common.categories[180]);
+        $(".news_banner .banner_r_top .new_catelage").text(Common.categories[180]);
+        $(".news_banner .banner_r_bot .new_catelage").text(Common.categories[180]);
 
         // 手机端
         var newsFuc = template($("#news_slider").html(), {data: data});
         $(".carousel-inner").html(newsFuc);
-    }, // 图片新闻
+    },
+    // 图片新闻
     imgNewsShow:function(data){
         var html = '';
         for (var i = 0; i < data.length; i++) {
@@ -221,6 +222,10 @@ var listNewsPage = {
                 callback(param);
             }
         });
+    },
+    // 获取图片
+    getImgData:function(){
+
     },
     // 政府团体
     getGovernmentGroup:function(data){
