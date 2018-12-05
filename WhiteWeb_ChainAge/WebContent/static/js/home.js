@@ -131,7 +131,7 @@ var homePage = {
                 var topicurl = data[i].author.avatar_urls["24"];
                 var imgUrl="static/img/aa.png";
                 if(data[i].featuredmedia){
-                    imgurl = data[i].featuredmedia.media_details[1].source_url;
+                    imgUrl = data[i].featuredmedia.media_details[1].source_url;
                 }
                 htm = '<div class="col-md-4 benefit_box"><a href="' + './newsContent.html?id=' + data[i].id + '&cat='+Common.categories[categories]+'">'
                     + '<div class="benefit_box_con">'
@@ -143,7 +143,7 @@ var homePage = {
                     + '<div class="time_right"><span class="new_list_time"></span>'
                     + '<span>' + Common.timeonverseFunc(new Date(data[1].date)) + '</span></div>'
                     + '</p><div style="clear: both"></div>'
-                    + '<div class="benefit_box_img" style="background-image:url(' + imgurl + ') "></div>'
+                    + '<div class="benefit_box_img" style="background-image:url(' + imgUrl + ') "></div>'
                     + '<div class="p20 benefit_box_com news_dec">' + data[i].excerpt + '</div>'
                     + '</div>'
                     + '</a></div>';
@@ -160,14 +160,14 @@ var homePage = {
                 var topicurl = data[i].author.avatar_urls["24"];
                 var imgUrl="static/img/aa.png";
                 if(data[i].featuredmedia){
-                    imgurl = data[i].featuredmedia.media_details[1].source_url;
+                    imgUrl = data[i].featuredmedia.media_details[1].source_url;
                 }
 
                 htm = '<div style=" border-bottom: 1px dashed #CECECE;margin-bottom: 25px;">'
                     + '<a href="newsContent.html?id=' + data[i].id + '&cat='+Common.categories[categories]+'" class="new_mobile_con">'
                     + '<div class="media">'
                     + '<div class="media-left media-middle">'
-                    + '<div class="benefit_box_img" style="background-image:url(' + imgurl + ') "></div>'
+                    + '<div class="benefit_box_img" style="background-image:url(' + imgUrl + ') "></div>'
                     + '</div>'
                     + '<div class="media-body">'
                     + '<div class="hot_posts_title">' + title + '</div>'

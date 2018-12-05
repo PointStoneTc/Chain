@@ -20,7 +20,7 @@ var digitalCurrency={
         template.registerFunction('imgUrl', function (valueText) {
             var imgUrl="static/img/aa.png";
             if(valueText.featuredmedia){
-                imgurl = valueText.featuredmedia.media_details[1].source_url;
+                imgUrl = valueText.featuredmedia.media_details[1].source_url;
             }
             return imgUrl;
         });
