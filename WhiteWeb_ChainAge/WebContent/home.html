@@ -24,7 +24,7 @@
             document.addEventListener('DOMContentLoaded', _self.changePage, false);
         })(document);
     </script>
-    <title>Starter Template for Bootstrap</title>
+    <title>chainage</title>
     <link rel="stylesheet" href="static/plug-in/bootstrap-3.3.7-dist/css/bootstrap.css">
     <link rel="stylesheet" href="static/style/css/commcon.css">
     <link rel="stylesheet" href="static/style/css/home.css">
@@ -257,14 +257,14 @@
         <a href="newsContent.html?id=<%=data[0].id%>&cat=<%=data[0].cat%>">
             <img src="<%=data[0].featuredmedia.media_details[7].source_url%>">
             <div class="bg" style="right: 0.02rem;"></div>
-            <div class="carousel-caption"><%=data[0].title.rendered%></div>
+            <div class="carousel-caption"><%=data[0].title%></div>
         </a>
     </div>
     <div class="item">
         <a href="newsContent.html?id=<%=data[1].id%>&cat=<%=data[0].cat%>">
             <img src="<%=data[1].featuredmedia.media_details[7].source_url%>">
             <div class="bg" style="right: 0.02rem;"></div>
-            <div class="carousel-caption"><%=data[1].title.rendered%></div>
+            <div class="carousel-caption"><%=data[1].title%></div>
         </a>
     </div>
     <div class="item">
@@ -272,7 +272,7 @@
             <!--要改 标记-->
             <img src="<%=data[0].featuredmedia.media_details[7].source_url%>">
             <div class="bg" style="right: 0.02rem;"></div>
-            <div class="carousel-caption"><%=data[2].title.rendered%></div>
+            <div class="carousel-caption"><%=data[2].title%></div>
         </a>
     </div>
 </script>

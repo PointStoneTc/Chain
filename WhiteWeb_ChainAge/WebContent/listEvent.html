@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        (function (_D) {
+            var _self = {};
+            _self.resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
+            _self.Html = _D.getElementsByTagName("html")[0];
+            var whdef = 100 / 1920;// 表示1920的设计图,使用100PX的默认值
+            var wW = _D.documentElement.clientWidth;// 当前窗口的宽度
+            var rem = wW * whdef;
+
+            _self.changePage = function () {
+                _self.Html.setAttribute("style", "font-size:" + rem + "px");
+                // _self.correctPx();
+            };
+            _self.changePage();
+            if (!document.addEventListener) return;
+            window.addEventListener(_self.resizeEvt, _self.changePage, false);
+            document.addEventListener('DOMContentLoaded', _self.changePage, false);
+        })(document);
+    </script>
+    <title>Starter Template for Bootstrap</title>
+    <link rel="stylesheet" href="static/plug-in/bootstrap-3.3.7-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="static/style/css/commcon.css">
+    <link rel="stylesheet" href="static/style/css/home.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- [if lt IE 9]>
+    <script src="../lib/html5shiv/html5shiv.js"></script>
+    <script src="../lib/respond/respond.js"></script>
+    <![endif] -->
+    <style>
+        .news_nav {
+            padding-top: 0.43rem;
+            font-size: 0.16rem;
+            margin-bottom: 0.5rem;
+        }
+        .news_nav .contain{
+            background: #FFF;
+            border: 1px solid #E4E4E4;
+            padding: 10px 15px;
+            border-radius: 3px;
+        }
+        .date_event,.search_event,.address_event,.search_event_btn,.date_view{
+            width: 20%;
+            float: left;
+        }
+        .date_event div:first-child span{
+            width: 0.24rem;
+            height: 0.20rem;
+            display: inline-block;
+            background: url("static/img/event_date.png") center no-repeat;
+            background-size: contain;
+            vertical-align: middle;
+        }
+        .search_event div:first-child span{
+            width: 0.24rem;
+            height: 0.20rem;
+            display: inline-block;
+            background: url("static/img/event_search.png") center no-repeat;
+            background-size: contain;
+            vertical-align: middle;
+        }
+        .address_event div:first-child span{
+            width: 0.24rem;
+            height: 0.20rem;
+            display: inline-block;
+            background: url("static/img/event_addres.png") center no-repeat;
+            background-size: contain;
+            vertical-align: middle;
+        }
+        .search_event_btn,.date_view{
+            width: 2rem;
+            margin-left: 0.29rem;
+            padding: 0.1rem 0.2rem;
+            background-color: #2257C9;
+            color: #FFFFFF;
+            text-align: center;
+            border-radius: 5px;
+            margin-top: 0.12rem;
+        }
+        .news_nav input{
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            font-size: 0.14rem;
+            margin-top: 0.12rem;
+        }
+
+
+        .news_container {
+            padding-top: 20px;
+        }
+
+        a {
+            color: #000000;
+        }
+
+        .before_btn,.award_btn{
+            width: 2rem;
+            border: 1px solid #2257C9;
+            padding: 0.1rem 0;
+            font-size: 0.14rem;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        .before_btn{
+            float: left;
+        }
+        .award_btn{
+            float: right;
+        }
+        .output_btn{
+            width: 1.3rem;
+            padding: 0.05rem 0;
+            background-color:#2257C9 ;
+            margin: 0 auto;
+            text-align: center;
+            color: #FFF;
+            font-size: 0.14rem;
+            border-radius: 5px;
+        }
+        .bottom_output {
+            padding: 0.25rem 0;
+            background-color: #FFFFFF;
+            border: 1px solid #E4E4E4;
+            border-radius: 3px;
+            margin-bottom: 1.85rem;
+        }
+        @media only screen and (max-width: 480px) {
+            .news_banner, .message_show, .news_show {
+                display: none;
+            }
+
+            .news_nav {
+                padding: 0;
+                height: 1.4rem;
+            }
+
+            .news_title {
+                float: right;
+                margin-right: 0;
+            }
+
+            .contain {
+                width: 81%;
+            }
+
+            .new_tabs {
+                padding-left: 0;
+            }
+
+            .news_container {
+                width: 87%;
+                margin: 0 auto;
+                float: none;
+                padding-right: 0;
+                padding-left: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="header row">
+    <div class="col-md-9  header-left">
+        <span class="header_icon icon1"></span><span style="color:#999"> 市場キャップ：</span><span style="color:#FFF">USD
+        236.98B</span>
+        <span class="header_line">|</span> <span class="header_icon icon2"></span><span
+            style="color:#999"> 24時間の容積：</span><span
+            style="color:#FFF"> USD 13.2B</span>
+    </div>
+
+    <div class="header-right fr">
+        <span class="share_icon share_icon1"></span>
+        <span class="share_icon share_icon2"></span>
+        <span class="share_icon share_icon3"></span>
+        <span class="share_icon share_icon4"></span>
+    </div>
+
+</div>
+<nav class="navbar navbar-default nav-center">
+
+    <div class="navbar-header">
+        <div data-toggle="collapse" data-target="#navbar" style="float: left">
+            <span type="button" class="navbar-toggle collapsed icon-bar"
+                  aria-expanded="false"
+                  aria-controls="navbar">
+            </span>
+        </div>
+
+        <div class="homeBtn"><a href="home.html">首页</a></div>
+        <div class="share_btn"></div>
+        <a class="navbar-img" href="home.html">
+            <img src="static/img/header_logo.png" alt="">
+        </a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
+        <ul class="nav navbar-nav navbar-left">
+            <li><a class="" href="listNews.html?pageFlag=1">ニュース</a></li>
+            <li><a href="#">特集</a></li>
+            <li><a href="listNews.html?pageFlag=2">取引所</a></li>
+            <li><a href="coinHome.html">チャート</a></li>
+            <li><a href="listNews.html?pageFlag=3">ビギナー</a></li>
+            <li><a href="listNews.html?pageFlag=5">政府・団体</a></li>
+            <li><a href="#">イベント</a></li>
+            <li><a href="listNews.html?pageFlag=4">ChainAge Channel</a></li>
+        </ul>
+        <form class="navbar-form">
+            <div class="input-group">
+                <input type="text" class="form-control">
+                <span class="input-group-btn">
+            <button class="btn btn-default" type="button">
+              <span class="icon_search" aria-hidden="true"></span>
+            </button>
+          </span>
+            </div>
+        </form>
+        <div class="nav_footer" style="display: none;">
+            <span>利用規約</span> <span>プライバシーポリシー</span> <span>運営会社情報</span>
+        </div>
+    </div>
+    <!--/.nav-collapse -->
+</nav>
+<div class="share_con">
+    <ul>
+        <li><span class="share_icon_con"><span class="share_icon share_icon1"></span></span>twitter</li>
+        <li><span class="share_icon_con"><span class="share_icon share_icon2"></span></span>youtube</li>
+        <li><span class="share_icon_con"><span class="share_icon share_icon3"></span></span>facebook</li>
+        <li><span class="share_icon_con"><span class="share_icon share_icon4"></span></span>instagram</li>
+    </ul>
+</div>
+<!--置顶新闻-->
+<div class="news_banner clearfix hidden-xs">
+    <div class="col-sm-6 col-xs-12 banner_left">
+        <a href="">
+            <img>
+            <div class="bg" style="right: 0.05rem;"></div>
+            <div class="news_banner_con">
+                <div class="news_time">
+                    <span class="new_catelage"></span>
+                    <span class="icon_time"></span>
+                    <span class="time_fabu" style="font-size: 0.21rem;"></span>
+                </div>
+                <div class="new_title"></div>
+            </div>
+        </a>
+    </div>
+    <div class=" col-sm-6 hidden-xs banner_right">
+        <div class="pr banner_r_top" style="margin-bottom:0.02rem;">
+            <a href="">
+                <img>
+                <div class="bg"></div>
+                <div class="news_banner_con">
+                    <div class="news_time">
+                        <span class="new_catelage"></span>
+                        <span class="icon_time"></span>
+                        <span class="time_fabu" style="font-size: 0.21rem;"></span>
+                    </div>
+                    <div class="new_title"></div>
+                </div>
+            </a>
+        </div>
+        <div class="pr banner_r_bot">
+            <a href="">
+                <img>
+                <div class="bg"></div>
+                <div class="news_banner_con">
+                    <div class="news_time">
+                        <span class="new_catelage"></span>
+                        <span class="icon_time"></span>
+                        <span class="time_fabu" style="font-size: 0.21rem;"> </span>
+                    </div>
+                    <div class="new_title"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<!--手机端轮播图-->
+<div id="myCarousel" class="carousel slide visible-xs">
+    <!-- 轮播（Carousel）指标 -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <!-- 轮播（Carousel）项目 -->
+    <div class="carousel-inner">
+
+    </div>
+    <!-- 轮播（Carousel）导航 -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+<div class="message_show clearfix hidden-xs">
+    <div class="col-xs-2 col-lg-0 "></div>
+    <ul class="col-xs-12 col-lg-8 ">
+
+    </ul>
+</div>
+<!--图片新闻-->
+<div class="news_show bd-home-inwork  clearfix hidden-xs">
+    <div class="news_show_contain">
+
+    </div>
+</div>
+<div class="news_nav">
+    <div class="contain clearfix">
+        <div class="date_event">
+            <div><span></span>日期</div>
+            <div><input type="text" placeholder="某年某月某日"></div>
+        </div>
+        <div class="search_event">
+            <div><span></span>搜索</div>
+            <div><input type="text" placeholder="关键词"></div>
+        </div>
+        <div class="address_event">
+            <div><span></span>区域</div>
+            <div><input type="text" placeholder="地区"></div>
+        </div>
+        <div class="search_event_btn">寻找事件</div>
+        <div class="date_view">
+            按照日历查看
+        </div>
+    </div>
+</div>
+
+<div class="contain operate_con">
+    <div class="before_btn">«&nbsp;&nbsp;&nbsp;前のイベント</div>
+    <div class="award_btn">次のイベント&nbsp;&nbsp;&nbsp;»</div>
+</div>
+
+<div class="news_contain news_list_con  clearfix">
+    <div class="col-xs-8 col-xs-offset-2 col-md-8 col-md-offset-2 news_container">
+
+    </div>
+</div>
+
+<div class="bottom_output contain">
+    <div class="output_btn">輸出イベント</div>
+</div>
+
+
+<!--底部部分-->
+<div class="footer-con">
+    <div class="footer-top hidden-xs">
+        <div>
+            <span class="share_icon share_icon1"></span>
+            <span class="share_icon share_icon2"></span>
+            <span class="share_icon share_icon3"></span>
+            <span class="share_icon share_icon4"></span>
+        </div>
+        <div style="text-align: center;margin-top: 0.1rem;">利用規約 / プライバシーポリシー / 運営会社情報</div>
+    </div>
+    <div class="footer-bottom">©2018 Worldgo.kk All Rights Reserved.</div>
+</div>
+<script type="text/html" id="message_show">
+    <%for(var i in data){%>
+    <li>
+        <div><span>Bitcoin </span><span style="color: #ccc;">| BTC</span></div>
+        <div class="price">$7154.32</div>
+        <div>
+            <span class="markIcon <%=percent(data[i].persion)%>"></span>
+            <span>1.34%</span>
+        </div>
+    </li>
+    <%}%>
+</script>
+<script type="text/html" id="news_slider">
+    <div class="item active">
+        <a href="newsContent.html?id=<%=data[0].id%>&cat=<%=data[0].cat%>">
+            <img src="<%=data[0].featuredmedia.media_details[7].source_url%>">
+            <div class="bg" style="right: 0.02rem;"></div>
+            <div class="carousel-caption"><%=data[0].title%></div>
+        </a>
+    </div>
+    <div class="item">
+        <a href="newsContent.html?id=<%=data[1].id%>&cat=<%=data[0].cat%>">
+            <img src="<%=data[1].featuredmedia.media_details[7].source_url%>">
+            <div class="bg" style="right: 0.02rem;"></div>
+            <div class="carousel-caption"><%=data[1].title%></div>
+        </a>
+    </div>
+    <div class="item">
+        <a href="newsContent.html?id=<%=data[2].id%>&cat=<%=data[0].cat%>">
+            <!--要改 标记-->
+            <img src="<%=data[0].featuredmedia.media_details[7].source_url%>">
+            <div class="bg" style="right: 0.02rem;"></div>
+            <div class="carousel-caption"><%=data[2].title%></div>
+        </a>
+    </div>
+</script>
+
+<script src="static/plug-in/jquery/jquery-3.3.1.min.js"></script>
+<script src="static/plug-in/template/template.js"></script>
+<script src="static/plug-in/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+<script src="static/plug-in/jquery/jquery.pagination.js"></script>
+<script src="static/js/common.js"></script>
+<script src="static/js/listEvent.js"></script>
+</body>
+
+</html>
+

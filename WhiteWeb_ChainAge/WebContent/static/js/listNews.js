@@ -72,16 +72,17 @@ var listNewsPage = {
         }
         $(".news_banner .banner_left img").attr("src", data[0].featuredmedia.media_details[2].source_url);
         $(".news_banner .banner_left a").attr("href", './newsContent.html?id=' + data[0].id+'&cat='+Common.categories[180]);
-        $(".news_banner .banner_left .new_title").text(JSON.parse(data[0].title).rendered);
+        $(".news_banner .banner_left .new_title").text(data[0].title);
         $(".news_banner .banner_left .time_fabu").text(Common.timeonverseFunc(new Date(data[0].date).getTime()));
         $(".news_banner .banner_r_top img").attr("src", data[1].featuredmedia.media_details[2].source_url);
         $(".news_banner .banner_r_top a").attr("href", './newsContent.html?id=' + data[1].id+'&cat='+Common.categories[180]);
-        $(".news_banner .banner_r_top .new_title").text(JSON.parse(data[0].title).rendered);
+        $(".news_banner .banner_r_top .new_title").text(data[1].title);
         $(".news_banner .banner_r_top .time_fabu").text(Common.timeonverseFunc(new Date(data[1].date).getTime()));
         $(".news_banner .banner_r_bot img").attr("src", imgUrl );
         $(".news_banner .banner_r_bot a").attr("href", './newsContent.html?id=' + data[2].id+'&cat='+Common.categories[180]);
-        $(".news_banner .banner_r_bot .new_title").text(JSON.parse(data[0].title).rendered);
+        $(".news_banner .banner_r_bot .new_title").text(data[2].title);
         $(".news_banner .banner_r_bot .time_fabu").text(Common.timeonverseFunc(new Date(data[2].date).getTime()));
+
         $(".news_banner .banner_left .new_catelage").text(Common.categories[180]);
         $(".news_banner .banner_r_top .new_catelage").text(Common.categories[180]);
         $(".news_banner .banner_r_bot .new_catelage").text(Common.categories[180]);
@@ -99,7 +100,7 @@ var listNewsPage = {
                 + '<a href=" ' + linkUrl + ' ">'
                 + '<div class="card-img lazy" style="background-image:url(' + data[i].featuredmedia.media_details[7].source_url + ') " ></div>'
                 + '<div class="bg"></div>'
-                + '<div class="news_title">' + JSON.parse(data[i].title).rendered + '</div>'
+                + '<div class="news_title">' + data[i].title + '</div>'
                 + '</a>'
                 + '</div>';
         }
