@@ -294,7 +294,7 @@ img[src=""], img:not([src]) {
     }
 
     .nav-center .navbar-left li a {
-        font-size: 0.23rem;
+        font-size: 0.76rem;
     }
 
     .navbar-form {
@@ -321,7 +321,7 @@ img[src=""], img:not([src]) {
         padding-left: 0.8rem;
     }
     .share_con {
-        font-size: 0.24rem;
+        font-size: 0.76rem;
         position: absolute;
         left: 0;
         top: 32px;
