@@ -7,6 +7,7 @@ var listNewsPage = {
         Common.getCategoreType();
         Common.getUsers();
         this.eventInit();
+        $('.news_mobile_container').data('num', 0);
         // 头部新闻
         Common.getHomeData(function (data) {
             listNewsPage.topNewsShow(data);
@@ -137,6 +138,7 @@ var listNewsPage = {
     },
     eventInit:function(){
         $('.new_tabs li').click(function() {
+            $('.news_list_con .news_mobile_container').html('');
             $(this).addClass('current').siblings().removeClass('current');
             // 判断1234 等于5不处理
             if(listNewsPage.pageFlag==1){
@@ -186,7 +188,7 @@ var listNewsPage = {
                 }else{
                     categories=189;
                 }
-                listNewsPage.getNewsListData({per_page:13,order:'desc',orderby:'date',categories:categories},function(param){
+                listNewsPage.getNewsListData({per_page:12,order:'desc',orderby:'date',categories:categories},function(param){
                     listNewsPage.setPagination(param);
                 });
             }
@@ -202,7 +204,7 @@ var listNewsPage = {
             }
 
             listNewsPage.getImgData(imgId,function (imgUrl) {
-                var htm='';
+                var htm='',htm2='';
                 $('.news_list_con .news_container').html('');
                 for (var i = 0; i < data.length; i++) {
                     var picUrl=imgUrl[i].source_url;
@@ -223,17 +225,75 @@ var listNewsPage = {
                         + '<div class="p20 benefit_box_com news_dec">'+data[i].excerpt.rendered+'</div>'
                         + '</div>'
                         + '</a></div>';
+
+
                     $('.news_list_con .news_container').append(htm);
                 }
-                // $('.news_list_con .news_container').html(htm);
-            });
+                listNewsPage.loadNewsDataData(data,imgUrl,param);
 
+            });
 
             if(callback){
                 callback(param);
             }
         });
     },
+    // 加载新闻数据
+    loadNewsDataData: function (data,imgUrl,param) {
+        var more = '<div class="more_btn">加载更多</div>';
+        var htm = '';
+        if (data.length > 0) {
+            for (var i = 0; i < data.length; i++) {
+                var picUrl=imgUrl[i].source_url;
+                if(imgUrl[i].media_details.sizes["hoverex-thumb-extra"]){
+                    picUrl=imgUrl[i].media_details.sizes["hoverex-thumb-extra"].source_url;
+                }
+                htm = '<div style=" border-bottom: 1px dashed #CECECE;margin-bottom: 25px;">'
+                    + '<a href="newsContent.html?id=' + data[i].id + '&cat='+Common.categories[param.categories]+'" class="new_mobile_con">'
+                    + '<div class="media">'
+                    + '<div class="media-left media-middle">'
+                    + '<div class="benefit_box_img" style="background-image:url(' + picUrl + ') "></div>'
+                    + '</div>'
+                    + '<div class="media-body">'
+                    + '<div class="hot_posts_title">' + data[i].title.rendered + '</div>'
+                    + '</div>'
+                    + '</div>'
+                    + '<div class="new_dec">'
+                    + '<img src="' + Common.userImgs[data[i].author] + '" alt="">'
+                    + '<div class="edit_detail">'
+                    + '<div>' + Common.users[data[i].author] + '</div>'
+                    + '<div>' + Common.categories[param.categories] + '</div>'
+                    + '</div>'
+                    + '<div style="float: right;margin-top: 0.35rem;">'
+                    + '<span class="new_list_time"></span>'
+                    + '<span class="new_des_time">' + Common.timeonverseFunc(new Date(data[i].date)) + '</span>'
+                    + '</div>'
+                    + '</div>'
+                    + '</a>'
+                    + '<div>';
+                $('.news_list_con .news_mobile_container').append(htm);
+        }
+
+            var num = $('.news_mobile_container').data('num');
+        //判断是否需要显示加载更多的按钮
+        if (Common.newCounts[param.categories] - ((listNewsPage.pageSize) * num + listNewsPage.pageSize) > 0) {
+            $('.news_mobile_container ').after(more);
+            $(".more_btn").unbind('click').on('click', function () {
+                $('.more_btn').remove();  //移除加载更多按钮
+                $('.news_mobile_container').data('num', num + 1);
+                listNewsPage.getNewsListData({per_page:12,
+                    order:'desc',
+                    orderby:'date',
+                    categories:param.categories,
+                    "start": (listNewsPage.pageSize) * num + listNewsPage.pageSize,
+                    "isLoadMore": true
+                });
+            });
+        } else {
+            $('.more_btn').remove(); // 移除加载更多按钮
+        }
+    }
+},
     // 获取图片
     getImgData:function(imgId,callback){
         var url = 'http://chainage.cc/wp-json/wp/v2/media?per_page='+imgId.length+'&parent='+imgId.join(',');

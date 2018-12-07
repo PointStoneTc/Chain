@@ -142,19 +142,20 @@
             color: #000000;
         }
 
-        @media only screen and (max-width: 1024px) {
+        @media only screen and (max-width: 480px) {
             .news_banner, .message_show, .news_show {
                 display: none;
             }
 
             .news_nav {
-                padding: 0;
-                height: 1.4rem;
+                height: 68px;
+                border: 1px solid #E4E4E4;
+                padding-bottom: 4px;
+                margin-bottom: 20px;
             }
 
             .news_title {
-                float: right;
-                margin-right: 0;
+                font-size: 1rem;
             }
 
             .contain {
@@ -163,6 +164,13 @@
 
             .new_tabs {
                 padding-left: 0;
+                font-size: 0.85rem;
+            }
+            .new_tabs li:last-child{
+                font-size: 0.85rem;
+            }
+            . news_list_con {
+                margin-top: 23px;
             }
 
             .news_container {
@@ -171,6 +179,9 @@
                 float: none;
                 padding-right: 0;
                 padding-left: 0;
+            }
+            .pagination{
+                display: none;
             }
         }
     </style>
@@ -337,9 +348,16 @@
 </div>
 
 <div class="news_contain news_list_con  clearfix">
-    <div class="col-xs-8 col-xs-offset-2 col-md-8 col-md-offset-2 news_container">
+    <div class="hidden-xs col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 news_container">
 
     </div>
+    <div class="mobile_show">
+        <div class="visible-xs news_mobile_container data-num=0">
+
+        </div>
+
+    </div>
+
 </div>
 
 <!--分页-->
@@ -384,7 +402,8 @@
     <div class="nes_year_data">2018</div>
     <div class="news_list">
         <%for(var i in data){%>
-        <div><a href="<%=data[i].href%>"><span class="news_list_date"><%=data[i].publishDate%></span><%=data[i].title%></span>
+        <div><a href="<%=data[i].href%>"><span
+                class="news_list_date"><%=data[i].publishDate%></span><%=data[i].title%></span>
         </a></div>
         <%}%>
     </div>
