@@ -132,6 +132,68 @@
             border-radius: 3px;
             margin-bottom: 1.85rem;
         }
+        .event_item{
+            margin-bottom: 0.37rem;
+        }
+        .event_item_con{
+            position: relative;
+            border-radius: 5px;
+            border: 1px solid #CECECE;
+            background: #FFFFFF;
+            padding-bottom: 0.1rem;
+        }
+        .event_item .event_img{
+            width: 100%;
+            height: 1.2rem;
+            background: url("static/img/banner_l.png");
+        }
+        .event_item .event_date{
+            position: absolute;
+            left: 0;
+            top:0;
+            background: #2257C9;
+            color: #FFF;
+            border-radius: 5px 5px 5px 0;
+            padding: 5px ;
+        }
+        .event-des img{
+            width: 0.5rem;
+            vertical-align: middle;
+            height: 0.5rem;
+            border-radius: 50%;
+        }
+        .event-des .col-xs-3 {
+            width: 16.66666667%;
+            width: 0.56rem;
+            height: 0.56rem;
+            border: 1px solid #ECECEC;
+            border-radius: 3px;
+            padding: 0 0.02rem;
+            margin-top: 0.18rem;
+            margin-left: 0.1rem;
+        }
+        .event-des .col-xs-9{
+            font-size: 0.14rem;
+            color: #BCBCBC;
+            padding-left: 0.1rem;
+            margin-top: 0.1rem;
+        }
+        .event-des .event_title{
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            color: #000000;
+        }
+        .event-des .event_address {
+            width: 0.12rem;
+            height: 0.16rem;
+            display: inline-block;
+            background: url("static/img/adress_icon.png")center no-repeat;
+            background-size: cover;
+            vertical-align: middle;
+        }
         @media only screen and (max-width: 480px) {
             .news_banner, .message_show, .news_show {
                 display: none;
@@ -139,28 +201,101 @@
 
             .news_nav {
                 padding: 0;
-                height: 1.4rem;
+                height: auto;
             }
-
+            .search_event div:first-child span ,
+            .date_event div:first-child span ,
+            .address_event div:first-child span {
+                width: 0.76rem;
+                height: 0.76rem;
+            }
             .news_title {
                 float: right;
                 margin-right: 0;
             }
 
             .contain {
-                width: 81%;
+                width: 90%;
             }
 
-            .new_tabs {
-                padding-left: 0;
+            .news_nav {
+                font-size: 0.56rem;
+                margin-top: 10px;
             }
 
             .news_container {
-                width: 87%;
-                margin: 0 auto;
+                width: 100%;
                 float: none;
                 padding-right: 0;
                 padding-left: 0;
+                margin: 0;
+                margin-top: -10px;
+            }
+
+            .date_event, .search_event, .address_event, .search_event_btn, .date_view {
+                width: 30%;
+            }
+
+            .search_event_btn, .date_view {
+                width: 6rem;
+                margin-top: 10px;
+            }
+
+            .news_nav input {
+                width: 90%;
+            }
+
+            .operate_con {
+                /*margin-top: 10px;*/
+            }
+
+            .before_btn, .award_btn {
+                width: 5rem;
+            }
+
+            .event_item {
+                padding: 0;
+            }
+
+            .event_item .event_img {
+                height: 4rem;
+            }
+
+            .event-des .col-xs-9 {
+                font-size: 0.76rem;
+                padding-left: 0.8rem;
+                margin-top: 0.3rem;
+            }
+
+            .event-des .col-xs-3 {
+                width: 2.8rem;
+                height: 2.8rem;
+                border: 1px solid #ECECEC;
+                border-radius: 3px;
+                padding: 0.14rem 0.14rem;
+                margin-top: 0.5rem;
+                margin-left: 0.4rem;
+            }
+
+            .event-des img {
+                width: 2.5rem;
+                vertical-align: middle;
+                height: 2.5rem;
+                border-radius: 50%;
+            }
+
+            .event-des .event_address {
+                width: 12px;
+                height: 16px;
+            }
+            .event_item{
+                margin-bottom: 1rem;
+            }
+            .output_btn{
+                width: 5.5rem;
+            }
+            .bottom_output{
+                padding: 0.5rem 0;
             }
         }
     </style>
@@ -337,13 +472,36 @@
     </div>
 </div>
 
-<div class="contain operate_con">
+<div class="contain operate_con clearfix">
     <div class="before_btn">«&nbsp;&nbsp;&nbsp;前のイベント</div>
     <div class="award_btn">次のイベント&nbsp;&nbsp;&nbsp;»</div>
 </div>
 
 <div class="news_contain news_list_con  clearfix">
     <div class="col-xs-8 col-xs-offset-2 col-md-8 col-md-offset-2 news_container">
+        <div class="event_item col-xs-12 col-sm-4">
+            <div class="event_item_con">
+                <div class="event_img"></div>
+                <div class="event_date">
+                    <div style="font-size: 0.12rem;line-height: 11px">2018</div>
+                    <div style="font-size: 0.17rem">9月</div>
+                    <div style="font-size: 0.13rem;line-height: 11px'">17日</div>
+                </div>
+                <div class="event-des clearfix">
+                    <div class="col-xs-3">
+                        <img src="static/img/chainge_editer.png" alt="">
+                    </div>
+                    <div class="col-xs-9" >
+                        <div class="event_title">hhaa好好说话是是是护手霜时好时坏水水水水是</div>
+                        <div style="margin-top: 2px">
+                            <span class="event_address"></span>
+                            <span>地区</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
 
     </div>
 </div>

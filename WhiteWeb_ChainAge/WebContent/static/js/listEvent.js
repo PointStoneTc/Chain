@@ -17,9 +17,9 @@ var listNewsPage = {
 
             $(".news_title").text("ニュース");
             // 请求
-            this.getNewsListData({per_page:12,order:'desc',orderby:'date',categories:188},function(param){
-                listNewsPage.setPagination(param);
-            });
+            // this.getNewsListData({per_page:12,order:'desc',orderby:'date',categories:188},function(param){
+
+            // });
 
     },
     topNewsShow: function (json) {
