@@ -67,15 +67,15 @@ var listNewsPage = {
     topNewsShow: function (json) {
         var data = json.postMap["180"];
         // 要改标记
-        var imgUrl= data[0].featuredmedia.media_details[2].source_url;
-        if(data[2].featuredmedia){
-            imgUrl= data[2].featuredmedia.media_details[2].source_url;
+        var imgUrl= data[0].featuredMedia.media_details[2].source_url;
+        if(data[2].featuredMedia){
+            imgUrl= data[2].featuredMedia.media_details[2].source_url;
         }
-        $(".news_banner .banner_left img").attr("src", data[0].featuredmedia.media_details[2].source_url);
+        $(".news_banner .banner_left img").attr("src", data[0].featuredMedia.media_details[2].source_url);
         $(".news_banner .banner_left a").attr("href", './newsContent.html?id=' + data[0].id+'&cat='+Common.categories[180]);
         $(".news_banner .banner_left .new_title").text(data[0].title);
         $(".news_banner .banner_left .time_fabu").text(Common.timeonverseFunc(new Date(data[0].date).getTime()));
-        $(".news_banner .banner_r_top img").attr("src", data[1].featuredmedia.media_details[2].source_url);
+        $(".news_banner .banner_r_top img").attr("src", data[1].featuredMedia.media_details[2].source_url);
         $(".news_banner .banner_r_top a").attr("href", './newsContent.html?id=' + data[1].id+'&cat='+Common.categories[180]);
         $(".news_banner .banner_r_top .new_title").text(data[1].title);
         $(".news_banner .banner_r_top .time_fabu").text(Common.timeonverseFunc(new Date(data[1].date).getTime()));
@@ -99,7 +99,7 @@ var listNewsPage = {
             var linkUrl = './newsContent.html?id=' + data[i].id+'&cat='+Common.categories[181];
             html += '<div class="col-sm-4 bd-card-mod">'
                 + '<a href=" ' + linkUrl + ' ">'
-                + '<div class="card-img lazy" style="background-image:url(' + data[i].featuredmedia.media_details[7].source_url + ') " ></div>'
+                + '<div class="card-img lazy" style="background-image:url(' + data[i].featuredMedia.media_details[7].source_url + ') " ></div>'
                 + '<div class="bg"></div>'
                 + '<div class="news_title">' + data[i].title + '</div>'
                 + '</a>'

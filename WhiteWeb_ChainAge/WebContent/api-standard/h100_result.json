@@ -185,7 +185,7 @@
 					"href": "https://www.chainage.jp/wp-json/wp/v2/posts/5495/revisions/5507"
 				}
 			],
-			"wp:featuredmedia": [
+			"wp:featuredMedia": [
 				{
 					"embeddable": true,
 					"href": "https://www.chainage.jp/wp-json/wp/v2/media/5498"

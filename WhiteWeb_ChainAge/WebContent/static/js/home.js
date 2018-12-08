@@ -44,15 +44,15 @@ var homePage = {
     topNewsShow: function (json) {
         var data = json.postMap["180"];
         // 要改标记
-        var imgUrl= data[0].featuredmedia.media_details[2].source_url;
-        if(data[2].featuredmedia){
-           imgUrl= data[2].featuredmedia.media_details[2].source_url;
+        var imgUrl= data[0].featuredMedia.media_details[2].source_url;
+        if(data[2].featuredMedia){
+           imgUrl= data[2].featuredMedia.media_details[2].source_url;
         }
-        $(".news_banner .banner_left img").attr("src", data[0].featuredmedia.media_details[2].source_url);
+        $(".news_banner .banner_left img").attr("src", data[0].featuredMedia.media_details[2].source_url);
         $(".news_banner .banner_left a").attr("href", './newsContent.html?id=' + data[0].id+'&cat='+Common.categories[180]);
         $(".news_banner .banner_left .new_title").text(data[0].title);
         $(".news_banner .banner_left .time_fabu").text(Common.timeonverseFunc(new Date(data[0].date).getTime()));
-        $(".news_banner .banner_r_top img").attr("src", data[1].featuredmedia.media_details[2].source_url);
+        $(".news_banner .banner_r_top img").attr("src", data[1].featuredMedia.media_details[2].source_url);
         $(".news_banner .banner_r_top a").attr("href", './newsContent.html?id=' + data[1].id+'&cat='+Common.categories[180]);
         $(".news_banner .banner_r_top .new_title").text(data[1].title);
         $(".news_banner .banner_r_top .time_fabu").text(Common.timeonverseFunc(new Date(data[1].date).getTime()));
@@ -104,7 +104,7 @@ var homePage = {
             var linkUrl = './newsContent.html?id=' + data[i].id+'&cat='+Common.categories[181];
             html += '<div class="col-sm-4 bd-card-mod">'
                 + '<a href=" ' + linkUrl + ' ">'
-                + '<div class="card-img lazy" style="background-image:url(' + data[i].featuredmedia.media_details[7].source_url + ') " ></div>'
+                + '<div class="card-img lazy" style="background-image:url(' + data[i].featuredMedia.media_details[7].source_url + ') " ></div>'
                 + '<div class="bg"></div>'
                 + '<div class="news_title">' + data[i].title + '</div>'
                 + '</a>'
@@ -116,10 +116,10 @@ var homePage = {
     getAdvertData: function (data) {
         var data1=data.postMap["186"];
         var data2=data.postMap["187"];
-         var html = '<a href="newsContent.html?id=' + data1[0].id + '&cat='+Common.categories[186]+'" ><img src="' + data.postMap["99"][3].featuredmedia.media_details[5].source_url + '" width="100%" height="100%"></a>';
+         var html = '<a href="newsContent.html?id=' + data1[0].id + '&cat='+Common.categories[186]+'" ><img src="' + data.postMap["99"][3].featuredMedia.media_details[5].source_url + '" width="100%" height="100%"></a>';
          $(".advert1").html(html);
 
-         var html = '<a href="newsContent.html?id=' + data2[0].id + '&cat='+Common.categories[187]+'"><img src="' + data.postMap["99"][3].featuredmedia.media_details[5].source_url + '" width="100%" height="100%"></a>';
+         var html = '<a href="newsContent.html?id=' + data2[0].id + '&cat='+Common.categories[187]+'"><img src="' + data.postMap["99"][3].featuredMedia.media_details[5].source_url + '" width="100%" height="100%"></a>';
          $(".advert2").html(html);
 
     },
@@ -130,8 +130,8 @@ var homePage = {
                 var title = data[i].title;
                 var topicurl = data[i].author.avatar_urls["24"];
                 var imgUrl="static/img/aa.png";
-                if(data[i].featuredmedia){
-                    imgUrl = data[i].featuredmedia.media_details[1].source_url;
+                if(data[i].featuredMedia){
+                    imgUrl = data[i].featuredMedia.media_details[1].source_url;
                 }
                 htm = '<div class="col-md-4 benefit_box"><a href="' + './newsContent.html?id=' + data[i].id + '&cat='+Common.categories[categories]+'">'
                     + '<div class="benefit_box_con">'
@@ -159,8 +159,8 @@ var homePage = {
                 var title = data[i].title;
                 var topicurl = data[i].author.avatar_urls["24"];
                 var imgUrl="static/img/aa.png";
-                if(data[i].featuredmedia){
-                    imgUrl = data[i].featuredmedia.media_details[1].source_url;
+                if(data[i].featuredMedia){
+                    imgUrl = data[i].featuredMedia.media_details[1].source_url;
                 }
 
                 htm = '<div style=" border-bottom: 1px dashed #CECECE;margin-bottom: 25px;">'

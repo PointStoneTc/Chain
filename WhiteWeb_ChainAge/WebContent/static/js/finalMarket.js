@@ -22,8 +22,8 @@ var market={
         });
         template.registerFunction('imgUrl', function (valueText) {
             var imgUrl="static/img/aa.png";
-            if(valueText.featuredmedia){
-                imgUrl = valueText.featuredmedia.media_details[1].source_url;
+            if(valueText.featuredMedia){
+                imgUrl = valueText.featuredMedia.media_details[1].source_url;
             }
             return imgUrl;
         });
