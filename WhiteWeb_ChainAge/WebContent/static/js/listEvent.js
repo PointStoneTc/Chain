@@ -1,9 +1,6 @@
 var listNewsPage = {
-    pageFlag:1,
     pageSize: 12,
-    advertData:[],
     init: function () {
-        this.pageFlag=Common.getQueryString("pageFlag");
         Common.getCategoreType();
         Common.getUsers();
         this.eventInit();
@@ -12,14 +9,8 @@ var listNewsPage = {
             listNewsPage.topNewsShow(data);
             listNewsPage.imgNewsShow(data.postMap["181"]);
         });
-
         this.getRankingData(99);
-
-            $(".news_title").text("ニュース");
-            // 请求
-            // this.getNewsListData({per_page:12,order:'desc',orderby:'date',categories:188},function(param){
-
-            // });
+        this.getEventData();
 
     },
     topNewsShow: function (json) {
@@ -127,66 +118,25 @@ var listNewsPage = {
     },
 
     eventInit:function(){
+        // 查找事件
+        $(".search_event_btn").on("click",function(){
 
-    },
-    getEventData:function(){
+        });
+        // 按照日历查看
+        $(".data_view").on("click",function(){
 
-    },
-    getNewsListData:function(param,callback){
-        // 列表新闻
-        Common.getNewsData(param,function(data){
-            var imgId=[];
-            for(var i=0;i<data.length;i++){
-                imgId.push(data[i].id);
-            }
+        });
+        // 上一页
+        $(".before_btn").on("click",function(){
 
-            listNewsPage.getImgData(imgId,function (imgUrl) {
-                var htm='';
-                $('.news_list_con .news_container').html('');
-                for (var i = 0; i < data.length; i++) {
-                    var title = data[i].title.rendered;
-                    var topicurl = Common.userImgs["24"];
-                    var imgUrl="static/img/aa.png";
-                    if(data[i].featuredMedia){
-                        imgUrl = data[i].featuredMedia.media_details[1].source_url;
-                    }
-                    htm = '<div style=" border-bottom: 1px dashed #CECECE;margin-bottom: 25px;">'
-                        + '<a href="newsContent.html?id=' + data[i].id+'" class="new_mobile_con">'
-                        + '<div class="media">'
-                        + '<div class="media-left media-middle">'
-                        + '<div class="benefit_box_img" style="background-image:url(' + imgUrl + ') "></div>'
-                        + '</div>'
-                        + '<div class="media-body">'
-                        + '<div class="hot_posts_title">' + title + '</div>'
-                        + '</div>'
-                        + '</div>'
-                        + '<div class="new_dec">'
-                        + '<img src="' + topicurl + '" alt="">'
-                        + '<div class="edit_detail">'
-                        + '<div> errrt </div>'
-                        + '<div>fffff</div>'
-                        + '</div>'
-                        + '<div style="float: right;margin-top: 0.35rem;">'
-                        + '<span class="new_list_time"></span>'
-                        + '<span class="new_des_time">' + Common.timeonverseFunc(new Date(data[1].date)) + '</span>'
-                        + '</div>'
-                        + '</div>'
-                        + '</a>'
-                        + '<div>';
-                    $('.news_list_con .news_container').append(htm);
-                }
-                // $('.news_list_con .news_container').html(htm);
-            });
+        });
+        // 下一页
+        $(".award_btn").on("click",function(){
 
-
-            if(callback){
-                callback(param);
-            }
         });
     },
-    // 获取图片
-    getImgData:function(imgId,callback){
-        var url = 'http://chainage.cc/wp-json/wp/v2/media?per_page='+imgId.length+'&parent='+imgId.join(',');
+    getEventData:function(){
+        var url = 'http://data.chainage.jp/blockchain/data/rightPopular';
         $.ajax({
             type: 'GET',
             url: url,
@@ -195,32 +145,37 @@ var listNewsPage = {
             },
             success: function (data) {
                 if (data) {
-                 callback(data);
+                    var html='';
+                    for(var i=0;i<data.list.length;i++){
+
+                        html='<div class="event_item col-xs-12 col-sm-4">'
+                            +'<a href="eventContent.html">'
+                            +'<div class="event_item_con">'
+                            +'<div class="event_img"></div>'
+                            +'<div class="event_date">'
+                            +'<div style="font-size: 0.12rem;line-height: 11px">2018</div>'
+                            +'<div style="font-size: 0.17rem">9月</div>'
+                            +'<div style="font-size: 0.13rem;line-height: 11px">17日</div>'
+                            +'</div>'
+                            +'<div class="event-des clearfix">'
+                            +'<div class="col-xs-3">'
+                            +'<img src="static/img/chainge_editer.png" alt="">'
+                            +'</div>'
+                            +'<div class="col-xs-9" >'
+                            +'<div class="event_title">hhaa好好说话是是是护手霜时好时坏水水水水是</div>'
+                            +'<div style="margin-top: 2px">'
+                            +'<span class="event_address"></span>'
+                            +'<span>地区</span>'
+                            +'</div>'
+                            +'</div>'
+                            +'</div>'
+                            +'<div></a></div>';
+                        $(".news_container").append(html);
+                    }
                 }
             }
         });
-
-    },
-
-
-    // 分页显示
-    setPagination:function(param){
-        $(".page").pagination(Common.newCounts[param.categories], {
-            'items_per_page': 12,
-            'current_page': 0,
-            'num_display_entries': 6,
-            'num_edge_entries': 3,
-            'link_to': 'javascript:;',
-            'total': '共' + Common.newCounts[param.categories] + '条',
-            'prev_text': "",
-            'next_text': "»",
-            'call_callback_at_once': false,
-            'callback': $.proxy(function (pageIndex, $page) {
-                param = $.extend(param, {page: pageIndex+1});
-                listNewsPage.getNewsListData(param);
-            }, this)
-        });
-    },
+    }
 
 }
 listNewsPage.init();

@@ -194,6 +194,15 @@
             background-size: cover;
             vertical-align: middle;
         }
+        .calendar_icon{
+            width: 0.23rem;
+            height: 0.23rem;
+            display: inline-block;
+            background: url("static/img/calendar_icon.png") center no-repeat;
+            background-size: cover;
+            vertical-align: top;
+            margin-right: 1px;
+        }
         @media only screen and (max-width: 480px) {
             .news_banner, .message_show, .news_show {
                 display: none;
@@ -240,7 +249,10 @@
                 width: 6rem;
                 margin-top: 10px;
             }
-
+            .calendar_icon{
+                width: 0.6rem;
+                height: 0.6rem;
+            }
             .news_nav input {
                 width: 90%;
             }
@@ -325,7 +337,6 @@
 
 </div>
 <nav class="navbar navbar-default nav-center">
-
     <div class="navbar-header">
         <div data-toggle="collapse" data-target="#navbar" style="float: left">
             <span type="button" class="navbar-toggle collapsed icon-bar"
@@ -348,7 +359,7 @@
             <li><a href="coinHome.html">チャート</a></li>
             <li><a href="listNews.html?pageFlag=3">ビギナー</a></li>
             <li><a href="listNews.html?pageFlag=5">政府・団体</a></li>
-            <li><a href="#">イベント</a></li>
+            <li><a href="listEvent.html">イベント</a></li>
             <li><a href="listNews.html?pageFlag=4">ChainAge Channel</a></li>
         </ul>
         <form class="navbar-form">
@@ -472,7 +483,8 @@
         </div>
         <div class="search_event_btn">寻找事件</div>
         <div class="date_view">
-            按照日历查看
+            <span class="calendar_icon"></span>
+            <span>按照日历查看</span>
         </div>
     </div>
 </div>
@@ -484,29 +496,7 @@
 
 <div class="news_contain news_list_con  clearfix">
     <div class="col-xs-8 col-xs-offset-2 col-md-8 col-md-offset-2 news_container">
-        <div class="event_item col-xs-12 col-sm-4">
-            <div class="event_item_con">
-                <div class="event_img"></div>
-                <div class="event_date">
-                    <div style="font-size: 0.12rem;line-height: 11px">2018</div>
-                    <div style="font-size: 0.17rem">9月</div>
-                    <div style="font-size: 0.13rem;line-height: 11px">17日</div>
-                </div>
-                <div class="event-des clearfix">
-                    <div class="col-xs-3">
-                        <img src="static/img/chainge_editer.png" alt="">
-                    </div>
-                    <div class="col-xs-9" >
-                        <div class="event_title">hhaa好好说话是是是护手霜时好时坏水水水水是</div>
-                        <div style="margin-top: 2px">
-                            <span class="event_address"></span>
-                            <span>地区</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-        </div>
 
     </div>
 </div>
@@ -577,23 +567,3 @@
 
 </html>
 
-+'<div class="event_item_con">'
-+'<div class="event_img"></div>'
-+'<div class="event_date">'
-+'<div style="font-size: 0.12rem;line-height: 11px">2018</div>'
-+'<div style="font-size: 0.17rem">9月</div>'
-+'<div style="font-size: 0.13rem;line-height: 11px">17日</div>'
-+'</div>'
-+'<div class="event-des clearfix">'
-+'<div class="col-xs-3">'
-+'<img src="static/img/chainge_editer.png" alt="">'
-+'</div>'
-+'<div class="col-xs-9" >'
-+'<div class="event_title">hhaa好好说话是是是护手霜时好时坏水水水水是</div>'
-+'<div style="margin-top: 2px">'
-+'<span class="event_address"></span>'
-+'<span>地区</span>'
-+'</div>'
-+'</div>'
-+'</div>'
-+'<div>'
