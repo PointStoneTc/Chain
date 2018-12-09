@@ -248,7 +248,6 @@ var Common = {
             obj.push([arr[i],i]);
         };
 
-        console.log(obj);
         let myShe=obj.sort(function(a, b) {
             return Math.abs(a[0].width - scale) - Math.abs(b[0].width - scale);
         })[0][0];

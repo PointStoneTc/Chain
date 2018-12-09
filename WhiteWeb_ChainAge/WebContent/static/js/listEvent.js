@@ -114,6 +114,9 @@ var listNewsPage = {
     eventInit:function(){
 
     },
+    getEventData:function(){
+
+    },
     getNewsListData:function(param,callback){
         // 列表新闻
         Common.getNewsData(param,function(data){

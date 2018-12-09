@@ -75,7 +75,7 @@
         }
         .search_event_btn,.date_view{
             width: 2rem;
-            margin-left: 0.29rem;
+            margin-left: 2.2%;
             padding: 0.1rem 0.2rem;
             background-color: #2257C9;
             color: #FFFFFF;
@@ -296,6 +296,11 @@
             }
             .bottom_output{
                 padding: 0.5rem 0;
+            }
+        }
+        @media only screen and (max-width: 992px) {
+            .search_event_btn, .date_view{
+                margin-left: 2%;
             }
         }
     </style>
@@ -565,10 +570,29 @@
 <script src="static/plug-in/template/template.js"></script>
 <script src="static/plug-in/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
 <script src="static/plug-in/jquery/jquery.pagination.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAt9gAn_CAQUUIn0bmmpApW2WfX3jsGf04&callback=initMap" async defer></script>
 <script src="static/js/common.js"></script>
 <script src="static/js/listEvent.js"></script>
 </body>
 
 </html>
 
++'<div class="event_item_con">'
++'<div class="event_img"></div>'
++'<div class="event_date">'
++'<div style="font-size: 0.12rem;line-height: 11px">2018</div>'
++'<div style="font-size: 0.17rem">9月</div>'
++'<div style="font-size: 0.13rem;line-height: 11px">17日</div>'
++'</div>'
++'<div class="event-des clearfix">'
++'<div class="col-xs-3">'
++'<img src="static/img/chainge_editer.png" alt="">'
++'</div>'
++'<div class="col-xs-9" >'
++'<div class="event_title">hhaa好好说话是是是护手霜时好时坏水水水水是</div>'
++'<div style="margin-top: 2px">'
++'<span class="event_address"></span>'
++'<span>地区</span>'
++'</div>'
++'</div>'
++'</div>'
++'<div>'
