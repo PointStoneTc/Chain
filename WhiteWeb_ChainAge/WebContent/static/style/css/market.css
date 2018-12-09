@@ -10,6 +10,10 @@
     margin: 0 auto;
     margin-bottom: 1.66rem;
 }
+.event_map{
+    background: #F6F6F6;
+    font-size: 0.14rem;
+}
 @media (min-width: 320px) {
     .contain{
         width: 90%;

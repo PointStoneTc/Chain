@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        (function (_D) {
+            var _self = {};
+            _self.resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
+            _self.Html = _D.getElementsByTagName("html")[0];
+            var whdef = 100 / 1920;// 表示1920的设计图,使用100PX的默认值
+            var wW = _D.documentElement.clientWidth;// 当前窗口的宽度
+            var rem = wW * whdef;
+
+            _self.changePage = function () {
+                _self.Html.setAttribute("style", "font-size:" + rem + "px");
+                // _self.correctPx();
+            };
+            _self.changePage();
+            if (!document.addEventListener) return;
+            window.addEventListener(_self.resizeEvt, _self.changePage, false);
+            document.addEventListener('DOMContentLoaded', _self.changePage, false);
+        })(document);
+    </script>
+    <title>Starter Template for Bootstrap</title>
+    <link rel="stylesheet" href="static/plug-in/bootstrap-3.3.7-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="static/style/css/commcon.css">
+    <link rel="stylesheet" href="static/style/css/eventContent.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- [if lt IE 9]>
+    <script src="../lib/html5shiv/html5shiv.js"></script>
+    <script src="../lib/respond/respond.js"></script>
+    <![endif] -->
+</head>
+
+<body>
+<div class="header row">
+    <div class="col-md-9  header-left">
+        <span class="header_icon icon1"></span><span style="color:#999"> 市場キャップ：</span><span style="color:#FFF">USD
+        236.98B</span>
+        <span class="header_line">|</span> <span class="header_icon icon2"></span><span
+            style="color:#999"> 24時間の容積：</span><span
+            style="color:#FFF"> USD 13.2B</span>
+    </div>
+
+    <div class="header-right fr">
+        <span class="share_icon share_icon1"></span>
+        <span class="share_icon share_icon2"></span>
+        <span class="share_icon share_icon3"></span>
+        <span class="share_icon share_icon4"></span>
+    </div>
+
+</div>
+
+<nav class="navbar navbar-default nav-center">
+
+    <div class="navbar-header">
+        <div data-toggle="collapse" data-target="#navbar" style="float: left">
+            <span type="button" class="navbar-toggle collapsed icon-bar"
+                  aria-expanded="false"
+                  aria-controls="navbar">
+            </span>
+        </div>
+
+        <div class="homeBtn"><a href="home.html">首页</a></div>
+        <div class="share_btn"></div>
+        <a class="navbar-img" href="home.html">
+            <img src="static/img/header_logo.png" alt="">
+        </a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
+        <ul class="nav navbar-nav navbar-left">
+            <li><a class="" href="listNews.html?pageFlag=1">ニュース</a></li>
+            <li><a href="#">特集</a></li>
+            <li><a href="listNews.html?pageFlag=2">取引所</a></li>
+            <li><a href="#">チャート</a></li>
+            <li><a href="#">ビギナー</a></li>
+            <li><a href="listNews.html?pageFlag=5">政府・団体</a></li>
+            <li><a href="#">イベント</a></li>
+            <li><a href="listNews.html?pageFlag=4">ChainAge Channel</a></li>
+        </ul>
+        <form class="navbar-form">
+            <div class="input-group">
+                <input type="text" class="form-control">
+                <span class="input-group-btn">
+            <button class="btn btn-default" type="button">
+              <span class="icon_search" aria-hidden="true"></span>
+            </button>
+          </span>
+            </div>
+        </form>
+        <div class="nav_footer" style="display: none;">
+            <span>利用規約</span> <span>プライバシーポリシー</span> <span>運営会社情報</span>
+        </div>
+    </div>
+    <!--/.nav-collapse -->
+</nav>
+<div class="share_con">
+    <ul>
+        <li><span class="share_icon_con"><span class="share_icon share_icon1"></span></span>twitter</li>
+        <li><span class="share_icon_con"><span class="share_icon share_icon2"></span></span>youtube</li>
+        <li><span class="share_icon_con"><span class="share_icon share_icon3"></span></span>facebook</li>
+        <li><span class="share_icon_con"><span class="share_icon share_icon4"></span></span>instagram</li>
+    </ul>
+</div>
+<div class="bread_crumbs">BTC/AED BTC/ARS BTC/AUD XBT/EUR XBT/GBP</div>
+
+<div class="event_top contain row">
+    <div class="col-xs-2">
+        <div class="event_ahour">
+            <img src="static/img/chainge_editer.png" alt="">
+        </div>
+        <div class="event_top_date">2018年9月14日</div>
+    </div>
+    <div class="col-xs-10">
+        <div class="event_title">8、9月謎解きで仮想通貨GET！近大オープンキャンパスの特別企画</div>
+        <div style="margin-bottom: 10px">
+            <span class="event_address_icon"></span>
+            <span class="address_name">日本</span>
+            <span class="event_tag">标签</span>
+        </div>
+        <div>
+            <div>what is irt?</div>
+            <div class="event_top_content">了蛊惑江湖件哈伦裤哼哼唧唧回家回家后或合计合计</div>
+        </div>
+    </div>
+</div>
+
+<div class="news_container contain clearfix">
+    <div class="col-xs-12 news_con_left">
+        <article class="post_item_single">
+            <div class="post_featured" style="width: 100%">
+                <img  width="100%" height="100%">
+            </div>
+            <div class="advert_share clearfix ">
+                <span class="post_meta_itrem" style="border-right: none">
+                <span class="post_icon5"></span>
+                分享到facebook
+                </span>
+                <span class="post_meta_itrem">
+                <span class="post_icon6"></span>
+                分享到twitter
+                </span>
+            </div>
+            <div class="post_desc">
+            </div>
+            <div class="post_content">
+                <div class="calendar_event clearfix">
+                    <div class="link_btn">链接到google日历</div>
+                    <div class="export_btn">导出日历</div>
+                </div>
+
+                <div class="event_map">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div>
+                                <span></span>
+                                <span>详情</span>
+                            </div>
+                            <div>开始时间：2018年9月14日</div>
+                            <div>结束时间：2018年9月18日</div>
+                            <div>事件分类：亚洲</div>
+                            <div>事件URL：https://kindai.jp/spcial/nazo/dfgdfgd/gfgjh/fgfdg</div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div>
+                                <span></span>
+                                <span>地址</span>
+                            </div>
+                            <div>城市：大阪</div>
+                            <div>地址：近畿大学東大阪キャンパス 〒577-8502大阪府東大阪市小若江
+                                3-4-1
+                            </div>
+
+                        </div>
+                    </div>
+                    <div id="googleMap" style="width:100%;height:300px;"></div>
+                </div>
+
+                <div class="post_tags" style=" margin-bottom: 15px;">
+                    <div class="tags_title">Tags</div>
+                    <div class="tags_name">
+
+                    </div>
+                </div>
+                <div style="border-bottom: 1px dashed #707070;"></div>
+
+                <div class="post_advert" >
+
+                </div>
+                <!--<div class="advert_share ">-->
+                     <!--<span class="post_meta_itrem" style="border-right: none">-->
+                       <!--<span class="post_icon5"></span>-->
+                       <!--分享到facebook-->
+                   <!--</span>-->
+                    <!--<span class="post_meta_itrem">-->
+                       <!--<span class="post_icon6"></span>-->
+                       <!--分享到twitter-->
+                   <!--</span>-->
+                <!--</div>-->
+                <!--<div style="clear:both;"></div>-->
+                <!--&lt;!&ndash;评论&ndash;&gt;-->
+                <!--<div class="news_comment">-->
+                    <!--<div class="comment_header">-->
+                        <!--<span>2,190条评论</span>-->
+                        <!--<ul class="comment_tab">-->
+                            <!--<li><span class="comment_tab_icon"></span>切换为评论数排序</li>-->
+                            <!--<li><span class="comment_tab_icon"></span>切换为评论数排序</li>-->
+                        <!--</ul>-->
+                    <!--</div>-->
+                    <!--<ul class="comment_list">-->
+                        <!--<li>-->
+                            <!--<div class="comment_item_header clearfix">-->
+                                <!--<div><img src="static/img/new_icon1.png" class="comment_headpic"></div>-->
+                                <!--<div>ChainAge編集部</div>-->
+                                <!--<div style="float: right;color:#8C96AB">16時間 前</div>-->
+                            <!--</div>-->
+                            <!--<div class="comment_con">-->
+                                <!--両プラットフォームの経営陣は積極的にプラットフォームを拡張し、取引に-->
+                                <!--おいてより多くの選択肢とサービスを提供し、国際的にユーザーフレンドリ-->
+                                <!--ーなサービスを強化していくことを目指している。また、チェン氏の広範な-->
+                                <!--ネットワークを使って、世界中の他の地域でプラットフォームを拡大してい-->
+                            <!--</div>-->
+                            <!--<div class="comment_edit">-->
+                                <!--<span class="prise_icon"></span><span class="prise_btn">999</span>-->
+                                <!--<span class="view_icon"></span><span class="view_btn">查看对话</span>-->
+                                <!--<span class="reply_icon"></span><span class="reply_btn">回复</span>-->
+                            <!--</div>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<div class="comment_item_header clearfix">-->
+                                <!--<div><img src="static/img/new_icon1.png" class="comment_headpic"></div>-->
+                                <!--<div>ChainAge編集部</div>-->
+                                <!--<div style="color: #8C96AB;margin:0 0.08rem 0 0.23rem;">回复</div>-->
+                                <!--<div>ChainAge編集部</div>-->
+                                <!--<div style="float: right;color:#8C96AB">16時間 前</div>-->
+                            <!--</div>-->
+                            <!--<div class="comment_con">-->
+                                <!--両プラットフォームの経営陣は積極的にプラットフォームを拡張し、取引に-->
+                                <!--おいてより多くの選択肢とサービスを提供し、国際的にユーザーフレンドリ-->
+                                <!--ーなサービスを強化していくことを目指している。また、チェン氏の広範な-->
+                                <!--ネットワークを使って、世界中の他の地域でプラットフォームを拡大してい-->
+                            <!--</div>-->
+                            <!--<div class="comment_edit">-->
+                                <!--<span class="prise_icon"></span><span class="prise_btn">999</span>-->
+                                <!--<span class="view_icon"></span><span class="view_btn">查看对话</span>-->
+                                <!--<span class="reply_icon"></span><span class="reply_btn">回复</span>-->
+                            <!--</div>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<div class="comment_item_header clearfix">-->
+                                <!--<div><img src="static/img/new_icon1.png" class="comment_headpic"></div>-->
+                                <!--<div>ChainAge編集部</div>-->
+                                <!--<div style="color: #8C96AB;margin:0 0.08rem 0 0.23rem;">回复</div>-->
+                                <!--<div>ChainAge編集部</div>-->
+                                <!--<div style="float: right;color:#8C96AB">16時間 前</div>-->
+                            <!--</div>-->
+                            <!--<div class="comment_con">-->
+                                <!--両プラットフォームの経営陣は積極的にプラットフォームを拡張し、取引に-->
+                                <!--おいてより多くの選択肢とサービスを提供し、国際的にユーザーフレンドリ-->
+                                <!--ーなサービスを強化していくことを目指している。また、チェン氏の広範な-->
+                                <!--ネットワークを使って、世界中の他の地域でプラットフォームを拡大してい-->
+                            <!--</div>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                    <!--<div class="reply_con clearfix">-->
+                        <!--<input type="text" placeholder="回复Bitbucket編集部">-->
+                        <!--<div class="reply_con_btn">-->
+                            <!--<span class="cancle_btn">取消</span>-->
+                            <!--<span class="comment_btn">评论</span>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+                <!--<div class="news_contain  clearfix">-->
+
+                <!--</div>-->
+            </div>
+        </article>
+    </div>
+    <div class=" hidden-xs news_con_right">
+        <div class="post_advert_top" style="height: 3.2rem;margin-bottom: 0.32rem">
+
+        </div>
+        <div class="list-group new-list">
+            <a href="#" class="list-group-item active" style="padding:6px;background:#2257C9;">
+                热门文章
+            </a>
+        </div>
+
+        <div class="post_advert_bot" style="height: 3.2rem;">
+
+        </div>
+
+    </div>
+</div>
+
+<script type="text/html" id="news">
+    <%for(var i in data){%>
+    <a href="newsContent.html?id=<%=data[i].id%>" class="list-group-item">
+        <div class="media">
+            <div class="media-left media-middle">
+                <img class="media-object" src="<%=imgUrl(data[i])%>" style="width:0.8rem ;height:0.8rem">
+            </div>
+            <div class="media-body">
+                <div style="color:#999;"><span class="hot_icon"></span><%=year(data[i].date)%>ビュー</div>
+                <div class="hot_posts_title"><%=data[i].title%></div>
+                <div style="color:#999;"><span class="time_icon"></span><%=date(data[i].date)%></div>
+            </div>
+        </div>
+    </a>
+    <%}%>
+    <a href="#" class="list-group-item" style="height:0.4rem;text-align:center;cursor:pointer;"></a>
+
+</script>
+
+<!--底部部分-->
+<div class="footer-con">
+    <div class="footer-top hidden-xs">
+        <div>
+            <span class="share_icon share_icon1"></span>
+            <span class="share_icon share_icon2"></span>
+            <span class="share_icon share_icon3"></span>
+            <span class="share_icon share_icon4"></span>
+        </div>
+        <div style="text-align: center;margin-top: 0.1rem;">利用規約 / プライバシーポリシー / 運営会社情報</div>
+    </div>
+    <div class="footer-bottom">©2018 Worldgo.kk All Rights Reserved.</div>
+</div>
+<script src="static/plug-in/jquery/jquery-3.3.1.min.js"></script>
+<script src="static/plug-in/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+<script src="static/plug-in/jquery/jquery.i18n.properties.js"></script>
+<script src="static/plug-in/template/template.js"></script>
+
+<script src="static/js/common.js"></script>
+<script src="static/js/eventContent.js"></script>
+</body>
+
+</html>
+

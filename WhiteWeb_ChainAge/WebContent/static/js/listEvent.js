@@ -25,19 +25,23 @@ var listNewsPage = {
     topNewsShow: function (json) {
         var data = json.postMap["180"];
         // 要改标记
-        var imgUrl= data[0].featuredMedia.media_details[2].source_url;
-        if(data[2].featuredMedia){
-            imgUrl= data[2].featuredMedia.media_details[2].source_url;
+        var imgUrl= 'static/img/default_700.jpg';
+        for(var i=0;i<data.length;i++){
+            if(data[i].thumbnailMediaDetail){
+                data[i].imgUrl=data[i].thumbnailMediaDetail.source_url;
+            }else{
+                data[i].imgUrl= imgUrl;
+            }
         }
-        $(".news_banner .banner_left img").attr("src", data[0].featuredMedia.media_details[2].source_url);
+        $(".news_banner .banner_left img").attr("src", data[0].imgUrl);
         $(".news_banner .banner_left a").attr("href", './newsContent.html?id=' + data[0].id+'&cat='+Common.categories[180]);
         $(".news_banner .banner_left .new_title").text(data[0].title);
         $(".news_banner .banner_left .time_fabu").text(Common.timeonverseFunc(new Date(data[0].date).getTime()));
-        $(".news_banner .banner_r_top img").attr("src", data[1].featuredMedia.media_details[2].source_url);
+        $(".news_banner .banner_r_top img").attr("src", data[1].imgUrl);
         $(".news_banner .banner_r_top a").attr("href", './newsContent.html?id=' + data[1].id+'&cat='+Common.categories[180]);
         $(".news_banner .banner_r_top .new_title").text(data[1].title);
         $(".news_banner .banner_r_top .time_fabu").text(Common.timeonverseFunc(new Date(data[1].date).getTime()));
-        $(".news_banner .banner_r_bot img").attr("src", imgUrl );
+        $(".news_banner .banner_r_bot img").attr("src", data[2].imgUrl );
         $(".news_banner .banner_r_bot a").attr("href", './newsContent.html?id=' + data[2].id+'&cat='+Common.categories[180]);
         $(".news_banner .banner_r_bot .new_title").text(data[2].title);
         $(".news_banner .banner_r_bot .time_fabu").text(Common.timeonverseFunc(new Date(data[2].date).getTime()));
@@ -47,6 +51,15 @@ var listNewsPage = {
         $(".news_banner .banner_r_bot .new_catelage").text(Common.categories[180]);
         data[0].cat=Common.categories[180];
         // 手机端
+        template.registerFunction('imgUrl', function (valueText) {
+            var str='';
+            if (valueText.thumbnailMediaDetail ) {
+                str = valueText.thumbnailMediaDetail.source_url ;
+            } else {
+                str = imgUrl;
+            }
+            return str;
+        });
         var newsFuc = template($("#news_slider").html(), {data: data});
         $(".carousel-inner").html(newsFuc);
     },
@@ -55,9 +68,14 @@ var listNewsPage = {
         var html = '';
         for (var i = 0; i < data.length; i++) {
             var linkUrl = './newsContent.html?id=' + data[i].id+'&cat='+Common.categories[181];
+            var imgUrl= 'static/img/default_300x150.jpg';
+            if(data[i].thumbnailMediaDetail){
+                imgUrl=data[i].thumbnailMediaDetail.source_url;
+            }
+
             html += '<div class="col-sm-4 bd-card-mod">'
                 + '<a href=" ' + linkUrl + ' ">'
-                + '<div class="card-img lazy" style="background-image:url(' + data[i].featuredMedia.media_details[7].source_url + ') " ></div>'
+                + '<div class="card-img lazy" style="background-image:url(' + imgUrl+ ') " ></div>'
                 + '<div class="bg"></div>'
                 + '<div class="news_title">' + data[i].title + '</div>'
                 + '</a>'
@@ -65,7 +83,6 @@ var listNewsPage = {
         }
         $(".news_show .news_show_contain").html(html);
     },
-
     // 获取排行
     getRankingData: function getData(categories) {
         var url = 'http://chainage.cc/wp-json/wp/v2/posts?per_page=3&order=desc&orderby=date&categories=' + categories;

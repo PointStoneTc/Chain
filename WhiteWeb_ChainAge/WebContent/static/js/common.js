@@ -3,8 +3,8 @@ var Common = {
     newCounts: [],
     users: [],
     userImgs: [],
-    eventInit:function(){
-        $("body").on("click",".share_btn",function(){
+    eventInit: function () {
+        $("body").on("click", ".share_btn", function () {
             $(".share_con").toggle();
         });
     },
@@ -37,7 +37,7 @@ var Common = {
             error: function () {
             },
             success: function (data) {
-                if (data ) {
+                if (data) {
                     if (callback) {
                         callback(data, param);
                     }
@@ -68,7 +68,7 @@ var Common = {
             }
         });
     },
-    getUsers: function () {
+    getUsers: function (callback) {
         var url = 'http://chainage.cc/wp-json/wp/v2/users';
         var self = this;
         $.ajax({
@@ -85,6 +85,9 @@ var Common = {
                         var d = self.userImgs[id] = data[i].avatar_urls["96"];
                         self.users.push(c);
                         self.userImgs.push(d);
+                    }
+                    if(callback){
+                        callback();
                     }
                 }
             }
@@ -174,7 +177,7 @@ var Common = {
         });
     },
     // 获取热门文章
-    getHotPostsData:function(callback){
+    getHotPostsData: function (callback) {
         var url = 'http://data.chainage.jp/blockchain/data/rightPopular';
         $.ajax({
             type: 'GET',
@@ -190,8 +193,8 @@ var Common = {
         });
     },
     // 获取图片
-    getImgData:function(imgArr,callback){
-        var url = 'http://chainage.cc/wp-json/wp/v2/media?per_page='+imgArr.length+'&parent='+imgArr.join(',');
+    getImgData: function (imgArr, callback) {
+        var url = 'http://chainage.cc/wp-json/wp/v2/media?per_page=' + imgArr.length + '&parent=' + imgArr.join(',');
         $.ajax({
             type: 'GET',
             url: url,
@@ -207,11 +210,52 @@ var Common = {
 
     },
     dataFormat: function (shijianchuo) {
-      //shijianchuo是整数，否则要parseInt转换
+        //shijianchuo是整数，否则要parseInt转换
         var time = new Date(shijianchuo);
         var m = time.getMonth() + 1;
         var d = time.getDate();
-        return  m + '月' + d+'日' ;
+        return m + '月' + d + '日';
+    },
+    // 查找数组中属性值的对象
+    lookUp: function (name, arr) {
+        for (var i in arr)
+            if (arr[i].name == name) {
+                return arr[i].source_url;
+            }
+    },
+    // 查找数组中属性值图片比例相似的对象
+    imgLookUp: function (arr,name,value ) {
+        for (var i in arr)
+        if (arr[i][name] == value) {
+            return arr[i];
+        }
+    },
+    // 获取相似比例图片
+    getSimilarImg:function(arr,scale){
+        var obj = [];
+        for (var i in arr) {
+            obj.push([arr[i],i]);
+        };
+        let myShe=obj.sort(function(a, b) {
+            return Math.abs(a[0].width/a[0].height - scale) - Math.abs(b[0].width/b[0].height - scale);
+        })[0][0];
+        return myShe.source_url;
+    },
+    // 获取相似宽度图片
+    getSimilarWidthImg:function(arr,scale){
+        var obj = [];
+        for (var i in arr) {
+            obj.push([arr[i],i]);
+        };
+
+        console.log(obj);
+        let myShe=obj.sort(function(a, b) {
+            return Math.abs(a[0].width - scale) - Math.abs(b[0].width - scale);
+        })[0][0];
+
+        return myShe.source_url;
     }
+
 }
+
 Common.eventInit();

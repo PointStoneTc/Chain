@@ -124,14 +124,14 @@
             padding-bottom: 0.05rem;
         }
 
-        .government_con .news_list div {
+        .government_con .news_list .news_list_item {
             font-size: 0.21rem;
             color: #333333;
             padding: 0.25rem 0;
             border-bottom: 1px dashed #DDDDDD;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            /*white-space: nowrap;*/
+            /*overflow: hidden;*/
+            /*text-overflow: ellipsis;*/
         }
 
         .government_con .news_list_date {
@@ -186,9 +186,14 @@
             .government_con .nes_year_data{
                 font-size: 0.5rem;
             }
-            .government_con .news_list div{
+
+            .government_con .news_list .news_list_item {
                 font-size: 0.76rem;
                 padding: 0.35rem 0;
+                border-bottom: 1px dashed #DDDDDD;
+                white-space: unset;
+                overflow: initial;
+                text-overflow: unset;
             }
             .advert{
                 height: 8rem !important;
@@ -358,7 +363,7 @@
 </div>
 
 <div class="news_contain news_list_con  clearfix">
-    <div class="hidden-xs col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 news_container">
+    <div class="hidden-xs col-sm-10 col-sm-offset-1 col-lg-8 col-lg-offset-2 news_container">
 
     </div>
     <div class="mobile_show">
@@ -412,9 +417,16 @@
     <div class="nes_year_data">2018</div>
     <div class="news_list">
         <%for(var i in data){%>
-        <div><a href="<%=data[i].href%>"><span
-                class="news_list_date"><%=data[i].publishDate%></span><%=data[i].title%></span>
-        </a></div>
+        <div class="news_list_item clearfix">
+            <a href="<%=data[i].href%>">
+                <div class="news_list_date fl">
+                    <%=data[i].publishDate%>
+                </div>
+                <div class="fl">
+                <%=data[i].title%>
+                </div>
+             </a>
+        </div>
         <%}%>
     </div>
 </script>

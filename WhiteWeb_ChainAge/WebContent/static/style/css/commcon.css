@@ -382,6 +382,7 @@ img[src=""], img:not([src]) {
         padding: 1rem 0;
         height: auto;
         line-height: initial;
+        font-size: 0.66rem;
     }
 
 }

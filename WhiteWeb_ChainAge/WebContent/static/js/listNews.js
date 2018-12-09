@@ -67,19 +67,23 @@ var listNewsPage = {
     topNewsShow: function (json) {
         var data = json.postMap["180"];
         // 要改标记
-        var imgUrl= data[0].featuredMedia.media_details[2].source_url;
-        if(data[2].featuredMedia){
-            imgUrl= data[2].featuredMedia.media_details[2].source_url;
+        var imgUrl= 'static/img/default_700.jpg';
+        for(var i=0;i<data.length;i++){
+            if(data[i].thumbnailMediaDetail){
+                data[i].imgUrl=data[i].thumbnailMediaDetail.source_url;
+            }else{
+                data[i].imgUrl= imgUrl;
+            }
         }
-        $(".news_banner .banner_left img").attr("src", data[0].featuredMedia.media_details[2].source_url);
+        $(".news_banner .banner_left img").attr("src", data[0].imgUrl);
         $(".news_banner .banner_left a").attr("href", './newsContent.html?id=' + data[0].id+'&cat='+Common.categories[180]);
         $(".news_banner .banner_left .new_title").text(data[0].title);
         $(".news_banner .banner_left .time_fabu").text(Common.timeonverseFunc(new Date(data[0].date).getTime()));
-        $(".news_banner .banner_r_top img").attr("src", data[1].featuredMedia.media_details[2].source_url);
+        $(".news_banner .banner_r_top img").attr("src", data[1].imgUrl);
         $(".news_banner .banner_r_top a").attr("href", './newsContent.html?id=' + data[1].id+'&cat='+Common.categories[180]);
         $(".news_banner .banner_r_top .new_title").text(data[1].title);
         $(".news_banner .banner_r_top .time_fabu").text(Common.timeonverseFunc(new Date(data[1].date).getTime()));
-        $(".news_banner .banner_r_bot img").attr("src", imgUrl );
+        $(".news_banner .banner_r_bot img").attr("src", data[2].imgUrl );
         $(".news_banner .banner_r_bot a").attr("href", './newsContent.html?id=' + data[2].id+'&cat='+Common.categories[180]);
         $(".news_banner .banner_r_bot .new_title").text(data[2].title);
         $(".news_banner .banner_r_bot .time_fabu").text(Common.timeonverseFunc(new Date(data[2].date).getTime()));
@@ -89,6 +93,15 @@ var listNewsPage = {
         $(".news_banner .banner_r_bot .new_catelage").text(Common.categories[180]);
         data[0].cat=Common.categories[180];
         // 手机端
+        template.registerFunction('imgUrl', function (valueText) {
+            var str='';
+            if (valueText.thumbnailMediaDetail ) {
+                str = valueText.thumbnailMediaDetail.source_url ;
+            } else {
+                str = imgUrl;
+            }
+            return str;
+        });
         var newsFuc = template($("#news_slider").html(), {data: data});
         $(".carousel-inner").html(newsFuc);
     },
@@ -97,9 +110,14 @@ var listNewsPage = {
         var html = '';
         for (var i = 0; i < data.length; i++) {
             var linkUrl = './newsContent.html?id=' + data[i].id+'&cat='+Common.categories[181];
+            var imgUrl= 'static/img/default_300x150.jpg';
+            if(data[i].thumbnailMediaDetail){
+                imgUrl=data[i].thumbnailMediaDetail.source_url;
+            }
+
             html += '<div class="col-sm-4 bd-card-mod">'
                 + '<a href=" ' + linkUrl + ' ">'
-                + '<div class="card-img lazy" style="background-image:url(' + data[i].featuredMedia.media_details[7].source_url + ') " ></div>'
+                + '<div class="card-img lazy" style="background-image:url(' + imgUrl+ ') " ></div>'
                 + '<div class="bg"></div>'
                 + '<div class="news_title">' + data[i].title + '</div>'
                 + '</a>'
@@ -202,15 +220,11 @@ var listNewsPage = {
             for(var i=0;i<data.length;i++){
                 imgId.push(data[i].id);
             }
-
-            listNewsPage.getImgData(imgId,function (imgUrl) {
-                var htm='',htm2='';
+            if ($(".news_mobile_container").is(':hidden')) {//pc端
+                var htm='';
                 $('.news_list_con .news_container').html('');
                 for (var i = 0; i < data.length; i++) {
-                    var picUrl=imgUrl[i].source_url;
-                    if(imgUrl[i].media_details.sizes["hoverex-thumb-extra"]){
-                        picUrl=imgUrl[i].media_details.sizes["hoverex-thumb-extra"].source_url;
-                    }
+
                     htm = '<div class="col-md-4 benefit_box"><a href="'+ './newsContent.html?id=' + data[i].id+'&cat='+Common.categories[param.categories]+'">'
                         + '<div class="benefit_box_con">'
                         + '<p class="p20 benefit_box_tit">'+Common.categories[param.categories]+'</p>'
@@ -221,38 +235,55 @@ var listNewsPage = {
                         +'<div class="time_right"><span class="new_list_time"></span>'
                         +'<span>'+Common.timeonverseFunc(new Date(data[1].date))+'</span></div>'
                         + '</p><div style="clear: both"></div>'
-                        + '<div class="benefit_box_img" style="background-image:url('+picUrl+') "></div>'
+                        + '<div class="benefit_box_img" ></div>'
                         + '<div class="p20 benefit_box_com news_dec">'+data[i].excerpt.rendered+'</div>'
                         + '</div>'
                         + '</a></div>';
 
-
                     $('.news_list_con .news_container').append(htm);
                 }
-                listNewsPage.loadNewsDataData(data,imgUrl,param);
-
-            });
-
-            if(callback){
-                callback(param);
+                if(callback){
+                    callback(param);
+                }
+            }else {
+                listNewsPage.loadNewsDataData(data,param);
             }
+            data.forEach(function(value,index){
+                var arr=[];
+                arr.push(value.id);
+                listNewsPage.getImgData(arr,function (imgUrl) {
+                    var picUrl="static/img/default_300x150.jpg";
+                    if( imgUrl && imgUrl[0] && imgUrl[0].media_details){
+                        picUrl=Common.getSimilarImg(imgUrl[0].media_details.sizes,2.1);
+                    }
+                    $(".benefit_box_img").eq(index).css("background-image","url(" + picUrl + ")");
+                })
+            })
+            // listNewsPage.getImgData(imgId,function (imgUrl) {
+            //     $(".benefit_box_img").each(function (i,a) {
+            //         var postImgArr=Common.imgLookUp(imgUrl,"post", data[i].id);
+            //         var picUrl="static/img/default_300x150.jpg";
+            //         if(postImgArr && postImgArr.media_details && postImgArr.media_details.sizes){
+            //             picUrl=Common.getSimilarImg(postImgArr.media_details.sizes,2.1);
+            //         }
+            //         $(this).css("background-image","url(" + picUrl + ")")
+            // });
+            // });
+
         });
     },
+
     // 加载新闻数据
-    loadNewsDataData: function (data,imgUrl,param) {
+    loadNewsDataData: function (data,param) {
         var more = '<div class="more_btn">加载更多</div>';
         var htm = '';
         if (data.length > 0) {
             for (var i = 0; i < data.length; i++) {
-                var picUrl=imgUrl[i].source_url;
-                if(imgUrl[i].media_details.sizes["hoverex-thumb-extra"]){
-                    picUrl=imgUrl[i].media_details.sizes["hoverex-thumb-extra"].source_url;
-                }
                 htm = '<div style=" border-bottom: 1px dashed #CECECE;margin-bottom: 25px;">'
                     + '<a href="newsContent.html?id=' + data[i].id + '&cat='+Common.categories[param.categories]+'" class="new_mobile_con">'
                     + '<div class="media">'
                     + '<div class="media-left media-middle">'
-                    + '<div class="benefit_box_img" style="background-image:url(' + picUrl + ') "></div>'
+                    + '<div class="benefit_box_img" ></div>'
                     + '</div>'
                     + '<div class="media-body">'
                     + '<div class="hot_posts_title">' + data[i].title.rendered + '</div>'
@@ -331,7 +362,7 @@ var listNewsPage = {
     // 获取广告
     getAdvertData:function(){
         var param = {
-            categories: 99,
+            categories: 190,
             per_page: 3,
             order: 'desc',
             orderby: 'date'
@@ -355,12 +386,12 @@ var listNewsPage = {
             if(data){
                 var arr=[];
                 arr.push(data[0].id);
-                listNewsPage.getImgData(arr,function(json){
-                    var imgUrl='static/img/aa.png';
-                    if(json.length>0 && json[0].source_url){
-                        imgUrl=json[0].source_url;
+                listNewsPage.getImgData(arr,function(imgUrl){
+                    var picUrl="static/img/default_700.jpg";
+                    if( imgUrl && imgUrl[0] && imgUrl[0].media_details){
+                        picUrl=Common.getSimilarImg(imgUrl[0].media_details.sizes,3.7);
                     }
-                    var html='<a href="newsContent.html?id='+data[0].id+'&cat='+Common.categories[191]+'" ><img src="'+imgUrl+'" width="100%" height="100%"></a>';
+                    var html='<a href="newsContent.html?id='+data[0].id+'&cat='+Common.categories[191]+'" ><img src="'+picUrl+'" width="100%" height="100%"></a>';
                     $(".advert").html(html);
                 });
 

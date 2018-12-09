@@ -485,7 +485,7 @@
                 <div class="event_date">
                     <div style="font-size: 0.12rem;line-height: 11px">2018</div>
                     <div style="font-size: 0.17rem">9月</div>
-                    <div style="font-size: 0.13rem;line-height: 11px'">17日</div>
+                    <div style="font-size: 0.13rem;line-height: 11px">17日</div>
                 </div>
                 <div class="event-des clearfix">
                     <div class="col-xs-3">
@@ -539,14 +539,14 @@
 <script type="text/html" id="news_slider">
     <div class="item active">
         <a href="newsContent.html?id=<%=data[0].id%>&cat=<%=data[0].cat%>">
-            <img src="<%=data[0].featuredMedia.media_details[7].source_url%>">
+            <img src="<%=imgUrl(data[0])%>">
             <div class="bg" style="right: 0.02rem;"></div>
             <div class="carousel-caption"><%=data[0].title%></div>
         </a>
     </div>
     <div class="item">
         <a href="newsContent.html?id=<%=data[1].id%>&cat=<%=data[0].cat%>">
-            <img src="<%=data[1].featuredMedia.media_details[7].source_url%>">
+            <img src="<%=imgUrl(data[1])%>">
             <div class="bg" style="right: 0.02rem;"></div>
             <div class="carousel-caption"><%=data[1].title%></div>
         </a>
@@ -554,7 +554,7 @@
     <div class="item">
         <a href="newsContent.html?id=<%=data[2].id%>&cat=<%=data[0].cat%>">
             <!--要改 标记-->
-            <img src="<%=data[2].featuredMedia.media_details[7].source_url%>">
+            <img src="<%=imgUrl(data[2])%>">
             <div class="bg" style="right: 0.02rem;"></div>
             <div class="carousel-caption"><%=data[2].title%></div>
         </a>
@@ -565,6 +565,7 @@
 <script src="static/plug-in/template/template.js"></script>
 <script src="static/plug-in/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
 <script src="static/plug-in/jquery/jquery.pagination.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAt9gAn_CAQUUIn0bmmpApW2WfX3jsGf04&callback=initMap" async defer></script>
 <script src="static/js/common.js"></script>
 <script src="static/js/listEvent.js"></script>
 </body>

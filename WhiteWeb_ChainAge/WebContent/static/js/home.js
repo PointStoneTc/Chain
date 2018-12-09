@@ -1,7 +1,7 @@
 function loadProperties(type) {
     jQuery.i18n.properties({
         name: 'strings', // 资源文件名称
-        path: '../i18n/', // 资源文件所在目录路径
+        path: 'static/i18n/', // 资源文件所在目录路径
         mode: 'map', // 模式：变量或 Map
         language: type, // 对应的语言
         cache: false,
@@ -44,19 +44,23 @@ var homePage = {
     topNewsShow: function (json) {
         var data = json.postMap["180"];
         // 要改标记
-        var imgUrl= data[0].featuredMedia.media_details[2].source_url;
-        if(data[2].featuredMedia){
-           imgUrl= data[2].featuredMedia.media_details[2].source_url;
+        var imgUrl= 'static/img/default_700.jpg';
+        for(var i=0;i<data.length;i++){
+            if(data[i].thumbnailMediaDetail){
+                data[i].imgUrl=data[i].thumbnailMediaDetail.source_url;
+            }else{
+                data[i].imgUrl= imgUrl;
+            }
         }
-        $(".news_banner .banner_left img").attr("src", data[0].featuredMedia.media_details[2].source_url);
+        $(".news_banner .banner_left img").attr("src", data[0].imgUrl);
         $(".news_banner .banner_left a").attr("href", './newsContent.html?id=' + data[0].id+'&cat='+Common.categories[180]);
         $(".news_banner .banner_left .new_title").text(data[0].title);
         $(".news_banner .banner_left .time_fabu").text(Common.timeonverseFunc(new Date(data[0].date).getTime()));
-        $(".news_banner .banner_r_top img").attr("src", data[1].featuredMedia.media_details[2].source_url);
+        $(".news_banner .banner_r_top img").attr("src", data[1].imgUrl);
         $(".news_banner .banner_r_top a").attr("href", './newsContent.html?id=' + data[1].id+'&cat='+Common.categories[180]);
         $(".news_banner .banner_r_top .new_title").text(data[1].title);
         $(".news_banner .banner_r_top .time_fabu").text(Common.timeonverseFunc(new Date(data[1].date).getTime()));
-        $(".news_banner .banner_r_bot img").attr("src", imgUrl );
+        $(".news_banner .banner_r_bot img").attr("src", data[2].imgUrl );
         $(".news_banner .banner_r_bot a").attr("href", './newsContent.html?id=' + data[2].id+'&cat='+Common.categories[180]);
         $(".news_banner .banner_r_bot .new_title").text(data[2].title);
         $(".news_banner .banner_r_bot .time_fabu").text(Common.timeonverseFunc(new Date(data[2].date).getTime()));
@@ -66,8 +70,37 @@ var homePage = {
         $(".news_banner .banner_r_bot .new_catelage").text(Common.categories[180]);
         data[0].cat=Common.categories[180];
         // 手机端
+        template.registerFunction('imgUrl', function (valueText) {
+            var str='';
+            if (valueText.thumbnailMediaDetail ) {
+                str = valueText.thumbnailMediaDetail.source_url ;
+            } else {
+                str = imgUrl;
+            }
+            return str;
+        });
         var newsFuc = template($("#news_slider").html(), {data: data});
         $(".carousel-inner").html(newsFuc);
+    },
+   // 图片新闻
+    imgNewsShow:function(data){
+        var html = '';
+        for (var i = 0; i < data.length; i++) {
+            var linkUrl = './newsContent.html?id=' + data[i].id+'&cat='+Common.categories[181];
+            var imgUrl= 'static/img/default_300x150.jpg';
+            if(data[i].thumbnailMediaDetail){
+                imgUrl=data[i].thumbnailMediaDetail.source_url;
+            }
+
+            html += '<div class="col-sm-4 bd-card-mod">'
+                + '<a href=" ' + linkUrl + ' ">'
+                + '<div class="card-img lazy" style="background-image:url(' + imgUrl+ ') " ></div>'
+                + '<div class="bg"></div>'
+                + '<div class="news_title">' + data[i].title + '</div>'
+                + '</a>'
+                + '</div>';
+        }
+        $(".news_show .news_show_contain").html(html);
     },
     // 获取排行
     getRankingData: function getData(categories) {
@@ -97,29 +130,23 @@ var homePage = {
         //     }
         // });
     },
-    // 图片新闻
-    imgNewsShow:function(data){
-        var html = '';
-        for (var i = 0; i < data.length; i++) {
-            var linkUrl = './newsContent.html?id=' + data[i].id+'&cat='+Common.categories[181];
-            html += '<div class="col-sm-4 bd-card-mod">'
-                + '<a href=" ' + linkUrl + ' ">'
-                + '<div class="card-img lazy" style="background-image:url(' + data[i].featuredMedia.media_details[7].source_url + ') " ></div>'
-                + '<div class="bg"></div>'
-                + '<div class="news_title">' + data[i].title + '</div>'
-                + '</a>'
-                + '</div>';
-        }
-        $(".news_show .news_show_contain").html(html);
-    },
+
     // 要修改
     getAdvertData: function (data) {
         var data1=data.postMap["186"];
         var data2=data.postMap["187"];
-         var html = '<a href="newsContent.html?id=' + data1[0].id + '&cat='+Common.categories[186]+'" ><img src="' + data.postMap["99"][3].featuredMedia.media_details[5].source_url + '" width="100%" height="100%"></a>';
+        var imgUrl1= 'static/img/default_700.jpg';
+        var imgUrl2= 'static/img/default_700.jpg';
+        if(data1[0].thumbnailMediaDetail){
+            imgUrl1=data1[0].thumbnailMediaDetail.source_url;
+        }
+        if(data2[0].thumbnailMediaDetail){
+            imgUrl2=data2[0].thumbnailMediaDetail.source_url;
+        }
+         var html = '<a href="newsContent.html?id=' + data1[0].id + '&cat='+Common.categories[186]+'" ><img src="' + imgUrl1+ '" width="100%" height="100%"></a>';
          $(".advert1").html(html);
 
-         var html = '<a href="newsContent.html?id=' + data2[0].id + '&cat='+Common.categories[187]+'"><img src="' + data.postMap["99"][3].featuredMedia.media_details[5].source_url + '" width="100%" height="100%"></a>';
+         var html = '<a href="newsContent.html?id=' + data2[0].id + '&cat='+Common.categories[187]+'"><img src="' + imgUrl2 + '" width="100%" height="100%"></a>';
          $(".advert2").html(html);
 
     },
@@ -129,9 +156,9 @@ var homePage = {
             for (var i = 0; i < 6; i++) {
                 var title = data[i].title;
                 var topicurl = data[i].author.avatar_urls["24"];
-                var imgUrl="static/img/aa.png";
-                if(data[i].featuredMedia){
-                    imgUrl = data[i].featuredMedia.media_details[1].source_url;
+                var imgUrl= 'static/img/default_300x150.jpg';
+                if(data[i].thumbnailMediaDetail){
+                    imgUrl=data[i].thumbnailMediaDetail.source_url;
                 }
                 htm = '<div class="col-md-4 benefit_box"><a href="' + './newsContent.html?id=' + data[i].id + '&cat='+Common.categories[categories]+'">'
                     + '<div class="benefit_box_con">'
@@ -158,9 +185,9 @@ var homePage = {
             for (var i = 0; i < 6; i++) {
                 var title = data[i].title;
                 var topicurl = data[i].author.avatar_urls["24"];
-                var imgUrl="static/img/aa.png";
-                if(data[i].featuredMedia){
-                    imgUrl = data[i].featuredMedia.media_details[1].source_url;
+                var imgUrl= 'static/img/default_300x150.jpg';
+                if(data[i].thumbnailMediaDetail){
+                    imgUrl=data[i].thumbnailMediaDetail.source_url;
                 }
 
                 htm = '<div style=" border-bottom: 1px dashed #CECECE;margin-bottom: 25px;">'

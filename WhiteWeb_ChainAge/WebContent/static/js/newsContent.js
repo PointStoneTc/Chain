@@ -4,14 +4,18 @@
         init:function () {
             this.id=Common.getQueryString("id");
             Common.getCategoreType();
-            Common.getUsers();
+
             this.postsShow();
             // 文章图片
-            Common.getImgData([this.id,5495,6176,6178],function(data){
-                $(".post_featured img").attr("src",data[0].source_url);
-                // 广告
-                newsContent.getAdvertData(data);
+            Common.getImgData([this.id],function(imgUrl){
+                var picUrl="static/img/default_700.jpg";
+                if( imgUrl && imgUrl[0] && imgUrl[0].media_details){
+                    picUrl=Common.getSimilarImg(imgUrl[0].media_details.sizes,2.8);
+                }
+                $(".post_featured img").attr("src",picUrl);
+
             });
+            newsContent.getAdvertData();
             // 热门文章
             this.getHotPostsData();
             // 评论下方新闻
@@ -27,11 +31,13 @@
                 }else{
                     $(".post_header .post_category").text(Common.categories[data.categories[0]]);
                 }
-
+                Common.getUsers(function () {
+                    $(".post_icon1 img").attr("src",Common.userImgs[data.author]);
+                    $(".post_autor").text(Common.users[data.author]);
+                });
                 $(".post_header .post_title").text(data.title.rendered);
                 $(".post_desc").html(data.content.rendered);
-                $(".post_icon1 img").attr("src",Common.userImgs[data.author]);
-                $(".post_autor").text(Common.users[data.author]);
+
                 $(".post_meta_time").text(Common.timeonverseFunc(new Date(data.date).getTime(),1));
                 $(".post_read_time").text(parseInt(data.content.rendered.length/400));
                 $(".post_count").text(data._links["version-history"][0].count);
@@ -50,9 +56,9 @@
                 return JSON.parse(valueText).rendered;
             });
             template.registerFunction('imgUrl', function (valueText) {
-                var imgUrl="static/img/aa.png";
-                if(valueText.featuredMedia){
-                    imgUrl = valueText.featuredMedia.media_details[1].source_url;
+                var imgUrl= 'static/img/default_300.jpg';
+                if(valueText.thumbnailMediaDetail){
+                    imgUrl=valueText.thumbnailMediaDetail.source_url;
                 }
                 return imgUrl;
             });
@@ -109,8 +115,16 @@
 
             Common.getNewsData(param1,function(data){
                 if(data){
-                  var html='<a href="newsContent.html?id='+data[0].id+'&cat='+Common.categories[192]+'" ><img src="'+imgData[1].source_url+'" width="100%" height="100%" style="border-radius: 5px"></a>';
+                    var picUrl="static/img/default_700.jpg";
+
+                  var html='<a href="newsContent.html?id='+data[0].id+'&cat='+Common.categories[192]+'" ><img  width="100%" height="100%" style="border-radius: 5px"></a>';
                   $(".post_advert").append(html);
+                    Common.getImgData([5495], function (imgUrl) {
+                        if (imgUrl && imgUrl[0] && imgUrl[0].media_details) {
+                            picUrl = Common.getSimilarImg(imgUrl[0].media_details.sizes, 2.8);
+                        }
+                        $(".post_advert img").attr("src", picUrl)
+                    });
                 }
             });
 
@@ -121,10 +135,18 @@
                 orderby: 'date',
                 status: 'publish'
             };
+
             Common.getNewsData(param2,function(data){
                 if(data){
-                    var html='<a href="newsContent.html?id='+data[0].id+'&cat='+Common.categories[193]+'" ><img src="'+imgData[2].media_details.sizes["hoverex-thumb-extra"].source_url+'" width="100%" height="100%" ></a>';
+                    var picUrl="static/img/defalut_300.jpg";
+                    var html='<a href="newsContent.html?id='+data[0].id+'&cat='+Common.categories[193]+'" ><img  width="100%" height="100%" ></a>';
                     $(".post_advert_top").append(html);
+                    Common.getImgData([6176], function (imgUrl) {
+                        if (imgUrl && imgUrl[0] && imgUrl[0].media_details) {
+                            picUrl = Common.getSimilarWidthImg(imgUrl[0].media_details.sizes, 300);
+                        }
+                        $(".post_advert_top img").attr("src", picUrl)
+                    });
                 }
             });
 
@@ -138,8 +160,15 @@
 
             Common.getNewsData(param3,function(data){
                 if(data){
-                    var html='<a href="newsContent.html?id='+data[0].id+'&cat='+Common.categories[194]+'" ><img src="'+imgData[3].media_details.sizes["hoverex-thumb-extra"].source_url+'" width="100%" height="100%" ></a>';
+                    var picUrl="static/img/defalut_300.jpg";
+                    var html='<a href="newsContent.html?id='+data[0].id+'&cat='+Common.categories[194]+'" ><img width="100%" height="100%" ></a>';
                     $(".post_advert_bot").append(html);
+                    Common.getImgData([6178], function (imgUrl) {
+                        if (imgUrl && imgUrl[0] && imgUrl[0].media_details) {
+                            picUrl = Common.getSimilarWidthImg(imgUrl[0].media_details.sizes, 300);
+                        }
+                        $(".post_advert_bot img").attr("src", picUrl)
+                    });
                 }
             });
 
