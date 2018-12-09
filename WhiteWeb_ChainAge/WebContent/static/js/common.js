@@ -224,10 +224,11 @@ var Common = {
             }
     },
     // 查找数组中属性值图片比例相似的对象
-    imgLookUp: function (arr,name,value ) {
-        for (var i in arr)
-        if (arr[i][name] == value) {
-            return arr[i];
+    coinLookUp: function (arr,value ) {
+        for (var i=0;i<arr.length;i++ ) {
+            if (arr[i].specificRate.baseSymbol == value) {
+                return arr[i];
+            }
         }
     },
     // 获取相似比例图片

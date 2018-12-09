@@ -404,15 +404,16 @@
 <script type="text/html" id="message_show">
     <%for(var i in data){%>
     <li>
-        <div><span>Bitcoin </span><span style="color: #ccc;">| BTC</span></div>
-        <div class="price">$7154.32</div>
+        <div><span><%=data[i].specificRate.baseName%> </span><span style="color: #ccc;">| <%=data[i].specificRate.baseSymbol%></span></div>
+        <div class="price"><%=price(data[i])%></div>
         <div>
-            <span class="markIcon <%=percent(data[i].persion)%>"></span>
-            <span>1.34%</span>
+            <span class="markIcon <%=percent(data[i])%>"></span>
+            <span><%=percentValue(data[i])%></span>
         </div>
     </li>
     <%}%>
 </script>
+
 <script type="text/html" id="governmentShow">
     <div class="nes_year_data">2018</div>
     <div class="news_list">

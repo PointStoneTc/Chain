@@ -128,7 +128,7 @@ var listNewsPage = {
 
     // 获取排行
     getRankingData: function getData(categories) {
-        var url = 'http://chainage.cc/wp-json/wp/v2/posts?per_page=3&order=desc&orderby=date&categories=' + categories;
+        var url = 'http://data.chainage.jp/caweb/cc/currencyApiController.do?assetTrend';
         $.ajax({
             type: 'GET',
             url: url,
@@ -137,16 +137,30 @@ var listNewsPage = {
             },
             success: function (data) {
                 if (data) {
-                    var data = [{persion: "20%"}, {persion: "20%"}, {persion: "-20%"}, {persion: "-20%"}, {persion: "20%"}, {persion: "20%"}];
-                    // 注册 template方法
+                    var coinData=JSON.parse(data);
+                    // var data= JSON.parse(data).splice(0,6);
+                    var data=[];
+                    data.push(Common.coinLookUp(coinData,'BTC'))
+                    data.push(Common.coinLookUp(coinData,'ETH'))
+                    data.push(Common.coinLookUp(coinData,'LTC'))
+                    data.push(Common.coinLookUp(coinData,'XRP'))
+                    data.push(Common.coinLookUp(coinData,'BCH'))
+                    data.push(Common.coinLookUp(coinData,'ETC'))
+                    // 注册关注 template方法
+                    template.registerFunction('price', function (valueText) {
+                        return valueText.specificRate.price.toFixed(2);
+                    });
                     template.registerFunction('percent', function (valueText) {
                         var str = "up_color";
-                        if (parseInt(valueText) >= 0) {
+                        if (parseInt(valueText.specificRate.percentChange24h) >= 0) {
                             str = "up_color";
                         } else {
                             str = "down_color";
                         }
                         return str;
+                    });
+                    template.registerFunction('percentValue', function (valueText) {
+                        return valueText.specificRate.percentChange24h.toFixed(2)+'%';
                     });
                     var newsFuc = template($("#message_show").html(), {data: data});
                     $(".message_show ul").html(newsFuc);
@@ -154,6 +168,7 @@ var listNewsPage = {
             }
         });
     },
+
     eventInit:function(){
         $('.new_tabs li').click(function() {
             $('.news_list_con .news_mobile_container').html('');
