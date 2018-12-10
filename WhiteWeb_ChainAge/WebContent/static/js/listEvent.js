@@ -136,7 +136,7 @@ var listNewsPage = {
         });
     },
     getEventData:function(){
-        var url = 'http://data.chainage.jp/blockchain/data/rightPopular';
+        var url = 'http://chainage.cc/wp-json/tribe/events/v1/events';
         $.ajax({
             type: 'GET',
             url: url,
@@ -146,7 +146,7 @@ var listNewsPage = {
             success: function (data) {
                 if (data) {
                     var html='';
-                    for(var i=0;i<data.list.length;i++){
+                    for(var i=0;i<data.length;i++){
 
                         html='<div class="event_item col-xs-12 col-sm-4">'
                             +'<a href="eventContent.html">'

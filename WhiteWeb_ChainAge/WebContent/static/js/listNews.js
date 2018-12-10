@@ -238,9 +238,13 @@ var listNewsPage = {
             if ($(".news_mobile_container").is(':hidden')) {//pc端
                 var htm='';
                 $('.news_list_con .news_container').html('');
+                var categories=param.categories
                 for (var i = 0; i < data.length; i++) {
-
-                    htm = '<div class="col-md-4 benefit_box"><a href="'+ './newsContent.html?id=' + data[i].id+'&cat='+Common.categories[param.categories]+'">'
+                    var linkUrl='newsContent.html?id=' + data[i].id+'&cat='+Common.categories[param.categories];
+                    if(categories==147){
+                        linkUrl='chanelContent.html?id=' + data[i].id+'&cat='+Common.categories[param.categories];
+                    }
+                    htm = '<div class="col-md-4 benefit_box"><a href="'+linkUrl+'">'
                         + '<div class="benefit_box_con">'
                         + '<p class="p20 benefit_box_tit">'+Common.categories[param.categories]+'</p>'
                         + '<p class="p20 benefit_box_hea">'+data[i].title.rendered+'</p>'
