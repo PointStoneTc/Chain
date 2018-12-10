@@ -55,6 +55,13 @@ var listNewsPage = {
             Common.getNewsData({per_page:30,order:'desc',orderby:'date',categories:99},function(data){
                 listNewsPage.getGovernmentGroup(data);
             });
+        }else if(this.pageFlag==6){
+            $(".news_title").text("特集");
+            $(".new_tabs").remove();
+            // 请求
+            this.getNewsListData({per_page:12,order:'desc',orderby:'date',categories:184},function(param){
+                listNewsPage.setPagination(param);
+            });
         }else{
             $(".news_title").text("ニュース");
             // 请求
@@ -213,6 +220,14 @@ var listNewsPage = {
                 });
             }else if(listNewsPage.pageFlag==5){
 
+            }else if(listNewsPage.pageFlag==6){
+                var categories=184;
+                // if($(this).text()=="国内"){
+                //     categories=195;
+                // }else{
+                //     categories=196;
+                // }
+                listNewsPage.getNewsListData({per_page:12,order:'desc',orderby:'date',categories:categories});
             }else{
                 var categories=188;
                 if($(this).text()=="国内"){
