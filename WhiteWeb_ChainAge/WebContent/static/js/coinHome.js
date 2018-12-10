@@ -231,27 +231,29 @@ function rankShowFunc(data) {
 
 getRankData();
 
+Common.getCategoreType();
 // 广告
 function getAddvertData() {
     var param = {
-        categories: 99,
+        categories: 191,
         per_page: 1,
         order: 'desc',
         orderby: 'date',
         status: 'publish'
     }
-    var url = 'https://www.chainage.jp/wp-json/wp/v2/posts';
-    $.ajax({
-        type: 'GET',
-        url: url,
-        data: param,
-        async: true,
-        error: function () {
-        },
-        success: function (data) {
-            if (data && data.length > 0) {
-                $(".advert-con img").attr("src",data[0].jetpack_featured_media_url);
-            }
+    Common.getNewsData(param,function(data){
+        if(data){
+            var arr=[];
+            arr.push(data[0].id);
+            Common.getImgData(arr,function(imgUrl){
+                var picUrl="static/img/default_700.jpg";
+                if( imgUrl && imgUrl[0] && imgUrl[0].media_details){
+                    picUrl=Common.getSimilarImg(imgUrl[0].media_details.sizes,3.7);
+                }
+                var html='<a href="newsContent.html?id='+data[0].id+'&cat='+Common.categories[191]+'" ><img src="'+picUrl+'" width="100%" height="100%"></a>';
+                $(".advert1").html(html);
+            });
+
         }
     });
 

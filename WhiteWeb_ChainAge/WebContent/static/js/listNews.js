@@ -241,8 +241,16 @@ var listNewsPage = {
                 var categories=param.categories
                 for (var i = 0; i < data.length; i++) {
                     var linkUrl='newsContent.html?id=' + data[i].id+'&cat='+Common.categories[param.categories];
+                    var chanelImg='<div class="benefit_box_img"></div> ';
                     if(categories==147){
                         linkUrl='chanelContent.html?id=' + data[i].id+'&cat='+Common.categories[param.categories];
+                        if(data[i].jetpack_featured_media_url){
+                            chanelImg='<div class="benefit_box_img" style="background-image:url('+data[i].jetpack_featured_media_url+')"></div>';
+
+                        }else{
+                            var defaultImg='static/img/default_300x150.jpg';
+                            chanelImg='<div class="benefit_box_img" style="background-image:url('+defaultImg+')"></div>';
+                        }
                     }
                     htm = '<div class="col-md-4 benefit_box"><a href="'+linkUrl+'">'
                         + '<div class="benefit_box_con">'
@@ -254,7 +262,7 @@ var listNewsPage = {
                         +'<div class="time_right"><span class="new_list_time"></span>'
                         +'<span>'+Common.timeonverseFunc(new Date(data[1].date))+'</span></div>'
                         + '</p><div style="clear: both"></div>'
-                        + '<div class="benefit_box_img" ></div>'
+                        + chanelImg
                         + '<div class="p20 benefit_box_com news_dec">'+data[i].excerpt.rendered+'</div>'
                         + '</div>'
                         + '</a></div>';
@@ -267,17 +275,20 @@ var listNewsPage = {
             }else {
                 listNewsPage.loadNewsDataData(data,param);
             }
-            data.forEach(function(value,index){
-                var arr=[];
-                arr.push(value.id);
-                listNewsPage.getImgData(arr,function (imgUrl) {
-                    var picUrl="static/img/default_300x150.jpg";
-                    if( imgUrl && imgUrl[0] && imgUrl[0].media_details){
-                        picUrl=Common.getSimilarImg(imgUrl[0].media_details.sizes,2.1);
-                    }
-                    $(".benefit_box_img").eq(index).css("background-image","url(" + picUrl + ")");
+            if(param.categories!=147){
+                data.forEach(function(value,index){
+                    var arr=[];
+                    arr.push(value.id);
+                    listNewsPage.getImgData(arr,function (imgUrl) {
+                        var picUrl="static/img/default_300x150.jpg";
+                        if( imgUrl && imgUrl[0] && imgUrl[0].media_details){
+                            picUrl=Common.getSimilarImg(imgUrl[0].media_details.sizes,2.1);
+                        }
+                        $(".benefit_box_img").eq(index).css("background-image","url(" + picUrl + ")");
+                    })
                 })
-            })
+            }
+
             // listNewsPage.getImgData(imgId,function (imgUrl) {
             //     $(".benefit_box_img").each(function (i,a) {
             //         var postImgArr=Common.imgLookUp(imgUrl,"post", data[i].id);
@@ -296,13 +307,26 @@ var listNewsPage = {
     loadNewsDataData: function (data,param) {
         var more = '<div class="more_btn">加载更多</div>';
         var htm = '';
+        var categories=param.categories;
         if (data.length > 0) {
             for (var i = 0; i < data.length; i++) {
+                var linkUrl='newsContent.html?id=' + data[i].id+'&cat='+Common.categories[param.categories];
+                var chanelImg='<div class="benefit_box_img"></div> ';
+                if(categories==147){
+                    linkUrl='chanelContent.html?id=' + data[i].id+'&cat='+Common.categories[param.categories];
+                    if(data[i].jetpack_featured_media_url){
+                        chanelImg='<div class="benefit_box_img" style="background-image:url('+data[i].jetpack_featured_media_url+')"></div>';
+
+                    }else{
+                        var defaultImg='static/img/default_300x150.jpg';
+                        chanelImg='<div class="benefit_box_img" style="background-image:url('+defaultImg+')"></div>';
+                    }
+                }
                 htm = '<div style=" border-bottom: 1px dashed #CECECE;margin-bottom: 25px;">'
-                    + '<a href="newsContent.html?id=' + data[i].id + '&cat='+Common.categories[param.categories]+'" class="new_mobile_con">'
+                    + '<a href="'+linkUrl+'" class="new_mobile_con">'
                     + '<div class="media">'
                     + '<div class="media-left media-middle">'
-                    + '<div class="benefit_box_img" ></div>'
+                    + chanelImg
                     + '</div>'
                     + '<div class="media-body">'
                     + '<div class="hot_posts_title">' + data[i].title.rendered + '</div>'

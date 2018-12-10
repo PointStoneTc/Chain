@@ -316,3 +316,66 @@ a{
     vertical-align: bottom;
 }
 
+@media (max-width: 480px) {
+    .trading-volume{
+        width: 90%;
+    }
+    .con_title{
+        width: 89% !important;
+    }
+    .exchange-ranking .exchange-ranking-con{
+        width: 90% !important;
+    }
+    .exchange-ranking .row{
+        margin: 0;
+    }
+    .cspa{
+        height: 8.5rem;
+        width: 100%;
+        margin-bottom: 0.6rem;
+    }
+    .trading-title{
+        font-size: 0.8rem;
+    }
+    .cspas .cspa-top{
+        height: 5.5rem;
+    }
+    .capa_bot{
+        height: 3rem !important;
+        padding: 13px 0 0 20px !important;
+    }
+    .cspa .numberPrice{
+        font-size: 2rem;
+    }
+    .change .cange_rise{
+        font-size: 0.76rem !important;
+    }
+    .cspa .change .number{
+        font-size: 0.8rem;
+    }
+    .cspa .volume,
+    .cspa .group{
+        font-size: 0.7rem;
+    }
+    .cspa .logo{
+        top: 4.8rem;
+    }
+    .exchange-ranking .rankR .ranking-list{
+        padding-left: 0;
+    }
+    .exchange-ranking .ranking-list {
+        padding: 0.7rem 0;
+    }
+    .exchange-ranking {
+        font-size: 0.66rem;
+    }
+    .exchange-ranking .ranking-num {
+        width: 0.9rem;
+    }
+    .exchange-ranking .ranking-name {
+        width: 75px;
+    }
+    .advert1{
+        height: 7rem !important;
+    }
+}

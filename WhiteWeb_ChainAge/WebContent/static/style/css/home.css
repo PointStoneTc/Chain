@@ -320,6 +320,9 @@ a:hover{
 }
 
 @media only screen and (max-width: 480px) {
+  .contain{
+    width: 90%;
+  }
   .news_contain{
     width: 90%;
     margin: 0 auto;
@@ -355,6 +358,9 @@ a:hover{
     width: 108px;
     height: 72px;
   }
+  .advert1,.advert2{
+    height: 7rem !important;
+  }
 }
 @media (min-width: 768px) {
   .contain{
@@ -363,6 +369,7 @@ a:hover{
   .news_show_contain{
     width:92%;
   }
+
 }
 @media (min-width: 992px) {
   .contain{
