@@ -254,6 +254,14 @@ var Common = {
         })[0][0];
 
         return myShe.source_url;
+    },
+    // 首页获取相似宽度图片
+    getSimilarWidth:function(arr,scale){
+        let myShe=arr.sort(function(a, b) {
+            return Math.abs(a.width - scale) - Math.abs(b.width - scale);
+        })[0];
+
+        return myShe.source_url;
     }
 
 }

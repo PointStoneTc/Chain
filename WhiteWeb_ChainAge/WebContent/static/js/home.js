@@ -150,12 +150,14 @@ var homePage = {
         var data2=data.postMap["187"];
         var imgUrl1= 'static/img/default_700.jpg';
         var imgUrl2= 'static/img/default_700.jpg';
-        if(data1[0].thumbnailMediaDetail){
-            imgUrl1=data1[0].thumbnailMediaDetail.source_url;
+
+        if( data1 && data1[0] && data1[0].featuredMedia){
+            imgUrl1=Common.getSimilarWidth(data1[0].featuredMedia.media_details,800);
         }
-        if(data2[0].thumbnailMediaDetail){
-            imgUrl2=data2[0].thumbnailMediaDetail.source_url;
+        if( data2 && data2[0] && data2[0].featuredMedia){
+            imgUrl2=Common.getSimilarWidth(data2[0].featuredMedia.media_details,800);
         }
+
          var html = '<a href="newsContent.html?id=' + data1[0].id + '&cat='+Common.categories[186]+'" ><img src="' + imgUrl1+ '" width="100%" height="100%"></a>';
          $(".advert1").html(html);
 

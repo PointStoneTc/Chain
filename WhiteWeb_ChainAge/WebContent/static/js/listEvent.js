@@ -146,6 +146,7 @@ var listNewsPage = {
             success: function (data) {
                 if (data) {
                     var html='';
+                    var data=data.events;
                     for(var i=0;i<data.length;i++){
 
                         html='<div class="event_item col-xs-12 col-sm-4">'
