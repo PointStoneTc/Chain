@@ -258,7 +258,6 @@ a:hover{
   border:1px solid rgba(206,206,206,1);
   background:linear-gradient(180deg,rgba(255,255,255,1) 0%,rgba(238,238,238,1) 31%,rgba(226,226,226,1) 65%,rgba(222,222,222,1) 100%);
   margin: 0 auto;
-  margin-top: 0.04rem;
   cursor: pointer;
 }
 .more_btn a{
@@ -317,6 +316,12 @@ a:hover{
   width: 90%;
   display: inline-block;
   margin-left: 5%;
+}
+.teji_list{
+  background:#FFFFFF ;
+}
+.advert2,.teji_list_btn{
+  background: #FFFFFF;
 }
 
 @media only screen and (max-width: 480px) {
