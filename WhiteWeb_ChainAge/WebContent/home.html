@@ -241,7 +241,7 @@
     <%for(var i in data){%>
     <li>
         <div><span><%=data[i].specificRate.baseName%> </span><span style="color: #ccc;">| <%=data[i].specificRate.baseSymbol%></span></div>
-        <div class="price"><%=price(data[i])%></div>
+        <div class="price">$<%=price(data[i])%></div>
         <div>
             <span class="markIcon <%=percent(data[i])%>"></span>
             <span><%=percentValue(data[i])%></span>
