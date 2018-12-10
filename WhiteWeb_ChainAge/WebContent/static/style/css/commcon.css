@@ -218,7 +218,8 @@ img[src=""], img:not([src]) {
     display: none;
 }
 .news_show_contain .bg{
-    width: 90%;
+    width: 100%;
+    position: static;
 }
 
 @media only screen and (max-width: 480px) {

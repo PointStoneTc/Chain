@@ -117,8 +117,7 @@ var listNewsPage = {
 
             html += '<div class="col-sm-4 bd-card-mod">'
                 + '<a href=" ' + linkUrl + ' ">'
-                + '<div class="card-img lazy" style="background-image:url(' + imgUrl+ ') " ></div>'
-                + '<div class="bg"></div>'
+                + '<div class="card-img lazy" style="background-image:url(' + imgUrl+ ') " ><div class="bg"></div></div>'
                 + '<div class="news_title">' + data[i].title + '</div>'
                 + '</a>'
                 + '</div>';

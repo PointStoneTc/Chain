@@ -9,8 +9,8 @@
             // 文章图片
             Common.getImgData([this.id],function(imgUrl){
                 var picUrl="static/img/default_700.jpg";
-                if( imgUrl && imgUrl[0] && imgUrl[0].media_details){
-                    picUrl=Common.getSimilarImg(imgUrl[0].media_details.sizes,2.8);
+                if( imgUrl && imgUrl[0] && imgUrl[0].source_url){
+                    picUrl=imgUrl[0].source_url;
                 }
                 $(".post_featured img").attr("src",picUrl);
 
