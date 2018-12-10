@@ -304,7 +304,7 @@ img[src=""], img:not([src]) {
 
     .nav_footer {
         display: block !important;
-        font-size: 0.14rem;
+        font-size: 0.6rem;
         text-align: center;
         margin: 2rem 0;
     }
