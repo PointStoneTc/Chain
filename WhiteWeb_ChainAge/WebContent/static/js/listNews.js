@@ -77,7 +77,7 @@ var listNewsPage = {
         var imgUrl= 'static/img/default_700.jpg';
         for(var i=0;i<data.length;i++){
             if(data[i].metadata){
-                data[i].imgUrl='http://chainage.cc'+data[i].metadata[32].adv_img;
+                data[i].imgUrl='http://chainage.cc'+Common.objLookUp(data[i].metadata).adv_img;
             }else{
                 data[i].imgUrl= imgUrl;
             }

@@ -262,7 +262,16 @@ var Common = {
         })[0];
 
         return myShe.source_url;
-    }
+    },
+    // 查找数组中具有某个属性值的对象
+    objLookUp: function ( arr) {
+        for (var i =0;i<arr.length;i++){
+            if('adv_img' in arr[i]){
+                return arr[i];
+            }
+        }
+
+    },
 
 }
 
