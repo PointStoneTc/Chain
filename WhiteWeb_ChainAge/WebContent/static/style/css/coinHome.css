@@ -33,14 +33,14 @@ a{
     z-index: 1;
     overflow: hidden;
     width: 24.5%;
-    height: 188px;
+    height: 218px;
     vertical-align: middle;
     margin: 0 2px 2px 0;
     border: 1px solid #BCBCBC;
     box-sizing: content-box;
 }
 .cspas .cspa-top{
-    height: 120px;
+    height: 150px;
     margin: 0;
     padding-left: 15%;
     padding-top: 20px;
@@ -125,7 +125,7 @@ a{
 .cspa .logo {
     position: absolute;
     overflow: hidden;
-    top: 105px;
+    top: 135px;
     right: 6px;
     width: 30px;
     height: 30px;
@@ -194,20 +194,20 @@ a{
 .arrow-top{
     width:0;
     height:0;
-    border: 6px solid transparent;
+    border: 8px solid transparent;
     border-bottom-color: #00B43C;
     position:absolute;
     content:'';
-    margin-top:1px;
+    margin-top:2px;
 }
 .arrow-bottom{
     width:0;
     height:0;
-    border: 6px solid transparent;
+    border: 8px solid transparent;
     border-top-color:  #F54C24;
     position:absolute;
     content:'';
-    margin-top: 7px;
+    margin-top: 8px;
 }
 
 .market .change .numberPrice {
