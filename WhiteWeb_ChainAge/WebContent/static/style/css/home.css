@@ -41,6 +41,7 @@ a:hover{
 
 .banner_left .new_title{
   font-size: 0.48rem;
+  text-align: left;
 }
 .news_time .icon_time{
   width: 0.22rem;
@@ -76,10 +77,14 @@ a:hover{
   padding: 0 1rem;
   text-align: center;
 }
+.banner_left .news_time,
+.banner_right .news_time{
+  display: none;
+}
 .banner_right .new_title {
   width: 85%;
   font-size: 0.24rem;
-  text-align: center;
+  text-align: left;
   width: 85%;
   margin-left: 7.5%;
 }

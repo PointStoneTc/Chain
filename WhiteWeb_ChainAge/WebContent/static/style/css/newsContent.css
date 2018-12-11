@@ -114,6 +114,9 @@ img {
     padding: 0.6rem 0.84rem  1.25rem 0.84rem;
 
 }
+.post_desc img{
+    height: auto !important;
+}
 .news_con_left .post_list,.news_con_left .post_content_tip{
     line-height: 200%;
 }

@@ -116,7 +116,7 @@
                 }
             });
         },
-        getAdvertData: function (imgData) {
+        getAdvertData:function(imgData){
             var param1 = {
                 categories: 192,
                 per_page: 1,
@@ -125,18 +125,20 @@
                 status: 'publish'
             };
 
-            Common.getNewsData(param1, function (data) {
-                if (data) {
-                    var picUrl = "static/img/default_700.jpg";
-
-                    var html = '<a href="newsContent.html?id=' + data[0].id + '&cat=' + Common.categories[192] + '" ><img  width="100%" height="100%" style="border-radius: 5px"></a>';
+            Common.getNewsData(param1,function(data){
+                if(data){
+                    var picUrl="static/img/default_700.jpg";
+                    if (data[0].jetpack_featured_media_url) {
+                        picUrl =data[0].jetpack_featured_media_url;
+                    }
+                    var html='<a href="newsContent.html?id='+data[0].id+'&cat='+Common.categories[192]+'" ><img src="'+data[0].jetpack_featured_media_url+'" width="100%" height="100%" style="border-radius: 5px"></a>';
                     $(".post_advert").append(html);
-                    Common.getImgData([5495], function (imgUrl) {
-                        if (imgUrl && imgUrl[0] && imgUrl[0].media_details) {
-                            picUrl = Common.getSimilarImg(imgUrl[0].media_details.sizes, 2.8);
-                        }
-                        $(".post_advert img").attr("src", picUrl)
-                    });
+                    // Common.getImgData([data[0].id], function (imgUrl) {
+                    //     if (imgUrl && imgUrl[0] && imgUrl[0].media_details) {
+                    //         picUrl = Common.getSimilarImg(imgUrl[0].media_details.sizes, 2.8);
+                    //     }
+                    //     $(".post_advert img").attr("src", picUrl)
+                    // });
                 }
             });
 
@@ -148,12 +150,12 @@
                 status: 'publish'
             };
 
-            Common.getNewsData(param2, function (data) {
-                if (data) {
-                    var picUrl = "static/img/defalut_300.jpg";
-                    var html = '<a href="newsContent.html?id=' + data[0].id + '&cat=' + Common.categories[193] + '" ><img  width="100%" height="100%" ></a>';
+            Common.getNewsData(param2,function(data){
+                if(data){
+                    var picUrl="static/img/defalut_300.jpg";
+                    var html='<a href="newsContent.html?id='+data[0].id+'&cat='+Common.categories[193]+'" ><img  width="100%" height="100%" ></a>';
                     $(".post_advert_top").append(html);
-                    Common.getImgData([6176], function (imgUrl) {
+                    Common.getImgData([data[0].id], function (imgUrl) {
                         if (imgUrl && imgUrl[0] && imgUrl[0].media_details) {
                             picUrl = Common.getSimilarWidthImg(imgUrl[0].media_details.sizes, 300);
                         }
@@ -170,12 +172,12 @@
                 status: 'publish'
             };
 
-            Common.getNewsData(param3, function (data) {
-                if (data) {
-                    var picUrl = "static/img/defalut_300.jpg";
-                    var html = '<a href="newsContent.html?id=' + data[0].id + '&cat=' + Common.categories[194] + '" ><img width="100%" height="100%" ></a>';
+            Common.getNewsData(param3,function(data){
+                if(data){
+                    var picUrl="static/img/defalut_300.jpg";
+                    var html='<a href="newsContent.html?id='+data[0].id+'&cat='+Common.categories[194]+'" ><img width="100%" height="100%" ></a>';
                     $(".post_advert_bot").append(html);
-                    Common.getImgData([6178], function (imgUrl) {
+                    Common.getImgData([data[0].id], function (imgUrl) {
                         if (imgUrl && imgUrl[0] && imgUrl[0].media_details) {
                             picUrl = Common.getSimilarWidthImg(imgUrl[0].media_details.sizes, 300);
                         }

@@ -147,7 +147,9 @@ img {
     background-size: cover;
     vertical-align: sub;
 }
-
+.post_desc img{
+    height: auto !important;
+}
 .news_con_left .post_icon8 {
     width: 0.24rem;
     height: 0.2rem;
