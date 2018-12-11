@@ -31,7 +31,7 @@ var listNewsPage = {
             $(".news_title").text("基础知识");
             $(".new_tabs li:eq(0)").text("コインリスト");
             $(".new_tabs li:eq(1)").text("用語解説");
-            $(".new_tabs li").width("1.6rem");
+            $(".new_tabs li").width("auto");
             // 请求
             this.getNewsListData({per_page:12,order:'desc',orderby:'date',categories:198},function(param){
                 listNewsPage.setPagination(param);
