@@ -8,6 +8,14 @@ a:hover{
   width: 100%;
   height: 4.85rem;
 }
+.news_banner  .banner_left .news_banner_img{
+  width: 100%;
+  height: 4.85rem;
+}
+.news_banner  .banner_right .news_banner_img{
+  width: 100%;
+  height: 2.413rem;
+}
 .news_banner  .banner_right img{
   width: 100%;
   height: 2.413rem;
@@ -80,8 +88,8 @@ a:hover{
   color: #000;
 }
 .markIcon{
-  width: 0.16rem;
-  height: 0.16rem;
+  width: 10px;
+  height: 10px;
   display: inline-block;
   background:#25C891 ;
   border-radius: 50%;
@@ -119,7 +127,7 @@ a:hover{
 }
 
 .news_show{
-  background: #3761BD;
+  background: #dddddd;
   padding: 0.32rem 0 0.27rem 0;
 }
 

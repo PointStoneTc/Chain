@@ -33,18 +33,23 @@ a{
     z-index: 1;
     overflow: hidden;
     width: 24.5%;
-    height: 2.65rem;
+    height: 188px;
     vertical-align: middle;
     margin: 0 2px 2px 0;
     border: 1px solid #BCBCBC;
     box-sizing: content-box;
 }
 .cspas .cspa-top{
-    height: 1.75rem;
+    height: 120px;
     margin: 0;
     padding-left: 15%;
     padding-top: 20px;
     background: #FFFFFF;
+}
+.cspas .capa_bot{
+    height:70px;
+    background: #666666;
+    padding: 18px 0 0 2%;
 }
 .cspas .cspa-top > * {
     position: relative;
@@ -107,8 +112,8 @@ a{
     font-size: 12px;
 }
 .cspa .numberPrice{
-    font-size: 0.63rem;
-    line-height: 52px;
+    font-size: 46px;
+    line-height: 56px;
     margin-top: -5px;
 }
 .numberDown{
@@ -121,7 +126,7 @@ a{
 .cspa .logo {
     position: absolute;
     overflow: hidden;
-    top: 1.53rem;
+    top: 105px;
     right: 6px;
     width: 30px;
     height: 30px;
@@ -377,5 +382,21 @@ a{
     }
     .advert1{
         height: 7rem !important;
+    }
+}
+@media (max-width: 1200px) {
+    .cspas .cspa-top {
+        padding-left: 10%;
+    }
+    .cspa .numberPrice {
+        font-size: 40px;
+    }
+}
+
+@media (min-width: 1400px) {
+    .cspas .capa_bot{
+        height:70px;
+        background: #666666;
+        padding: 18px 0 0 6%;
     }
 }

@@ -5,7 +5,7 @@
             this.id = Common.getQueryString("id");
             Common.getCategoreType();
 
-            this.postsShow();
+            // this.postsShow();
             // 文章图片
             Common.getImgData([this.id], function (imgUrl) {
                 var picUrl = "static/img/default_700.jpg";
@@ -56,7 +56,7 @@
                 return JSON.parse(valueText).rendered;
             });
             template.registerFunction('imgUrl', function (valueText) {
-                var imgUrl = 'static/img/default_300.jpg';
+                var imgUrl = 'static/img/defalut_300.jpg';
                 if (valueText.thumbnailMediaDetail) {
                     imgUrl = valueText.thumbnailMediaDetail.source_url;
                 }

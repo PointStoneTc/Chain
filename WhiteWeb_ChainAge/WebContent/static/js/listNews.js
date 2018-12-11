@@ -76,28 +76,28 @@ var listNewsPage = {
         // 要改标记
         var imgUrl= 'static/img/default_700.jpg';
         for(var i=0;i<data.length;i++){
-            if(data[i].thumbnailMediaDetail){
-                data[i].imgUrl=data[i].thumbnailMediaDetail.source_url;
+            if(data[i].metadata){
+                data[i].imgUrl='http://chainage.cc'+data[i].metadata[32].adv_img;
             }else{
                 data[i].imgUrl= imgUrl;
             }
         }
-        $(".news_banner .banner_left img").attr("src", data[0].imgUrl);
+        $(".news_banner .banner_left .news_banner_img").css({"background":"url("+data[0].imgUrl+") center no-repeat","background-size":"cover"});
         $(".news_banner .banner_left a").attr("href", './newsContent.html?id=' + data[0].id+'&cat='+Common.categories[180]);
         $(".news_banner .banner_left .new_title").text(data[0].title);
         $(".news_banner .banner_left .time_fabu").text(Common.timeonverseFunc(new Date(data[0].date).getTime()));
-        $(".news_banner .banner_r_top img").attr("src", data[1].imgUrl);
+        $(".news_banner .banner_r_top .news_banner_img").css({"background":"url("+data[1].imgUrl+") center no-repeat","background-size":"cover"});
         $(".news_banner .banner_r_top a").attr("href", './newsContent.html?id=' + data[1].id+'&cat='+Common.categories[180]);
         $(".news_banner .banner_r_top .new_title").text(data[1].title);
         $(".news_banner .banner_r_top .time_fabu").text(Common.timeonverseFunc(new Date(data[1].date).getTime()));
-        $(".news_banner .banner_r_bot img").attr("src", data[2].imgUrl );
+        $(".news_banner .banner_r_bot .news_banner_img").css({"background":"url("+data[2].imgUrl+") center no-repeat","background-size":"cover"});
         $(".news_banner .banner_r_bot a").attr("href", './newsContent.html?id=' + data[2].id+'&cat='+Common.categories[180]);
         $(".news_banner .banner_r_bot .new_title").text(data[2].title);
         $(".news_banner .banner_r_bot .time_fabu").text(Common.timeonverseFunc(new Date(data[2].date).getTime()));
 
-        $(".news_banner .banner_left .new_catelage").text(Common.categories[180]);
-        $(".news_banner .banner_r_top .new_catelage").text(Common.categories[180]);
-        $(".news_banner .banner_r_bot .new_catelage").text(Common.categories[180]);
+        // $(".news_banner .banner_left .new_catelage").text(Common.categories[180]);
+        // $(".news_banner .banner_r_top .new_catelage").text(Common.categories[180]);
+        // $(".news_banner .banner_r_bot .new_catelage").text(Common.categories[180]);
         data[0].cat=Common.categories[180];
         // 手机端
         template.registerFunction('imgUrl', function (valueText) {

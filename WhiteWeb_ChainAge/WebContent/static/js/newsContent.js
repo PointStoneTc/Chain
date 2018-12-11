@@ -56,7 +56,7 @@
                 return JSON.parse(valueText).rendered;
             });
             template.registerFunction('imgUrl', function (valueText) {
-                var imgUrl= 'static/img/default_300.jpg';
+                var imgUrl= 'static/img/defalut_300.jpg';
                 if(valueText.thumbnailMediaDetail){
                     imgUrl=valueText.thumbnailMediaDetail.source_url;
                 }

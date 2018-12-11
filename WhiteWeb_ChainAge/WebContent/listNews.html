@@ -271,11 +271,11 @@
     </ul>
 </div>
 <!--置顶新闻-->
-<div class="news_banner clearfix hidden-xs">
+<div class="news_banner clearfix hidden-xs ">
     <div class="col-sm-6 col-xs-12 banner_left">
         <a href="">
-            <img>
-            <div class="bg" style="right: 0.05rem;"></div>
+            <div class="news_banner_img" ></div>
+            <div class="bg" style="right: 0.02rem;"></div>
             <div class="news_banner_con">
                 <div class="news_time">
                     <span class="new_catelage"></span>
@@ -289,7 +289,7 @@
     <div class=" col-sm-6 hidden-xs banner_right">
         <div class="pr banner_r_top" style="margin-bottom:0.02rem;">
             <a href="">
-                <img>
+                <div class="news_banner_img" ></div>
                 <div class="bg"></div>
                 <div class="news_banner_con">
                     <div class="news_time">
@@ -303,7 +303,7 @@
         </div>
         <div class="pr banner_r_bot">
             <a href="">
-                <img>
+                <div class="news_banner_img" ></div>
                 <div class="bg"></div>
                 <div class="news_banner_con">
                     <div class="news_time">
@@ -317,6 +317,7 @@
         </div>
     </div>
 </div>
+
 <!--手机端轮播图-->
 <div id="myCarousel" class="carousel slide visible-xs">
     <!-- 轮播（Carousel）指标 -->
@@ -433,14 +434,14 @@
 <script type="text/html" id="news_slider">
     <div class="item active">
         <a href="newsContent.html?id=<%=data[0].id%>&cat=<%=data[0].cat%>">
-            <img src="<%=data[0].featuredMedia.media_details[7].source_url%>">
+            <img src="<%=imgUrl(data[0])%>">
             <div class="bg" style="right: 0.02rem;"></div>
             <div class="carousel-caption"><%=data[0].title%></div>
         </a>
     </div>
     <div class="item">
         <a href="newsContent.html?id=<%=data[1].id%>&cat=<%=data[0].cat%>">
-            <img src="<%=data[1].featuredMedia.media_details[7].source_url%>">
+            <img src="<%=imgUrl(data[1])%>">
             <div class="bg" style="right: 0.02rem;"></div>
             <div class="carousel-caption"><%=data[1].title%></div>
         </a>
@@ -448,7 +449,7 @@
     <div class="item">
         <a href="newsContent.html?id=<%=data[2].id%>&cat=<%=data[0].cat%>">
             <!--要改 标记-->
-            <img src="<%=data[2].featuredMedia.media_details[7].source_url%>">
+            <img src="<%=imgUrl(data[2])%>">
             <div class="bg" style="right: 0.02rem;"></div>
             <div class="carousel-caption"><%=data[2].title%></div>
         </a>
