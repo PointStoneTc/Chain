@@ -240,7 +240,12 @@ var Common = {
         let myShe=obj.sort(function(a, b) {
             return Math.abs(a[0].width/a[0].height - scale) - Math.abs(b[0].width/b[0].height - scale);
         })[0][0];
-        return myShe.source_url;
+
+        if(myShe.source_url){
+            return myShe.source_url ;
+        }else{
+            return myShe.url;
+        }
     },
     // 获取相似宽度图片
     getSimilarWidthImg:function(arr,scale){

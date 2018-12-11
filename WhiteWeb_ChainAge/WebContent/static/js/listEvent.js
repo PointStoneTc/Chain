@@ -135,46 +135,46 @@ var listNewsPage = {
         });
     },
     getEventData:function(){
-        // var url = 'http://chainage.cc/wp-json/tribe/events/v1/events';
-        // $.ajax({
-        //     type: 'GET',
-        //     url: url,
-        //     async: true,
-        //     error: function () {
-        //     },
-        //     success: function (data) {
-        //         if (data) {
-        //             var html='';
-        //             var data=data.events;
-                    for(var i=0;i<6;i++){
+        var url = 'http://chainage.cc/wp-json/tribe/events/v1/events';
+        $.ajax({
+            type: 'GET',
+            url: url,
+            async: true,
+            error: function () {
+            },
+            success: function (data) {
+                if (data) {
+                    var html='';
+                    var data=data.events;
+                    for(var i=0;i<data.length;i++){
 
                         html='<div class="event_item col-xs-12 col-sm-4">'
                             +'<a href="eventContent.html">'
                             +'<div class="event_item_con">'
-                            +'<div class="event_img"></div>'
+                            +'<div class="event_img" style="background-image: url('+Common.getSimilarImg(data[i].image.sizes,2.1)+')"></div>'
                             +'<div class="event_date">'
-                            +'<div style="font-size: 0.12rem;line-height: 11px">2018</div>'
-                            +'<div style="font-size: 0.17rem">9月</div>'
-                            +'<div style="font-size: 0.13rem;line-height: 11px">17日</div>'
+                            +'<div style="font-size: 0.12rem;line-height: 11px">'+data[i].date.substring(0,4)+'</div>'
+                            +'<div style="font-size: 0.17rem">'+data[i].date.substring(5,7)+'月</div>'
+                            +'<div style="font-size: 0.13rem;line-height: 11px">'+data[i].date.substring(8,10)+'日</div>'
                             +'</div>'
                             +'<div class="event-des clearfix">'
                             +'<div class="col-xs-3">'
-                            +'<img src="static/img/chainge_editer.png" alt="">'
+                            +'<img src="static/img/default_autor.png" alt="">'
                             +'</div>'
                             +'<div class="col-xs-9" >'
-                            +'<div class="event_title">hhaa好好说话是是是护手霜时好时坏水水水水是</div>'
+                            +'<div class="event_title">'+data[i].title+'</div>'
                             +'<div style="margin-top: 2px">'
                             +'<span class="event_address"></span>'
-                            +'<span>地区</span>'
+                            +'<span>'+data[i].venue.province+'</span>'
                             +'</div>'
                             +'</div>'
                             +'</div>'
                             +'<div></a></div>';
                         $(".news_container").append(html);
                     }
-                // }
-        //     }
-        // });
+                }
+            }
+        });
     }
 
 }

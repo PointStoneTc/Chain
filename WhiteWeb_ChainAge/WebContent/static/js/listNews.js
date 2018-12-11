@@ -282,6 +282,15 @@ var listNewsPage = {
                         + '</a></div>';
 
                     $('.news_list_con .news_container').append(htm);
+                    if(i==6){
+                        $(".benefit_box_tit").eq(i).remove();
+                    }
+                    if(i==7){
+                        $(".benefit_box_tit").eq(i-1).remove();
+                    }
+                    if(i==8){
+                        $(".benefit_box_tit").eq(i-2).remove();
+                    }
                 }
                 if(callback){
                     callback(param);
@@ -313,7 +322,9 @@ var listNewsPage = {
             //         $(this).css("background-image","url(" + picUrl + ")")
             // });
             // });
-
+            // $(".benefit_box_tit").eq(6).remove();
+            // $(".benefit_box_tit").eq(7).remove();
+            // $(".benefit_box_tit").eq(8).remove();
         });
     },
 
