@@ -41,6 +41,19 @@
                 $(".post_meta_time").text(Common.timeonverseFunc(new Date(data.date).getTime(),1));
                 $(".post_read_time").text(parseInt(data.content.rendered.length/400));
                 $(".post_count").text(data._links["version-history"][0].count);
+                // 第3项我获取不到内容里面图片的宽度
+                $(".post_desc img").each(function(i,value){
+                    if($(value).attr("width")<$(".post_desc").width()){
+                        $(value).width($(value).attr("width"));
+                        $(value).parent().css("text-align","center");
+                    }
+                })
+                $(".post_desc li").each(function(i,value){
+                   $(value).css("list-style-type","disc");
+                })
+                $(".post_desc p").each(function(i,value){
+                    $(value).css("marginBottom","10px");
+                })
             })
         },
         // 热门文章
