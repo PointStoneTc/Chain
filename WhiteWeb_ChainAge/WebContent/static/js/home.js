@@ -150,11 +150,11 @@ var homePage = {
         var imgUrl1= 'static/img/default_700.jpg';
         var imgUrl2= 'static/img/default_700.jpg';
 
-        if( data1 && data1[0] && data1[0].featuredMedia){
-            imgUrl1=Common.getSimilarWidth(data1[0].featuredMedia.media_details,800);
+        if( data1[0].jetpack_featured_media_url){
+            imgUrl1=data1[0].jetpack_featured_media_url;
         }
-        if( data2 && data2[0] && data2[0].featuredMedia){
-            imgUrl2=Common.getSimilarWidth(data2[0].featuredMedia.media_details,800);
+        if(data2[0].jetpack_featured_media_url){
+            imgUrl2=data2[0].jetpack_featured_media_url;
         }
 
          var html = '<a href="newsContent.html?id=' + data1[0].id + '&cat='+Common.categories[186]+'" ><img src="' + imgUrl1+ '" width="100%" height="100%"></a>';

@@ -445,9 +445,13 @@ var listNewsPage = {
                 arr.push(data[0].id);
                 listNewsPage.getImgData(arr,function(imgUrl){
                     var picUrl="static/img/default_700.jpg";
-                    if( imgUrl && imgUrl[0] && imgUrl[0].media_details){
-                        picUrl=Common.getSimilarImg(imgUrl[0].media_details.sizes,3.7);
+                    // if( imgUrl && imgUrl[0] && imgUrl[0].media_details){
+                    //     picUrl=Common.getSimilarImg(imgUrl[0].media_details.sizes,3.7);
+                    // }
+                    if( imgUrl[0].source_url){
+                        picUrl= imgUrl[0].source_url;
                     }
+
                     var html='<a href="newsContent.html?id='+data[0].id+'&cat='+Common.categories[191]+'" ><img src="'+picUrl+'" width="100%" height="100%"></a>';
                     $(".advert").html(html);
                 });
