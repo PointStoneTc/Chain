@@ -322,9 +322,7 @@ var listNewsPage = {
             //         $(this).css("background-image","url(" + picUrl + ")")
             // });
             // });
-            // $(".benefit_box_tit").eq(6).remove();
-            // $(".benefit_box_tit").eq(7).remove();
-            // $(".benefit_box_tit").eq(8).remove();
+
         });
     },
 

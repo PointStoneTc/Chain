@@ -139,7 +139,7 @@ img[src=""], img:not([src]) {
 .nav-center {
     min-height: 0.6rem;
     background: #fff;
-    padding: 0.08rem 0 0 0.27rem;
+    padding: 5px 0 0 0.27rem;
     border: none;
     margin: 0;
 }

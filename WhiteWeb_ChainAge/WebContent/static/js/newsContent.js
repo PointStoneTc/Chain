@@ -52,7 +52,7 @@
                    $(value).css("list-style-type","disc");
                 })
                 $(".post_desc p").each(function(i,value){
-                    $(value).css("marginBottom","10px");
+                    $(value).css("marginBottom","20px");
                 })
             })
         },

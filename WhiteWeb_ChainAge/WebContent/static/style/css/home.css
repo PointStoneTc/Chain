@@ -60,7 +60,7 @@ a:hover{
   height: 100%;
   position: absolute;
   bottom: 0;
-  background: rgba(39,57,130,0.5);
+  background: rgba(39,57,130,0.8);
 }
 .banner_left .bg{
   right: 0.05rem;
