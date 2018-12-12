@@ -16,7 +16,9 @@ var listNewsPage = {
         });
 
         this.getRankingData(99);
-        this.getAdvertData({per_page:3,order:'desc',orderby:'date',categories:99});
+        this.getAdvertData();
+
+        // this.getAdvertData({per_page:3,order:'desc',orderby:'date',categories:99});
         //新闻、交易所....
         if(this.pageFlag==1){
             $(".news_title").text("ニュース");
@@ -253,11 +255,11 @@ var listNewsPage = {
             }
         }else{
             Common.getNewsData(param,function(data){
-                data.splice(6, 0,listNewsPage.advertData[0] , listNewsPage.advertData[1],listNewsPage.advertData[2]);
-                var imgId=[];
-                for(var i=0;i<data.length;i++){
-                    imgId.push(data[i].id);
-                }
+                // data.splice(6, 0,listNewsPage.advertData[0] , listNewsPage.advertData[1],listNewsPage.advertData[2]);
+                // var imgId=[];
+                // for(var i=0;i<data.length;i++){
+                //     imgId.push(data[i].id);
+                // }
                 if ($(".news_mobile_container").is(':hidden')) {//pc端
                     var htm='';
                     $('.news_list_con .news_container').html('');
@@ -298,16 +300,9 @@ var listNewsPage = {
                             + '</a></div>';
 
                         $('.news_list_con .news_container').append(htm);
-                        if(i==6){
-                            $(".benefit_box_tit").eq(i).remove();
-                        }
-                        if(i==7){
-                            $(".benefit_box_tit").eq(i-1).remove();
-                        }
-                        if(i==8){
-                            $(".benefit_box_tit").eq(i-2).remove();
-                        }
+
                     }
+                    listNewsPage.middleAdvertShow(listNewsPage.advertData);
                     if(callback){
                         callback(param);
                     }
@@ -343,17 +338,17 @@ var listNewsPage = {
             for (var i = 0; i < data.length; i++) {
                 var linkUrl='newsContent.html?id=' + data[i].id+'&cat='+Common.categories[param.categories];
                 var chanelImg='<div class="benefit_box_img"></div> ';
+                if(data[i].jetpack_featured_media_url){
+                    chanelImg='<div class="benefit_box_img" style="background-image:url('+data[i].jetpack_featured_media_url+')"></div>';
+
+                }else{
+                    var defaultImg='static/img/default_300x150.jpg';
+                    chanelImg='<div class="benefit_box_img" style="background-image:url('+defaultImg+')"></div>';
+                }
                 if(categories==147){
                     linkUrl='chanelContent.html?id=' + data[i].id+'&cat='+Common.categories[param.categories];
-                    if(data[i].jetpack_featured_media_url){
-                        chanelImg='<div class="benefit_box_img" style="background-image:url('+data[i].jetpack_featured_media_url+')"></div>';
-
-                    }else{
-                        var defaultImg='static/img/default_300x150.jpg';
-                        chanelImg='<div class="benefit_box_img" style="background-image:url('+defaultImg+')"></div>';
-                    }
                 }
-                htm = '<div style=" border-bottom: 1px dashed #CECECE;margin-bottom: 25px;">'
+                htm = '<div class="mobile_list_item" style=" border-bottom: 1px dashed #CECECE;margin-bottom: 25px;">'
                     + '<a href="'+linkUrl+'" class="new_mobile_con">'
                     + '<div class="media">'
                     + '<div class="media-left media-middle">'
@@ -373,12 +368,13 @@ var listNewsPage = {
                     + '<span class="new_list_time"></span>'
                     + '<span class="new_des_time">' + Common.timeonverseFunc(new Date(data[i].date)) + '</span>'
                     + '</div>'
+                    +'</div>'
                     + '</div>'
                     + '</a>'
                     + '<div>';
                 $('.news_list_con .news_mobile_container').append(htm);
         }
-
+            listNewsPage.mobileAdvertShow(listNewsPage.advertData);
             localStorage.setItem(param.categories,$(".news_mobile_container").html());
 
             var num = $('.news_mobile_container').data('num');
@@ -447,8 +443,83 @@ var listNewsPage = {
         Common.getNewsData(param,function(data){
             if(data){
                 listNewsPage.advertData=data;
+
             }
         })
+    },
+    middleAdvertShow:function(data){
+        var htm='';
+        for (var i = 0; i < data.length; i++) {
+            var linkUrl='newsContent.html?id=' + data[i].id+'&cat='+Common.categories[190];
+            var chanelImg='<div class="benefit_box_img"></div> ';
+            if(data[i].jetpack_featured_media_url){
+                chanelImg='<div class="benefit_box_img" style="background-image:url('+data[i].jetpack_featured_media_url+')"></div>';
+
+            }else{
+                var defaultImg='static/img/default_300x150.jpg';
+                chanelImg='<div class="benefit_box_img" style="background-image:url('+defaultImg+')"></div>';
+            }
+
+            htm += '<div class="col-md-4 benefit_box"><a href="'+linkUrl+'">'
+                + '<div class="benefit_box_con">'
+                + '<p class="p20 benefit_box_hea">'+data[i].title.rendered+'</p>'
+                + '<p class="p20 benefit_box_from">'
+                +'<span class="new_list_icon"><img src="'+Common.userImgs[data[i].author]+'" ></span>'
+                +'<span>'+Common.users[data[i].author]+'</span>'
+                +'<div class="time_right"><span class="new_list_time"></span>'
+                +'<span>'+Common.timeonverseFunc(new Date(data[1].date))+'</span></div>'
+                + '</p><div style="clear: both"></div>'
+                + chanelImg
+                + '<div class="p20 benefit_box_com news_dec">'+data[i].excerpt.rendered+'</div>'
+                + '</div>'
+                + '</a></div>';
+
+        }
+
+        $('.news_list_con .news_container .benefit_box').eq(5).after(htm);
+
+    },
+    mobileAdvertShow:function(data){
+        var htm='';
+        for (var i = 0; i < data.length; i++) {
+            var linkUrl='newsContent.html?id=' + data[i].id+'&cat='+Common.categories[190];
+            var chanelImg='<div class="benefit_box_img"></div> ';
+            if(data[i].jetpack_featured_media_url){
+                chanelImg='<div class="benefit_box_img" style="background-image:url('+data[i].jetpack_featured_media_url+')"></div>';
+
+            }else{
+                var defaultImg='static/img/default_300x150.jpg';
+                chanelImg='<div class="benefit_box_img" style="background-image:url('+defaultImg+')"></div>';
+            }
+
+            htm +=  '<div class="mobile_list_item" style=" border-bottom: 1px dashed #CECECE;margin-bottom: 25px;">'
+                + '<a href="'+linkUrl+'" class="new_mobile_con">'
+                + '<div class="media">'
+                + '<div class="media-left media-middle">'
+                + chanelImg
+                + '</div>'
+                + '<div class="media-body">'
+                + '<div class="hot_posts_title">' + data[i].title.rendered + '</div>'
+                + '</div>'
+                + '</div>'
+                + '<div class="new_dec">'
+                + '<img src="' + Common.userImgs[data[i].author] + '" alt="">'
+                + '<div class="edit_detail">'
+                + '<div>' + Common.users[data[i].author] + '</div>'
+
+                + '</div>'
+                + '<div style="float: right;margin-top: 0.35rem;">'
+                + '<span class="new_list_time"></span>'
+                + '<span class="new_des_time">' + Common.timeonverseFunc(new Date(data[i].date)) + '</span>'
+                + '</div>'
+                + '</div>'
+                +'</div>'
+                + '</a>'
+                + '<div>';
+        }
+
+
+        $('.news_list_con .news_mobile_container .mobile_list_item').eq(5).after(htm);
     },
     // 获取最下面广告
     getAdvertLastesData:function(){
