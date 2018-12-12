@@ -34,6 +34,14 @@
                 $(".post_meta_time").text(Common.timeonverseFunc(new Date(data.date).getTime(),1));
                 $(".post_read_time").text(parseInt(data.content.rendered.length/400));
                 $(".post_count").text(data._links["version-history"][0].count);
+
+                $(".post_desc img").each(function(i,value){
+                    if($(value).attr("width")<$(".post_desc").width()){
+                        $(value).width($(value).attr("width"));
+                        $(value).parent().css("text-align","center");
+                    }
+                })
+
             })
         },
 
@@ -69,15 +77,17 @@
             Common.getNewsData(param1,function(data){
                 if(data){
                     var picUrl="static/img/default_700.jpg";
-
-                  var html='<a href="newsContent.html?id='+data[0].id+'&cat='+Common.categories[192]+'" ><img  width="100%" height="100%" style="border-radius: 5px"></a>';
+                    if(data[0].jetpack_featured_media_url){
+                        picUrl=data[0].jetpack_featured_media_url;
+                    }
+                  var html='<a href="newsContent.html?id='+data[0].id+'&cat='+Common.categories[192]+'" ><img src="'+picUrl+'"  width="100%" height="100%" style="border-radius: 5px"></a>';
                   $(".post_advert").append(html);
-                    Common.getImgData([5495], function (imgUrl) {
-                        if (imgUrl && imgUrl[0] && imgUrl[0].media_details) {
-                            picUrl = Common.getSimilarImg(imgUrl[0].media_details.sizes, 2.8);
-                        }
-                        $(".post_advert img").attr("src", picUrl)
-                    });
+                    // Common.getImgData([5495], function (imgUrl) {
+                    //     if (imgUrl && imgUrl[0] && imgUrl[0].media_details) {
+                    //         picUrl = Common.getSimilarImg(imgUrl[0].media_details.sizes, 2.8);
+                    //     }
+                    //     $(".post_advert img").attr("src", picUrl)
+                    // });
                 }
             });
 
