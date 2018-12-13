@@ -5,42 +5,96 @@
             this.id = Common.getQueryString("id");
             Common.getCategoreType();
 
-            // this.postsShow();
-            // 文章图片
-            Common.getImgData([this.id], function (imgUrl) {
-                var picUrl = "static/img/default_700.jpg";
-                if (imgUrl && imgUrl[0] && imgUrl[0].media_details) {
-                    picUrl = Common.getSimilarImg(imgUrl[0].media_details.sizes, 2.8);
-                }
-                $(".post_featured img").attr("src", picUrl);
+            this.postsShow();
+            this.getTagsData();
 
-            });
             newsContent.getAdvertData();
             // 热门文章
             this.getHotPostsData();
             // 评论下方新闻
-            // this.getPostsListData();
-            this.gooleMapInit();
+            this.getPostsListData();
+
+
         },
         // 文章内容
         postsShow: function () {
-            Common.getSingleData(newsContent.id, function (data) {
-                if (Common.getQueryString("cat")) {
-                    $(".post_header .post_category").text(Common.getQueryString("cat"));
-                } else {
-                    $(".post_header .post_category").text(Common.categories[data.categories[0]]);
-                }
-                Common.getUsers(function () {
-                    $(".post_icon1 img").attr("src", Common.userImgs[data.author]);
-                    $(".post_autor").text(Common.users[data.author]);
-                });
-                $(".post_header .post_title").text(data.title.rendered);
-                $(".post_desc").html(data.content.rendered);
+            var url = 'http://chainage.cc/wp-json/tribe/events/v1/events/' + this.id;
+            $.ajax({
+                type: 'GET',
+                url: url,
+                async: true,
+                error: function () {
+                },
+                success: function (data) {
+                    if (data) {
+                        Common.getUsers(function () {
+                            var authorImg="static/img/default_autor.png";
+                            if(Common.userImgs[data.author]){
+                                authorImg=Common.userImgs[data.author];
+                            }
+                            $(".event_ahour img").attr("src",authorImg);
+                        });
+                        $(".event_top_date").html(Common.dateFormat(data.date));
+                        $(".event_title").text(data.title);
+                        $(".event_top_content").html(data.excerpt);
+                        $(".address_name").html(data.venue.province+'、'+data.venue.province);
+                        var imgUrl = "static/img/default_700.jpg";
+                        if (data.image) {
+                            imgUrl = data.image.url;
+                        }
+                        $(".post_desc").html(data.description);
+                        $(".post_featured img").attr("src", imgUrl);
+                        $(".event_start_time").html(Common.dateFormat(data.start_date));
+                        $(".event_end_time").html(Common.dateFormat(data.end_date));
+                        $(".event_cat").html();
+                        $(".event_url").html(data.url);
+                        $(".event_address_name").html(data.venue.city);
+                        $(".event_detail_address").html(data.venue.address);
 
-                $(".post_meta_time").text(Common.timeonverseFunc(new Date(data.date).getTime(), 1));
-                $(".post_read_time").text(parseInt(data.content.rendered.length / 400));
-                $(".post_count").text(data._links["version-history"][0].count);
-            })
+
+                        newsContent.gooleMapInit(data.venue.city+data.venue.address);
+                    }
+                }
+            });
+
+        },
+        gooleMapInit: function (address) {
+            var url = "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyDJW4jsPlNKgv6jFm3B5Edp5ywgdqLWdmc&address="+address+"&sensor=true";
+            $.ajax({
+                type: 'GET',
+                url: url,
+                async: true,
+                error: function () {
+                },
+                success: function (data) {
+                    if (data) {
+                        var latlng=new google.maps.LatLng(data.results[0].geometry.location.lat, data.results[0].geometry.location.lng)
+                        var map=null;
+                        function initialize() {
+                            var mapProp = {
+                                center: latlng,
+                                zoom: 15,
+                                mapTypeId: google.maps.MapTypeId.ROADMAP
+                            };
+                            map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+                        }
+
+                        google.maps.event.addDomListener(window, 'load', initialize);
+                        var marker = new google.maps.Marker({
+                            position:latlng      //将前面设定的坐标标出来
+
+                        });
+                        marker.setMap(map);
+                        $(".gm-svpc").remove();
+                        $(".gmnoprint").remove();
+                        $(".gmnoprint").remove();
+                        $(".gmnoprint").remove();
+                    }
+                }
+
+            });
+
 
         },
         // 热门文章
@@ -69,32 +123,54 @@
             })
         },
         getPostsListData: function () {
-            // 列表新闻
-            Common.getNewsData({per_page: 9, order: 'desc', orderby: 'date', categories: 99}, function (data) {
-                var htm = '';
-                if (data.length > 0) {
-                    for (var i = 0; i < data.length; i++) {
-                        htm += ' <div class="col-md-4 benefit_box"><a href="newsContent.html?id=' + data[i].id + '&cat=' + Common.categories[99] + '"><div class="benefit_box_con">'
-                            + '<img style="width: 100%; height: 0.94rem;" src="' + data[i].jetpack_featured_media_url + '">'
-                            + '<p class="p10 benefit_box_com news_tit">' + data[i].title.rendered + '</p>'
-                            + '<div class="p10 benefit_box_com news_dec">' + data[i].excerpt.rendered + '</div>'
-                            + '</div></a></div>';
+            var url = 'http://chainage.cc/wp-json/tribe/events/v1/events';
+            $.ajax({
+                type: 'GET',
+                url: url,
+                async: true,
+                error: function () {
+                },
+                success: function (data) {
+                    if (data) {
+                        var html = '';
+                        var data = data.events;
+                        for (var i = 0; i < data.length; i++) {
+                            var authorImg = "static/img/default_autor.png";
+                            var imgUrl = "static/img/defalut_300.jpg";
+                            if (Common.userImgs[data[i].author]) {
+                                authorImg = Common.userImgs[data[i].author];
+                            }
+                            if (data[i].image) {
+                                imgUrl = Common.getSimilarImg(data[i].image.sizes, 2.1);
+                            }
+                            html = '<div class="event_item col-xs-12 col-sm-4">'
+                                + '<a href="eventContent.html?id=' + data[i].id + '">'
+                                + '<div class="event_item_con">'
+                                + '<div class="event_img" style="background-image: url(' + imgUrl + ')"></div>'
+                                + '<div class="event_date">'
+                                + '<div style="font-size: 0.12rem;line-height: 11px">' + data[i].date.substring(0, 4) + '</div>'
+                                + '<div style="font-size: 0.17rem">' + data[i].date.substring(5, 7) + '月</div>'
+                                + '<div style="font-size: 0.13rem;line-height: 11px">' + data[i].date.substring(8, 10) + '日</div>'
+                                + '</div>'
+                                + '<div class="event-des clearfix">'
+                                + '<div class="col-xs-3">'
+                                + '<img src="' + authorImg + '" >'
+                                + '</div>'
+                                + '<div class="col-xs-9" >'
+                                + '<div class="event_item_title">' + data[i].title + '</div>'
+                                + '<div style="margin-top: 2px">'
+                                + '<span class="event_address"></span>'
+                                + '<span>' + data[i].venue.province + '</span>'
+                                + '</div>'
+                                + '</div>'
+                                + '</div>'
+                                + '<div></a></div>';
+                            $('.news_contain').append(html);
+                        }
                     }
-                    $('.news_contain').html(htm);
                 }
             });
-        },
-        gooleMapInit: function () {
-            function initialize() {
-                var mapProp = {
-                    center: new google.maps.LatLng(51.508742, -0.120850),
-                    zoom: 5,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP
-                };
-                var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-            }
 
-            google.maps.event.addDomListener(window, 'load', initialize);
         },
         // 获取标签
         getTagsData: function () {
@@ -109,14 +185,14 @@
                     if (data && data.length > 0) {
                         var html = '';
                         for (var i = 0; i < data.length; i++) {
-                            html += '<span>' + data[i].name + '</span>';
+                            html += '<span class="event_tag">' + data[i].name + '</span>';
                         }
-                        $(".tags_name").html(html);
+                        $(".event_top_tag").append(html);
                     }
                 }
             });
         },
-        getAdvertData:function(imgData){
+        getAdvertData: function (imgData) {
             var param1 = {
                 categories: 192,
                 per_page: 1,
@@ -125,20 +201,15 @@
                 status: 'publish'
             };
 
-            Common.getNewsData(param1,function(data){
-                if(data){
-                    var picUrl="static/img/default_700.jpg";
+            Common.getNewsData(param1, function (data) {
+                if (data) {
+                    var picUrl = "static/img/default_700.jpg";
                     if (data[0].jetpack_featured_media_url) {
-                        picUrl =data[0].jetpack_featured_media_url;
+                        picUrl = data[0].jetpack_featured_media_url;
                     }
-                    var html='<a href="newsContent.html?id='+data[0].id+'&cat='+Common.categories[192]+'" ><img src="'+data[0].jetpack_featured_media_url+'" width="100%" height="100%" style="border-radius: 5px"></a>';
+                    var html = '<a href="newsContent.html?id=' + data[0].id + '&cat=' + Common.categories[192] + '" ><img src="' + data[0].jetpack_featured_media_url + '" width="100%" height="100%" style="border-radius: 5px"></a>';
                     $(".post_advert").append(html);
-                    // Common.getImgData([data[0].id], function (imgUrl) {
-                    //     if (imgUrl && imgUrl[0] && imgUrl[0].media_details) {
-                    //         picUrl = Common.getSimilarImg(imgUrl[0].media_details.sizes, 2.8);
-                    //     }
-                    //     $(".post_advert img").attr("src", picUrl)
-                    // });
+
                 }
             });
 
@@ -150,10 +221,10 @@
                 status: 'publish'
             };
 
-            Common.getNewsData(param2,function(data){
-                if(data){
-                    var picUrl="static/img/defalut_300.jpg";
-                    var html='<a href="newsContent.html?id='+data[0].id+'&cat='+Common.categories[193]+'" ><img  width="100%" height="100%" ></a>';
+            Common.getNewsData(param2, function (data) {
+                if (data) {
+                    var picUrl = "static/img/defalut_300.jpg";
+                    var html = '<a href="newsContent.html?id=' + data[0].id + '&cat=' + Common.categories[193] + '" ><img  width="100%" height="100%" ></a>';
                     $(".post_advert_top").append(html);
                     Common.getImgData([data[0].id], function (imgUrl) {
                         if (imgUrl && imgUrl[0] && imgUrl[0].media_details) {
@@ -172,10 +243,10 @@
                 status: 'publish'
             };
 
-            Common.getNewsData(param3,function(data){
-                if(data){
-                    var picUrl="static/img/defalut_300.jpg";
-                    var html='<a href="newsContent.html?id='+data[0].id+'&cat='+Common.categories[194]+'" ><img width="100%" height="100%" ></a>';
+            Common.getNewsData(param3, function (data) {
+                if (data) {
+                    var picUrl = "static/img/defalut_300.jpg";
+                    var html = '<a href="newsContent.html?id=' + data[0].id + '&cat=' + Common.categories[194] + '" ><img width="100%" height="100%" ></a>';
                     $(".post_advert_bot").append(html);
                     Common.getImgData([data[0].id], function (imgUrl) {
                         if (imgUrl && imgUrl[0] && imgUrl[0].media_details) {

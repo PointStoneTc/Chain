@@ -147,11 +147,18 @@ var listNewsPage = {
                     var html='';
                     var data=data.events;
                     for(var i=0;i<data.length;i++){
-
+                        var authorImg="static/img/default_autor.png";
+                        var imgUrl="static/img/defalut_300.jpg";
+                        if(Common.userImgs[data[i].author]){
+                            authorImg=Common.userImgs[data[i].author];
+                        }
+                        if(data[i].image){
+                            imgUrl= Common.getSimilarImg(data[i].image.sizes,2.1);
+                        }
                         html='<div class="event_item col-xs-12 col-sm-4">'
-                            +'<a href="eventContent.html">'
+                            +'<a href="eventContent.html?id='+data[i].id+'">'
                             +'<div class="event_item_con">'
-                            +'<div class="event_img" style="background-image: url('+Common.getSimilarImg(data[i].image.sizes,2.1)+')"></div>'
+                            +'<div class="event_img" style="background-image: url('+imgUrl+')"></div>'
                             +'<div class="event_date">'
                             +'<div style="font-size: 0.12rem;line-height: 11px">'+data[i].date.substring(0,4)+'</div>'
                             +'<div style="font-size: 0.17rem">'+data[i].date.substring(5,7)+'月</div>'
@@ -159,7 +166,7 @@ var listNewsPage = {
                             +'</div>'
                             +'<div class="event-des clearfix">'
                             +'<div class="col-xs-3">'
-                            +'<img src="static/img/default_autor.png" alt="">'
+                            +'<img src="'+authorImg+'" >'
                             +'</div>'
                             +'<div class="col-xs-9" >'
                             +'<div class="event_title">'+data[i].title+'</div>'

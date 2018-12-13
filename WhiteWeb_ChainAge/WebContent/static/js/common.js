@@ -216,6 +216,21 @@ var Common = {
         var d = time.getDate();
         return m + '月' + d + '日';
     },
+    // 转换年月日
+    dateFormat: function (startTime) {
+        startTime = startTime.substr(0, startTime.length - 3);
+        var yMD = startTime.split(" ")[0];
+        var hMS = startTime.split(" ")[1];
+        var startTimeArr = yMD.split("-");
+        if(startTimeArr[1].substr(0,1)==0){
+            startTimeArr[1]=startTimeArr[1].substr(1,2)
+        }
+        if(startTimeArr[2].substr(0,1)==0){
+            startTimeArr[2]=startTimeArr[1].substr(1,2)
+        }
+        startTime = startTimeArr[0] + '年' + startTimeArr[1] + '月' + startTimeArr[2] + '日';
+        return startTime;
+    },
     // 查找数组中属性值的对象
     lookUp: function (name, arr) {
         for (var i in arr)
