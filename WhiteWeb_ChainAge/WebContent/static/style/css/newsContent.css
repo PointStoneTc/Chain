@@ -288,7 +288,7 @@ img {
     color: #000000;
 }
 .news_contain .benefit_box{
-    height: 200px;
+    height: 122px;
     margin-bottom: 0.1rem;
     padding: 0 0.07rem;
 }
@@ -309,25 +309,6 @@ img {
     color: #757575;
 }
 
-.news_contain .news_dec{
-    margin-top: 0.1rem;
-    margin-bottom: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-}
-.news_contain .news_dec p:after{
-    position: absolute;
-    bottom: 0.1rem;
-    left: 0;
-    width: 100%;
-    height: 0.45rem;
-    content: '';
-    background: #fff;
-    opacity: 0.7;
-}
 .news_contain .news_tit{
     margin-top: 0.1rem;
     margin-bottom: 0;

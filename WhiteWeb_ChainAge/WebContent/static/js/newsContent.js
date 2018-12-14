@@ -90,7 +90,6 @@
                         htm+=' <div class="col-md-4 benefit_box"><a href="newsContent.html?id=' + data[i].id+'&cat='+Common.categories[99]+'"><div class="benefit_box_con">'
                             +'<img style="width: 100%; height: 70px;" src="'+data[i].jetpack_featured_media_url+'">'
                             +'<p class="p10 benefit_box_com news_tit">'+data[i].title.rendered+'</p>'
-                            +'<div class="p10 benefit_box_com news_dec">'+data[i].excerpt.rendered+'</div>'
                             +'</div></a></div>';
                     }
                     $('.news_contain').html(htm);
