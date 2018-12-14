@@ -8,7 +8,7 @@
             this.postsShow();
             this.getTagsData();
             newsContent.getAdvertData();
-
+            this.getPostsListData();
         },
         // 文章内容
         postsShow:function(){
@@ -44,7 +44,35 @@
 
             })
         },
-
+        getPostsListData: function () {
+            // 列表新闻
+            var url = 'http://data.chainage.jp/blockchain/data/ctRecommend?cats=99&postId=' + this.id;
+            $.ajax({
+                type: 'GET',
+                url: url,
+                async: true,
+                error: function () {
+                },
+                success: function (data) {
+                    if (data) {
+                        var htm = '';
+                        if (data.length > 0) {
+                            for (var i = 0; i < data.length; i++) {
+                                var imgUrl = 'static/img/default_300x150.jpg';
+                                if (data[i].featuredMedia) {
+                                    imgUrl = Common.contentSimilarImg(data[i].featuredMedia.media_details, 2);
+                                }
+                                htm += ' <div class="col-md-4 benefit_box"><a href="newsContent.html?id=' + data[i].id + '&cat=' + Common.categories[99] + '"><div class="benefit_box_con">'
+                                    + '<div style="width: 100%; height: 80px;background:url(' + imgUrl + ') center no-repeat;background-size: cover"></div>'
+                                    + '<p class="p10 benefit_box_com news_tit">' + data[i].title + '</p>'
+                                    + '</div></a></div>';
+                            }
+                            $('.news_contain').html(htm);
+                        }
+                    }
+                }
+            });
+        },
         // 获取标签
         getTagsData:function(){
             var url='http://chainage.cc/wp-json/wp/v2/tags?post='+newsContent.id;

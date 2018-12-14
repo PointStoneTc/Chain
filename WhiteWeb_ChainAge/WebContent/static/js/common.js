@@ -86,7 +86,7 @@ var Common = {
                         self.users.push(c);
                         self.userImgs.push(d);
                     }
-                    if(callback){
+                    if (callback) {
                         callback();
                     }
                 }
@@ -222,11 +222,11 @@ var Common = {
         var yMD = startTime.split(" ")[0];
         var hMS = startTime.split(" ")[1];
         var startTimeArr = yMD.split("-");
-        if(startTimeArr[1].substr(0,1)==0){
-            startTimeArr[1]=startTimeArr[1].substr(1,2)
+        if (startTimeArr[1].substr(0, 1) == 0) {
+            startTimeArr[1] = startTimeArr[1].substr(1, 2)
         }
-        if(startTimeArr[2].substr(0,1)==0){
-            startTimeArr[2]=startTimeArr[1].substr(1,2)
+        if (startTimeArr[2].substr(0, 1) == 0) {
+            startTimeArr[2] = startTimeArr[1].substr(1, 2)
         }
         startTime = startTimeArr[0] + '年' + startTimeArr[1] + '月' + startTimeArr[2] + '日';
         return startTime;
@@ -239,54 +239,63 @@ var Common = {
             }
     },
     // 查找数组中属性值图片比例相似的对象
-    coinLookUp: function (arr,value ) {
-        for (var i=0;i<arr.length;i++ ) {
+    coinLookUp: function (arr, value) {
+        for (var i = 0; i < arr.length; i++) {
             if (arr[i].specificRate.baseSymbol == value) {
                 return arr[i];
             }
         }
     },
     // 获取相似比例图片
-    getSimilarImg:function(arr,scale){
+    getSimilarImg: function (arr, scale) {
         var obj = [];
         for (var i in arr) {
-            obj.push([arr[i],i]);
-        };
-        let myShe=obj.sort(function(a, b) {
-            return Math.abs(a[0].width/a[0].height - scale) - Math.abs(b[0].width/b[0].height - scale);
+            obj.push([arr[i], i]);
+        }
+        ;
+        let myShe = obj.sort(function (a, b) {
+            return Math.abs(a[0].width / a[0].height - scale) - Math.abs(b[0].width / b[0].height - scale);
         })[0][0];
 
-        if(myShe.source_url){
-            return myShe.source_url ;
-        }else{
+        if (myShe.source_url) {
+            return myShe.source_url;
+        } else {
             return myShe.url;
         }
+    }, // 获取相似比例图片
+    contentSimilarImg: function (arr, scale) {
+        let myShe = arr.sort(function (a, b) {
+            return Math.abs(a.width / a.height - scale) - Math.abs(b.width / b.height - scale);
+        })[0];
+        return myShe.source_url;
     },
+
     // 获取相似宽度图片
-    getSimilarWidthImg:function(arr,scale){
+    getSimilarWidthImg: function (arr, scale) {
         var obj = [];
         for (var i in arr) {
-            obj.push([arr[i],i]);
-        };
+            obj.push([arr[i], i]);
+        }
+        ;
 
-        let myShe=obj.sort(function(a, b) {
+        let myShe = obj.sort(function (a, b) {
             return Math.abs(a[0].width - scale) - Math.abs(b[0].width - scale);
         })[0][0];
 
         return myShe.source_url;
     },
     // 首页获取相似宽度图片
-    getSimilarWidth:function(arr,scale){
-        let myShe=arr.sort(function(a, b) {
+    getSimilarWidth: function (arr, scale) {
+        let myShe = arr.sort(function (a, b) {
             return Math.abs(a.width - scale) - Math.abs(b.width - scale);
         })[0];
 
         return myShe.source_url;
     },
     // 查找数组中具有某个属性值的对象
-    objLookUp: function ( arr) {
-        for (var i =0;i<arr.length;i++){
-            if('adv_img' in arr[i]){
+    objLookUp: function (arr) {
+        for (var i = 0; i < arr.length; i++) {
+            if ('adv_img' in arr[i]) {
                 return arr[i];
             }
         }
