@@ -143,7 +143,6 @@ var homePage = {
             }
         });
     },
-    // 要修改
     getAdvertData: function (data) {
         var data1=data.postMap["186"];
         var data2=data.postMap["187"];
@@ -174,7 +173,11 @@ var homePage = {
                 if(data[i].thumbnailMediaDetail){
                     imgUrl=data[i].thumbnailMediaDetail.source_url;
                 }
-                htm = '<div class="col-md-4 benefit_box"><a href="' + './newsContent.html?id=' + data[i].id + '&cat='+Common.categories[categories]+'">'
+                var linkUrl='newsContent.html?id=' + data[i].id+'&cat='+Common.categories[categories];
+                if(categories==185){
+                    linkUrl='chanelContent.html?id=' + data[i].id+'&cat='+Common.categories[categories];
+                }
+                htm = '<div class="col-md-4 benefit_box"><a href="' + linkUrl+'">'
                     + '<div class="benefit_box_con">'
                     + '<p class="p20 benefit_box_tit">' + Common.categories[categories] + '</p>'
                     + '<p class="p20 benefit_box_hea">' + title + '</p>'
