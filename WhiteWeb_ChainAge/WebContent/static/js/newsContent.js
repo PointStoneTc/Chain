@@ -4,7 +4,7 @@
         init: function () {
             this.id = Common.getQueryString("id");
             Common.getCategoreType();
-
+            Common.getUsers();
             this.postsShow();
             // 文章图片
             Common.getImgData([this.id], function (imgUrl) {
@@ -18,10 +18,40 @@
             newsContent.getAdvertData();
             // 热门文章
             this.getHotPostsData();
+            // 评论
+            this.getCommentData();
             // 评论下方新闻
             this.getPostsListData();
             this.getTagsData();
+            this.eventInit()
+        },
+        eventInit: function () {
+            $(".comment_btn").on("click", function () {
+                var content = $(".reply_con input").val();
+                if (content == '') {
+                    Common.showToast("请输入评论内容");
+                    return;
+                }
+                if(Common.getCookie("email") && Common.getCookie("nickname")){
+                    newsContent.CommentFunc(Common.getCookie("email"),Common.getCookie("nickname"));
+                }else{
+                    $("#indexPopup").show();
+                }
 
+            });
+            $(".pop_cancle_btn").on("click",function(){
+               $("#indexPopup").hide();
+               $(".email").val('');
+               $(".nickname").val('');
+            });
+            $(".pop_confirm_btn").on("click",function(){
+                Common.setCookie('email',$('.email').val());
+                Common.setCookie('nickname',$('.nickname').val());
+                newsContent.CommentFunc(Common.getCookie("email"),Common.getCookie("nickname"));
+            });
+            $(".cancle_btn").on("click",function(){
+                $(".reply_con input").val('');
+            })
         },
         // 文章内容
         postsShow: function () {
@@ -80,6 +110,79 @@
                 var newsFuc = template($("#news").html(), {data: data.list});
                 $(".news_con_right .new-list").append(newsFuc);
             })
+        },
+        // 评论
+        getCommentData: function () {
+            var url = 'http://chainage.cc/wp-json/wp/v2/comments?post=' + this.id + '&page=1';
+            var url = 'http://chainage.cc/wp-json/wp/v2/comments?post=4898&page=1';
+            $.ajax({
+                type: 'GET',
+                url: url,
+                async: true,
+                error: function () {
+                },
+                success: function (data) {
+                    if (data) {
+                        var html = '';
+                        for (var i = 0; i < data.length; i++) {
+                            var authorImg = "static/img/default_autor.png";
+                            if (Common.userImgs[data[i].author]) {
+                                authorImg = Common.userImgs[data[i].author];
+                            }
+
+                            html += '<li>'
+                                + '<div class="comment_item_header clearfix">'
+                                + '<div><img src="' + authorImg + '" class="comment_headpic"></div>'
+                                + '<div>' + Common.users[data[i].author] + '</div>'
+                                + '<div style="float: right;color:#8C96AB">' + Common.timeonverseFunc(new Date(data[i].date), "flag") + '</div>'
+                                + '</div>'
+                                + '<div class="comment_con">' + data[i].content.rendered + '</div>'
+                                + '<div class="comment_edit">'
+                                + '<span class="prise_icon"></span><span class="prise_btn">999</span>'
+                                + '<span class="view_icon"></span><span class="view_btn">查看对话</span>'
+                                + '<span class="reply_icon"></span><span class="reply_btn">回复</span>'
+                                + '</div>'
+                                + '</li>';
+                        }
+                        $(".comment_list").html(html);
+
+                    }
+                }
+            });
+        },
+        CommentFunc:function(email,nickname){
+            var url = 'http://data.chainage.jp/blockchain/data/addWpCommentUser?mail='+email+'&nickname='+nickname;
+            $.ajax({
+                type: 'POST',
+                url: url,
+                error: function () {
+                    Common.showToast("评论失败");
+                },
+                success: function (data) {
+                    if (data) {
+                        var html= html += '<li>'
+                            + '<div class="comment_item_header clearfix">'
+                            + '<div><img src="" class="comment_headpic"></div>'
+                            + '<div></div>'
+                            + '<div style="float: right;color:#8C96AB">' + Common.timeonverseFunc(new Date(), "flag") + '</div>'
+                            + '</div>'
+                            + '<div class="comment_con">' + $(".reply_con input").val(); + '</div>'
+                            + '<div class="comment_edit">'
+                            + '<span class="prise_icon"></span><span class="prise_btn">999</span>'
+                            + '<span class="view_icon"></span><span class="view_btn">查看对话</span>'
+                            + '<span class="reply_icon"></span><span class="reply_btn">回复</span>'
+                            + '</div>'
+                            + '</li>';
+                        $(".comment_list").prepend(html);
+                        $(".reply_con input").val('');
+                        Common.showToast("评论成功");
+                        $("#indexPopup").hide();
+                    }else{
+                        Common.showToast("评论失败");
+                    }
+                }
+            });
+
         },
         getPostsListData: function () {
             // 列表新闻

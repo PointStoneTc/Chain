@@ -292,7 +292,7 @@ var listNewsPage = {
                             +'<span class="new_list_icon"><img src="'+Common.userImgs[data[i].author]+'" ></span>'
                             +'<span>'+Common.users[data[i].author]+'</span>'
                             +'<div class="time_right"><span class="new_list_time"></span>'
-                            +'<span>'+Common.timeonverseFunc(new Date(data[1].date))+'</span></div>'
+                            +'<span>'+Common.timeonverseFunc(new Date(data[i].date))+'</span></div>'
                             + '</p><div style="clear: both"></div>'
                             + chanelImg
                             + '<div class="p20 benefit_box_com news_dec">'+data[i].excerpt.rendered+'</div>'
@@ -467,7 +467,7 @@ var listNewsPage = {
                 +'<span class="new_list_icon"><img src="'+Common.userImgs[data[i].author]+'" ></span>'
                 +'<span>'+Common.users[data[i].author]+'</span>'
                 +'<div class="time_right"><span class="new_list_time"></span>'
-                +'<span>'+Common.timeonverseFunc(new Date(data[1].date))+'</span></div>'
+                +'<span>'+Common.timeonverseFunc(new Date(data[i].date))+'</span></div>'
                 + '</p><div style="clear: both"></div>'
                 + chanelImg
                 + '<div class="p20 benefit_box_com news_dec">'+data[i].excerpt.rendered+'</div>'

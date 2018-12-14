@@ -185,6 +185,7 @@ img {
 .comment_item_header div{
     float: left;
     font-size: 0.18rem;
+    line-height: 26px;
 }
 .comment_tab{
     float: right;
@@ -211,9 +212,10 @@ img {
     border-bottom:1px solid rgba(228,228,228,1);
 }
 .comment_list .comment_headpic{
-    width: 0.32rem;
-    height: 0.32rem;
+    width: 26px;
+    height: 26px;
     margin-right: 0.08rem;
+    border-radius: 50%;
 }
 
 .prise_icon,.view_icon,.reply_icon{
@@ -247,7 +249,7 @@ img {
 }
 .news_comment .reply_con{
     padding: 0 0.23rem;
-    margin-top: -0.4rem;
+    margin-top: -5px;
 }
 
 .news_comment .reply_con input{

@@ -301,6 +301,41 @@ var Common = {
         }
 
     },
+    /**
+     * showToast 提示
+     * @param msg
+     * @param timeout
+     */
+    showToast: function (msg, timeout) {
+        var time = timeout || 2000;
+        $("#showToast").show();
+        $("#showToast").html(msg);
+        setTimeout(function () {
+            $("#showToast").hide();
+        }, time);
+
+    },
+
+    setCookie: function (name, value) {
+        var str = name + "=" + encodeURIComponent(value);
+        document.cookie = str;
+    },
+    /**
+     * 获取指定名称的cookie值
+     * @method get
+     * @param {String} name cookie名称
+     * @return {String} 获取到的cookie值
+     */
+    getCookie: function (name) {
+        var v = document.cookie.match('(?:^|;)\\s*' + name + '=([^;]*)');
+        return v ? decodeURIComponent(v[1]) : null;
+    },
+    remove : function(name, path, domain) {
+        document.cookie = name + "=" +
+            ((path) ? "; path=" + path : "") +
+            ((domain) ? "; domain=" + domain : "") +
+            "; expires=Thu, 01-Jan-70 00:00:01 GMT";
+    }
 
 }
 
