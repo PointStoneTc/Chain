@@ -334,7 +334,7 @@ a{
         margin: 0;
     }
     .cspa{
-        height: 8.5rem;
+        height:169px;
         width: 100%;
         margin-bottom: 0.6rem;
     }
@@ -342,10 +342,10 @@ a{
         font-size: 0.8rem;
     }
     .cspas .cspa-top{
-        height: 5.5rem;
+        height: 113px;
     }
     .capa_bot{
-        height: 3rem !important;
+        height: 56px !important;
         padding: 13px 0 0 20px !important;
     }
     .cspa .numberPrice{
@@ -362,7 +362,7 @@ a{
         font-size: 0.7rem;
     }
     .cspa .logo{
-        top: 4.8rem;
+        top: 98px;
     }
     .exchange-ranking .rankR .ranking-list{
         padding-left: 0;
