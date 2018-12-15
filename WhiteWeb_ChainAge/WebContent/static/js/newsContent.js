@@ -8,14 +8,17 @@
             Common.getUsers();
             this.postsShow();
             // 文章图片
-            Common.getImgData([this.id], function (imgUrl) {
-                var picUrl = "static/img/default_700.jpg";
-                if (imgUrl && imgUrl[0] && imgUrl[0].source_url) {
-                    picUrl = imgUrl[0].source_url;
-                }
-                $(".post_featured img").attr("src", picUrl);
+            if(Common.getQueryString("cat")!='movie'){
+                Common.getImgData([this.id], function (imgUrl) {
+                    var picUrl = "static/img/default_700.jpg";
+                    if (imgUrl && imgUrl[0] && imgUrl[0].source_url) {
+                        picUrl = imgUrl[0].source_url;
+                    }
+                    $(".post_featured img").attr("src", picUrl);
 
-            });
+                });
+            }
+
             newsContent.getAdvertData();
             // 热门文章
             this.getHotPostsData();
@@ -60,43 +63,50 @@
                 $(".reply_input input").val('');
             })
             $("body").on("click",".reply_confirm",function(){
-
-                var url = 'http://chainage.cc/wp-json/wp/v2/comments?post=4898&page=1';
+                var comurl = 'http://chainage.cc/wp-json/wp/v2/comments';
+                var data = {
+                    author_email: Common.getCookie("email"),
+                    nickname: Common.getCookie("nickname"),
+                    content: $(".reply_con input").val(),
+                    date: new Date().Format('yyyy-MM-dd hh:mm:ss').split(" ").join("T"),
+                    parent: 0,
+                    post: newsContent.id
+                }
                 $.ajax({
-                    type: 'GET',
-                    url: url,
-                    async: true,
+                    type: 'POST',
+                    url: comurl,
+                    data: data,
                     error: function () {
+                        Common.showToast("评论失败");
                     },
                     success: function (data) {
                         if (data) {
-                            var html = '';
-                            for (var i = 0; i < data.length; i++) {
-                                var authorImg = "static/img/default_autor.png";
-                                if (Common.userImgs[data[i].author]) {
-                                    authorImg = Common.userImgs[data[i].author];
-                                }
+                            var authorImg = "static/img/default_autor.png";
+                            var html = html += '<li>'
+                                + '<div class="comment_item_header clearfix">'
+                                + '<div><img src="' + authorImg + '" class="comment_headpic"></div>'
+                                + '<div></div>'
+                                + '<div style="float: right;color:#8C96AB">' + Common.timeonverseFunc(new Date().getTime(), "flag") + '</div>'
+                                + '</div>'
+                                + '<div class="comment_con">' + $(".reply_con input").val()
+                                + '</div>'
+                                + '<div class="comment_edit">'
+                                + '<span class="reply_icon"></span><span class="reply_btn">回复</span>'
+                                + '</div>'
+                                + '</li>';
+                            $(".comment_list").prepend(html);
+                            Common.showToast("评论成功");
 
-                                html += '<li>'
-                                    + '<div class="comment_item_header clearfix">'
-                                    + '<div><img src="' + authorImg + '" class="comment_headpic"></div>'
-                                    + '<div>' + Common.users[data[i].author] + '</div>'
-                                    + '<div style="float: right;color:#8C96AB">' + Common.timeonverseFunc(new Date(data[i].date), "flag") + '</div>'
-                                    + '</div>'
-                                    + '<div class="comment_con">' + data[i].content.rendered + '</div>'
-                                    + '<div class="comment_edit">'
-                                    + '<span class="reply_icon"></span><span class="reply_btn">回复</span>'
-                                    + '<div class="reply_input">'
-                                    + '<input type="text" /><span class="t-btn replar_cancle">取消</span><span class="t-btn reply_confirm">确定</span></div>'
-                                    + '</div>'
-                                    + '</li>';
-                            }
                             $(".comment_list").html(html);
                             $(".reply_input").hide();
                             $(".reply_input input").val('');
+                        } else {
+
+                            Common.showToast("评论失败");
                         }
                     }
                 });
+
             })
         },
         // 文章内容
@@ -106,6 +116,7 @@
                     $(".post_header .post_category").text(Common.getQueryString("cat"));
                 } else {
                     $(".post_header .post_category").text(Common.categories[data.categories[0]]);
+                    newsContent.catid=data.categories[0];
                 }
                 Common.getUsers(function () {
                     $(".post_icon1 img").attr("src", Common.userImgs[data.author]);
@@ -214,7 +225,7 @@
                         content: $(".reply_con input").val(),
                         date: new Date().Format('yyyy-MM-dd hh:mm:ss').split(" ").join("T"),
                         parent: 0,
-                        post: this.id
+                        post: newsContent.id
                     }
                     $.ajax({
                         type: 'POST',

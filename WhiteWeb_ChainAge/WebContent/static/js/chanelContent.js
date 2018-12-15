@@ -18,6 +18,7 @@
                     $(".post_header .post_category").text(Common.getQueryString("cat"));
                 }else{
                     $(".post_header .post_category").text(Common.categories[data.categories[0]]);
+                    newsContent.catid=data.categories[0];
                 }
                 Common.getUsers(function () {
                     $(".post_icon1 img").attr("src",Common.userImgs[data.author]);
