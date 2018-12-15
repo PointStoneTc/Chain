@@ -1,6 +1,7 @@
 (function ($) {
     var newsContent = {
         id: null,
+        catid:null,
         init: function () {
             this.id = Common.getQueryString("id");
             Common.getCategoreType();
@@ -42,6 +43,7 @@
                         if (data.image) {
                             imgUrl = data.image.url;
                         }
+                        newsContent.catid=data.categories[0].id;
                         $(".post_desc").html(data.description);
                         $(".post_featured img").attr("src", imgUrl);
                         $(".event_start_time").html(Common.dateFormat(data.start_date));
@@ -125,8 +127,59 @@
                 $(".news_con_right .new-list").append(newsFuc);
             })
         },
+        // getPostsListData: function () {
+        //     var url = 'http://chainage.cc/wp-json/tribe/events/v1/events';
+        //     $.ajax({
+        //         type: 'GET',
+        //         url: url,
+        //         async: true,
+        //         error: function () {
+        //         },
+        //         success: function (data) {
+        //             if (data) {
+        //                 var html = '';
+        //                 var data = data.events;
+        //                 for (var i = 0; i < data.length; i++) {
+        //                     var authorImg = "static/img/default_autor.png";
+        //                     var imgUrl = "static/img/defalut_300.jpg";
+        //                     if (Common.userImgs[data[i].author]) {
+        //                         authorImg = Common.userImgs[data[i].author];
+        //                     }
+        //                     if (data[i].image) {
+        //                         imgUrl = Common.getSimilarImg(data[i].image.sizes, 2.1);
+        //                     }
+        //                     html = '<div class="event_item col-xs-12 col-sm-4">'
+        //                         + '<a href="eventContent.html?id=' + data[i].id + '">'
+        //                         + '<div class="event_item_con">'
+        //                         + '<div class="event_img" style="background-image: url(' + imgUrl + ')"></div>'
+        //                         + '<div class="event_date">'
+        //                         + '<div style="font-size: 0.12rem;line-height: 11px">' + data[i].date.substring(0, 4) + '</div>'
+        //                         + '<div style="font-size: 0.17rem">' + data[i].date.substring(5, 7) + '月</div>'
+        //                         + '<div style="font-size: 0.13rem;line-height: 11px">' + data[i].date.substring(8, 10) + '日</div>'
+        //                         + '</div>'
+        //                         + '<div class="event-des clearfix">'
+        //                         + '<div class="col-xs-3">'
+        //                         + '<img src="' + authorImg + '" >'
+        //                         + '</div>'
+        //                         + '<div class="col-xs-9" >'
+        //                         + '<div class="event_item_title">' + data[i].title + '</div>'
+        //                         + '<div style="margin-top: 2px">'
+        //                         + '<span class="event_address"></span>'
+        //                         + '<span>' + data[i].venue.province + '</span>'
+        //                         + '</div>'
+        //                         + '</div>'
+        //                         + '</div>'
+        //                         + '<div></a></div>';
+        //                     $('.news_contain').append(html);
+        //                 }
+        //             }
+        //         }
+        //     })
+        //
+        // },
         getPostsListData: function () {
-            var url = 'http://chainage.cc/wp-json/tribe/events/v1/events';
+            var id=newsContent.catid || 202;
+            var url = 'http://data.chainage.jp/blockchain/data/ctRecommend?cats='+id+'&postId=' + this.id;
             $.ajax({
                 type: 'GET',
                 url: url,
@@ -135,45 +188,23 @@
                 },
                 success: function (data) {
                     if (data) {
-                        var html = '';
-                        var data = data.events;
-                        for (var i = 0; i < data.length; i++) {
-                            var authorImg = "static/img/default_autor.png";
-                            var imgUrl = "static/img/defalut_300.jpg";
-                            if (Common.userImgs[data[i].author]) {
-                                authorImg = Common.userImgs[data[i].author];
+                        var htm = '';
+                        if (data.length > 0) {
+                            for (var i = 0; i < data.length; i++) {
+                                var imgUrl = 'static/img/default_300x150.jpg';
+                                if (data[i].featuredMedia) {
+                                    imgUrl = Common.contentSimilarImg(data[i].featuredMedia.media_details, 2);
+                                }
+                                htm += ' <div class="col-md-4 benefit_box"><a href="newsContent.html?id=' + data[i].id + '&cat=' + Common.categories[99] + '"><div class="benefit_box_con">'
+                                    + '<div style="width: 100%; height: 70px;background:url(' + imgUrl + ') center no-repeat;background-size: cover"></div>'
+                                    + '<p class="p10 benefit_box_com news_tit">' + data[i].title + '</p>'
+                                    + '</div></a></div>';
                             }
-                            if (data[i].image) {
-                                imgUrl = Common.getSimilarImg(data[i].image.sizes, 2.1);
-                            }
-                            html = '<div class="event_item col-xs-12 col-sm-4">'
-                                + '<a href="eventContent.html?id=' + data[i].id + '">'
-                                + '<div class="event_item_con">'
-                                + '<div class="event_img" style="background-image: url(' + imgUrl + ')"></div>'
-                                + '<div class="event_date">'
-                                + '<div style="font-size: 0.12rem;line-height: 11px">' + data[i].date.substring(0, 4) + '</div>'
-                                + '<div style="font-size: 0.17rem">' + data[i].date.substring(5, 7) + '月</div>'
-                                + '<div style="font-size: 0.13rem;line-height: 11px">' + data[i].date.substring(8, 10) + '日</div>'
-                                + '</div>'
-                                + '<div class="event-des clearfix">'
-                                + '<div class="col-xs-3">'
-                                + '<img src="' + authorImg + '" >'
-                                + '</div>'
-                                + '<div class="col-xs-9" >'
-                                + '<div class="event_item_title">' + data[i].title + '</div>'
-                                + '<div style="margin-top: 2px">'
-                                + '<span class="event_address"></span>'
-                                + '<span>' + data[i].venue.province + '</span>'
-                                + '</div>'
-                                + '</div>'
-                                + '</div>'
-                                + '<div></a></div>';
-                            $('.news_contain').append(html);
+                            $('.news_contain').html(htm);
                         }
                     }
                 }
             });
-
         },
         // 获取标签
         getTagsData: function () {

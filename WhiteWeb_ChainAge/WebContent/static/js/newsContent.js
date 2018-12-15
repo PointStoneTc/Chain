@@ -1,6 +1,7 @@
 (function ($) {
     var newsContent = {
         id: null,
+        catid:null,
         init: function () {
             this.id = Common.getQueryString("id");
             Common.getCategoreType();
@@ -20,8 +21,7 @@
             this.getHotPostsData();
             // 评论
             this.getCommentData();
-            // 评论下方新闻
-            this.getPostsListData();
+
             this.getTagsData();
             this.eventInit()
         },
@@ -67,7 +67,6 @@
                 });
                 $(".post_header .post_title").text(data.title.rendered);
                 $(".post_desc").html(data.content.rendered);
-
                 $(".post_meta_time").text(Common.timeonverseFunc(new Date(data.date).getTime(), 1));
                 $(".post_read_time").text(parseInt(data.content.rendered.length / 400));
                 $(".post_count").text(data._links["version-history"][0].count);
@@ -84,6 +83,8 @@
                 $(".post_desc p").each(function (i, value) {
                     $(value).css("marginBottom", "20px");
                 })
+                // 评论下方新闻
+                newsContent.getPostsListData();
             })
         },
         // 热门文章
@@ -185,8 +186,11 @@
 
         },
         getPostsListData: function () {
-            // 列表新闻
-            var url = 'http://data.chainage.jp/blockchain/data/ctRecommend?cats=99&postId=' + this.id;
+            var id=newsContent.catid;
+            if (Common.getQueryString("cat")) {
+                id=Common.lookUpCat(Common.categoriesArr, Common.getQueryString("cat")).id;
+            }
+            var url = 'http://data.chainage.jp/blockchain/data/ctRecommend?cats='+id+'&postId=' + this.id;
             $.ajax({
                 type: 'GET',
                 url: url,
@@ -202,7 +206,7 @@
                                 if (data[i].featuredMedia) {
                                     imgUrl = Common.contentSimilarImg(data[i].featuredMedia.media_details, 2);
                                 }
-                                htm += ' <div class="col-md-4 benefit_box"><a href="newsContent.html?id=' + data[i].id + '&cat=' + Common.categories[99] + '"><div class="benefit_box_con">'
+                                htm += ' <div class="col-md-4 benefit_box"><a href="newsContent.html?id=' + data[i].id + '&cat=' + id + '"><div class="benefit_box_con">'
                                     + '<div style="width: 100%; height: 70px;background:url(' + imgUrl + ') center no-repeat;background-size: cover"></div>'
                                     + '<p class="p10 benefit_box_com news_tit">' + data[i].title + '</p>'
                                     + '</div></a></div>';

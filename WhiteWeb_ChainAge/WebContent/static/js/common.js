@@ -3,6 +3,7 @@ var Common = {
     newCounts: [],
     users: [],
     userImgs: [],
+    categoriesArr:[],
     eventInit: function () {
         $("body").on("click", ".share_btn", function () {
             $(".share_con").toggle();
@@ -62,7 +63,8 @@ var Common = {
                         var c = self.categories[id] = data[i].name;
                         var d = self.newCounts[id] = data[i].count;
                         self.categories.push(c);
-                        self.newCounts.push(d)
+                        self.newCounts.push(d);
+                        self.categoriesArr.push(data[i]);
                     }
                 }
             }
@@ -242,6 +244,13 @@ var Common = {
     coinLookUp: function (arr, value) {
         for (var i = 0; i < arr.length; i++) {
             if (arr[i].specificRate.baseSymbol == value) {
+                return arr[i];
+            }
+        }
+    },
+    lookUpCat: function (arr, value) {
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i].name == value) {
                 return arr[i];
             }
         }

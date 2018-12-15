@@ -627,7 +627,7 @@ dt, dd{
     border: 1px solid #CECECE;
     background: #FFFFFF;
     padding-bottom: 0.1rem;
-    height: 148px;
+    height: 155px;
 }
 .event_item .event_img{
     width: 100%;
@@ -656,7 +656,7 @@ dt, dd{
     border-radius: 3px;
     padding: 0 0px;
     margin-top: 15px;
-    /*margin-left: 0.1rem;*/
+    margin-left: 6px;
 }
 .event-des .col-xs-9{
     font-size: 0.14rem;
@@ -672,7 +672,7 @@ dt, dd{
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     color: #000000;
-    height: 34px;
+    height: 40px;
 }
 
 .event-des .event_address {

@@ -1,6 +1,7 @@
 (function ($) {
     var newsContent={
         id:null,
+        catid:null,
         init:function () {
             this.id=Common.getQueryString("id");
             Common.getCategoreType();
@@ -45,8 +46,11 @@
             })
         },
         getPostsListData: function () {
-            // 列表新闻
-            var url = 'http://data.chainage.jp/blockchain/data/ctRecommend?cats=99&postId=' + this.id;
+            var id=newsContent.catid;
+            if (Common.getQueryString("cat")) {
+                id=Common.lookUpCat(Common.categoriesArr, Common.getQueryString("cat")).id;
+            }
+            var url = 'http://data.chainage.jp/blockchain/data/ctRecommend?cats='+id+'&postId=' + this.id;
             $.ajax({
                 type: 'GET',
                 url: url,
@@ -62,8 +66,8 @@
                                 if (data[i].featuredMedia) {
                                     imgUrl = Common.contentSimilarImg(data[i].featuredMedia.media_details, 2);
                                 }
-                                htm += ' <div class="col-md-4 benefit_box"><a href="newsContent.html?id=' + data[i].id + '&cat=' + Common.categories[99] + '"><div class="benefit_box_con">'
-                                    + '<div style="width: 100%; height: 80px;background:url(' + imgUrl + ') center no-repeat;background-size: cover"></div>'
+                                htm += ' <div class="col-md-4 benefit_box"><a href="chanelContent.html?id=' + data[i].id + '&cat=' + Common.categories[id]+ '"><div class="benefit_box_con">'
+                                    + '<div style="width: 100%; height: 70px;background:url(' + imgUrl + ') center no-repeat;background-size: cover"></div>'
                                     + '<p class="p10 benefit_box_com news_tit">' + data[i].title + '</p>'
                                     + '</div></a></div>';
                             }
