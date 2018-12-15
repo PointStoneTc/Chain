@@ -6,7 +6,7 @@
 
 .view-tottle{
     position: absolute;
-    top: 90px;
+    top: 97px;
     left: 50%;
     margin-left: -135px;
     z-index: 99;
@@ -29,7 +29,7 @@
     margin: 0 auto;
 }
 .data-view .data-vlue {
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: #fff;
     margin-top: -30px;
 }

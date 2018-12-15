@@ -1,11 +1,11 @@
-var dataList = [];
-for (var i = 0; i < 32; i++) {
-    dataList.push('<div data-key="CSPA:BTC/AED" class="data_item">',
-        '<div class="code"><span>BTC/</span><span>AED</span></div>',
-        '<div class="price">23,0910.88</div>',
-        '</div>');
-}
-$(".currency_container").html(dataList.join(""));
+// var dataList = [];
+// for (var i = 0; i < 32; i++) {
+//     dataList.push('<div data-key="CSPA:BTC/AED" class="data_item">',
+//         '<div class="code"><span>BTC/</span><span>AED</span></div>',
+//         '<div class="price">23,0910.88</div>',
+//         '</div>');
+// }
+// $(".currency_container").html(dataList.join(""));
 
 // 烛台图
 var upColor = '#ec0000';

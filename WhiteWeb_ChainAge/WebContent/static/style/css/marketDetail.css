@@ -72,7 +72,9 @@ a:hover {
     width: 50px;
     height: 50px;
 }
-
+.news_con_right{
+    margin-bottom: 30px;
+}
 .mt_h_container {
     font-size: 0.32rem;
     text-align: center;
@@ -209,6 +211,7 @@ a:hover {
     border: 1px solid #DDD;
     border-right: none;
     margin: 0;
+    padding-left: 2px;
 }
 
 .pagination .current {

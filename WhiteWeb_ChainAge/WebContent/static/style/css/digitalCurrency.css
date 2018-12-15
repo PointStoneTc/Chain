@@ -84,6 +84,7 @@ a:hover {
 .news_con_right {
     width: 27%;
     float: right;
+    margin-bottom: 30px;
 }
 
 .list-group-item {
