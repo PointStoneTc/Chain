@@ -28,16 +28,16 @@
                 success: function (data) {
                     if (data) {
                         Common.getUsers(function () {
-                            var authorImg="static/img/default_autor.png";
-                            if(Common.userImgs[data.author]){
-                                authorImg=Common.userImgs[data.author];
+                            var authorImg = "static/img/default_autor.png";
+                            if (Common.userImgs[data.author]) {
+                                authorImg = Common.userImgs[data.author];
                             }
-                            $(".event_ahour img").attr("src",authorImg);
+                            $(".event_ahour img").attr("src", authorImg);
                         });
                         $(".event_top_date").html(Common.dateFormat(data.date));
                         $(".event_title").text(data.title);
                         $(".event_top_content").html(data.excerpt);
-                        $(".address_name").html(data.venue.province+'、'+data.venue.province);
+                        $(".address_name").html(data.venue.province + '、' + data.venue.province);
                         var imgUrl = "static/img/default_700.jpg";
                         if (data.image) {
                             imgUrl = data.image.url;
@@ -51,15 +51,20 @@
                         $(".event_address_name").html(data.venue.city);
                         $(".event_detail_address").html(data.venue.address);
 
-
-                        newsContent.gooleMapInit(data.venue.city+data.venue.address);
+                        var startTime = data.start_date.split(":").join("").split("-").join("").split(" ").join("T");
+                        var endTime = data.end_date.split(":").join("").split("-").join("").split(" ").join("T");
+                        var url = 'https://www.google.com/calendar/event?action=TEMPLATE&text=' + data.title + '&dates=' + startTime + '/' + endTime + '&details=&ctz=';
+                        $(".link_btn").parent().attr("href", url);
+                        var exportUrl = 'https://wpshindig.com/event/seattle-beercode/' + data.start_date.substr(0, 10) + '/?ical=1&tribe_display=';
+                        $(".export_btn").parent().attr("href", exportUrl);
+                        newsContent.gooleMapInit(data.venue.city + data.venue.address);
                     }
                 }
             });
 
         },
         gooleMapInit: function (address) {
-            var url = "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyDJW4jsPlNKgv6jFm3B5Edp5ywgdqLWdmc&address="+address+"&sensor=true";
+            var url = "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyDJW4jsPlNKgv6jFm3B5Edp5ywgdqLWdmc&address=" + address + "&sensor=true";
             $.ajax({
                 type: 'GET',
                 url: url,
@@ -68,8 +73,9 @@
                 },
                 success: function (data) {
                     if (data) {
-                        var latlng=new google.maps.LatLng(data.results[0].geometry.location.lat, data.results[0].geometry.location.lng)
-                        var map=null;
+                        var latlng = new google.maps.LatLng(data.results[0].geometry.location.lat, data.results[0].geometry.location.lng)
+                        var map = null;
+
                         function initialize() {
                             var mapProp = {
                                 center: latlng,
@@ -82,14 +88,11 @@
 
                         google.maps.event.addDomListener(window, 'load', initialize);
                         var marker = new google.maps.Marker({
-                            position:latlng      //将前面设定的坐标标出来
+                            position: latlng      //将前面设定的坐标标出来
 
                         });
                         marker.setMap(map);
-                        $(".gm-svpc").remove();
-                        $(".gmnoprint").remove();
-                        $(".gmnoprint").remove();
-                        $(".gmnoprint").remove();
+
                     }
                 }
 

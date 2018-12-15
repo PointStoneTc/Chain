@@ -212,10 +212,12 @@ dt, dd{
 .news_con_left .advert_share {
     font-size: 0.12rem;
     color: #AAAAAA;
+    width: 50%;
+    float: right;
 }
 
 .news_con_left .advert_share .post_meta_itrem {
-    width: 25%;
+    width: 50%;
     height: 0.5rem;
     display: inline-block;
     line-height: 0.5rem;
