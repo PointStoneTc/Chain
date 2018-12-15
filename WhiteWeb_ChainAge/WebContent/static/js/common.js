@@ -8,6 +8,7 @@ var Common = {
         $("body").on("click", ".share_btn", function () {
             $(".share_con").toggle();
         });
+
     },
     // 获取首页数据
     getHomeData: function (callback) {
@@ -233,7 +234,8 @@ var Common = {
         startTime = startTimeArr[0] + '年' + startTimeArr[1] + '月' + startTimeArr[2] + '日';
         return startTime;
     },
-    // 查找数组中属性值的对象
+
+    // 查找数组中属性值的对
     lookUp: function (name, arr) {
         for (var i in arr)
             if (arr[i].name == name) {
@@ -326,7 +328,10 @@ var Common = {
     },
 
     setCookie: function (name, value) {
-        var str = name + "=" + encodeURIComponent(value);
+        var Days = 30;
+        var exp = new Date();
+        exp.setTime(exp.getTime() + Days*24*60*60*1000);
+        var str = name + "=" + encodeURIComponent(value)+ ";expires=" + exp.toGMTString();
         document.cookie = str;
     },
     /**
@@ -346,6 +351,21 @@ var Common = {
             "; expires=Thu, 01-Jan-70 00:00:01 GMT";
     }
 
+}
+Date.prototype.Format = function (fmt) { //author: meizz
+    var o = {
+        "M+": this.getMonth() + 1, //月份
+        "d+": this.getDate(), //日
+        "h+": this.getHours(), //小时
+        "m+": this.getMinutes(), //分
+        "s+": this.getSeconds(), //秒
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+        "S": this.getMilliseconds() //毫秒
+    };
+    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    for (var k in o)
+        if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+    return fmt;
 }
 
 Common.eventInit();

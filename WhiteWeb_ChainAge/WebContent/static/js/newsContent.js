@@ -160,27 +160,49 @@
                     Common.showToast("评论失败");
                 },
                 success: function (data) {
-                    if (data) {
-                        var html= html += '<li>'
-                            + '<div class="comment_item_header clearfix">'
-                            + '<div><img src="" class="comment_headpic"></div>'
-                            + '<div></div>'
-                            + '<div style="float: right;color:#8C96AB">' + Common.timeonverseFunc(new Date(), "flag") + '</div>'
-                            + '</div>'
-                            + '<div class="comment_con">' + $(".reply_con input").val(); + '</div>'
-                            + '<div class="comment_edit">'
-                            + '<span class="prise_icon"></span><span class="prise_btn">999</span>'
-                            + '<span class="view_icon"></span><span class="view_btn">查看对话</span>'
-                            + '<span class="reply_icon"></span><span class="reply_btn">回复</span>'
-                            + '</div>'
-                            + '</li>';
-                        $(".comment_list").prepend(html);
-                        $(".reply_con input").val('');
-                        Common.showToast("评论成功");
-                        $("#indexPopup").hide();
-                    }else{
-                        Common.showToast("评论失败");
-                    }
+                        var comurl='http://chainage.cc/wp-json/wp/v2/comments';
+                        var data={
+                            author_email:Common.getCookie("email"),
+                            nickname:Common.getCookie("nickname"),
+                            content:$(".reply_con input").val(),
+                            date:new Date().Format('yyyy-MM-dd hh:mm:ss').split(" ").join("T"),
+                            parent:0,
+                            post:this.id
+                        }
+                        $.ajax({
+                            type: 'POST',
+                            url: comurl,
+                            data:data,
+                            error: function () {
+                                Common.showToast("评论失败");
+                            },
+                            success: function (data) {
+                                if (data) {
+                                    var authorImg = "static/img/default_autor.png";
+                                    var html= html += '<li>'
+                                        + '<div class="comment_item_header clearfix">'
+                                        + '<div><img src="'+authorImg+'" class="comment_headpic"></div>'
+                                        + '<div></div>'
+                                        + '<div style="float: right;color:#8C96AB">' + Common.timeonverseFunc(new Date().getTime(), "flag") + '</div>'
+                                        + '</div>'
+                                        + '<div class="comment_con">' + $(".reply_con input").val(); + '</div>'
+                                    + '<div class="comment_edit">'
+                                    + '<span class="prise_icon"></span><span class="prise_btn">999</span>'
+                                    + '<span class="view_icon"></span><span class="view_btn">查看对话</span>'
+                                    + '<span class="reply_icon"></span><span class="reply_btn">回复</span>'
+                                    + '</div>'
+                                    + '</li>';
+                                    $(".comment_list").prepend(html);
+                                    $(".reply_con input").val('');
+                                    Common.showToast("评论成功");
+                                    $("#indexPopup").hide();
+                                }else{
+
+                                    Common.showToast("评论失败");
+                                }
+                            }
+                        });
+
                 }
             });
 
