@@ -438,8 +438,9 @@ img[src=""], img:not([src]) {
      margin-top: 20px;
      text-align: center;
      cursor: pointer;
+     display: inline-block;
  }
- .pop_confirm_btn{
+ .pop_confirm_btn,.reply_confirm{
      background: #90C2FF;
      color: #FFFFFF;
  }
@@ -450,4 +451,8 @@ img[src=""], img:not([src]) {
     padding: 5px 0 5px 10px;
     border: 1px solid rgba(220,220,220,0.86);
     box-sizing: border-box;
+}
+
+.reply_btn{
+    cursor: pointer;
 }

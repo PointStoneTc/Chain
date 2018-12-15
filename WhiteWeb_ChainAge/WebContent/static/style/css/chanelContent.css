@@ -170,6 +170,10 @@ img {
     margin-top: 0.37rem;
     border-radius: 0.05rem;
     font-size: 0.14rem;
+    padding-top: 10px;
+}
+.reply_input{
+    display: none;
 }
 .news_comment .comment_header{
     padding: 0.14rem 0.2rem;

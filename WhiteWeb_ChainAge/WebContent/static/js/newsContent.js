@@ -1,7 +1,7 @@
 (function ($) {
     var newsContent = {
         id: null,
-        catid:null,
+        catid: null,
         init: function () {
             this.id = Common.getQueryString("id");
             Common.getCategoreType();
@@ -32,25 +32,71 @@
                     Common.showToast("请输入评论内容");
                     return;
                 }
-                if(Common.getCookie("email") && Common.getCookie("nickname")){
-                    newsContent.CommentFunc(Common.getCookie("email"),Common.getCookie("nickname"));
-                }else{
+                if (Common.getCookie("email") && Common.getCookie("nickname")) {
+                    newsContent.CommentFunc(Common.getCookie("email"), Common.getCookie("nickname"));
+                } else {
                     $("#indexPopup").show();
                 }
 
             });
-            $(".pop_cancle_btn").on("click",function(){
-               $("#indexPopup").hide();
-               $(".email").val('');
-               $(".nickname").val('');
+            $(".pop_cancle_btn").on("click", function () {
+                $("#indexPopup").hide();
+                $(".email").val('');
+                $(".nickname").val('');
             });
-            $(".pop_confirm_btn").on("click",function(){
-                Common.setCookie('email',$('.email').val());
-                Common.setCookie('nickname',$('.nickname').val());
-                newsContent.CommentFunc(Common.getCookie("email"),Common.getCookie("nickname"));
+            $(".pop_confirm_btn").on("click", function () {
+                Common.setCookie('email', $('.email').val());
+                Common.setCookie('nickname', $('.nickname').val());
+                newsContent.CommentFunc(Common.getCookie("email"), Common.getCookie("nickname"));
             });
-            $(".cancle_btn").on("click",function(){
+            $(".cancle_btn").on("click", function () {
                 $(".reply_con input").val('');
+            })
+            $("body").on("click",".reply_btn",function(){
+                $(".reply_input").show();
+            })
+            $("body").on("click",".replar_cancle",function(){
+                $(".reply_input").hide();
+                $(".reply_input input").val('');
+            })
+            $("body").on("click",".reply_confirm",function(){
+
+                var url = 'http://chainage.cc/wp-json/wp/v2/comments?post=4898&page=1';
+                $.ajax({
+                    type: 'GET',
+                    url: url,
+                    async: true,
+                    error: function () {
+                    },
+                    success: function (data) {
+                        if (data) {
+                            var html = '';
+                            for (var i = 0; i < data.length; i++) {
+                                var authorImg = "static/img/default_autor.png";
+                                if (Common.userImgs[data[i].author]) {
+                                    authorImg = Common.userImgs[data[i].author];
+                                }
+
+                                html += '<li>'
+                                    + '<div class="comment_item_header clearfix">'
+                                    + '<div><img src="' + authorImg + '" class="comment_headpic"></div>'
+                                    + '<div>' + Common.users[data[i].author] + '</div>'
+                                    + '<div style="float: right;color:#8C96AB">' + Common.timeonverseFunc(new Date(data[i].date), "flag") + '</div>'
+                                    + '</div>'
+                                    + '<div class="comment_con">' + data[i].content.rendered + '</div>'
+                                    + '<div class="comment_edit">'
+                                    + '<span class="reply_icon"></span><span class="reply_btn">回复</span>'
+                                    + '<div class="reply_input">'
+                                    + '<input type="text" /><span class="t-btn replar_cancle">取消</span><span class="t-btn reply_confirm">确定</span></div>'
+                                    + '</div>'
+                                    + '</li>';
+                            }
+                            $(".comment_list").html(html);
+                            $(".reply_input").hide();
+                            $(".reply_input input").val('');
+                        }
+                    }
+                });
             })
         },
         // 文章内容
@@ -114,6 +160,7 @@
         },
         // 评论
         getCommentData: function () {
+            // 要改
             var url = 'http://chainage.cc/wp-json/wp/v2/comments?post=' + this.id + '&page=1';
             var url = 'http://chainage.cc/wp-json/wp/v2/comments?post=4898&page=1';
             $.ajax({
@@ -139,9 +186,9 @@
                                 + '</div>'
                                 + '<div class="comment_con">' + data[i].content.rendered + '</div>'
                                 + '<div class="comment_edit">'
-                                + '<span class="prise_icon"></span><span class="prise_btn">999</span>'
-                                + '<span class="view_icon"></span><span class="view_btn">查看对话</span>'
                                 + '<span class="reply_icon"></span><span class="reply_btn">回复</span>'
+                                + '<div class="reply_input">'
+                                + '<input type="text" /><span class="t-btn replar_cancle">取消</span><span class="t-btn reply_confirm">确定</span></div>'
                                 + '</div>'
                                 + '</li>';
                         }
@@ -151,8 +198,8 @@
                 }
             });
         },
-        CommentFunc:function(email,nickname){
-            var url = 'http://data.chainage.jp/blockchain/data/addWpCommentUser?mail='+email+'&nickname='+nickname;
+        CommentFunc: function (email, nickname) {
+            var url = 'http://data.chainage.jp/blockchain/data/addWpCommentUser?mail=' + email + '&nickname=' + nickname;
             $.ajax({
                 type: 'POST',
                 url: url,
@@ -160,59 +207,58 @@
                     Common.showToast("评论失败");
                 },
                 success: function (data) {
-                        var comurl='http://chainage.cc/wp-json/wp/v2/comments';
-                        var data={
-                            author_email:Common.getCookie("email"),
-                            nickname:Common.getCookie("nickname"),
-                            content:$(".reply_con input").val(),
-                            date:new Date().Format('yyyy-MM-dd hh:mm:ss').split(" ").join("T"),
-                            parent:0,
-                            post:this.id
-                        }
-                        $.ajax({
-                            type: 'POST',
-                            url: comurl,
-                            data:data,
-                            error: function () {
-                                Common.showToast("评论失败");
-                            },
-                            success: function (data) {
-                                if (data) {
-                                    var authorImg = "static/img/default_autor.png";
-                                    var html= html += '<li>'
-                                        + '<div class="comment_item_header clearfix">'
-                                        + '<div><img src="'+authorImg+'" class="comment_headpic"></div>'
-                                        + '<div></div>'
-                                        + '<div style="float: right;color:#8C96AB">' + Common.timeonverseFunc(new Date().getTime(), "flag") + '</div>'
-                                        + '</div>'
-                                        + '<div class="comment_con">' + $(".reply_con input").val(); + '</div>'
+                    var comurl = 'http://chainage.cc/wp-json/wp/v2/comments';
+                    var data = {
+                        author_email: Common.getCookie("email"),
+                        nickname: Common.getCookie("nickname"),
+                        content: $(".reply_con input").val(),
+                        date: new Date().Format('yyyy-MM-dd hh:mm:ss').split(" ").join("T"),
+                        parent: 0,
+                        post: this.id
+                    }
+                    $.ajax({
+                        type: 'POST',
+                        url: comurl,
+                        data: data,
+                        error: function () {
+                            Common.showToast("评论失败");
+                        },
+                        success: function (data) {
+                            if (data) {
+                                var authorImg = "static/img/default_autor.png";
+                                var html = html += '<li>'
+                                    + '<div class="comment_item_header clearfix">'
+                                    + '<div><img src="' + authorImg + '" class="comment_headpic"></div>'
+                                    + '<div></div>'
+                                    + '<div style="float: right;color:#8C96AB">' + Common.timeonverseFunc(new Date().getTime(), "flag") + '</div>'
+                                    + '</div>'
+                                    + '<div class="comment_con">' + $(".reply_con input").val()
+                                    + '</div>'
                                     + '<div class="comment_edit">'
-                                    + '<span class="prise_icon"></span><span class="prise_btn">999</span>'
-                                    + '<span class="view_icon"></span><span class="view_btn">查看对话</span>'
                                     + '<span class="reply_icon"></span><span class="reply_btn">回复</span>'
                                     + '</div>'
                                     + '</li>';
-                                    $(".comment_list").prepend(html);
-                                    $(".reply_con input").val('');
-                                    Common.showToast("评论成功");
-                                    $("#indexPopup").hide();
-                                }else{
+                                $(".comment_list").prepend(html);
+                                $(".reply_con input").val('');
+                                Common.showToast("评论成功");
+                                $("#indexPopup").hide();
+                            } else {
 
-                                    Common.showToast("评论失败");
-                                }
+                                Common.showToast("评论失败");
                             }
-                        });
+                        }
+                    });
 
                 }
             });
 
         },
         getPostsListData: function () {
-            var id=newsContent.catid;
+            var id = newsContent.catid;
             if (Common.getQueryString("cat")) {
-                id=Common.lookUpCat(Common.categoriesArr, Common.getQueryString("cat")).id;
+                id = Common.lookUpCat(Common.categoriesArr, Common.getQueryString("cat")).id;
             }
-            var url = 'http://data.chainage.jp/blockchain/data/ctRecommend?cats='+id+'&postId=' + this.id;
+            var url = 'http://data.chainage.jp/blockchain/data/ctRecommend?cats=' + id + '&postId=' + this.id;
             $.ajax({
                 type: 'GET',
                 url: url,

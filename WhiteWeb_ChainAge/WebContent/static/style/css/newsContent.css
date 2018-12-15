@@ -177,6 +177,7 @@ img {
     margin-top: 0.37rem;
     border-radius: 0.05rem;
     font-size: 0.14rem;
+    padding-top: 10px;
 }
 .news_comment .comment_header{
     padding: 0.14rem 0.2rem;
@@ -217,7 +218,9 @@ img {
     margin-right: 0.08rem;
     border-radius: 50%;
 }
-
+.reply_input{
+    display: none;
+}
 .prise_icon,.view_icon,.reply_icon{
     width: 0.16rem;
     height: 0.14rem;
