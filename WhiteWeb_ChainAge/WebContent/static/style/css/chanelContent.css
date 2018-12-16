@@ -56,6 +56,11 @@ img {
 .news_con_left .post_meta_itrem{
     margin-right: 1.3%;
     cursor: pointer;
+    display: inline-block;
+}
+.news_con_left .at-resp-share-element .at-share-btn{
+    display: initial;
+    float: left;
 }
 .post_icon1, .post_icon2 ,.post_icon3, .post_icon4,.post_icon5, .post_icon6{
     width: 0.24rem;
@@ -492,6 +497,11 @@ img {
         padding: 0 0.6rem;
         border-radius: 15px;
     }
+    .reply_con_btn .comment_btn{
+        width: 30px;
+        height: 20px;
+        line-height: 20px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -518,4 +528,31 @@ img {
     .news_con_left {
         width: 100%;
     }
+}
+.at-resp-share-element .at-share-btn:focus, .at-resp-share-element .at-share-btn:hover{
+    transform: none !important;
+    color: initial !important;
+    text-decoration: none;
+}
+.at-icon {
+    fill:#FFF !important;
+    background: #A4C2DD;
+}
+.post_header .addthis_inline_share_toolbox_we7d{
+    height: 21px;
+}
+.advert_share  .at-style-responsive .at-share-btn{
+    border:1px solid rgba(228,228,228,1);
+    padding-left: 15px;
+}
+
+.advert_share  .at-style-responsive .at-svc-facebook{
+    border-right: none;
+    margin-right: 0 !important;
+}
+.advert_share  .at-style-responsive .at-svc-twitter{
+    margin-left: 0 !important;
+}
+.at-resp-share-element.at-mobile .at4-share-count-container, .at-resp-share-element.at-mobile .at-label{
+    display: inline-block !important;
 }

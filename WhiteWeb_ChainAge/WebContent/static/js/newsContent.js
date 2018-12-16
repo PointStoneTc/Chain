@@ -333,12 +333,9 @@
                     }
                     var html = '<a href="newsContent.html?id=' + data[0].id + '&cat=' + Common.categories[192] + '" ><img src="' + data[0].jetpack_featured_media_url + '" width="100%" height="100%" style="border-radius: 5px"></a>';
                     $(".post_advert").append(html);
-                    // Common.getImgData([data[0].id], function (imgUrl) {
-                    //     if (imgUrl && imgUrl[0] && imgUrl[0].media_details) {
-                    //         picUrl = Common.getSimilarImg(imgUrl[0].media_details.sizes, 2.8);
-                    //     }
-                    //     $(".post_advert img").attr("src", picUrl)
-                    // });
+                    console.log($(".post_content .advert_share ").children());
+                    $(".post_content .advert_share").children().eq(0).attr("data-url","http://data.chainage.jp/wh/newsContent.html?id=" + data[0].id + "&cat=" + Common.categories[192] + "");
+
                 }
             });
 
