@@ -456,3 +456,14 @@ img[src=""], img:not([src]) {
 .reply_btn{
     cursor: pointer;
 }
+ .at-share-btn{
+    background: none !important;
+}
+.at-share-tbx-element .at-share-btn:focus, .at-share-tbx-element .at-share-btn:hover {
+     transform: none !important;
+     outline-offset: 0 !important;
+     color: inherit;
+}
+.addthis_inline_share_toolbox{
+    display: inline-block;
+}

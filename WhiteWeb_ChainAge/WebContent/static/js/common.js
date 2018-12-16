@@ -5,6 +5,7 @@ var Common = {
     userImgs: [],
     categoriesArr:[],
     eventInit: function () {
+        $(".at-label").html('');
         $("body").on("click", ".share_btn", function () {
             $(".share_con").toggle();
         });
