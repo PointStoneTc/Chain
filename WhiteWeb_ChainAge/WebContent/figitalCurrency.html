@@ -130,7 +130,7 @@
             </div>
 
             <!-- 内容 -->
-            <div id="ml_container"></div>
+            <div id="ml_container" class="clearfix row"></div>
             <div class="more_btn">
                 <img src="static/img/more_icon.png" >
             </div>
@@ -189,7 +189,7 @@
 
 <script type="text/html" id="mlContainer">
     <%for(var i in data){%>
-    <div style="width:24.3%;margin:0 auto;display:inline-block;margin-bottom: 2.2%;text-align:center;">
+    <div class="list_item col-xs-4 col-sm-3 " >
         <a id="ml_template" class="ml">
             <div class="pri-name">Bitcoin</div>
             <div class="pri-code-list">BTC,XBT</div>
