@@ -86,18 +86,20 @@
                             var html = '<li>'
                                 + '<div class="comment_item_header clearfix">'
                                 + '<div><img src="' + authorImg + '" class="comment_headpic"></div>'
-                                + '<div>'+Common.getCookie("nickname")+'</div>'
+                                + '<div class="anthor_name">'+Common.getCookie("nickname")+'</div>'
                                 + '<div style="color: #8C96AB;margin:0 0.08rem 0 0.23rem;">回复</div>'
-                                + '<div>ChainAge編集部</div>'
+                                + '<div>'+$(this).parent().parent().parent().children(".comment_item_header ").children(".author_name").html()+'</div>'
                                 + '<div style="float: right;color:#8C96AB">' + Common.timeonverseFunc(new Date().getTime(), "flag") + '</div>'
                                 + '</div>'
                                 + '<div class="comment_con">' +  $(this).prev().prev().val()
                                 + '</div>'
                                 + '<div class="comment_edit">'
                                 + '<span class="reply_icon"></span><span class="reply_btn">回复</span>'
+                                + '<div class="reply_input">'
+                                + '<input type="text" /><span class="t-btn replar_cancle">取消</span><span class="t-btn reply_confirm">确定</span></div>'
                                 + '</div>'
                                 + '</li>';
-                            $(this).parent().after(html);
+                            $(this).parent().parent().parent().after(html);
                             Common.showToast("评论成功");
 
                             $(this).parent().hide();
@@ -203,7 +205,7 @@
                     html += '<li>'
                         + '<div class="comment_item_header clearfix">'
                         + '<div><img src="' + authorImg + '" class="comment_headpic"></div>'
-                        + '<div>' + data[i].author_name + '</div>'
+                        + '<div class="author_name">' + data[i].author_name + '</div>'
                         + '<div style="float: right;color:#8C96AB">' + Common.timeonverseFunc(new Date(data[i].date), "flag") + '</div>'
                         + '</div>'
                         + '<div class="comment_con">' + data[i].content.rendered + '</div>'
@@ -260,13 +262,15 @@
                                 var html= '<li>'
                                     + '<div class="comment_item_header clearfix">'
                                     + '<div><img src="' + authorImg + '" class="comment_headpic"></div>'
-                                    + '<div>'+Common.getCookie("nickname")+'</div>'
+                                    + '<div class="author_name">'+Common.getCookie("nickname")+'</div>'
                                     + '<div style="float: right;color:#8C96AB">' + Common.timeonverseFunc(new Date().getTime(), "flag") + '</div>'
                                     + '</div>'
                                     + '<div class="comment_con">' + $(".reply_con input").val()
                                     + '</div>'
                                     + '<div class="comment_edit">'
                                     + '<span class="reply_icon"></span><span class="reply_btn">回复</span>'
+                                    + '<div class="reply_input">'
+                                    + '<input type="text" /><span class="t-btn replar_cancle">取消</span><span class="t-btn reply_confirm">确定</span></div>'
                                     + '</div>'
                                     + '</li>';
                                 $(".comment_list").append(html);
