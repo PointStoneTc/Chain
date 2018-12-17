@@ -32,12 +32,13 @@ a{
     position: relative;
     z-index: 1;
     overflow: hidden;
-    width: 24.5%;
+    width: 24.3%;
     height: 218px;
     vertical-align: middle;
-    margin: 0 2px 2px 0;
+    margin: 0 4px 4px 0;
     border: 1px solid #BCBCBC;
     box-sizing: content-box;
+    padding-top: 1px;
 }
 .cspas .cspa-top{
     height: 150px;

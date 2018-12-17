@@ -17,20 +17,22 @@ var listNewsPage = {
 
         this.getRankingData(99);
         this.getAdvertData();
-
         // this.getAdvertData({per_page:3,order:'desc',orderby:'date',categories:99});
         //新闻、交易所....
         if(this.pageFlag==1){
+            $(".nav a").eq(0).addClass("currentTab");
             $(".news_title").text("ニュース");
             // 请求
             this.getNewsListData({per_page:12,order:'desc',orderby:'date',categories:188},function(param){
                 listNewsPage.setPagination(param);
             });
         }else if(this.pageFlag==2){
+            $(".nav a").eq(2).addClass("currentTab");
             $(".news_title").text("取引所");
             // 请求
             this.getNewsListData({per_page:12,order:'desc',orderby:'date',categories:195});
         }else if(this.pageFlag==3){
+            $(".nav a").eq(4).addClass("currentTab");
             $(".news_title").text("基础知识");
             $(".new_tabs li:eq(0)").text("コインリスト");
             $(".new_tabs li:eq(1)").text("用語解説");
@@ -40,6 +42,7 @@ var listNewsPage = {
                 listNewsPage.setPagination(param);
             });
         }else if(this.pageFlag==4){
+            $(".nav a").eq(7).addClass("currentTab");
             $(".news_title").text("ChainAge Channel");
             $(".new_tabs li:eq(0)").text("Moive");
             $(".new_tabs li:eq(1)").text("漫画");
@@ -48,6 +51,7 @@ var listNewsPage = {
                 listNewsPage.setPagination(param);
             });
         }else if(this.pageFlag==5){
+            $(".nav a").eq(5).addClass("currentTab");
             $(".news_title").text("政府团体");
             $(".new_tabs li:eq(0)").text("金融厅");
             $(".new_tabs li:eq(1)").remove()
@@ -59,6 +63,7 @@ var listNewsPage = {
                 listNewsPage.getGovernmentGroup(data);
             });
         }else if(this.pageFlag==6){
+            $(".nav a").eq(3).addClass("currentTab");
             $(".news_title").text("特集");
             $(".new_tabs").remove();
             // 请求
@@ -66,9 +71,10 @@ var listNewsPage = {
                 listNewsPage.setPagination(param);
             });
         }else{
+            $(".nav a").eq(0).addClass("currentTab");
             $(".news_title").text("ニュース");
             // 请求
-            this.getNewsListData({per_page:12,order:'desc',orderby:'date',categories:99},function(param){
+            this.getNewsListData({per_page:12,order:'desc',orderby:'date',categories:188},function(param){
                 listNewsPage.setPagination(param);
             });
         }
