@@ -527,10 +527,10 @@ img {
     }
 }
 .at-resp-share-element .at-share-btn:focus, .at-resp-share-element .at-share-btn:hover{
-    transform: none !important;
-    color: initial !important;
-    text-decoration: none;
-}
+     transform: none !important;
+     color: initial !important;
+     text-decoration: none;
+ }
 .at-icon {
     fill:#FFF !important;
     background: #A4C2DD;
@@ -541,12 +541,18 @@ img {
 }
 
 .advert_share  .at-style-responsive .at-svc-facebook{
-     border-right: none;
-     margin-right: 0 !important;
- }
+    border-right: none;
+    margin-right: 0 !important;
+}
 .advert_share  .at-style-responsive .at-svc-twitter{
     margin-left: 0 !important;
 }
 .at-resp-share-element.at-mobile .at4-share-count-container, .at-resp-share-element.at-mobile .at-label{
     display: inline-block !important;
+}
+.more_btn{
+    text-align: center;
+    margin-bottom: 10px;
+    color: #90C2FF;
+    cursor: pointer;
 }

@@ -22,8 +22,9 @@
             newsContent.getAdvertData();
             // 热门文章
             this.getHotPostsData();
+            $('.comment_list').attr('num', 0);
             // 评论
-            this.getCommentData();
+            this.getCommentData(1);
 
             this.getTagsData();
             this.eventInit()
@@ -170,9 +171,9 @@
             })
         },
         // 评论
-        getCommentData: function () {
+        getCommentData: function (param) {
             // 要改
-            var url = 'http://chainage.cc/wp-json/wp/v2/comments?post=' + this.id + '&page=1';
+            var url = 'http://chainage.cc/wp-json/wp/v2/comments?post=' + this.id + '&page='+param;
             // var url = 'http://chainage.cc/wp-json/wp/v2/comments?post=4898&page=1';
             $.ajax({
                 type: 'GET',
@@ -182,32 +183,51 @@
                 },
                 success: function (data) {
                     if (data) {
-                        var html = '';
-                        for (var i = 0; i < data.length; i++) {
-                            var authorImg = "static/img/default_autor.png";
-                            if (Common.userImgs[data[i].author]) {
-                                authorImg = Common.userImgs[data[i].author];
-                            }
-
-                            html += '<li>'
-                                + '<div class="comment_item_header clearfix">'
-                                + '<div><img src="' + authorImg + '" class="comment_headpic"></div>'
-                                + '<div>' + data[i].author_name + '</div>'
-                                + '<div style="float: right;color:#8C96AB">' + Common.timeonverseFunc(new Date(data[i].date), "flag") + '</div>'
-                                + '</div>'
-                                + '<div class="comment_con">' + data[i].content.rendered + '</div>'
-                                + '<div class="comment_edit">'
-                                + '<span class="reply_icon"></span><span class="reply_btn">回复</span>'
-                                + '<div class="reply_input">'
-                                + '<input type="text" /><span class="t-btn replar_cancle">取消</span><span class="t-btn reply_confirm">确定</span></div>'
-                                + '</div>'
-                                + '</li>';
-                        }
-                        $(".comment_list").html(html);
-
+                        newsContent.loadCommentData(data);
                     }
                 }
             });
+        },
+        // 加载更多评论
+        loadCommentData: function (data) {
+            var more = '<div class="more_btn">加载更多</div>';
+            var html = '';
+
+            if (data.length > 0) {
+                for (var i = 0; i < data.length; i++) {
+                    var authorImg = "static/img/default_autor.png";
+                    if (Common.userImgs[data[i].author]) {
+                        authorImg = Common.userImgs[data[i].author];
+                    }
+
+                    html += '<li>'
+                        + '<div class="comment_item_header clearfix">'
+                        + '<div><img src="' + authorImg + '" class="comment_headpic"></div>'
+                        + '<div>' + data[i].author_name + '</div>'
+                        + '<div style="float: right;color:#8C96AB">' + Common.timeonverseFunc(new Date(data[i].date), "flag") + '</div>'
+                        + '</div>'
+                        + '<div class="comment_con">' + data[i].content.rendered + '</div>'
+                        + '<div class="comment_edit">'
+                        + '<span class="reply_icon"></span><span class="reply_btn">回复</span>'
+                        + '<div class="reply_input">'
+                        + '<input type="text" /><span class="t-btn replar_cancle">取消</span><span class="t-btn reply_confirm">确定</span></div>'
+                        + '</div>'
+                        + '</li>';
+                }
+                $(".comment_list").append(html);
+                var num = $('.comment_list').attr('num');
+                //判断是否需要显示加载更多的按钮
+                if (data.length>=10) {
+                    $('.comment_list').after(more);
+                    $(".more_btn").unbind('click').on('click', function () {
+                        $('.more_btn').remove();  //移除加载更多按钮
+                        $('.comment_list').attr('num', num + 1);
+                       newsContent.getCommentData( $('.comment_list').data('num', num + 1));
+                    });
+                } else {
+                    $('.more_btn').remove(); // 移除加载更多按钮
+                }
+            }
         },
         CommentFunc: function (email, nickname) {
             var url = 'http://data.chainage.jp/blockchain/data/addWpCommentUser?mail=' + email + '&nickname=' + nickname;
