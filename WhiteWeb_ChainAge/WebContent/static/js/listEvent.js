@@ -1,5 +1,6 @@
 var listNewsPage = {
     pageSize: 12,
+    month:'',
     init: function () {
         Common.getCategoreType();
         Common.getUsers();
@@ -125,17 +126,21 @@ var listNewsPage = {
         $(".data_view").on("click",function(){
 
         });
-        // 上一页
+        // 上一月
         $(".before_btn").on("click",function(){
-
+            listNewsPage.getEventData('?start_date='+listNewsPage.getPreMonth(listNewsPage.month));
         });
-        // 下一页
+        // 下一月
         $(".award_btn").on("click",function(){
-
+            listNewsPage.getEventData('?start_date='+listNewsPage.getNextMonth(listNewsPage.month));
         });
     },
-    getEventData:function(){
+    getEventData:function(param){
         var url = 'http://chainage.cc/wp-json/tribe/events/v1/events';
+        if(param){
+           url = 'http://chainage.cc/wp-json/tribe/events/v1/events'+param;
+        }
+
         $.ajax({
             type: 'GET',
             url: url,
@@ -146,6 +151,7 @@ var listNewsPage = {
                 if (data) {
                     var html='';
                     var data=data.events;
+                    $(".news_container").html('');
                     for(var i=0;i<data.length;i++){
                         var authorImg="static/img/default_autor.png";
                         var imgUrl="static/img/defalut_300.jpg";
@@ -178,10 +184,64 @@ var listNewsPage = {
                             +'</div>'
                             +'<div></a></div>';
                         $(".news_container").append(html);
+
+                    }
+                    if(data.length>0){
+                        listNewsPage.month=data[0].date.substr(0,10);
+                    }else{
+                        //获取当前时间
+                        var date = new Date();
+                        var year = date.getFullYear();
+                        var month = date.getMonth() + 1;
+                        var day = date.getDate();
+                        if (month < 10) {
+                            month = "0" + month;
+                        }
+                        if (day < 10) {
+                            day = "0" + day;
+                        }
+                        listNewsPage.month=year + "-" + month + "-" + day;
                     }
                 }
+
             }
         });
+    },
+    getPreMonth:function(date) {
+        var arr = date.split('-');
+        var year = arr[0]; //获取当前日期的年份
+        var month = arr[1]; //获取当前日期的月份
+
+        var year2 = year;
+        var month2 = parseInt(month) - 1;
+        if (month2 == 0) {
+            year2 = parseInt(year2) - 1;
+            month2 = 12;
+        }
+
+        if (month2 < 10) {
+            month2 = '0' + month2;
+        }
+        var t2 = year2 + '-' + month2 + '-01' ;
+        return t2;
+    },
+    getNextMonth:function(date) {
+        var arr = date.split('-');
+        var year = arr[0]; //获取当前日期的年份
+        var month = arr[1]; //获取当前日期的月份
+        var year2 = year;
+        var month2 = parseInt(month) + 1;
+        if (month2 == 13) {
+            year2 = parseInt(year2) + 1;
+            month2 = 1;
+        }
+
+        if (month2 < 10) {
+            month2 = '0' + month2;
+        }
+
+        var t2 = year2 + '-' + month2 + '-01';
+        return t2;
     }
 
 }
