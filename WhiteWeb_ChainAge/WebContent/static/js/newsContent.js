@@ -56,17 +56,17 @@
                 $(".reply_con input").val('');
             })
             $("body").on("click",".reply_btn",function(){
-                $(".reply_input").show();
+                $(this).next().show();
             })
             $("body").on("click",".replar_cancle",function(){
-                $(".reply_input").hide();
-                $(".reply_input input").val('');
+                $(this).parent().hide();
+                $(this).prev().val('');
             })
             $("body").on("click",".reply_confirm",function(){
                 var comurl = 'http://chainage.cc/wp-json/wp/v2/comments';
                 var data = {
                     author_email: Common.getCookie("email"),
-                    nickname: Common.getCookie("nickname"),
+                    author_name: Common.getCookie("nickname"),
                     content: $(".reply_con input").val(),
                     date: new Date().Format('yyyy-MM-dd hh:mm:ss').split(" ").join("T"),
                     parent: 0,
@@ -82,26 +82,26 @@
                     success: function (data) {
                         if (data) {
                             var authorImg = "static/img/default_autor.png";
-                            var html = html += '<li>'
+                            var html = '<li>'
                                 + '<div class="comment_item_header clearfix">'
                                 + '<div><img src="' + authorImg + '" class="comment_headpic"></div>'
-                                + '<div></div>'
+                                + '<div>'+Common.getCookie("nickname")+'</div>'
+                                + '<div style="color: #8C96AB;margin:0 0.08rem 0 0.23rem;">回复</div>'
+                                + '<div>ChainAge編集部</div>'
                                 + '<div style="float: right;color:#8C96AB">' + Common.timeonverseFunc(new Date().getTime(), "flag") + '</div>'
                                 + '</div>'
-                                + '<div class="comment_con">' + $(".reply_con input").val()
+                                + '<div class="comment_con">' +  $(this).prev().prev().val()
                                 + '</div>'
                                 + '<div class="comment_edit">'
                                 + '<span class="reply_icon"></span><span class="reply_btn">回复</span>'
                                 + '</div>'
                                 + '</li>';
-                            $(".comment_list").prepend(html);
+                            $(this).parent().after(html);
                             Common.showToast("评论成功");
 
-                            $(".comment_list").html(html);
-                            $(".reply_input").hide();
-                            $(".reply_input input").val('');
+                            $(this).parent().hide();
+                            $(this).prev().prev().val('');
                         } else {
-
                             Common.showToast("评论失败");
                         }
                     }
@@ -173,7 +173,7 @@
         getCommentData: function () {
             // 要改
             var url = 'http://chainage.cc/wp-json/wp/v2/comments?post=' + this.id + '&page=1';
-            var url = 'http://chainage.cc/wp-json/wp/v2/comments?post=4898&page=1';
+            // var url = 'http://chainage.cc/wp-json/wp/v2/comments?post=4898&page=1';
             $.ajax({
                 type: 'GET',
                 url: url,
@@ -192,7 +192,7 @@
                             html += '<li>'
                                 + '<div class="comment_item_header clearfix">'
                                 + '<div><img src="' + authorImg + '" class="comment_headpic"></div>'
-                                + '<div>' + Common.users[data[i].author] + '</div>'
+                                + '<div>' + data[i].author_name + '</div>'
                                 + '<div style="float: right;color:#8C96AB">' + Common.timeonverseFunc(new Date(data[i].date), "flag") + '</div>'
                                 + '</div>'
                                 + '<div class="comment_con">' + data[i].content.rendered + '</div>'
@@ -221,7 +221,7 @@
                     var comurl = 'http://chainage.cc/wp-json/wp/v2/comments';
                     var data = {
                         author_email: Common.getCookie("email"),
-                        nickname: Common.getCookie("nickname"),
+                        author_name: Common.getCookie("nickname"),
                         content: $(".reply_con input").val(),
                         date: new Date().Format('yyyy-MM-dd hh:mm:ss').split(" ").join("T"),
                         parent: 0,
@@ -237,10 +237,10 @@
                         success: function (data) {
                             if (data) {
                                 var authorImg = "static/img/default_autor.png";
-                                var html = html += '<li>'
+                                var html= '<li>'
                                     + '<div class="comment_item_header clearfix">'
                                     + '<div><img src="' + authorImg + '" class="comment_headpic"></div>'
-                                    + '<div></div>'
+                                    + '<div>'+Common.getCookie("nickname")+'</div>'
                                     + '<div style="float: right;color:#8C96AB">' + Common.timeonverseFunc(new Date().getTime(), "flag") + '</div>'
                                     + '</div>'
                                     + '<div class="comment_con">' + $(".reply_con input").val()
@@ -249,7 +249,7 @@
                                     + '<span class="reply_icon"></span><span class="reply_btn">回复</span>'
                                     + '</div>'
                                     + '</li>';
-                                $(".comment_list").prepend(html);
+                                $(".comment_list").append(html);
                                 $(".reply_con input").val('');
                                 Common.showToast("评论成功");
                                 $("#indexPopup").hide();
