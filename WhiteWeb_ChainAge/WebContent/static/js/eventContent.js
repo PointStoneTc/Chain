@@ -38,7 +38,7 @@
                         $(".event_top_date").html(Common.dateFormat(data.date));
                         $(".event_title").text(data.title);
                         $(".event_top_content").html(data.excerpt);
-                        $(".address_name").html(data.venue.province + '、' + data.venue.province);
+                        $(".address_name").html(data.venue.province + '、' + data.venue.city);
                         var imgUrl = "static/img/default_700.jpg";
                         if (data.image) {
                             imgUrl = data.image.url;
