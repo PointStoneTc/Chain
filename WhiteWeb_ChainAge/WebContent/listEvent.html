@@ -26,9 +26,11 @@
     </script>
     <title>ChainAge</title>
     <link rel="stylesheet" href="static/plug-in/bootstrap-3.3.7-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="static/plug-in/fullcalendar-3.9.0/fullcalendar.min.css">
+    <link href='static/plug-in/fullcalendar-3.9.0/fullcalendar.print.min.css' rel='stylesheet' media='print'/>
+
     <link rel="stylesheet" href="static/style/css/commcon.css">
     <link rel="stylesheet" href="static/style/css/home.css">
-    <link rel="stylesheet" href="static/style/css/listEvent.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- [if lt IE 9]>
     <script src="../lib/html5shiv/html5shiv.js"></script>
@@ -41,17 +43,19 @@
             margin-bottom: 0.5rem;
         }
 
-        .news_nav .contain{
+        .news_nav .contain {
             background: #FFF;
             border: 1px solid #E4E4E4;
             padding: 10px 15px;
             border-radius: 3px;
         }
-        .date_event,.search_event,.address_event,.search_event_btn,.date_view{
+
+        .date_event, .search_event, .address_event, .search_event_btn, .date_view {
             width: 20%;
             float: left;
         }
-        .date_event div:first-child span{
+
+        .date_event div:first-child span {
             width: 0.24rem;
             height: 0.20rem;
             display: inline-block;
@@ -59,7 +63,8 @@
             background-size: contain;
             vertical-align: middle;
         }
-        .search_event div:first-child span{
+
+        .search_event div:first-child span {
             width: 0.24rem;
             height: 0.20rem;
             display: inline-block;
@@ -67,7 +72,8 @@
             background-size: contain;
             vertical-align: middle;
         }
-        .address_event div:first-child span{
+
+        .address_event div:first-child span {
             width: 0.24rem;
             height: 0.20rem;
             display: inline-block;
@@ -75,7 +81,8 @@
             background-size: contain;
             vertical-align: middle;
         }
-        .search_event_btn,.date_view{
+
+        .search_event_btn, .date_view {
             width: 2rem;
             margin-left: 2.2%;
             padding: 0.1rem 0.2rem;
@@ -86,20 +93,24 @@
             margin-top: 0.12rem;
             cursor: pointer;
         }
-        .news_nav input{
+
+        .news_nav input {
             border-top: none;
             border-left: none;
             border-right: none;
             font-size: 0.14rem;
             margin-top: 0.12rem;
         }
+
         .posirelative {
             position: relative;
         }
+
         .select-out-div {
             width: 160px;
             overflow: hidden;
         }
+
         select.m-wrap {
 
             background-color: #ffffff;
@@ -110,15 +121,17 @@
             height: 25px !important;
             line-height: 25px;
         }
+
         .select-hide-span {
             height: 25px;
             position: absolute;
             top: 0;
             border-right: 1px solid #e5e5e5;
             right: 0;
-            width: 20px!important;
+            width: 20px !important;
             z-index: 999;
         }
+
         .select-show-b {
             border-color: #888 transparent transparent transparent;
             border-style: solid;
@@ -127,10 +140,10 @@
             margin-top: 10px;
             position: absolute;
         }
-        .dropdown{
+
+        .dropdown {
             margin-top: 10px;
         }
-
 
         .news_container {
             padding-top: 20px;
@@ -140,7 +153,7 @@
             color: #000000;
         }
 
-        .before_btn,.award_btn{
+        .before_btn, .award_btn {
             width: 2rem;
             border: 1px solid #2257C9;
             padding: 0.1rem 0;
@@ -150,22 +163,25 @@
             cursor: pointer;
         }
 
-        .before_btn{
+        .before_btn {
             float: left;
         }
-        .award_btn{
+
+        .award_btn {
             float: right;
         }
-        .output_btn{
+
+        .output_btn {
             width: 1.3rem;
             padding: 0.05rem 0;
-            background-color:#2257C9 ;
+            background-color: #2257C9;
             margin: 0 auto;
             text-align: center;
             color: #FFF;
             font-size: 0.14rem;
             border-radius: 5px;
         }
+
         .bottom_output {
             padding: 0.25rem 0;
             background-color: #FFFFFF;
@@ -173,10 +189,12 @@
             border-radius: 3px;
             margin-bottom: 1.85rem;
         }
-        .event_item{
+
+        .event_item {
             margin-bottom: 0.37rem;
         }
-        .event_item_con{
+
+        .event_item_con {
             position: relative;
             border-radius: 5px;
             border: 1px solid #CECECE;
@@ -184,26 +202,30 @@
             padding-bottom: 0.1rem;
             height: 170px;
         }
-        .event_item .event_img{
+
+        .event_item .event_img {
             width: 100%;
             height: 95px;
             background: url("static/img/banner_l.png");
         }
-        .event_item .event_date{
+
+        .event_item .event_date {
             position: absolute;
             left: 0;
-            top:0;
+            top: 0;
             background: #2257C9;
             color: #FFF;
             border-radius: 5px 5px 5px 0;
-            padding: 5px ;
+            padding: 5px;
         }
-        .event-des img{
+
+        .event-des img {
             width: 37px;
             vertical-align: middle;
             height: 37px;
             border-radius: 50%;
         }
+
         .event-des .col-xs-3 {
             width: 39px;
             height: 39px;
@@ -213,13 +235,15 @@
             margin-top: 15px;
             margin-left: 0.1rem;
         }
-        .event-des .col-xs-9{
+
+        .event-des .col-xs-9 {
             font-size: 0.14rem;
             color: #BCBCBC;
             padding-left: 0.1rem;
             margin-top: 7px;
         }
-        .event-des .event_title{
+
+        .event-des .event_title {
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;
@@ -228,16 +252,18 @@
             color: #000000;
             height: 40px;
         }
+
         .event-des .event_address {
             width: 0.12rem;
             height: 0.16rem;
             display: inline-block;
-            background: url("static/img/adress_icon.png")center no-repeat;
+            background: url("static/img/adress_icon.png") center no-repeat;
             background-size: cover;
             vertical-align: middle;
             margin-right: 5px;
         }
-        .calendar_icon{
+
+        .calendar_icon {
             width: 0.23rem;
             height: 0.23rem;
             display: inline-block;
@@ -245,6 +271,24 @@
             background-size: cover;
             vertical-align: top;
             margin-right: 1px;
+        }
+
+        #calendar {
+            margin-bottom: 30px;
+        }
+         .fc th {
+            height: 35px;
+            line-height: 35px;
+             background: #666666;
+             color: #FFFFFF;
+             font-weight: 700;
+        }
+        tr:first-child>td>.fc-day-grid-event{
+            margin-bottom: 2px;
+        }
+        .fc-view-container *, .fc-view-container :after, .fc-view-container :before {
+            white-space: normal;
+            word-break: break-all;
         }
         @media only screen and (max-width: 480px) {
             .news_banner, .message_show, .news_show {
@@ -255,12 +299,14 @@
                 padding: 0;
                 height: auto;
             }
-            .search_event div:first-child span ,
-            .date_event div:first-child span ,
+
+            .search_event div:first-child span,
+            .date_event div:first-child span,
             .address_event div:first-child span {
                 width: 0.76rem;
                 height: 0.76rem;
             }
+
             .news_title {
                 float: right;
                 margin-right: 0;
@@ -292,11 +338,13 @@
                 width: 6rem;
                 margin-top: 10px;
             }
-            .calendar_icon{
+
+            .calendar_icon {
                 width: 0.6rem;
                 height: 0.6rem;
                 vertical-align: middle;
             }
+
             .news_nav input {
                 width: 90%;
                 font-size: 0.56rem;
@@ -345,22 +393,27 @@
                 width: 12px;
                 height: 16px;
             }
-            .event_item{
+
+            .event_item {
                 margin-bottom: 1rem;
             }
-            .output_btn{
+
+            .output_btn {
                 width: 5.5rem;
                 font-size: 0.6rem;
             }
-            .bottom_output{
+
+            .bottom_output {
                 padding: 0.5rem 0;
             }
-            .before_btn, .award_btn{
+
+            .before_btn, .award_btn {
                 font-size: 0.6rem;
             }
         }
+
         @media only screen and (max-width: 992px) {
-            .search_event_btn, .date_view{
+            .search_event_btn, .date_view {
                 margin-left: 2%;
             }
         }
@@ -385,10 +438,14 @@
 </div>
 <div class="share_con">
     <ul>
-        <li><a href="https://www.instagram.com/chainageofficial"><span class="share_icon_con"><span class="share_icon share_icon1"></span></span>instagram</a></li>
-        <li><a href="https://twitter.com/ChainAgeJP"><span class="share_icon_con"><span class="share_icon share_icon2"></span></span>twitter</a></li>
-        <li><a href="https://www.facebook.com/chainage.jp"><span class="share_icon_con"><span class="share_icon share_icon3"></span></span>facebook</a></li>
-        <li><a href="https://www.youtube.com/channel/UCZLaAXGgdZyW2mNrMj-pBhg"><span class="share_icon_con"><span class="share_icon share_icon4"></span></span>youtube</a></li>
+        <li><a href="https://www.instagram.com/chainageofficial"><span class="share_icon_con"><span
+                class="share_icon share_icon1"></span></span>instagram</a></li>
+        <li><a href="https://twitter.com/ChainAgeJP"><span class="share_icon_con"><span
+                class="share_icon share_icon2"></span></span>twitter</a></li>
+        <li><a href="https://www.facebook.com/chainage.jp"><span class="share_icon_con"><span
+                class="share_icon share_icon3"></span></span>facebook</a></li>
+        <li><a href="https://www.youtube.com/channel/UCZLaAXGgdZyW2mNrMj-pBhg"><span class="share_icon_con"><span
+                class="share_icon share_icon4"></span></span>youtube</a></li>
     </ul>
 </div>
 <nav class="navbar navbar-default nav-center">
@@ -438,7 +495,7 @@
 <div class="news_banner clearfix hidden-xs ">
     <div class="col-sm-6 col-xs-12 banner_left">
         <a href="">
-            <div class="news_banner_img" ></div>
+            <div class="news_banner_img"></div>
             <div class="bg" style="right: 0.02rem;"></div>
             <div class="news_banner_con">
                 <div class="news_time">
@@ -453,7 +510,7 @@
     <div class=" col-sm-6 hidden-xs banner_right">
         <div class="pr banner_r_top" style="margin-bottom:0.02rem;">
             <a href="">
-                <div class="news_banner_img" ></div>
+                <div class="news_banner_img"></div>
                 <div class="bg"></div>
                 <div class="news_banner_con">
                     <div class="news_time">
@@ -467,7 +524,7 @@
         </div>
         <div class="pr banner_r_bot">
             <a href="">
-                <div class="news_banner_img" ></div>
+                <div class="news_banner_img"></div>
                 <div class="bg"></div>
                 <div class="news_banner_con">
                     <div class="news_time">
@@ -529,7 +586,7 @@
         <div class="address_event">
             <div><span></span>区域</div>
             <div class="dropdown">
-                <select class="m-wrap"  style="width: 150px; padding: 2px 0;">
+                <select class="m-wrap" style="width: 150px; padding: 2px 0;">
                     <option value="0">请选择</option>
 
                 </select>
@@ -555,7 +612,7 @@
 </div>
 
 <!--<div class="bottom_output contain">-->
-    <!--<div class="output_btn">輸出イベント</div>-->
+<!--<div class="output_btn">輸出イベント</div>-->
 <!--</div>-->
 
 
@@ -575,7 +632,8 @@
 <script type="text/html" id="message_show">
     <%for(var i in data){%>
     <li>
-        <div><span><%=data[i].specificRate.baseName%> </span><span style="color: #ccc;">| <%=data[i].specificRate.baseSymbol%></span></div>
+        <div><span><%=data[i].specificRate.baseName%> </span><span style="color: #ccc;">| <%=data[i].specificRate.baseSymbol%></span>
+        </div>
         <div class="price">¥<%=price(data[i])%></div>
         <div>
             <span class="markIcon <%=percent(data[i])%>"></span>
@@ -613,6 +671,8 @@
 <script src="static/plug-in/jquery/jquery-3.3.1.min.js"></script>
 <script src="static/plug-in/template/template.js"></script>
 <script src="static/plug-in/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+<script src="static/plug-in/fullcalendar-3.9.0/moment.min.js"></script>
+<script src="static/plug-in/fullcalendar-3.9.0/fullcalendar.min.js"></script>
 <script src="static/plug-in/jquery/jquery.pagination.js"></script>
 <script src="static/plug-in/laydate/laydate.js"></script>
 <script src="static/js/common.js"></script>
