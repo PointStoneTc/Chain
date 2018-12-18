@@ -55,10 +55,9 @@
 
                         var startTime = data.start_date.split(":").join("").split("-").join("").split(" ").join("T");
                         var endTime = data.end_date.split(":").join("").split("-").join("").split(" ").join("T");
-                        var url = 'https://www.google.com/calendar/event?action=TEMPLATE&text=' + data.title + '&dates=' + startTime + '/' + endTime + '&details=&ctz=';
+                        var url = 'https://www.google.com/calendar/event?action=TEMPLATE&text=' + data.title + '&dates=' + startTime + '/' + endTime + '&details='+data.title+'&ctz=';
                         $(".link_btn").parent().attr("href", url);
-                        var exportUrl = 'https://wpshindig.com/event/seattle-beercode/' + data.start_date.substr(0, 10) + '/?ical=1&tribe_display=';
-                        $(".export_btn").parent().attr("href", exportUrl);
+
                         newsContent.gooleMapInit(data.venue.city + data.venue.address);
                     }
                 }
