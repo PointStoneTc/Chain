@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="static/plug-in/bootstrap-3.3.7-dist/css/bootstrap.css">
     <link rel="stylesheet" href="static/style/css/commcon.css">
     <link rel="stylesheet" href="static/style/css/home.css">
+    <link rel="stylesheet" href="static/style/css/listEvent.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- [if lt IE 9]>
     <script src="../lib/html5shiv/html5shiv.js"></script>
@@ -39,6 +40,7 @@
             font-size: 0.16rem;
             margin-bottom: 0.5rem;
         }
+
         .news_nav .contain{
             background: #FFF;
             border: 1px solid #E4E4E4;
@@ -82,6 +84,7 @@
             text-align: center;
             border-radius: 5px;
             margin-top: 0.12rem;
+            cursor: pointer;
         }
         .news_nav input{
             border-top: none;
@@ -89,6 +92,43 @@
             border-right: none;
             font-size: 0.14rem;
             margin-top: 0.12rem;
+        }
+        .posirelative {
+            position: relative;
+        }
+        .select-out-div {
+            width: 160px;
+            overflow: hidden;
+        }
+        select.m-wrap {
+
+            background-color: #ffffff;
+            background-image: none !important;
+            filter: none !important;
+            border: 1px solid #e5e5e5;
+            outline: none;
+            height: 25px !important;
+            line-height: 25px;
+        }
+        .select-hide-span {
+            height: 25px;
+            position: absolute;
+            top: 0;
+            border-right: 1px solid #e5e5e5;
+            right: 0;
+            width: 20px!important;
+            z-index: 999;
+        }
+        .select-show-b {
+            border-color: #888 transparent transparent transparent;
+            border-style: solid;
+            border-width: 5px 4px 0 4px;
+            margin-left: -4px;
+            margin-top: 10px;
+            position: absolute;
+        }
+        .dropdown{
+            margin-top: 10px;
         }
 
 
@@ -480,7 +520,7 @@
     <div class="contain clearfix">
         <div class="date_event">
             <div><span></span>日期</div>
-            <div><input type="text" placeholder="某年某月"></div>
+            <div><input class="search_date" type="text" placeholder="某年某月"></div>
         </div>
         <div class="search_event">
             <div><span></span>搜索</div>
@@ -488,7 +528,12 @@
         </div>
         <div class="address_event">
             <div><span></span>区域</div>
-            <div><input type="text" placeholder="地区"></div>
+            <div class="dropdown">
+                <select class="m-wrap"  style="width: 150px; padding: 2px 0;">
+                    <option value="0">请选择</option>
+
+                </select>
+            </div>
         </div>
         <div class="search_event_btn">寻找事件</div>
         <div class="date_view">
@@ -505,7 +550,6 @@
 
 <div class="news_contain news_list_con  clearfix">
     <div class="col-xs-8 col-xs-offset-2 col-md-8 col-md-offset-2 news_container">
-
 
     </div>
 </div>
@@ -570,6 +614,7 @@
 <script src="static/plug-in/template/template.js"></script>
 <script src="static/plug-in/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
 <script src="static/plug-in/jquery/jquery.pagination.js"></script>
+<script src="static/plug-in/laydate/laydate.js"></script>
 <script src="static/js/common.js"></script>
 <script src="static/js/listEvent.js"></script>
 </body>

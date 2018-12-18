@@ -11,8 +11,13 @@ var listNewsPage = {
             listNewsPage.imgNewsShow(data.postMap["181"]);
         });
         this.getRankingData(99);
+        this.getVenuesData();
         this.getEventData();
-
+        laydate.render({
+            elem: '.search_date', //指定元素
+            lang: 'en',
+            format: 'yyyy-MM'
+        });
     },
     topNewsShow: function (json) {
         var data = json.postMap["180"];
@@ -116,11 +121,43 @@ var listNewsPage = {
             }
         });
     },
-
     eventInit:function(){
+
         // 查找事件
         $(".search_event_btn").on("click",function(){
+            var searchDate=$(".search_date").val();
+            var searchCon= $(".search_event input").val();
+            var searchAdd= $(".m-wrap  option:selected").text();
+            var param='?start_date='+searchDate+'&search='+searchCon+'&venue='+searchAdd;
+            if(searchCon==''){
+               param='?start_date='+searchDate+'&venue='+searchAdd;
+               if(searchAdd=='请选择'){
+                   param='?start_date='+searchDate;
+                   if(searchDate==''){
+                       param='';
+                   }
+               }else{
+                   param='?start_date='+searchDate+'&venue='+searchAdd;
+                   if(searchDate==''){
+                       param='?&venue='+searchAdd;
+                   }
+               }
 
+            }else{
+                if(searchDate==''){
+                    param='?&search='+searchCon+'&venue='+searchAdd;
+                    if(searchAdd=='请选择'){
+                        param='?&search='+searchCon;
+                    }
+                }else{
+                    param='?start_date='+searchDate+'&search='+searchCon+'&venue='+searchAdd;
+                    if(searchAdd=='请选择'){
+                        param='?start_date='+searchDate+'&search='+searchCon;
+                    }
+                }
+
+            }
+            listNewsPage.getEventData(param);
         });
         // 按照日历查看
         $(".data_view").on("click",function(){
@@ -135,6 +172,28 @@ var listNewsPage = {
             listNewsPage.getEventData('?start_date='+listNewsPage.getNextMonth(listNewsPage.month));
         });
     },
+    getVenuesData:function(param){
+        var url = 'http://chainage.cc/wp-json/tribe/events/v1/venues';
+        $.ajax({
+            type: 'GET',
+            url: url,
+            async: true,
+            error: function () {
+            },
+            success: function (data) {
+                if (data) {
+                    var html = '';
+                    var data = data.venues;
+                    for (var i = 0; i < data.length; i++) {
+                        html+='<option value="'+data[i].id+'">'+data[i].id+'</option>';
+                    }
+                    $(".m-wrap").append(html);
+                }
+
+            }
+        });
+    },
+
     getEventData:function(param){
         var url = 'http://chainage.cc/wp-json/tribe/events/v1/events';
         if(param){
