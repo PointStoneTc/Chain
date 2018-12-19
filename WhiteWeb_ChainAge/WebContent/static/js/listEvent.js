@@ -256,12 +256,12 @@ var listNewsPage = {
                             + '<div></a></div>';
                         $(".news_container").append(html);
 
-                        listNewsPage.eventData.push({
-                            title: data[i].title,
-                            start: data[i].start_date,
-                            // end:data[i].end_date,
-                            id: data[i].id
-                        });
+                        // listNewsPage.eventData.push({
+                        //     title: data[i].title,
+                        //     start: data[i].start_date,
+                        //     // end:data[i].end_date,
+                        //     id: data[i].id
+                        // });
 
                     }
                     if (data.length > 0) {
@@ -338,7 +338,44 @@ var listNewsPage = {
             editable: true,
             aspectRatio: 0.8,
             eventLimit: true, // allow "more" link when too many events
-            events: listNewsPage.eventData,
+            // events: listNewsPage.eventData,
+            events: function(start,end,timezone,callback){
+                console.log($('#calendar').fullCalendar('getDate'));
+                function add0(m){return m<10?'0'+m:m }
+                //时间戳转化成时间格式
+                function timeFormat(timestamp){
+                    //timestamp是整数，否则要parseInt转换,不会出现少个0的情况
+                    var time = new Date(timestamp);
+                    var year = time.getFullYear();
+                    var month = time.getMonth()+1;
+                    var date = time.getDate();
+
+                    return year+'-'+add0(month)+'-'+add0(date);
+                }
+                $.ajax({//通过ajax动态查询要展示的课次数据信息
+                        url: 'http://chainage.cc/wp-json/tribe/events/v1/events',
+                        data : {
+                             "start_date": timeFormat($('#calendar').fullCalendar('getDate')),
+                        },
+                        dataType: 'json',
+                        type : 'get',
+                        success: function(data) { // 获取当前月的数据
+                            var events = [];
+                            if(data){//result.body.wesClassCourseList其实就是从后台返回前台的一个课次list，
+                                data=data.events;
+                                for(var i=0;i<data.length;i++){
+                                    events.push({
+                                        title: data[i].title,
+                                        start: data[i].date,
+                                        // end:data[i].end_date,
+                                        id: data[i].id
+                                    });
+                                }
+                            }
+                            callback(events);
+                        }
+                    });
+                },
             //编辑事件
             eventClick: function (event) {
                 if (window.location.origin == 'http://localhost:63342') {
@@ -350,6 +387,8 @@ var listNewsPage = {
                 }
             }
         });
+
+
     }
 
 }
