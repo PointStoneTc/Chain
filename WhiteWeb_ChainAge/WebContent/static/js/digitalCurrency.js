@@ -96,10 +96,23 @@ var digitalCurrency={
             url: url,
             error: function () {
             },
-            success: function (data) {
-                if (data && data.length>0) {
+            success: function (res) {
+                if (res) {
                     $("#ml_container").html('');
-                    var html='';
+                    console.log(res);
+                    var html='',data=[];
+                    if(name=='ALL'){
+                        data=res.ALL;
+                    }
+                    if(name=='OTHER'){
+                        data=res.OTHER;
+                    }
+                    if(name!='ALL' && name!='OTHER'){
+                        for(var key in res){
+                          data= data.concat(res[key]);
+                        }
+                    }
+
                     for (var i = 0; i <data.length; i++) {
                         var volume=parseFloat(Number(data[i].quoteVolume24h).toFixed(2)).toLocaleString();
                         html='<div class="list_item col-xs-4 col-sm-3 " >'
