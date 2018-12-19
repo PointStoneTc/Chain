@@ -52,7 +52,7 @@ function init() {
 }
 
 function getData() {
-    var url = 'http://data.chainage.jp/caweb/cc/currencyApiController.do?assetTrend';
+    var url = 'http://data.chainage.jp/blockchain/coinapi/assetTrend';
     $.ajax({
         type: 'GET',
         url: url,
@@ -179,7 +179,7 @@ function dongyici() {
 
 // 交易所排行
 function getRankData() {
-    var url = 'http://data.chainage.jp/caweb/cc/currencyApiController.do?topFloatingExchange';
+    var url = 'http://data.chainage.jp/blockchain/coinapi/topFloatingExchange';
     $.ajax({
         type: 'GET',
         url: url,
@@ -195,7 +195,7 @@ function getRankData() {
 }
 
 function rankShowFunc(data) {
-    var data = JSON.parse(data);
+    var data=JSON.parse(data);
     var rankLHtml = '';
     var rankRHtml = '';
     var numClass = '';
@@ -205,13 +205,14 @@ function rankShowFunc(data) {
         } else {
             numClass = '';
         }
+        console.log(data[i])
         rankLHtml += '<div class="ranking-list"><a href="./market.html?id='+data[i].exchangeId+'">'
             + '<div class="ranking-num ' + numClass + '">' + (i + 1) + '</div>'
             + '<div class="ranking-icon">'
             + '  <img src="static/img/coin/128/' + data[i].exchangeId + '.png" alt="" width="20px" height="20px">'
             + '</div>'
             + '<div class="ranking-name">' + data[i].name + '</div>'
-            + '<div class="ranking-value">24h交易总值：JPY ' + parseFloat(data[i].volume24hUnitB.toFixed(2)).toLocaleString() + '</div>'
+            + '<div class="ranking-value">24h交易总值：JPY ' + parseFloat(Number(data[i].bVolume24h).toFixed(2)).toLocaleString() + '</div>'
             + '</a></div>';
     }
 
@@ -222,7 +223,7 @@ function rankShowFunc(data) {
             + '  <img src="static/img/coin/128/' + data[i].exchangeId + '.png" alt="" width="20px" height="20px">'
             + '</div>'
             + '<div class="ranking-name">' + data[i].name + '</div>'
-            + '<div class="ranking-value">24h交易总值：JPY ' + parseFloat(data[i].volume24hUnitB.toFixed(2)).toLocaleString() + '</div>'
+            + '<div class="ranking-value">24h交易总值：JPY ' + parseFloat(Number(data[i].bVolume24h).toFixed(2)).toLocaleString() + '</div>'
             + '</a></div>';
     }
     $(".exchange-ranking .rankL").html(rankLHtml);
