@@ -137,7 +137,7 @@ var listNewsPage = {
             $(".operate_con").show();
             var searchDate = $(".search_date").val();
             var searchCon = $(".search_event input").val();
-            var searchAdd = $(".m-wrap  option:selected").text();
+            var searchAdd = $(".m-wrap  option:selected").val();
             var param = '?start_date=' + searchDate + '&search=' + searchCon + '&venue=' + searchAdd;
             if (searchCon == '') {
                 param = '?start_date=' + searchDate + '&venue=' + searchAdd;
@@ -197,7 +197,7 @@ var listNewsPage = {
                     var html = '';
                     var data = data.venues;
                     for (var i = 0; i < data.length; i++) {
-                        html += '<option value="' + data[i].id + '">' + data[i].id + '</option>';
+                        html += '<option value="' + data[i].id + '">' + data[i].venue + '</option>';
                     }
                     $(".m-wrap").append(html);
                 }

@@ -199,7 +199,7 @@ function rankShowFunc(data) {
     var rankLHtml = '';
     var rankRHtml = '';
     var numClass = '';
-    for (var i = 0; i < 5; i++) {
+    for (var i = 0; i < 10; i++) {
         if (i == 0 || i == 1 || i == 2) {
             numClass = "numColor";
         } else {
@@ -216,7 +216,7 @@ function rankShowFunc(data) {
             + '</a></div>';
     }
 
-    for (var i = 5; i < 10; i++) {
+    for (var i = 10; i < 20; i++) {
         rankRHtml += '<div class="ranking-list"><a href="./market.html?id='+data[i].exchangeId+'">'
             + '<div class="ranking-num">' + (i + 1) + '</div>'
             + '<div class="ranking-icon">'
