@@ -108,31 +108,32 @@
             <div class="mt_h_container">数字货币概要</div>
             <div class="filter_title"><img src="static/img/filter_icon.png"> 按名称过滤</div>
             <div class="filter_con">
-                <a href="/zh/market/code/" class="button">All</a>
-                <a class="button " href="/zh/market/code/0-9/">0-9</a>
-                <a class="button " href="/zh/market/code/a-c/">A-C</a>
-                <a class="button " href="/zh/market/code/d-f/">D-F</a>
-                <a class="button " href="/zh/market/code/g-i/">G-I</a>
-                <a class="button " href="/zh/market/code/j-l/">J-L</a>
-                <a class="button " href="/zh/market/code/m-o/">M-O</a>
-                <a class="button " href="/zh/market/code/p-r/">P-R</a>
-                <a class="button " href="/zh/market/code/s-u/">S-U</a>
-                <a class="button " href="/zh/market/code/v-z/">V-Z</a>
+                <a class="button">All</a>
+                <a class="button" >0-9</a>
+                <a class="button" >A-C</a>
+                <a class="button" >D-F</a>
+                <a class="button" >G-I</a>
+                <a class="button" >J-L</a>
+                <a class="button" >M-O</a>
+                <a class="button" >P-R</a>
+                <a class="button" >S-U</a>
+                <a class="button" >V-Z</a>
+                <a class="button" >Other</a>
             </div>
-            <div class="filter_title"><img src="static/img/filter_icon.png" > 24消失交易量过滤（转换成BTC）</div>
-            <div class="filter_con">
-                <a href="/zh/market/volume/" class="button">All</a>
-                <a class="button " href="/zh/market/volume/0-1/">0-1</a>
-                <a class="button " href="/zh/market/volume/1-10/">1-10</a>
-                <a class="button " href="/zh/market/volume/10-100/">10-100</a>
-                <a class="button selected" href="/zh/market/volume/100-/">100+ </a>
-            </div>
+            <!--<div class="filter_title"><img src="static/img/filter_icon.png" > 24消失交易量过滤（转换成BTC）</div>-->
+            <!--<div class="filter_con">-->
+                <!--<a href="/zh/market/volume/" class="button">All</a>-->
+                <!--<a class="button " href="/zh/market/volume/0-1/">0-1</a>-->
+                <!--<a class="button " href="/zh/market/volume/1-10/">1-10</a>-->
+                <!--<a class="button " href="/zh/market/volume/10-100/">10-100</a>-->
+                <!--<a class="button selected" href="/zh/market/volume/100-/">100+ </a>-->
+            <!--</div>-->
 
             <!-- 内容 -->
             <div id="ml_container" class="clearfix row"></div>
-            <div class="more_btn">
-                <img src="static/img/more_icon.png" >
-            </div>
+            <!--<div class="more_btn">-->
+                <!--<img src="static/img/more_icon.png" >-->
+            <!--</div>-->
         </div>
         <div class=" hidden-xs news_con_right">
             <div class="post_advert_top" style="height: 3.2rem;margin-bottom: 0.32rem">
@@ -186,20 +187,6 @@
 
 </script>
 
-<script type="text/html" id="mlContainer">
-    <%for(var i in data){%>
-    <div class="list_item col-xs-4 col-sm-3 " >
-        <a id="ml_template" class="ml">
-            <div class="pri-name">Bitcoin</div>
-            <div class="pri-code-list">BTC,XBT</div>
-            <div class="volume-desc">24h交易量</div>
-            <div class="volume c-bitcoin">1,061,392</div>
-        </a>
-    </div>
-    <%}%>
-
-</script>
-
 <script src="static/plug-in/jquery/jquery-3.3.1.min.js"></script>
 <script src="static/plug-in/template/template.js"></script>
 <script src="static/plug-in/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
@@ -208,4 +195,3 @@
 </body>
 
 </html>
-

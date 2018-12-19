@@ -53,7 +53,7 @@ Array.prototype.sum = function () {
 function getData(callback) {
     $.ajax({
         type: 'GET',
-        url: 'http://data.chainage.jp/caweb/cc/currencyApiController.do?btcMonitorLineOHLCV',
+        url: 'http://data.chainage.jp/blockchain/coinapi/btcMonitorLineOHLCV',
         async: true,
         dataType: "text",
         error: function () {
@@ -112,7 +112,7 @@ function createOhlcv(result) {
         var arr = [];
         arr.push(n.lastUpdated.replace('2018-', ''));
         arr.push(n.open);
-        arr.push(n.close);
+        arr.push(n.closed);
         arr.push(n.low);
         arr.push(n.high);
         ohlcv.temp1.push(arr);

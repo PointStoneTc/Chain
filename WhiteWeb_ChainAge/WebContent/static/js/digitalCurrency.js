@@ -1,10 +1,20 @@
 var digitalCurrency={
     init:function () {
 
-        this.getCurrencyInfo();
+        this.getCurrencyInfo('ALL');
         // 热门文章
         this.getAdvertData();
         this.getHotPostsData();
+        $(".filter_con").on("click",".button",function(){
+            var name=$(this).html();
+            if(name=='All'){
+                name='ALL';
+            }
+            if(name=='Other'){
+                name='OTHER';
+            }
+            digitalCurrency.getCurrencyInfo(name);
+        })
     },
     // 热门文章
     getHotPostsData: function () {
@@ -79,26 +89,33 @@ var digitalCurrency={
 
     },
 
-    getCurrencyInfo:function(){
-        var url='http://data.chainage.jp/caweb/cc/currencyApiController.do?exchangeMarketInfo';
+    getCurrencyInfo:function(name){
+        var url='http://data.chainage.jp/blockchain/coinapi/assetsGeneral?name='+name;
         $.ajax({
             type: 'GET',
             url: url,
-            data:{id:1},
-            async: true,
             error: function () {
             },
             success: function (data) {
                 if (data && data.length>0) {
+                    $("#ml_container").html('');
+                    var html='';
                     for (var i = 0; i <data.length; i++) {
-
+                        var volume=parseFloat(Number(data[i].quoteVolume24h).toFixed(2)).toLocaleString();
+                        html='<div class="list_item col-xs-4 col-sm-3 " >'
+                            +'<a id="ml_template" class="ml">'
+                            +'<div class="pri-name">'+data[i].name+'</div>'
+                            +'<div class="pri-code-list">'+data[i].symbol+'</div>'
+                            +'<div class="volume-desc">24h交易量</div>'
+                            +'<div class="volume c-bitcoin">'+volume+'</div>'
+                            +'</a>'
+                            +'<div>';
+                        $("#ml_container").append(html);
                     }
                 }
             }
         });
-        var data=[{id:1},{id:2},{id:3},{id:1},{id:2},{id:3}];
-        var mlFuc= template($("#mlContainer").html(),{data:data});
-        $("#ml_container").append(mlFuc);
+
     }
 }
 digitalCurrency.init();
