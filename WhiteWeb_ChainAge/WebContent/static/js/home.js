@@ -103,7 +103,7 @@ var homePage = {
     },
     // 获取排行
     getRankingData: function getData(categories) {
-        var url = 'http://data.chainage.jp/caweb/cc/currencyApiController.do?assetTrend';
+        var url = 'http://data.chainage.jp/blockchain/coinapi/assetTrend';
         $.ajax({
             type: 'GET',
             url: url,
@@ -112,15 +112,15 @@ var homePage = {
             },
             success: function (data) {
                 if (data) {
-                    var coinData=JSON.parse(data);
-                   // var data= JSON.parse(data).splice(0,6);
-                   var data=[];
-                   data.push(Common.coinLookUp(coinData,'BTC'))
-                   data.push(Common.coinLookUp(coinData,'ETH'))
-                   data.push(Common.coinLookUp(coinData,'LTC'))
-                   data.push(Common.coinLookUp(coinData,'XRP'))
-                   data.push(Common.coinLookUp(coinData,'BCH'))
-                   data.push(Common.coinLookUp(coinData,'ETC'))
+                    var coinData = data;
+                    // var data= JSON.parse(data).splice(0,6);
+                    var data = [];
+                    data.push(Common.coinLookUp(coinData, 'BTC'))
+                    data.push(Common.coinLookUp(coinData, 'ETH'))
+                    data.push(Common.coinLookUp(coinData, 'LTC'))
+                    data.push(Common.coinLookUp(coinData, 'XRP'))
+                    data.push(Common.coinLookUp(coinData, 'BCH'))
+                    data.push(Common.coinLookUp(coinData, 'ETC'))
                     // 注册关注 template方法
                     template.registerFunction('price', function (valueText) {
                         return valueText.specificRate.price.toFixed(2);
@@ -135,11 +135,11 @@ var homePage = {
                         return str;
                     });
                     template.registerFunction('percentValue', function (valueText) {
-                        return valueText.specificRate.percentChange24h.toFixed(2)+'%';
+                        return valueText.specificRate.percentChange24h.toFixed(2) + '%';
                     });
                     var newsFuc = template($("#message_show").html(), {data: data});
                     $(".message_show ul").html(newsFuc);
-        }
+                }
             }
         });
     },

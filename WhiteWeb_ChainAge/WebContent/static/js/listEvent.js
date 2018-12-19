@@ -91,7 +91,7 @@ var listNewsPage = {
     },
     // 获取排行
     getRankingData: function getData(categories) {
-        var url = 'http://data.chainage.jp/caweb/cc/currencyApiController.do?assetTrend';
+        var url = 'http://data.chainage.jp/blockchain/coinapi/assetTrend';
         $.ajax({
             type: 'GET',
             url: url,
@@ -100,7 +100,7 @@ var listNewsPage = {
             },
             success: function (data) {
                 if (data) {
-                    var coinData = JSON.parse(data);
+                    var coinData = data;
                     // var data= JSON.parse(data).splice(0,6);
                     var data = [];
                     data.push(Common.coinLookUp(coinData, 'BTC'))
