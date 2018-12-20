@@ -205,25 +205,26 @@ function rankShowFunc(data) {
         } else {
             numClass = '';
         }
-        console.log(data[i])
-        rankLHtml += '<div class="ranking-list"><a href="./market.html?id='+data[i].exchangeId+'">'
+        var price=parseFloat(Number(data[i].bVolume24h).toFixed(2)).toLocaleString();
+        rankLHtml += '<div class="ranking-list"><a href="./market.html?id='+data[i].exchangeId+'&p='+price+'&n='+data[i].name+'">'
             + '<div class="ranking-num ' + numClass + '">' + (i + 1) + '</div>'
             + '<div class="ranking-icon">'
             + '  <img src="static/img/coin/128/' + data[i].exchangeId + '.png" alt="" width="20px" height="20px">'
             + '</div>'
             + '<div class="ranking-name">' + data[i].name + '</div>'
-            + '<div class="ranking-value">24h交易总值：JPY ' + parseFloat(Number(data[i].bVolume24h).toFixed(2)).toLocaleString() + '</div>'
+            + '<div class="ranking-value">24h交易总值：JPY ' + parseFloat(Number(data[i].qVolume24h).toFixed(2)).toLocaleString() + '</div>'
             + '</a></div>';
     }
 
     for (var i = 10; i < 20; i++) {
-        rankRHtml += '<div class="ranking-list"><a href="./market.html?id='+data[i].exchangeId+'">'
+        var price=parseFloat(Number(data[i].bVolume24h).toFixed(2)).toLocaleString();
+        rankRHtml += '<div class="ranking-list"><a href="./market.html?id='+data[i].exchangeId+'&p='+price+'&n='+data[i].name+'">'
             + '<div class="ranking-num">' + (i + 1) + '</div>'
             + '<div class="ranking-icon">'
             + '  <img src="static/img/coin/128/' + data[i].exchangeId + '.png" alt="" width="20px" height="20px">'
             + '</div>'
             + '<div class="ranking-name">' + data[i].name + '</div>'
-            + '<div class="ranking-value">24h交易总值：JPY ' + parseFloat(Number(data[i].bVolume24h).toFixed(2)).toLocaleString() + '</div>'
+            + '<div class="ranking-value">24h交易总值：JPY ' + parseFloat(Number(data[i].qVolume24h).toFixed(2)).toLocaleString() + '</div>'
             + '</a></div>';
     }
     $(".exchange-ranking .rankL").html(rankLHtml);

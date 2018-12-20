@@ -2,6 +2,8 @@ var market={
     id:null,
     init:function () {
         this.id=Common.getQueryString("id");
+        $(".cspa .price").html(Common.getQueryString("p"));
+        $(".market_name").html(Common.getQueryString("n"));
         this.getMarketInfo();
         // 热门文章
         this.getHotPostsData();
@@ -81,19 +83,48 @@ var market={
     },
 
     getMarketInfo:function(){
-        var url='http://data.chainage.jp/caweb/cc/currencyApiController.do?exchangeMarketInfo';
+        var url='http://data.chainage.jp/blockchain/coinapi/exchangeMarketInfo';
         $.ajax({
             type: 'GET',
             url: url,
             data:{id:market.id},
+            // data:{id:22},
             async: true,
             error: function () {
             },
-            success: function (data) {
-                if (data && data.length>0) {
-                    for (var i = 0; i <data.length; i++) {
-
+            success: function (res) {
+                if (res && res.markInfoList.length>0) {
+                    var arr=res.markInfoList;
+                    var map = {},
+                        dest = [];
+                    for(var i = 0; i < arr.length; i++){
+                        var ai = arr[i];
+                        if(!map[ai.marketPairQuoteSymbol]){
+                            dest.push({
+                                marketPairQuoteSymbol: ai.marketPairQuoteSymbol,
+                                echangeName:ai.echangeName,
+                                data: [ai]
+                            });
+                            map[ai.marketPairQuoteSymbol] = ai;
+                        }else{
+                            for(var j = 0; j < dest.length; j++){
+                                var dj = dest[j];
+                                if(dj.marketPairQuoteSymbol == ai.marketPairQuoteSymbol){
+                                    dj.data.push(ai);
+                                    break;
+                                }
+                            }
+                        }
                     }
+
+                    template.registerFunction('change', function (valueText) {
+                        return parseFloat(valueText.toFixed(2).toLocaleString());
+                    });
+                    template.registerFunction('changePercent', function (valueText) {
+                        return (valueText*100).toFixed(2)
+                    });
+                    var newsFuc = template($("#marketList").html(), {data: dest});
+                    $(".mr-container").html(newsFuc);
                 }
             }
         });

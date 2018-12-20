@@ -126,30 +126,11 @@
             </div>
             <div class="row cspa">
                 <div class="name">24小时 <span class="market_name">BTC Markets</span> 交易总量为</div>
-                <div class="price">222.01</div>
+                <div class="price"></div>
             </div>
 
             <!-- 内容 -->
             <div class="mr-container">
-                <div class="mr-title">基准市场：United Arab （AED）</div>
-                <div class=" mr-list">
-                    <div class="mr-normal" style="width:30%;">
-                        <div style="font-size:22px;">ETH / AED</div>
-                        <div style="color:#BCBCBC;"> Ethereum Ether / Australian Dollar</div>
-                    </div>
-                    <div class="mr-normal" style="color:#427ADB;width: 20%;">
-                        Remitano
-                    </div>
-                    <div class="mr-normal" style="color:#DB2B37;">
-                        <div style="font-size: 0.21rem"> 850.88 AED</div>
-                        <div> -1.37%</div>
-                    </div>
-                    <div class="mr-normal" style="">
-                        <div>2,216.45 ETH</div>
-                        <div>677,237 AUD</div>
-                    </div>
-                </div>
-
 
             </div>
 
@@ -208,24 +189,26 @@
 
 <script type="text/html" id="marketList">
     <%for(var i in data){%>
-    <div class="mr-title">基准市场：United Arab （<%=data[i].marketPairBaseSymbol%>）</div>
+    <div class="mr-title">基准市场：<%=data[i].echangeName%> （<%=data[i].marketPairQuoteSymbol%>）</div>
+    <%for(var j in data[i].data){%>
     <div class=" mr-list">
         <div class="mr-normal" style="width:30%;">
-            <div style="font-size:22px;">ETH / AED</div>
-            <div style="color:#BCBCBC;"> Ethereum Ether / Australian Dollar</div>
+            <div style="font-size:22px;"><%=data[i].data[j].marketPair%></div>
+            <div style="color:#BCBCBC;"><%=data[i].data[j].echangeName%> / <%=data[i].data[j].marketPairQuoteSymbol%></div>
         </div>
         <div class="mr-normal" style="color:#427ADB;width: 20%;">
-            Remitano
+            <%=data[i].data[j].echangeName%>
         </div>
-        <div class="mr-normal" style="color:#DB2B37;">
-            <div> 850.88 AED</div>
-            <div> -1.37%</div>
+        <div class="mr-normal" style="color:#DB2B37;" >
+            <div> <%=change(data[i].data[j].quotePirce)%> <%=data[i].data[j].marketPairQuoteSymbol%></div>
+            <div> <%=changePercent(data[i].data[j].btcprice)%>%</div>
         </div>
         <div class="mr-normal" style="">
-            <div>2,216.45 ETH</div>
-            <div>677,237 AUD</div>
+            <div><%=change(data[i].data[j].quoteVolume24hBase)%> <%=data[i].data[j].marketPairBaseSymbol%></div>
+            <div><%=change(data[i].data[j].quoteVolume24hQuote)%> <%=data[i].data[j].marketPairQuoteSymbol%></div>
         </div>
     </div>
+    <%}%>
     <%}%>
 
 </script>

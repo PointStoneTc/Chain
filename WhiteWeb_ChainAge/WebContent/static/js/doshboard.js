@@ -64,7 +64,24 @@ function getData(callback) {
         }
     });
 }
-
+function getViewData(callback) {
+    $.ajax({
+        type: 'GET',
+        url: 'http://data.chainage.jp/blockchain/coinapi/btcMonitorRate',
+        async: true,
+        dataType: "text",
+        error: function () {
+            alert("请求有误");
+        },
+        success: function (data) {
+            var data=JSON.parse(data);
+            $(".data-vlue").html(parseFloat(data.priceUsd.toFixed(2)).toLocaleString());
+            $(".data-number-top").html(parseFloat(data.priceJpy.toFixed(2)).toLocaleString());
+            console.log(data)
+        }
+    });
+}
+getViewData();
 function createLine(result) {
     var line = new Object;
     line.values1 = []; //y轴数据点
@@ -435,6 +452,7 @@ $(".view-tottle").on("click","li",function(){
         });
     }else{
         $(".data-view").show();
+        getViewData();
         $(".view-tottle .active img").attr("src","static/img/time_active_icon.png");
         $(".view-tottle li:eq(0) img").attr("src","static/img/candlestick.png");
         $(".view-tottle li:eq(2) img").attr("src","static/img/line_icon.png");
