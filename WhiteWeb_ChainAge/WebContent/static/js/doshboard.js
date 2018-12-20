@@ -1,11 +1,3 @@
-// var dataList = [];
-// for (var i = 0; i < 32; i++) {
-//     dataList.push('<div data-key="CSPA:BTC/AED" class="data_item">',
-//         '<div class="code"><span>BTC/</span><span>AED</span></div>',
-//         '<div class="price">23,0910.88</div>',
-//         '</div>');
-// }
-// $(".currency_container").html(dataList.join(""));
 
 // 烛台图
 var upColor = '#ec0000';
@@ -77,7 +69,6 @@ function getViewData(callback) {
             var data=JSON.parse(data);
             $(".data-vlue").html(parseFloat(data.priceUsd.toFixed(2)).toLocaleString());
             $(".data-number-top").html(parseFloat(data.priceJpy.toFixed(2)).toLocaleString());
-            console.log(data)
         }
     });
 }
@@ -460,3 +451,34 @@ $(".view-tottle").on("click","li",function(){
         $(".data-candlestick").hide();
     }
 })
+
+function getCoinData() {
+    var url = 'http://data.chainage.jp/blockchain/coinapi/assetTrend';
+    $.ajax({
+        type: 'GET',
+        url: url,
+        async: true,
+        dataType: "text",
+        error: function () {
+            alert("请求有误");
+        },
+        success: function (data) {
+            var coinData = JSON.parse(data);
+            // var data= JSON.parse(data).splice(0,6);
+            var dataList = [],html='';
+            dataList.push(Common.coinLookUp(coinData, 'ETH'))
+            dataList.push(Common.coinLookUp(coinData, 'LTC'))
+            dataList.push(Common.coinLookUp(coinData, 'XRP'))
+            dataList.push(Common.coinLookUp(coinData, 'BCH'))
+            dataList.push(Common.coinLookUp(coinData, 'ETC'))
+            for (var i = 0; i < dataList.length; i++) {
+                html='<div data-key="CSPA:BTC/AED" class="data_item">'
+                    +'<div class="code"><span>'+dataList[i].specificRate.baseName+'</span><span>'+dataList[i].specificRate.baseSymbol+'</span></div>'
+                    +'<div class="price">'+dataList[i].specificRate.price.toFixed(2)+'</div>'
+                    +'</div>';
+                $(".currency_container").append(html);
+            }
+        }
+    });
+}
+getCoinData();

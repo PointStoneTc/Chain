@@ -1,7 +1,7 @@
 (function ($) {
     var newsContent = {
         id: null,
-        catid:null,
+        catid: null,
         init: function () {
             this.id = Common.getQueryString("id");
             Common.getCategoreType();
@@ -43,7 +43,7 @@
                         if (data.image) {
                             imgUrl = data.image.url;
                         }
-                        newsContent.catid=data.categories[0].id;
+                        newsContent.catid = data.categories[0].id;
                         $(".post_desc").html(data.description);
                         $(".post_featured img").attr("src", imgUrl);
                         $(".event_start_time").html(Common.dateFormat(data.start_date));
@@ -55,49 +55,39 @@
 
                         var startTime = data.start_date.split(":").join("").split("-").join("").split(" ").join("T");
                         var endTime = data.end_date.split(":").join("").split("-").join("").split(" ").join("T");
-                        var url = 'https://www.google.com/calendar/event?action=TEMPLATE&text=' + data.title + '&dates=' + startTime + '/' + endTime + '&details='+data.title+'&ctz=';
+                        var url = 'https://www.google.com/calendar/event?action=TEMPLATE&text=' + data.title + '&dates=' + startTime + '/' + endTime + '&details=' + data.title + '&ctz=';
                         $(".link_btn").parent().attr("href", url);
-
-                        newsContent.gooleMapInit(data.venue.city + data.venue.address);
+                        var description = data.venue.description;
+                        var lat = description.substring(description.indexOf('=') + 1, description.indexOf(';'))
+                        var lng = description.substring(description.indexOf('=', description.indexOf('=') + 1) + 1, description.indexOf('<', description.indexOf('=') + 1))
+                        newsContent.gooleMapInit(lat, lng);
                     }
                 }
             });
 
         },
-        gooleMapInit: function (address) {
-            var url = "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyDJW4jsPlNKgv6jFm3B5Edp5ywgdqLWdmc&address=" + address + "&sensor=true";
-            $.ajax({
-                type: 'GET',
-                url: url,
-                async: true,
-                error: function () {
-                },
-                success: function (data) {
-                    if (data) {
-                        var latlng = new google.maps.LatLng(data.results[0].geometry.location.lat, data.results[0].geometry.location.lng)
-                        var map = null;
+        gooleMapInit: function (lat, lng) {
 
-                        function initialize() {
-                            var mapProp = {
-                                center: latlng,
-                                zoom: 15,
-                                mapTypeId: google.maps.MapTypeId.ROADMAP
-                            };
-                            map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+            var latlng = new google.maps.LatLng(lat, lng)
+            var map = null;
 
-                        }
+            function initialize() {
+                var mapProp = {
+                    center: latlng,
+                    zoom: 15,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+                map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 
-                        google.maps.event.addDomListener(window, 'load', initialize);
-                        var marker = new google.maps.Marker({
-                            position: latlng      //将前面设定的坐标标出来
+            }
 
-                        });
-                        marker.setMap(map);
-
-                    }
-                }
+            google.maps.event.addDomListener(window, 'load', initialize);
+            var marker = new google.maps.Marker({
+                position: latlng      //将前面设定的坐标标出来
 
             });
+            marker.setMap(map);
+
 
         },
         // 热门文章
@@ -138,7 +128,7 @@
                         var html = '';
                         var data = data.events;
                         for (var i = 0; i < data.length; i++) {
-                            if(data[i].id!=newsContent.id){
+                            if (data[i].id != newsContent.id) {
                                 var authorImg = "static/img/default_autor.png";
                                 var imgUrl = "static/img/defalut_300.jpg";
                                 if (Common.userImgs[data[i].author]) {
