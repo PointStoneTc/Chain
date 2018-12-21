@@ -29,14 +29,26 @@
     margin: 0 auto;
 }
 .data-view .data-vlue {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     color: #fff;
-    margin-top: -30px;
+   margin-bottom: 60px;
 }
 .data-view .data-number{
-    font-size:0.8rem;
+    font-size:0.66rem;
     color: #fff;
     line-height: 60px;
+    margin-bottom:70px;
+}
+.data-view-percent{
+    font-size: 0.54rem;
+}
+.data-view .col-lg-4{
+    text-align: right;
+    padding-right: 0;
+}
+.data-val-top{
+    font-size: 0.44rem;
+    color: #ccc;
 }
 .currency_container{
     padding: 0 10px;
@@ -80,7 +92,7 @@
     position: relative;
     width: 40px;
     height: 30px;
-    margin-right: 20px;
+    margin-left: 20px;
 }
 
 .down-arrow::after {
@@ -89,7 +101,7 @@
     height: 18px;
     width: 18px;
     border-width: 0 2px 2px 0;
-    border-color: #FFF;
+    border-color: #F54C24;
     border-style: solid;
     transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
     transform-origin: center;
@@ -97,11 +109,13 @@
     position: absolute;
     top: 50%;
     right: 10px;
-    margin-top: -10px;
+    margin-top: -15px;
 }
 /*加上active旋转成 上箭头*/
 .down-arrow.active::after {
     transform-origin: center;
     transform: rotate(-135deg);
     transition: transform .3s;
+    border-color: #00B43C;
+    margin-top: -10px;
 }

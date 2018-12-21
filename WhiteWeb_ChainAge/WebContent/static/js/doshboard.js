@@ -61,14 +61,27 @@ function getViewData(callback) {
         type: 'GET',
         url: 'http://data.chainage.jp/blockchain/coinapi/btcMonitorRate',
         async: true,
-        dataType: "text",
+
         error: function () {
             alert("请求有误");
         },
         success: function (data) {
-            var data=JSON.parse(data);
-            $(".data-vlue").html(parseFloat(data.priceUsd.toFixed(2)).toLocaleString());
-            $(".data-number-top").html(parseFloat(data.priceJpy.toFixed(2)).toLocaleString());
+            $(".data-vlue").html(parseFloat(data.priceJpy.toFixed(2)).toLocaleString());
+            $(".data-number-top").html(parseFloat(data.marketCapUsd.toFixed(2)).toLocaleString());
+            $(".data-view-lb").html(parseFloat(data.priceUsd.toFixed(2)).toLocaleString());
+            $(".data-number-bot").html(parseFloat(data.volume24hUsd.toFixed(2)).toLocaleString());
+            $(".data-view-percent").html((data.percentChange24hUsd*100).toFixed(2)+'%');
+            $(".data-view-time").html(data.lastUpdated.substr(11,5)+' '+data.lastUpdated.substr(5,2)+'/'+data.lastUpdated.substr(8,2)+'/'+data.lastUpdated.substr(0,2));
+
+            var percentClass='';
+            if(data.percentChange24hUsd>=0){
+                $(".data-view-percent").css("color","#00B43C");
+                $(".down-arrow").addClass("active");
+            }else{
+                $(".data-view-percent").css("color","#F54C24");
+                $(".down-arrow").removeClass("active");
+            }
+
         }
     });
 }
