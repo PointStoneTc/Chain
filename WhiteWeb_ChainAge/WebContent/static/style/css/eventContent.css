@@ -64,6 +64,7 @@ img {
 .news_con_left .post_category {
     font-size: 0.12rem;
     color: #999999;
+    cursor: pointer;
 }
 
 .news_con_left .post_header {
@@ -746,6 +747,7 @@ dt, dd{
     }
     .news_con_left .post_category {
         font-size: 0.57rem;
+        cursor: pointer;
     }
     .event_title {
         font-size: 0.85rem;

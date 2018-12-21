@@ -10,6 +10,17 @@
             this.getTagsData();
             newsContent.getAdvertData();
             this.getPostsListData();
+            $(".post_header").on("click",".post_category",function(){
+                var pageFlag=4;
+
+                if (window.location.origin == 'http://localhost:63342') {
+                    window.location.href = 'http://localhost:63342/Chain/WhiteWeb_ChainAge/WebContent/listNews.html?pageFlag='+pageFlag +'&cat='+ Common.getQueryString("cat");
+                } else if(window.location.origin=='http://chainage.cc'){
+                    window.location.href = window.location.origin+'/listNews.html?pageFlag='+pageFlag +'&cat='+ Common.getQueryString("cat");
+                }else{
+                    window.location.href = window.location.origin+'/wh/listNews.html?pageFlag='+pageFlag +'&cat='+ Common.getQueryString("cat");
+                }
+            })
         },
         // 文章内容
         postsShow:function(){

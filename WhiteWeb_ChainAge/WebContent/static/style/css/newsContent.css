@@ -43,6 +43,7 @@ img {
 .news_con_left .post_category {
     font-size: 0.12rem;
     color: #999999;
+    cursor: pointer;
 }
 
 .news_con_left .post_header {
@@ -434,6 +435,7 @@ img {
     }
     .news_con_left .post_category{
         font-size: 0.57rem;
+        cursor: pointer;
     }
     .news_con_left .post_title{
         font-size: 0.85rem;

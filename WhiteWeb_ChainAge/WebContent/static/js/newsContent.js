@@ -2,6 +2,7 @@
     var newsContent = {
         id: null,
         catid: null,
+        cat:null,
         init: function () {
             this.id = Common.getQueryString("id");
             Common.getCategoreType();
@@ -43,6 +44,27 @@
                 }
 
             });
+            $(".post_header").on("click",".post_category",function(){
+                var pageFlag=1;
+                if(newsContent.cat=='99'){
+                    pageFlag=1;
+                }else if(newsContent.cat=='184'){
+                     pageFlag=6;
+                }else if(newsContent.cat=='195'){
+                    pageFlag=2;
+                }else if(newsContent.cat=='198'){
+                    pageFlag=3;
+                }else if(newsContent.cat=='185'){
+                    pageFlag=4;
+                }
+                if (window.location.origin == 'http://localhost:63342') {
+                    window.location.href = 'http://localhost:63342/Chain/WhiteWeb_ChainAge/WebContent/listNews.html?pageFlag='+pageFlag +'&cat='+ Common.getQueryString("cat");
+                } else if(window.location.origin=='http://chainage.cc'){
+                    window.location.href = window.location.origin+'/listNews.html?pageFlag='+pageFlag +'&cat='+ Common.getQueryString("cat");
+                }else{
+                    window.location.href = window.location.origin+'/wh/listNews.html?pageFlag='+pageFlag +'&cat='+ Common.getQueryString("cat");
+                }
+            })
             $(".pop_cancle_btn").on("click", function () {
                 $("#indexPopup").hide();
                 $(".email").val('');
@@ -121,6 +143,7 @@
                     $(".post_header .post_category").text(Common.categories[data.categories[0]]);
                     newsContent.catid=data.categories[0];
                 }
+                newsContent.cat=data.categories[0];
                 Common.getUsers(function () {
                     $(".post_icon1 img").attr("src", Common.userImgs[data.author]);
                     $(".post_autor").text(Common.users[data.author]);

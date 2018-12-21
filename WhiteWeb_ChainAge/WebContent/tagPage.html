@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        (function (_D) {
+            var _self = {};
+            _self.resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
+            _self.Html = _D.getElementsByTagName("html")[0];
+            var whdef = 100 / 2200;// 表示1920的设计图,使用100PX的默认值
+            var wW = _D.documentElement.clientWidth;// 当前窗口的宽度
+            var rem = wW * whdef;
+
+            _self.changePage = function () {
+                _self.Html.setAttribute("style", "font-size:" + rem + "px");
+                // _self.correctPx();
+            };
+            _self.changePage();
+            if (!document.addEventListener) return;
+            window.addEventListener(_self.resizeEvt, _self.changePage, false);
+            document.addEventListener('DOMContentLoaded', _self.changePage, false);
+        })(document);
+    </script>
+    <title>ChainAge</title>
+    <link rel="stylesheet" href="static/plug-in/bootstrap-3.3.7-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="static/style/css/commcon.css">
+    <link rel="stylesheet" href="static/style/css/home.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- [if lt IE 9]>
+    <script src="../lib/html5shiv/html5shiv.js"></script>
+    <script src="../lib/respond/respond.js"></script>
+    <![endif] -->
+    <style>
+        .news_nav {
+            background: #FFF;
+            height: 1.07rem;
+            padding-top: 0.43rem;
+        }
+
+        .news_title {
+            font-size: 0.32rem;
+            color: #000000;
+            float: left;
+            margin-right: 1.3rem;
+        }
+
+        .new_tabs {
+            background: #FFFFFF;
+            font-size: 0.24rem;
+            color: #BCBCBC;
+        }
+
+        .new_tabs li {
+            float: left;
+            cursor: pointer;
+            padding: 0 0.2rem 0.1rem 0.2rem;
+            text-align: center;
+            margin-right: 1.1rem;
+        }
+
+        .new_tabs li:last-child {
+            font-size: 0.24rem;
+            color: #BCBCBC;
+        }
+
+        .contain .new_tabs .current {
+            border-bottom: 0.06rem solid #2257C9;
+            color: #000000;
+        }
+
+        .news_container {
+            padding-top: 1.1rem;
+        }
+
+        .pagination a, .pagination .current, .pagination span {
+            width: 0.4rem;
+            height: 0.4rem;
+            display: inline-block;
+            text-align: center;
+            line-height: 0.4rem;
+            color: #666;
+            background: #fff;
+            border-right: 1px solid #ddd;
+        }
+
+        .pagination a:hover {
+            background-color: #eee;
+            border: 1px solid #ddd;
+        }
+
+        .pagination {
+            border: 1px solid #DDD;
+            border-right: none;
+            margin: 0;
+        }
+
+        .pagination .current {
+            background-color: #2257C9;
+            color: #fff;
+            border: 1px solid #2257C9;
+        }
+
+        .pagination .total {
+            width: auto;
+            padding: 0 0.2rem;
+        }
+
+        .pagination .next {
+            vertical-align: top;
+        }
+
+        .government_con {
+            padding-top: 0.65rem;
+            padding-bottom: 1.1rem;
+            display: none;
+        }
+
+        .government_con .nes_year_data {
+            font-size: 0.18rem;
+            border-bottom: 1px solid #DDDDDD;
+            padding-bottom: 0.05rem;
+        }
+
+        .government_con .news_list .news_list_item {
+            font-size: 0.21rem;
+            color: #333333;
+            padding: 0.25rem 0;
+            border-bottom: 1px dashed #DDDDDD;
+            /*white-space: nowrap;*/
+            /*overflow: hidden;*/
+            /*text-overflow: ellipsis;*/
+        }
+
+        .government_con .news_list_date {
+            margin-right: 0.8rem;
+        }
+
+        a {
+            color: #000000;
+        }
+
+        @media only screen and (max-width: 480px) {
+            .news_banner, .message_show, .news_show {
+                display: none;
+            }
+
+            .news_nav {
+                height: 68px;
+                border: 1px solid #E4E4E4;
+                padding-bottom: 4px;
+                margin-bottom: 20px;
+            }
+
+            .news_title {
+                font-size: 1rem;
+            }
+
+            .contain {
+                width: 90%;
+            }
+
+            .new_tabs {
+                padding-left: 0;
+                font-size: 0.85rem;
+            }
+            .new_tabs li:last-child{
+                font-size: 0.85rem;
+            }
+            . news_list_con {
+                margin-top: 23px;
+            }
+
+            .news_container {
+                width: 87%;
+                margin: 0 auto;
+                float: none;
+                padding-right: 0;
+                padding-left: 0;
+            }
+            .pagination{
+                display: none;
+            }
+            .government_con .nes_year_data{
+                font-size: 0.5rem;
+            }
+
+            .government_con .news_list .news_list_item {
+                font-size: 0.76rem;
+                padding: 0.35rem 0;
+                border-bottom: 1px dashed #DDDDDD;
+                white-space: unset;
+                overflow: initial;
+                text-overflow: unset;
+            }
+            .advert{
+                height: 7rem !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="header row">
+    <div class="col-md-9  header-left">
+        <span class="header_icon icon1"></span>
+        <span style="color:#999"> 市場キャップ：</span>
+        <span style="color:#FFF"> </span>
+        <span class="header_line">|</span>
+        <span class="header_icon icon2"></span>
+        <span style="color:#999"> 24時間の容積：</span>
+        <span style="color:#FFF">  </span>
+    </div>
+    <div class="header-right fr">
+        <a target="_blank" href="https://www.instagram.com/chainageofficial"><span class="share_icon share_icon1"></span></a>
+        <a target="_blank" href="https://twitter.com/ChainAgeJP"><span class="share_icon share_icon2"></span></a>
+        <a target="_blank" href="https://www.facebook.com/chainage.jp"><span class="share_icon share_icon3"></span></a>
+        <a target="_blank" href="https://www.youtube.com/channel/UCZLaAXGgdZyW2mNrMj-pBhg"><span class="share_icon share_icon4"></span></a>
+    </div>
+</div>
+<div class="share_con">
+    <ul>
+        <li><a href="https://www.instagram.com/chainageofficial"><span class="share_icon_con"><span class="share_icon share_icon1"></span></span>instagram</a></li>
+        <li><a href="https://twitter.com/ChainAgeJP"><span class="share_icon_con"><span class="share_icon share_icon2"></span></span>twitter</a></li>
+        <li><a href="https://www.facebook.com/chainage.jp"><span class="share_icon_con"><span class="share_icon share_icon3"></span></span>facebook</a></li>
+        <li><a href="https://www.youtube.com/channel/UCZLaAXGgdZyW2mNrMj-pBhg"><span class="share_icon_con"><span class="share_icon share_icon4"></span></span>youtube</a></li>
+    </ul>
+</div>
+<nav class="navbar navbar-default nav-center">
+    <div class="navbar-header">
+        <div data-toggle="collapse" data-target="#navbar" style="float: left">
+            <span type="button" class="navbar-toggle collapsed icon-bar"
+                  aria-expanded="false"
+                  aria-controls="navbar">
+            </span>
+        </div>
+
+        <div class="homeBtn"><a href="home.html">首页</a></div>
+        <div class="share_btn"></div>
+        <a class="navbar-img" href="home.html">
+            <img src="static/img/header_logo.png" alt="">
+        </a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
+        <ul class="nav navbar-nav navbar-left">
+            <li><a class="" href="listNews.html?pageFlag=1">ニュース</a></li>
+            <li><a href="listNews.html?pageFlag=6">特集</a></li>
+            <li><a href="listNews.html?pageFlag=2">取引所</a></li>
+            <li><a href="coinHome.html">チャート</a></li>
+            <li><a href="listNews.html?pageFlag=3">ビギナー</a></li>
+            <li><a href="listNews.html?pageFlag=5">政府・団体</a></li>
+            <li><a href="listEvent.html">イベント</a></li>
+            <li><a href="listNews.html?pageFlag=4">ChainAge Channel</a></li>
+        </ul>
+        <form class="navbar-form">
+            <div class="input-group">
+                <input type="text" class="form-control">
+                <span class="input-group-btn">
+            <button class="btn btn-default" type="button">
+              <span class="icon_search" aria-hidden="true"></span>
+            </button>
+          </span>
+            </div>
+        </form>
+        <div class="nav_footer" style="display: none;">
+            <span>利用規約</span> <span>プライバシーポリシー</span> <span>運営会社情報</span>
+        </div>
+    </div>
+    <!--/.nav-collapse -->
+</nav>
+
+<!--置顶新闻-->
+<div class="news_banner clearfix hidden-xs ">
+    <div class="col-sm-6 col-xs-12 banner_left">
+        <a href="">
+            <div class="news_banner_img" ></div>
+            <div class="bg" style="right: 0.02rem;"></div>
+            <div class="news_banner_con">
+                <div class="news_time">
+                    <span class="new_catelage"></span>
+                    <span class="icon_time"></span>
+                    <span class="time_fabu" style="font-size: 0.21rem;"></span>
+                </div>
+                <div class="new_title"></div>
+            </div>
+        </a>
+    </div>
+    <div class=" col-sm-6 hidden-xs banner_right">
+        <div class="pr banner_r_top" style="margin-bottom:0.02rem;">
+            <a href="">
+                <div class="news_banner_img" ></div>
+                <div class="bg"></div>
+                <div class="news_banner_con">
+                    <div class="news_time">
+                        <span class="new_catelage"></span>
+                        <span class="icon_time"></span>
+                        <span class="time_fabu" style="font-size: 0.21rem;"></span>
+                    </div>
+                    <div class="new_title"></div>
+                </div>
+            </a>
+        </div>
+        <div class="pr banner_r_bot">
+            <a href="">
+                <div class="news_banner_img" ></div>
+                <div class="bg"></div>
+                <div class="news_banner_con">
+                    <div class="news_time">
+                        <span class="new_catelage"></span>
+                        <span class="icon_time"></span>
+                        <span class="time_fabu" style="font-size: 0.21rem;"> </span>
+                    </div>
+                    <div class="new_title"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!--手机端轮播图-->
+<div id="myCarousel" class="carousel slide visible-xs">
+    <!-- 轮播（Carousel）指标 -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <!-- 轮播（Carousel）项目 -->
+    <div class="carousel-inner">
+
+    </div>
+    <!-- 轮播（Carousel）导航 -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+<div class="message_show clearfix hidden-xs">
+    <div class="col-xs-2 col-lg-0 "></div>
+    <ul class="col-xs-12 col-lg-8 ">
+
+    </ul>
+</div>
+<!--图片新闻-->
+<div class="news_show bd-home-inwork  clearfix hidden-xs">
+    <div class="news_show_contain">
+
+    </div>
+</div>
+<div class="news_nav">
+    <div class="contain">
+        <div class="news_title"></div>
+    </div>
+</div>
+
+<div class="news_contain news_list_con  clearfix">
+    <div class="hidden-xs col-sm-10 col-sm-offset-1 col-lg-8 col-lg-offset-2 news_container">
+
+    </div>
+    <div class="mobile_show">
+        <div class="visible-xs news_mobile_container data-num=0">
+
+        </div>
+
+    </div>
+
+</div>
+
+<!--分页-->
+<div class="contain page_con" style="text-align: center;padding: 0.5rem 0 0.4rem 0">
+    <div class="page pagination"></div>
+</div>
+
+
+<div class="contain advert" style="margin-bottom: 0.55rem">
+</div>
+
+<!--底部部分-->
+<div class="footer-con">
+    <div class="footer-top hidden-xs">
+        <div>
+            <a target="_blank" href="https://www.instagram.com/chainageofficial"><span class="share_icon share_icon1"></span></a>
+            <a target="_blank" href="https://twitter.com/ChainAgeJP"><span class="share_icon share_icon2"></span></a>
+            <a target="_blank" href="https://www.facebook.com/chainage.jp"><span class="share_icon share_icon3"></span></a>
+            <a target="_blank" href="https://www.youtube.com/channel/UCZLaAXGgdZyW2mNrMj-pBhg"><span class="share_icon share_icon4"></span></a>
+        </div>
+        <div style="text-align: center;margin-top: 0.1rem;">利用規約 / プライバシーポリシー / 運営会社情報</div>
+    </div>
+    <div class="footer-bottom">©2018 Worldgo.kk All Rights Reserved.</div>
+</div>
+
+<script type="text/html" id="message_show">
+    <%for(var i in data){%>
+    <li>
+        <div><span><%=data[i].specificRate.baseName%> </span><span style="color: #ccc;">| <%=data[i].specificRate.baseSymbol%></span></div>
+        <div class="price">¥<%=price(data[i])%></div>
+        <div>
+            <span class="markIcon <%=percent(data[i])%>"></span>
+            <span><%=percentValue(data[i])%></span>
+        </div>
+    </li>
+    <%}%>
+</script>
+
+<script type="text/html" id="governmentShow">
+    <div class="nes_year_data">2018</div>
+    <div class="news_list">
+        <%for(var i in data){%>
+        <div class="news_list_item clearfix">
+            <a href="<%=data[i].href%>">
+                <div class="news_list_date fl">
+                    <%=data[i].publishDate%>
+                </div>
+                <div class="fl">
+                <%=data[i].title%>
+                </div>
+             </a>
+        </div>
+        <%}%>
+    </div>
+</script>
+<script type="text/html" id="news_slider">
+    <div class="item active">
+        <a href="newsContent.html?id=<%=data[0].id%>&cat=<%=data[0].cat%>">
+            <img src="<%=imgUrl(data[0])%>">
+            <div class="bg" style="right: 0.02rem;"></div>
+            <div class="carousel-caption"><%=data[0].title%></div>
+        </a>
+    </div>
+    <div class="item">
+        <a href="newsContent.html?id=<%=data[1].id%>&cat=<%=data[0].cat%>">
+            <img src="<%=imgUrl(data[1])%>">
+            <div class="bg" style="right: 0.02rem;"></div>
+            <div class="carousel-caption"><%=data[1].title%></div>
+        </a>
+    </div>
+    <div class="item">
+        <a href="newsContent.html?id=<%=data[2].id%>&cat=<%=data[0].cat%>">
+            <!--要改 标记-->
+            <img src="<%=imgUrl(data[2])%>">
+            <div class="bg" style="right: 0.02rem;"></div>
+            <div class="carousel-caption"><%=data[2].title%></div>
+        </a>
+    </div>
+</script>
+
+<script src="static/plug-in/jquery/jquery-3.3.1.min.js"></script>
+<script src="static/plug-in/template/template.js"></script>
+<script src="static/plug-in/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+<script src="static/plug-in/jquery/jquery.pagination.js"></script>
+<script src="static/js/common.js"></script>
+<script src="static/js/tagPage.js"></script>
+</body>
+
+</html>
+

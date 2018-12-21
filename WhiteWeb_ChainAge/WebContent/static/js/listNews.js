@@ -7,7 +7,6 @@ var listNewsPage = {
         Common.getCategoreType();
         Common.getUsers();
         this.eventInit();
-        localStorage.clear();
         $('.news_mobile_container').data('num', 0);
         // 头部新闻
         Common.getHomeData(function (data) {
@@ -17,7 +16,7 @@ var listNewsPage = {
 
         this.getRankingData(99);
         this.getAdvertData();
-        // this.getAdvertData({per_page:3,order:'desc',orderby:'date',categories:99});
+
         //新闻、交易所....
         if(this.pageFlag==1){
             $(".nav a").eq(0).addClass("currentTab");
@@ -63,7 +62,7 @@ var listNewsPage = {
                 listNewsPage.getGovernmentGroup(data);
             });
         }else if(this.pageFlag==6){
-            $(".nav a").eq(3).addClass("currentTab");
+            $(".nav a").eq(1).addClass("currentTab");
             $(".news_title").text("特集");
             $(".new_tabs").remove();
             // 请求
@@ -77,6 +76,11 @@ var listNewsPage = {
             this.getNewsListData({per_page:12,order:'desc',orderby:'date',categories:188},function(param){
                 listNewsPage.setPagination(param);
             });
+        }
+        if(Common.getQueryString("cat")){
+            if(Common.getQueryString("cat")=="海外" || Common.getQueryString("cat")=="用語解説" || Common.getQueryString("cat")=="連載漫画"){
+                $(".new_tabs li").eq(1).click();
+            }
         }
         this.getAdvertLastesData();
     },
