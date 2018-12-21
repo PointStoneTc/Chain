@@ -78,7 +78,7 @@ var listNewsPage = {
             });
         }
         if(Common.getQueryString("cat")){
-            if(Common.getQueryString("cat")=="海外" || Common.getQueryString("cat")=="用語解説" || Common.getQueryString("cat")=="連載漫画"){
+            if(Common.getQueryString("cat")=="海外" || Common.getQueryString("cat")=="用語解説" || Common.getQueryString("cat")=="連載漫画" || Common.getQueryString("cat")=="exchange_abroad"){
                 $(".new_tabs li").eq(1).click();
             }
         }
@@ -271,13 +271,22 @@ var listNewsPage = {
                             var defaultImg='static/img/default_300x150.jpg';
                             chanelImg='<div class="benefit_box_img" style="background-image:url('+defaultImg+')"></div>';
                         }
+                        var catName='';
+                        var categoriesData=data[i].categories;
+                        for(var j=0;j<categoriesData.length;j++){
+                            if(j!=categoriesData.length-1){
+                                catName+=Common.categories[categoriesData[j]]+'、';
+                            }else{
+                                catName+=Common.categories[categoriesData[j]]
+                            }
+                        }
                         if(categories==147){
                             linkUrl='chanelContent.html?id=' + data[i].id+'&cat='+Common.categories[param.categories];
 
                         }
                         htm = '<div class="col-md-4 benefit_box"><a href="'+linkUrl+'">'
                             + '<div class="benefit_box_con">'
-                            + '<p class="p20 benefit_box_tit">'+Common.categories[param.categories]+'</p>'
+                            + '<p class="p20 benefit_box_tit">'+catName+'</p>'
                             + '<p class="p20 benefit_box_hea">'+data[i].title.rendered+'</p>'
                             + '<p class="p20 benefit_box_from">'
                             +'<span class="new_list_icon"><img src="'+Common.userImgs[data[i].author]+'" ></span>'
@@ -325,6 +334,15 @@ var listNewsPage = {
                 if(categories==147){
                     linkUrl='chanelContent.html?id=' + data[i].id+'&cat='+Common.categories[param.categories];
                 }
+                var catName='';
+                var categoriesData=data[i].categories;
+                for(var j=0;j<categoriesData.length;j++){
+                    if(j!=categoriesData.length-1){
+                        catName+=Common.categories[categoriesData[j]]+'、';
+                    }else{
+                        catName+=Common.categories[categoriesData[j]]
+                    }
+                }
                 htm = '<div class="mobile_list_item" style=" border-bottom: 1px dashed #CECECE;margin-bottom: 25px;">'
                     + '<a href="'+linkUrl+'" class="new_mobile_con">'
                     + '<div class="media">'
@@ -339,7 +357,7 @@ var listNewsPage = {
                     + '<img src="' + Common.userImgs[data[i].author] + '" alt="">'
                     + '<div class="edit_detail">'
                     + '<div>' + Common.users[data[i].author] + '</div>'
-                    + '<div>' + Common.categories[param.categories] + '</div>'
+                    + '<div>' + catName + '</div>'
                     + '</div>'
                     + '<div style="float: right;margin-top: 0.35rem;">'
                     + '<span class="new_list_time"></span>'

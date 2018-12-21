@@ -199,6 +199,9 @@ a:hover{
 .news_contain .benefit_box_tit{
   font-size: 0.12rem;
   color: #928F92;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
 }
 .news_contain .benefit_box_hea{
@@ -317,6 +320,12 @@ a:hover{
 .edit_detail{
   font-size: 0.66rem;
   color: #757575;
+  width: 60%;
+}
+.edit_detail div:last-child{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .new_dec .new_list_time{
   margin-right: 6px;

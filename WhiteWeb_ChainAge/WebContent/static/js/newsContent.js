@@ -46,15 +46,15 @@
             });
             $(".post_header").on("click",".post_category",function(){
                 var pageFlag=1;
-                if(newsContent.cat=='99'){
+                if(newsContent.cat=='188' || newsContent.cat=='189'){
                     pageFlag=1;
                 }else if(newsContent.cat=='184'){
                      pageFlag=6;
-                }else if(newsContent.cat=='195'){
+                }else if(newsContent.cat=='195' || newsContent.cat=='196'){
                     pageFlag=2;
-                }else if(newsContent.cat=='198'){
+                }else if(newsContent.cat=='198' || newsContent.cat=='199'){
                     pageFlag=3;
-                }else if(newsContent.cat=='185'){
+                }else if(newsContent.cat=='200' || newsContent.cat=='147'){
                     pageFlag=4;
                 }
                 if (window.location.origin == 'http://localhost:63342') {
@@ -65,6 +65,18 @@
                     window.location.href = window.location.origin+'/wh/listNews.html?pageFlag='+pageFlag +'&cat='+ Common.getQueryString("cat");
                 }
             })
+            // tag跳转
+            $(".tags_name").on("click","span",function(){
+
+                if (window.location.origin == 'http://localhost:63342') {
+                    window.location.href = 'http://localhost:63342/Chain/WhiteWeb_ChainAge/WebContent/tagPage.html?tag='+$(this).attr("id")+'&n='+$(this).text();
+                } else if(window.location.origin=='http://chainage.cc'){
+                    window.location.href = window.location.origin+'/tagPage.html?tag='+$(this).attr("id")+'&n='+$(this).text();
+                }else{
+                    window.location.href = window.location.origin+'/wh/tagPage.html?tag='+$(this).attr("id")+'&n='+$(this).text();
+                }
+            })
+
             $(".pop_cancle_btn").on("click", function () {
                 $("#indexPopup").hide();
                 $(".email").val('');
@@ -137,13 +149,24 @@
         // 文章内容
         postsShow: function () {
             Common.getSingleData(newsContent.id, function (data) {
+                var catName='';
+                var categoriesData=data.categories;
+                for(var j=0;j<categoriesData.length;j++){
+                    if(j!=categoriesData.length-1){
+                        catName+=Common.categories[categoriesData[j]]+'、';
+                    }else{
+                        catName+=Common.categories[categoriesData[j]]
+                    }
+                }
+
+                $(".post_header .post_category").text(catName);
+
                 if (Common.getQueryString("cat")) {
-                    $(".post_header .post_category").text(Common.getQueryString("cat"));
-                } else {
-                    $(".post_header .post_category").text(Common.categories[data.categories[0]]);
+                    newsContent.cat = Common.lookUpCat(Common.categoriesArr, Common.getQueryString("cat")).id;
+                }else{
+                    newsContent.cat=data.categories[0];
                     newsContent.catid=data.categories[0];
                 }
-                newsContent.cat=data.categories[0];
                 Common.getUsers(function () {
                     $(".post_icon1 img").attr("src", Common.userImgs[data.author]);
                     $(".post_autor").text(Common.users[data.author]);
@@ -355,7 +378,7 @@
                     if (data && data.length > 0) {
                         var html = '';
                         for (var i = 0; i < data.length; i++) {
-                            html += '<span>' + data[i].name + '</span>';
+                            html += '<span id="'+data[i].id+'">' + data[i].name + '</span>';
                         }
                         $(".tags_name").html(html);
                     }

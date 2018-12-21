@@ -3,14 +3,11 @@ var listNewsPage = {
     advertData:[],
     init: function () {
 
-        $(".news_title").html(Common.getQueryString("cat"));
-
         Common.getCategoreType();
         Common.getUsers();
-        this.cat=Common.lookUpCat(Common.categoriesArr, Common.getQueryString("cat")).id;
-        if(this.cat=="184"){
-            $(".news_title").html('特集');
-        }
+
+        $(".news_title").html('Tags:'+Common.getQueryString('n'));
+
         $('.news_mobile_container').data('num', 0);
         // 头部新闻
         Common.getHomeData(function (data) {
@@ -21,8 +18,8 @@ var listNewsPage = {
         this.getRankingData(99);
         this.getAdvertData();
 
-        this.getNewsListData({per_page:12,order:'desc',orderby:'date',categories:this.cat},function(param){
-            listNewsPage.setPagination(param);
+        this.getNewsListData({order:'desc',orderby:'date',tags:Common.getQueryString("tag")},function(param){
+            // listNewsPage.setPagination(param);
         });
 
         this.getAdvertLastesData();
@@ -134,28 +131,34 @@ var listNewsPage = {
     getNewsListData:function(param,callback){
         // 列表新闻
          Common.getNewsData(param,function(data){
-
-                if ($(".news_mobile_container").is(':hidden')) {//pc端
+             if ($(".news_mobile_container").is(':hidden')) {//pc端
                     var htm='';
                     $('.news_list_con .news_container').html('');
-                    var categories=param.categories
                     for (var i = 0; i < data.length; i++) {
-                        var linkUrl='newsContent.html?id=' + data[i].id+'&cat='+Common.categories[param.categories];
+                        var linkUrl='newsContent.html?id=' + data[i].id;
+                        var categoriesData=data[i].categories;
+                        var catName='';
+                        for(var j=0;j<categoriesData.length;j++){
+                            if(j!=categoriesData.length-1){
+                                catName+=Common.categories[categoriesData[j]]+'、';
+                            }else{
+                                catName+=Common.categories[categoriesData[j]]
+                            }
+                        }
                         var chanelImg='<div class="benefit_box_img"></div> ';
                         if(data[i].jetpack_featured_media_url){
                             chanelImg='<div class="benefit_box_img" style="background-image:url('+data[i].jetpack_featured_media_url+')"></div>';
-
                         }else{
                             var defaultImg='static/img/default_300x150.jpg';
                             chanelImg='<div class="benefit_box_img" style="background-image:url('+defaultImg+')"></div>';
                         }
-                        if(categories==147){
-                            linkUrl='chanelContent.html?id=' + data[i].id+'&cat='+Common.categories[param.categories];
-
-                        }
+                        // if(categories==147){
+                        //     linkUrl='chanelContent.html?id=' + data[i].id+'&cat='+Common.categories[param.categories];
+                        //
+                        // }
                         htm = '<div class="col-md-4 benefit_box"><a href="'+linkUrl+'">'
                             + '<div class="benefit_box_con">'
-                            + '<p class="p20 benefit_box_tit">'+Common.categories[param.categories]+'</p>'
+                            + '<p class="p20 benefit_box_tit">'+catName+'</p>'
                             + '<p class="p20 benefit_box_hea">'+data[i].title.rendered+'</p>'
                             + '<p class="p20 benefit_box_from">'
                             +'<span class="new_list_icon"><img src="'+Common.userImgs[data[i].author]+'" ></span>'
@@ -179,7 +182,6 @@ var listNewsPage = {
                     listNewsPage.loadNewsDataData(data,param);
                 }
 
-
             });
 
     },
@@ -188,7 +190,7 @@ var listNewsPage = {
     loadNewsDataData: function (data,param) {
         var more = '<div class="more_btn">加载更多</div>';
         var htm = '';
-        var categories=param.categories;
+        // var categories=param.categories;
         if (data.length > 0) {
             for (var i = 0; i < data.length; i++) {
                 var linkUrl='newsContent.html?id=' + data[i].id+'&cat='+Common.categories[param.categories];
@@ -200,8 +202,17 @@ var listNewsPage = {
                     var defaultImg='static/img/default_300x150.jpg';
                     chanelImg='<div class="benefit_box_img" style="background-image:url('+defaultImg+')"></div>';
                 }
-                if(categories==147){
-                    linkUrl='chanelContent.html?id=' + data[i].id+'&cat='+Common.categories[param.categories];
+                // if(categories==147){
+                //     linkUrl='chanelContent.html?id=' + data[i].id+'&cat='+Common.categories[param.categories];
+                // }
+                var catName='';
+                var categoriesData=data[i].categories;
+                for(var j=0;j<categoriesData.length;j++){
+                    if(j!=categoriesData.length-1){
+                        catName+=Common.categories[categoriesData[j]]+'、';
+                    }else{
+                        catName+=Common.categories[categoriesData[j]]
+                    }
                 }
                 htm = '<div class="mobile_list_item" style=" border-bottom: 1px dashed #CECECE;margin-bottom: 25px;">'
                     + '<a href="'+linkUrl+'" class="new_mobile_con">'
@@ -217,7 +228,7 @@ var listNewsPage = {
                     + '<img src="' + Common.userImgs[data[i].author] + '" alt="">'
                     + '<div class="edit_detail">'
                     + '<div>' + Common.users[data[i].author] + '</div>'
-                    + '<div>' + Common.categories[param.categories] + '</div>'
+                    + '<div>' + catName + '</div>'
                     + '</div>'
                     + '<div style="float: right;margin-top: 0.35rem;">'
                     + '<span class="new_list_time"></span>'
@@ -231,25 +242,25 @@ var listNewsPage = {
         }
             listNewsPage.mobileAdvertShow(listNewsPage.advertData);
 
-            var num = $('.news_mobile_container').data('num');
-        //判断是否需要显示加载更多的按钮
-        if (Common.newCounts[param.categories] - ((listNewsPage.pageSize) * num + listNewsPage.pageSize) > 0) {
-            $('.news_mobile_container ').after(more);
-            $(".more_btn").unbind('click').on('click', function () {
-                $('.more_btn').remove();  //移除加载更多按钮
-                $('.news_mobile_container').data('num', num + 1);
-                localStorage.removeItem(param.categories);
-                listNewsPage.getNewsListData({per_page:12,
-                    order:'desc',
-                    orderby:'date',
-                    categories:param.categories,
-                    "start": (listNewsPage.pageSize) * num + listNewsPage.pageSize,
-                    "isLoadMore": true
-                });
-            });
-        } else {
-            $('.more_btn').remove(); // 移除加载更多按钮
-        }
+        //     var num = $('.news_mobile_container').data('num');
+        // //判断是否需要显示加载更多的按钮
+        // if (Common.newCounts[param.categories] - ((listNewsPage.pageSize) * num + listNewsPage.pageSize) > 0) {
+        //     $('.news_mobile_container ').after(more);
+        //     $(".more_btn").unbind('click').on('click', function () {
+        //         $('.more_btn').remove();  //移除加载更多按钮
+        //         $('.news_mobile_container').data('num', num + 1);
+        //         localStorage.removeItem(param.categories);
+        //         listNewsPage.getNewsListData({per_page:12,
+        //             order:'desc',
+        //             orderby:'date',
+        //             categories:param.categories,
+        //             "start": (listNewsPage.pageSize) * num + listNewsPage.pageSize,
+        //             "isLoadMore": true
+        //         });
+        //     });
+        // } else {
+        //     $('.more_btn').remove(); // 移除加载更多按钮
+        // }
     }
 },
     // 获取图片

@@ -199,6 +199,7 @@ img {
     margin-right: 0.2rem;
     border-radius: 0.13rem;
     padding: 0 0.2rem;
+    cursor: pointer;
 }
 
 .news_con_left .post_advert {
