@@ -233,7 +233,7 @@ var listNewsPage = {
                             imgUrl = Common.getSimilarImg(data[i].image.sizes, 2.1);
                         }
                         html = '<div class="event_item col-xs-12 col-sm-4">'
-                            + '<a href="eventContent.html?id=' + data[i].id + '">'
+                            + '<a href="eventContent.html?id=' + data[i].id + '&vid='+data[i].venue.id+'">'
                             + '<div class="event_item_con">'
                             + '<div class="event_img" style="background-image: url(' + imgUrl + ')"></div>'
                             + '<div class="event_date">'
@@ -368,7 +368,8 @@ var listNewsPage = {
                                         title: data[i].title,
                                         start: data[i].date,
                                         // end:data[i].end_date,
-                                        id: data[i].id
+                                        id: data[i].id,
+                                        vid:data[i].venue.id
                                     });
                                 }
                             }
@@ -379,11 +380,11 @@ var listNewsPage = {
             //编辑事件
             eventClick: function (event) {
                 if (window.location.origin == 'http://localhost:63342') {
-                    window.location.href = 'http://localhost:63342/Chain/WhiteWeb_ChainAge/WebContent/eventContent.html?id=' + event.id;
+                    window.location.href = 'http://localhost:63342/Chain/WhiteWeb_ChainAge/WebContent/eventContent.html?id=' + event.id+'&vid='+event.vid;
                 } else if(window.location.origin=='http://chainage.cc'){
-                    window.location.href = window.location.origin+'/eventContent.html?id=' + event.id;
+                    window.location.href = window.location.origin+'/eventContent.html?id=' + event.id+'&vid='+event.vid;
                 }else{
-                    window.location.href = window.location.origin+'/wh/eventContent.html?id=' + event.id;
+                    window.location.href = window.location.origin+'/wh/eventContent.html?id=' + event.id+'&vid='+event.vid;
                 }
             }
         });

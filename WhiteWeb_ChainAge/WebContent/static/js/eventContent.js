@@ -8,7 +8,7 @@
 
             this.postsShow();
             this.getTagsData();
-
+            this.getVenuesData();
             newsContent.getAdvertData();
             // 热门文章
             this.getHotPostsData();
@@ -57,20 +57,39 @@
                         var endTime = data.end_date.split(":").join("").split("-").join("").split(" ").join("T");
                         var url = 'https://www.google.com/calendar/event?action=TEMPLATE&text=' + data.title + '&dates=' + startTime + '/' + endTime + '&details=' + data.title + '&ctz=';
                         $(".link_btn").parent().attr("href", url);
-                        var description = data.venue.description;
-                        var lat = description.substring(description.indexOf('=') + 1, description.indexOf(';'))
-                        var lng = description.substring(description.indexOf('=', description.indexOf('=') + 1) + 1, description.indexOf('<', description.indexOf('=') + 1))
-                        newsContent.gooleMapInit(lat, lng);
+
                     }
                 }
             });
 
         },
-        gooleMapInit: function (lat, lng) {
+        getVenuesData: function () {
+            var url = 'http://chainage.cc/wp-json/tribe/events/v1/venues/'+Common.getQueryString("vid");
+            $.ajax({
+                type: 'GET',
+                url: url,
+                async: true,
+                error: function () {
+                },
+                success: function (data) {
+                    if (data) {
+                        if(data.description){
+                            var description = data.description;
+                            var lat = description.substring(description.indexOf('=') + 1, description.indexOf(';'))
+                            var lng = description.substring(description.indexOf('=', description.indexOf('=') + 1) + 1, description.indexOf('<', description.indexOf('=') + 1))
+                            newsContent.gooleMapInit(lat, lng);
+                        }else{
+                            $("#googleMap").hide();
+                        }
+                    }
 
+                }
+            });
+        },
+
+        gooleMapInit: function (lat, lng) {
             var latlng = new google.maps.LatLng(lat, lng)
             var map = null;
-
             function initialize() {
                 var mapProp = {
                     center: latlng,
@@ -87,7 +106,6 @@
 
             });
             marker.setMap(map);
-
 
         },
         // 热门文章
