@@ -34,7 +34,7 @@
                 $(".post_desc").html(data.content.rendered);
 
                 $(".post_meta_time").text(Common.timeonverseFunc(new Date(data.date).getTime(),1));
-                $(".post_read_time").text(parseInt(data.content.rendered.length/400));
+                $(".post_read_time").text(parseInt($(".post_desc").text().length / 350));
                 $(".post_count").text(data._links["version-history"][0].count);
 
                 $(".post_desc img").each(function(i,value){
