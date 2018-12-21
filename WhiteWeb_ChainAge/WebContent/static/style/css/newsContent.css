@@ -294,7 +294,7 @@ img {
 }
 .news_contain .benefit_box{
     height: 122px;
-    margin-bottom: 0.1rem;
+    margin-bottom: 0.3rem;
     padding: 0 0.07rem;
 }
 
@@ -322,6 +322,7 @@ img {
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+    line-height: 180%;
 }
 .news_contain{
     border:1px solid rgba(228,228,228,1);
