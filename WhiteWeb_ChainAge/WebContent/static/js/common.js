@@ -9,7 +9,8 @@ var Common = {
         $("body").on("click", ".share_btn", function () {
             $(".share_con").toggle();
         });
-
+        this.getCoinLData();
+        this.getCoinRData();
     },
     // 获取首页数据
     getHomeData: function (callback) {
@@ -193,6 +194,40 @@ var Common = {
                 if (data) {
                     callback(data);
                 }
+            }
+        });
+    },
+    // 获取左上角数据
+    getCoinRData:function(){
+        var url = 'http://data.chainage.jp/blockchain/coinapi/onedayCap';
+        $.ajax({
+            type: 'GET',
+            url: url,
+            error: function () {
+            },
+            success: function (data) {
+                if (data) {
+                    $(".header-left span").eq(6).html('¥ '+data.list[0].total_volume_24h.toFixed(2));
+                }
+            }
+        });
+    },
+    // 获取左上角数据
+    getCoinLData:function(){
+        var url = 'http://data.chainage.jp/blockchain/coinapi/assetTrend';
+        $.ajax({
+            type: 'GET',
+            url: url,
+            async: true,
+            error: function () {
+
+            },
+            success: function (data) {
+              if(data){
+
+                  var coinData=Common.coinLookUp(data, 'BTC');
+                  $(".header-left span").eq(2).html('¥ '+coinData.specificRate.volume24h.toFixed(2));
+              }
             }
         });
     },
