@@ -473,7 +473,7 @@ function getCoinData() {
             dataList.push(Common.coinLookUp(coinData, 'ETC'))
             for (var i = 0; i < dataList.length; i++) {
                 html='<div data-key="CSPA:BTC/AED" class="data_item">'
-                    +'<div class="code"><span>'+dataList[i].specificRate.baseName+'</span><span>'+dataList[i].specificRate.baseSymbol+'</span></div>'
+                    +'<div class="code"><span>'+dataList[i].specificRate.baseSymbol+'</span>/<span>'+dataList[i].specificRate.quoteSymbol+'</span></div>'
                     +'<div class="price">'+dataList[i].specificRate.price.toFixed(2)+'</div>'
                     +'</div>';
                 $(".currency_container").append(html);
