@@ -251,20 +251,8 @@ var listNewsPage = {
     },
     getNewsListData:function(param,callback){
         // 列表新闻
-        if(localStorage.getItem(param.categories)){
-            if ($(".news_mobile_container").is(':hidden')) {//pc端
-                $(".news_container").html(localStorage.getItem(param.categories));
-            }else{
-                $(".news_mobile_container").html(localStorage.getItem(param.categories));
+         Common.getNewsData(param,function(data){
 
-            }
-        }else{
-            Common.getNewsData(param,function(data){
-                // data.splice(6, 0,listNewsPage.advertData[0] , listNewsPage.advertData[1],listNewsPage.advertData[2]);
-                // var imgId=[];
-                // for(var i=0;i<data.length;i++){
-                //     imgId.push(data[i].id);
-                // }
                 if ($(".news_mobile_container").is(':hidden')) {//pc端
                     var htm='';
                     $('.news_list_con .news_container').html('');
@@ -281,13 +269,7 @@ var listNewsPage = {
                         }
                         if(categories==147){
                             linkUrl='chanelContent.html?id=' + data[i].id+'&cat='+Common.categories[param.categories];
-                            // if(data[i].jetpack_featured_media_url){
-                            //     chanelImg='<div class="benefit_box_img" style="background-image:url('+data[i].jetpack_featured_media_url+')"></div>';
-                            //
-                            // }else{
-                            //     var defaultImg='static/img/default_300x150.jpg';
-                            //     chanelImg='<div class="benefit_box_img" style="background-image:url('+defaultImg+')"></div>';
-                            // }
+
                         }
                         htm = '<div class="col-md-4 benefit_box"><a href="'+linkUrl+'">'
                             + '<div class="benefit_box_con">'
@@ -311,26 +293,12 @@ var listNewsPage = {
                     if(callback){
                         callback(param);
                     }
-                    localStorage.setItem(param.categories,$(".news_container").html());
                 }else {
                     listNewsPage.loadNewsDataData(data,param);
                 }
-                // if(param.categories!=147){
-                //     data.forEach(function(value,index){
-                //         var arr=[];
-                //         arr.push(value.id);
-                //         listNewsPage.getImgData(arr,function (imgUrl) {
-                //             var picUrl="static/img/default_300x150.jpg";
-                //             if( imgUrl && imgUrl[0] && imgUrl[0].media_details){
-                //                 picUrl=Common.getSimilarImg(imgUrl[0].media_details.sizes,2.1);
-                //             }
-                //             $(".benefit_box_img").eq(index).css("background-image","url(" + picUrl + ")");
-                //         })
-                //     })
-                // }
+
 
             });
-        }
 
     },
 
@@ -380,7 +348,6 @@ var listNewsPage = {
                 $('.news_list_con .news_mobile_container').append(htm);
         }
             listNewsPage.mobileAdvertShow(listNewsPage.advertData);
-            localStorage.setItem(param.categories,$(".news_mobile_container").html());
 
             var num = $('.news_mobile_container').data('num');
         //判断是否需要显示加载更多的按钮
