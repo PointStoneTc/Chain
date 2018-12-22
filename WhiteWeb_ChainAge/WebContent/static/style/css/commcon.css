@@ -182,11 +182,11 @@ img[src=""], img:not([src]) {
 }
 
 .nav-center .icon_search {
-    width: 0.2rem;
+    width: 0.19rem;
     height: 0.2rem;
     display: inline-block;
     background: url("../../img/icon_search.png") no-repeat center;
-    background-size: cover;
+    background-size: contain;
     margin: 0.05rem 0.06rem 0 0.06rem;
 }
 

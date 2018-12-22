@@ -177,9 +177,18 @@ var homePage = {
                 if(categories==185){
                     linkUrl='chanelContent.html?id=' + data[i].id+'&cat='+Common.categories[categories];
                 }
+                var catName='';
+                var categoriesData=data[i].categories;
+                for(var j=0;j<categoriesData.length;j++){
+                    if(j!=categoriesData.length-1){
+                        catName+=categoriesData[j].name+'、';
+                    }else{
+                        catName+=categoriesData[j].name;
+                    }
+                }
                 htm = '<div class="col-md-4 benefit_box"><a href="' + linkUrl+'">'
                     + '<div class="benefit_box_con">'
-                    + '<p class="p20 benefit_box_tit">' + Common.categories[categories] + '</p>'
+                    + '<p class="p20 benefit_box_tit">' + catName + '</p>'
                     + '<p class="p20 benefit_box_hea">' + title + '</p>'
                     + '<p class="p20 benefit_box_from">'
                     + '<span class="new_list_icon"><img src="' + topicurl + '"></span>'
@@ -206,7 +215,15 @@ var homePage = {
                 if(data[i].thumbnailMediaDetail){
                     imgUrl=data[i].thumbnailMediaDetail.source_url;
                 }
-
+                var catName='';
+                var categoriesData=data[i].categories;
+                for(var j=0;j<categoriesData.length;j++){
+                    if(j!=categoriesData.length-1){
+                        catName+=categoriesData[j].name+'、';
+                    }else{
+                        catName+=categoriesData[j].name;
+                    }
+                }
                 htm = '<div style=" border-bottom: 1px dashed #CECECE;margin-bottom: 25px;">'
                     + '<a href="newsContent.html?id=' + data[i].id + '&cat='+Common.categories[categories]+'" class="new_mobile_con">'
                     + '<div class="media">'
@@ -221,7 +238,7 @@ var homePage = {
                     + '<img src="' + topicurl + '" alt="">'
                     + '<div class="edit_detail">'
                     + '<div>' + data[i].author.name + '</div>'
-                    + '<div>' + Common.categories[categories] + '</div>'
+                    + '<div>' + catName + '</div>'
                     + '</div>'
                     + '<div style="float: right;margin-top: 0.35rem;">'
                     + '<span class="new_list_time"></span>'

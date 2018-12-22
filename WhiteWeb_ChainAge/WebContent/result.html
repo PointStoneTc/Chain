@@ -27,12 +27,8 @@
     <title>ChainAge</title>
     <link rel="stylesheet" href="static/plug-in/bootstrap-3.3.7-dist/css/bootstrap.css">
     <link rel="stylesheet" href="static/style/css/commcon.css">
-    <link rel="stylesheet" href="static/style/css/doshboard.css">
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- [if lt IE 9]>
-    <script src="../lib/html5shiv/html5shiv.js"></script>
-    <script src="../lib/respond/respond.js"></script>
-    <![endif] -->
+    <link rel="stylesheet" href="static/style/css/home.css">
+    <link rel="stylesheet" href="static/style/css/result.css">
 </head>
 
 <body>
@@ -104,81 +100,30 @@
     <!--/.nav-collapse -->
 </nav>
 
-<div class="data-view">
-    <div class="row content" style="padding:2.6rem 0 1.60rem 0;">
-        <div class="col-lg-7">
-            <div class="clearfix data-val-top">
-                <div class="fl">BTC实时看板数据</div>
-                <div class="fr">JPY</div>
-            </div>
-            <div class="data-vlue"></div>
-            <div class="clearfix data-val-top">
-                <div class="fl">24h涨跌率</div>
-                <div class="fr">USD</div>
-            </div>
-            <div  style="font-size:0.44rem;color: #fff;">
-                <div class="fl">
-                    <span class="data-view-percent"></span>
-                    <span class="glyphicon down-arrow" ></span>
+<div class="contain header-tit"><span class="search_title "></span>的搜索结果</div>
 
-                </div>
-                <div class="fr data-view-lb"  style="font-size: 0.66rem"></div>
-            </div>
-        </div>
-        <div class="col-lg-1"></div>
-        <div class="col-lg-4">
-            <div class="data-val-top">BTC市值 (JPY)</div>
-            <div class="data-number data-number-top"></div>
-            <div class="data-val-top">24h交易值 (JPY)</div>
-            <div class="data-number data-number-bot"></div>
-            <div class="data-val-top">更新时间：<span class="data-view-time"></span></div>
+<div class="news_contain news_list_con contain  clearfix">
+    <div class="  news_container">
+        <div class="search_item">
+            <div class="publishDate">20188898</div>
+            <div class="search_item_tit">的基督教偶尔喝到年底</div>
+            <div class="search_item_des">古国机电科的基督教偶尔喝到年底</div>
+            <div class="tags_name"></div>
         </div>
     </div>
-</div>
-<ul class="view-tottle">
-    <li>
-        <img src="static/img/candlestick.png" alt="">
-    </li>
-    <li class="active">
-        <img src="static/img/time_active_icon.png" alt="">
-    </li>
-    <li>
-        <img src="static/img/line_icon.png" alt="">
-    </li>
-</ul>
-<!-- 折线 -->
-<div class="data-line ">
-    <div id="charts-line" style="width:86.5%;height:9.6rem;display: inline-block">
+    <div class="mobile_show">
+        <div class="visible-xs news_mobile_container data-num=0">
+
+        </div>
 
     </div>
-    <div style="width:13%;height:9.6rem;position:relative;background:#1D284C;display: inline-block">
-        <div class="line-data" style="position:absolute;">
-            <div  style="color: #FFF;"><span class="usdData"></span>（BTC/USD）</div>
-            <div  style="color: #b46496"><span class="jpyData"></span>（BTC/JPY）</div>
-            <div  style="color: #d2c88c;"><span class="eurData"></span>（BTC/EUR）</div>
-        </div>
-    </div>
+
 </div>
 
-<!-- 烛台 -->
-<div class="data-candlestick ">
-    <div id="charts-candlestick" style="width: 86.5%;height:230px;display: inline-block">
-
-    </div>
-    <div style="width:13%;height:100%;background:#1D284C;float: right;position: relative">
-        <div class="line-data" style="position:absolute;top: 40%">
-            <div  style="color: #FFF;margin-bottom: 20px;"><span class="titData"></span>  UTC</div>
-            <div  style="color: #FFF;">Open &nbsp;<span class="openData"></span></div>
-            <div  style="color: #06C78B;">High &nbsp;<span class="highData"></span></div>
-            <div  style="color: #AD2949">Low &nbsp;<span class="lowData"></span></div>
-            <div  style="color: #fff;">Close &nbsp;<span class="closeData"></span></div>
-        </div>
-    </div>
+<!--分页-->
+<div class="contain page_con" style="text-align: center;padding: 0.5rem 0 0.4rem 0">
+    <div class="page pagination"></div>
 </div>
-
-<!--<div class="currency_container">-->
-
-<!--</div>-->
 
 <!--底部部分-->
 <div class="footer-con">
@@ -195,10 +140,11 @@
 </div>
 
 <script src="static/plug-in/jquery/jquery-3.3.1.min.js"></script>
+<script src="static/plug-in/template/template.js"></script>
 <script src="static/plug-in/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
-<script src="static/plug-in/echart/echarts.min.js"></script>
+<script src="static/plug-in/jquery/jquery.pagination.js"></script>
 <script src="static/js/common.js"></script>
-<script src="static/js/doshboard.js"></script>
+<script src="static/js/result.js"></script>
 </body>
 
 </html>

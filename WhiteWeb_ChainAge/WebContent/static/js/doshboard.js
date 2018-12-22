@@ -67,11 +67,11 @@ function getViewData(callback) {
         },
         success: function (data) {
             $(".data-vlue").html(parseFloat(data.priceJpy.toFixed(2)).toLocaleString());
-            $(".data-number-top").html(parseFloat(data.marketCapUsd.toFixed(2)).toLocaleString());
+            $(".data-number-top").html(parseFloat((data.marketCapUsd/1000000000).toFixed(2)).toLocaleString()+'B');
             $(".data-view-lb").html(parseFloat(data.priceUsd.toFixed(2)).toLocaleString());
-            $(".data-number-bot").html(parseFloat(data.volume24hUsd.toFixed(2)).toLocaleString());
-            $(".data-view-percent").html((data.percentChange24hUsd*100).toFixed(2)+'%');
-            $(".data-view-time").html(data.lastUpdated.substr(11,5)+' '+data.lastUpdated.substr(5,2)+'/'+data.lastUpdated.substr(8,2)+'/'+data.lastUpdated.substr(0,2));
+            $(".data-number-bot").html(parseFloat((data.volume24hUsd/1000000000).toFixed(2)).toLocaleString()+'B');
+            $(".data-view-percent").html((data.percentChange24hUsd).toFixed(2)+'%');
+            $(".data-view-time").html(data.lastUpdated.substr(11,5)+' '+data.lastUpdated.substr(5,2)+'/'+data.lastUpdated.substr(8,2)+'/'+data.lastUpdated.substr(0,4));
 
             var percentClass='';
             if(data.percentChange24hUsd>=0){
@@ -494,4 +494,4 @@ function getCoinData() {
         }
     });
 }
-getCoinData();
+// getCoinData();

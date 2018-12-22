@@ -1,7 +1,8 @@
 .data-view{
     width: 100%;
-    background: #1A2959;
+    background: #21336E;
     text-align: center;
+    height: 9.6rem;
 }
 
 .view-tottle{
@@ -36,8 +37,7 @@
 .data-view .data-number{
     font-size:0.66rem;
     color: #fff;
-    line-height: 60px;
-    margin-bottom:70px;
+    margin-bottom:60px;
 }
 .data-view-percent{
     font-size: 0.54rem;
@@ -47,8 +47,9 @@
     padding-right: 0;
 }
 .data-val-top{
-    font-size: 0.44rem;
-    color: #ccc;
+    font-family: Helvetica Neue;
+    font-size: 0.32rem;
+    color: #FFFFFF;
 }
 .currency_container{
     padding: 0 10px;
@@ -70,14 +71,14 @@
 }
 .data-line ,.data-candlestick {
     width: 100%;
-    height: 630px;
+    height: 9.6rem;
     background: #041038;
     display: none;
 }
 #charts-candlestick{
     position: absolute;
     left: 0;
-    top: 240px;
+    top: 4rem;
 }
 .line-data{
     top: 50%;

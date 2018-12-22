@@ -1,0 +1,169 @@
+body{
+    background: #FFFFFF;
+}
+.header-tit{
+    margin-top: 0.9rem;
+    font-size: 32px;
+}
+.search_title{
+    color: #DB2B37;
+}
+.search_item{
+    margin-top: 35px;
+    padding-bottom: 30px;
+    border-bottom: 1px dashed #E4E4E4;
+}
+.publishDate{
+    font-size: 18px;
+    color: #999999;
+    margin-bottom: 10px;
+}
+.search_item_tit{
+    font-size:21px;
+    margin-bottom: 10px;
+}
+.search_item_des{
+    font-size: 16px;
+    color: #606060;
+    margin-bottom: 15px;
+}
+ .tags_name span{
+    height: 25px;
+    display: inline-block;
+    line-height: 25px;
+    background: #E5E5E5;
+    font-size: 12px;
+    color: #FFFFFF;
+    text-align: center;
+    margin-right: 0.2rem;
+    border-radius: 0.13rem;
+    padding: 0 0.2rem;
+    cursor: pointer;
+}
+.pagination a, .pagination .current, .pagination span {
+    width: 0.4rem;
+    height: 0.4rem;
+    display: inline-block;
+    text-align: center;
+    line-height: 0.4rem;
+    color: #666;
+    background: #fff;
+    border-right: 1px solid #ddd;
+}
+
+.pagination a:hover {
+    background-color: #eee;
+    border: 1px solid #ddd;
+}
+
+.pagination {
+    border: 1px solid #DDD;
+    border-right: none;
+    margin: 0;
+}
+
+.pagination .current {
+    background-color: #2257C9;
+    color: #fff;
+    border: 1px solid #2257C9;
+}
+
+.pagination .total {
+    width: auto;
+    padding: 0 0.2rem;
+}
+
+.pagination .next {
+    vertical-align: top;
+}
+
+.government_con {
+    padding-top: 0.65rem;
+    padding-bottom: 1.1rem;
+    display: none;
+}
+
+.government_con .nes_year_data {
+    font-size: 0.18rem;
+    border-bottom: 1px solid #DDDDDD;
+    padding-bottom: 0.05rem;
+}
+
+.government_con .news_list .news_list_item {
+    font-size: 0.21rem;
+    color: #333333;
+    padding: 0.25rem 0;
+    border-bottom: 1px dashed #DDDDDD;
+    /*white-space: nowrap;*/
+    /*overflow: hidden;*/
+    /*text-overflow: ellipsis;*/
+}
+
+.government_con .news_list_date {
+    margin-right: 0.8rem;
+}
+
+a {
+    color: #000000;
+}
+
+@media only screen and (max-width: 480px) {
+    .news_banner, .message_show, .news_show {
+        display: none;
+    }
+    .header-tit{
+        font-size: 1.2rem;
+    }
+
+    .news_nav {
+        height: 68px;
+        border: 1px solid #E4E4E4;
+        padding-bottom: 4px;
+        margin-bottom: 20px;
+    }
+
+    .news_title {
+        font-size: 1rem;
+    }
+
+    .contain {
+        width: 90%;
+    }
+
+    .new_tabs {
+        padding-left: 0;
+        font-size: 0.85rem;
+    }
+    .new_tabs li:last-child{
+        font-size: 0.85rem;
+    }
+    . news_list_con {
+        margin-top: 23px;
+    }
+
+    .news_container {
+        width: 100%;
+        margin: 0 auto;
+        float: none;
+        padding-right: 0;
+        padding-left: 0;
+    }
+    .pagination{
+        display: none;
+    }
+    .government_con .nes_year_data{
+        font-size: 0.5rem;
+    }
+
+    .government_con .news_list .news_list_item {
+        font-size: 0.76rem;
+        padding: 0.35rem 0;
+        border-bottom: 1px dashed #DDDDDD;
+        white-space: unset;
+        overflow: initial;
+        text-overflow: unset;
+    }
+    .advert{
+        height: 7rem !important;
+    }
+}

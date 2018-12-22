@@ -11,6 +11,12 @@ var Common = {
         });
         this.getCoinLData();
         this.getCoinRData();
+        $(".input-group-btn").on("click","button",function(){
+            var searcon=$(".form-control").val();
+            if(searcon && searcon!=''){
+                alert(111)
+            }
+        })
     },
     // 获取首页数据
     getHomeData: function (callback) {
