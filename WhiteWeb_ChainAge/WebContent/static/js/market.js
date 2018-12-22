@@ -121,7 +121,7 @@ var market={
                     $(".sel-list1").html(html1);
 
                     template.registerFunction('change', function (valueText) {
-                        return parseFloat(valueText.toFixed(2).toLocaleString());
+                        return parseFloat(valueText.toFixed(2)).toLocaleString();
                     });
                     template.registerFunction('changePercent', function (valueText) {
                         return (valueText*100).toFixed(2)
