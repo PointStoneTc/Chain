@@ -14,7 +14,13 @@ var Common = {
         $(".input-group-btn").on("click","button",function(){
             var searcon=$(".form-control").val();
             if(searcon && searcon!=''){
-                alert(111)
+                if (window.location.origin == 'http://localhost:63342') {
+                    window.location.href = 'http://localhost:63342/Chain/WhiteWeb_ChainAge/WebContent/result.html?n=' +searcon;
+                } else if (window.location.origin == 'http://chainage.cc') {
+                    window.location.href = window.location.origin + '/result.html?n=' +searcon;
+                } else {
+                    window.location.href = window.location.origin + '/wh/result.html?n=' +searcon;
+                }
             }
         })
     },

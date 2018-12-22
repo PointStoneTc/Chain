@@ -116,11 +116,11 @@ var digitalCurrency={
                     for (var i = 0; i <data.length; i++) {
                         var volume=parseFloat(Number(data[i].quoteVolume24h).toFixed(2)).toLocaleString();
                         html='<div class="list_item col-xs-4 col-sm-3 " >'
-                            +'<a id="ml_template" class="ml">'
+                            +'<a id="ml_template" class="ml" href="marketDetail.html">'
                             +'<div class="pri-name">'+data[i].name+'</div>'
                             +'<div class="pri-code-list">'+data[i].symbol+'</div>'
-                            +'<div class="volume-desc">24h交易量</div>'
-                            +'<div class="volume c-bitcoin">'+volume+'</div>'
+                            // +'<div class="volume-desc">24h交易量</div>'
+                            // +'<div class="volume c-bitcoin">'+volume+'</div>'
                             +'</a>'
                             +'<div>';
                         $("#ml_container").append(html);

@@ -106,28 +106,38 @@
 
 <div class="summary-con row">
     <div class="row contain">
+
         <div class="market news_con_left col-xs-12">
-            <div class="mt_h_container"><span class="market_name">BTC Markets</span> 交易平台的市场</div>
+            <div class="mt_h_container"><span class="market_name"></span> 交易平台</div>
+            <div class="row market_desc">
+                <div class="col-xs-2" style="text-align: right">
+                    <img src="static/img/exchange_icon.png" width="50px" style="margin-top: 6px;"/>
+                </div>
+                <div class="col-xs-7">
+                    <div>支持<span class="number"></span>个市场交易</div>
+                    <div>24h交易量：1,213,367,891.33204USD</div>
+                    <div>24h交易量涨跌：-34.2928%</div>
+                </div>
+                <div class="col-xs-3">
+                    <div class="join_exchange">进入交易平台</div>
+                </div>
+            </div>
             <div class="row">
-                <div class="col-lg-6 ">
+                <div  >
                     <div class="currency_name">基准货币</div>
-                    <div class="sel-list">
-                        <span>BTC</span>
-                        <span>ETC</span>
-                        <span>ECH</span>
-                        <span>LEC</span>
+                    <div class="sel-list sel-list1">
+
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div >
                     <div class="currency_name">引用货币</div>
-                    <div class="sel-list">
-                        <span>BTC</span>
-                        <span>XBT</span>
+                    <div class="sel-list sel-list2">
+
                     </div>
                 </div>
             </div>
             <div class="row cspa">
-                <div class="name">24小时 <span class="market_name">BTC Markets</span> 交易总量为</div>
+                <div class="name">24小时 <span class="market_name"></span> 交易总量为</div>
                 <div class="price"></div>
             </div>
 
@@ -193,12 +203,15 @@
     <%for(var i in data){%>
     <div class="mr-title">基准市场：<%=data[i].echangeName%> （<%=data[i].marketPairQuoteSymbol%>）</div>
     <%for(var j in data[i].data){%>
+
     <div class=" mr-list">
-        <div class="mr-normal" style="width:30%;">
+        <a href="finalMarket.html">
+        <div class="mr-normal" >
             <div style="font-size:22px;"><%=data[i].data[j].marketPair%></div>
             <div style="color:#BCBCBC;"><%=data[i].data[j].echangeName%> / <%=data[i].data[j].marketPairQuoteSymbol%></div>
         </div>
-        <div class="mr-normal" style="color:#427ADB;width: 20%;">
+        </a>
+        <div class="mr-normal" style="color:#427ADB;">
             <%=data[i].data[j].echangeName%>
         </div>
         <div class="mr-normal" style="color:#DB2B37;" >

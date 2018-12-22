@@ -94,8 +94,9 @@ var market={
             },
             success: function (res) {
                 if (res && res.markInfoList.length>0) {
+                    $(".number").html(res.markInfoList.length);
                     var arr=res.markInfoList;
-                    var map = {},
+                    var map = {},html1='',
                         dest = [];
                     for(var i = 0; i < arr.length; i++){
                         var ai = arr[i];
@@ -115,7 +116,9 @@ var market={
                                 }
                             }
                         }
+                        html1+='<a href="marketDetail.html"><span>'+arr[i].marketPairBaseSymbol+'</span></a>';
                     }
+                    $(".sel-list1").html(html1);
 
                     template.registerFunction('change', function (valueText) {
                         return parseFloat(valueText.toFixed(2).toLocaleString());
@@ -123,26 +126,15 @@ var market={
                     template.registerFunction('changePercent', function (valueText) {
                         return (valueText*100).toFixed(2)
                     });
+
+                    var html2='';
+                    for(var i=0;i<dest.length;i++){
+                        html2+='<span>'+dest[i].marketPairQuoteSymbol+'</span>'
+                    }
+                    $(".sel-list2").html(html2);
                     var newsFuc = template($("#marketList").html(), {data: dest});
                     $(".mr-container").html(newsFuc);
-                }
-            }
-        });
-    },
-    getExchangeInfo:function(){
-        var url='http://data.chainage.jp/caweb/cc/currencyApiController.do?topFloatingExchange';
-        $.ajax({
-            type: 'GET',
-            url: url,
-            data:{id:market.id},
-            async: true,
-            error: function () {
-            },
-            success: function (data) {
-                if (data && data.length>0) {
-                    for (var i = 0; i <data.length; i++) {
 
-                    }
                 }
             }
         });

@@ -46,24 +46,23 @@ var listNewsPage = {
                         for (var i = 0; i < json.length; i++) {
                             html += '<span id="' + json[i].id + '">' + json[i].name + '</span>';
                         }
-                        // $(".tags_name").eq(i).html(html);
 
                         htm = '<div class="search_item"><a href="' + linkUrl + '">'
-                            +'<div class="publishDate">'+Common.dateFormat(data[i].date)+'</div>'
-                            +'<div class="search_item_tit">'+data[i].title+'</div>'
+                            +'<div class="publishDate">'+data[i].date.substr(0,4)+'年'+data[i].date.substr(5,2)+'月'+data[i].date.substr(8,2)+'日</div>'
+                            +'<div class="search_item_tit">'+345667+'</div>'
                             +'<div class="search_item_des">'+data[i].excerpt+'</div>'
                             +'<div class="tags_name">'+html+'</div>'
                             + '</a></div>';
                         $('.news_list_con .news_container').append(htm);
+                        var key=Common.getQueryString('n');
+                        $(".search_item_tit").html($(".search_item_tit").html().replace(new RegExp(key,'g'),"<span style='color:red'>"+key+"</span>"));
                     })
-
-
-
 
                 }
                 if (callback) {
                     callback(param);
                 }
+
 
 
         });
@@ -177,7 +176,7 @@ var listNewsPage = {
             error: function () {
             },
             success: function (data) {
-                if (data && data.length > 0) {
+                if (data) {
                    callback(data);
                 }
             }

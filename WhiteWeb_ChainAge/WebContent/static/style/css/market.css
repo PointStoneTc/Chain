@@ -127,13 +127,13 @@ a:hover {
 
 .sel-list span {
     cursor: pointer;
-    width: 0.58rem;
+    width: 60px;
     color: #333333;
     font-size: 0.12rem;
     text-align: center;
     display: inline-block;
-    margin-right: 1px;
-    margin-bottom: 2px;
+    margin-right: 4px;
+    margin-bottom: 5px;
     background: #F5F8FF;
 }
 
@@ -164,7 +164,22 @@ a:hover {
     width: 25%;
     vertical-align: middle;
 }
-
+.market_desc{
+    background: #F6F6F6;
+    padding: 30px 0;
+    margin: 0 -10% 40px -10%;
+}
+.market_desc .col-xs-7{
+    color: #333333;
+}
+.join_exchange{
+    color: #FFFFFF;
+    background: #2257C9;
+    padding: 2px 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: max-content;
+}
 .pagination a, .pagination .current, .pagination span {
     width: 27px;
     height: 27px;
