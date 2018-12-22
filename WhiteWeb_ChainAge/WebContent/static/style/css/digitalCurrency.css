@@ -92,7 +92,11 @@ a:hover {
     color: #fff;
     text-decoration: none;
 }
-
+.summary .button.active {
+    background-color: #282828;
+    color: #fff;
+    text-decoration: none;
+}
 #ml_container {
     padding-top: 0.2rem;
     margin-bottom: 0.5rem;

@@ -205,7 +205,7 @@
     <%for(var j in data[i].data){%>
 
     <div class=" mr-list">
-        <a href="finalMarket.html">
+        <a href="finalMarket.html?n=<%=data[i].data[j].echangeName%> / <%=data[i].data[j].marketPairQuoteSymbol%>&base=<%=data[i].data[j].marketPairBaseId%>&quot=<%=data[i].data[j].marketPairQuoteId%>">
         <div class="mr-normal" >
             <div style="font-size:22px;"><%=data[i].data[j].marketPair%></div>
             <div style="color:#BCBCBC;"><%=data[i].data[j].echangeName%> / <%=data[i].data[j].marketPairQuoteSymbol%></div>

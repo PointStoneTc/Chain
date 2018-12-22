@@ -6,6 +6,7 @@ var digitalCurrency={
         this.getAdvertData();
         this.getHotPostsData();
         $(".filter_con").on("click",".button",function(){
+            $(this).addClass('active').siblings().removeClass('active');
             var name=$(this).html();
             if(name=='All'){
                 name='ALL';

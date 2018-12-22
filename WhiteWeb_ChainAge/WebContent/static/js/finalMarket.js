@@ -1,12 +1,32 @@
 var market={
-    id:null,
+    base:null,
+    quot:null,
     init:function () {
-        this.id=Common.getQueryString("id");
-        Common.getCategoreType();
-        Common.getUsers();
+        this.base=Common.getQueryString("base");
+        this.quot=Common.getQueryString("quot");
+        $(".mt_h_container span").html(Common.getQueryString("n"));
+        this.getExchangeData();
         // 热门文章
         this.getHotPostsData();
         this.getAdvertData();
+    },
+    // 获取支持的交易所信息
+    getExchangeData: function () {
+        var url = 'http://data.chainage.jp/blockchain/coinapi/marketInfoExchange?base='+this.base+'&quot='+this.quot+'&page=1';
+        var self = this;
+        $.ajax({
+            type: 'GET',
+            url: url,
+            async: true,
+            error: function () {
+            },
+            success: function (data) {
+                if (data && data.length > 0) {
+                    for (var i = 0; i < data.length; i++) {
+                    }
+                }
+            }
+        });
     },
     // 热门文章
     getHotPostsData: function () {
