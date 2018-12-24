@@ -1,95 +1,112 @@
-.data-view{
+.data-view {
     width: 100%;
     background: #21336E;
     text-align: center;
     height: 9.6rem;
 }
 
-.view-tottle{
+.view-tottle {
     position: absolute;
     top: 97px;
     left: 50%;
     margin-left: -135px;
     z-index: 99;
 }
-.view-tottle li{
-    margin-right:0.2rem;
+
+.view-tottle li {
+    margin-right: 0.2rem;
     cursor: pointer;
     float: left;
     width: 0.45rem;
 }
-.view-tottle li.active{
+
+.view-tottle li.active {
     width: 0.6rem;
     margin-top: -6px;
 }
-.view-tottle li img{
+
+.view-tottle li img {
     width: 100%;
 }
+
 .content {
     width: 76%;
     margin: 0 auto;
 }
+
 .data-view .data-vlue {
     font-size: 1.5rem;
     color: #fff;
-   margin-bottom: 60px;
+    margin-bottom: 60px;
 }
-.data-view .data-number{
-    font-size:0.66rem;
+
+.data-view .data-number {
+    font-size: 0.66rem;
     color: #fff;
-    margin-bottom:60px;
+    margin-bottom: 60px;
 }
-.data-view-percent{
+
+.data-view-percent {
     font-size: 0.54rem;
 }
-.data-view .col-lg-4{
+
+.data-view .col-lg-4 {
     text-align: right;
     padding-right: 0;
 }
-.data-val-top{
+
+.data-val-top {
     font-family: Helvetica Neue;
     font-size: 0.32rem;
     color: #FFFFFF;
 }
-.currency_container{
+
+.currency_container {
     padding: 0 10px;
     background: #FFFFFF;
 }
-.currency_container .data_item{
+
+.currency_container .data_item {
     width: 25%;
     color: #333;
     display: inline-block;
     font-size: 0.23rem;
 }
-.currency_container .data_item div{
+
+.currency_container .data_item div {
     float: left;
     padding: 10px;
     width: 50%;
 }
-.currency_container .data_item .price{
+
+.currency_container .data_item .price {
     float: right;
 }
-.data-line ,.data-candlestick {
+
+.data-line, .data-candlestick {
     width: 100%;
     height: 9.6rem;
     background: #041038;
     display: none;
 }
-#charts-candlestick{
+
+#charts-candlestick {
     position: absolute;
     left: 0;
     top: 4rem;
 }
-.line-data{
+
+.line-data {
     top: 50%;
     position: absolute;
     margin-left: 10px;
     line-height: 30px;
     font-size: 14px;
 }
+
 /*下箭头*/
 .down-arrow {
-    display :inline-block;
+    display: inline-block;
     position: relative;
     width: 40px;
     height: 30px;
@@ -112,6 +129,7 @@
     right: 10px;
     margin-top: -15px;
 }
+
 /*加上active旋转成 上箭头*/
 .down-arrow.active::after {
     transform-origin: center;
@@ -119,4 +137,55 @@
     transition: transform .3s;
     border-color: #00B43C;
     margin-top: -10px;
+}
+
+@media (max-width: 480px) {
+    .data-view {
+        height: 630px;
+    }
+
+    .view-tottle {
+        margin-left: -30px;
+        top: 60px;
+    }
+
+    .view-tottle li {
+        width: 15px;
+        margin-right: 10px;
+    }
+
+    .view-tottle li.active {
+        width: 20px;
+        margin-top: 0;
+    }
+
+    .data-view .col-xs-12 {
+        margin-top: 40px;
+    }
+
+    .down-arrow {
+        height: auto;
+    }
+
+    .down-arrow::after {
+        width: 10px;
+        height: 10px;
+    }
+    .data-view .col-sm-4 {
+        margin-top: 60px;
+    }
+    .data-line{
+        padding-top: 40px;
+    }
+    .data-line ,#charts-line{
+        height: 630px !important;
+        width: 100% !important;
+    }
+    #charts-candlestick{
+        width: 100% !important;
+        top: 200px;
+    }
+    .data-candlestick{
+        height: 630px;
+    }
 }
