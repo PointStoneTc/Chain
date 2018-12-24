@@ -146,7 +146,9 @@ a{
     color: #FFF;
     font-size: 13px;
 }
-
+.rankR .ranking-list .ranking-name{
+    width: 160px;
+}
 .markets {
     background-color: #000;
     height: 57px;
