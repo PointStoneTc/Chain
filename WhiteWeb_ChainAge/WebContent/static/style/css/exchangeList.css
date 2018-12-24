@@ -74,7 +74,7 @@ a:hover {
 }
 
 .summary .button {
-    width: 47px;
+    width: 57px;
     float: left;
     margin-right: 3px;
     background-color: #F6F6F6;
@@ -215,7 +215,7 @@ a:hover {
 .exchange_join{
     font-size: 0.16rem;
     background: #EFEFEF;
-    color: #FFFFFF;
+    color: #CCCCCC;
     border-radius: 5px;
     text-align: center;
     width: max-content;
@@ -224,7 +224,7 @@ a:hover {
 }
 .exchange_item:hover .exchange_join{
     background: #2257C9;
-    color: #CCCCCC;
+    color: #FFFFFF;
 }
 
 @media (max-width: 480px) {

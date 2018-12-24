@@ -111,9 +111,13 @@ var digitalCurrency={
 
                     for (var i = 0; i <data.length; i++) {
                         var volume=parseFloat(Number(data[i].volume_24h).toFixed(2)).toLocaleString();
-                        var percent=Number(data[i].percent_change_volume_24h).toFixed(2)+'%';
+                        if(data[i].percent_change_volume_24h!='null'){
+                            var percent=Number(data[i].percent_change_volume_24h).toFixed(2)+'%';
+                        }else{
+                            var percent='0%';
+                        }
                         html='<div class="exchange_item clearfix">'
-                            +'<a href="market.html">'
+                            +'<a href="market.html?id='+data[i].eid+'&n='+data[i].name+'">'
                             +'<div class="exchange_left fl">'
                             +'<div>'
                             +'<img src="static/img/coin/128/' + data[i].eid + '.png">'
