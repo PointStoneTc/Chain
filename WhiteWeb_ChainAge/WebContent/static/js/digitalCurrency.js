@@ -117,7 +117,7 @@ var digitalCurrency={
                     for (var i = 0; i <data.length; i++) {
                         var volume=parseFloat(Number(data[i].quoteVolume24h).toFixed(2)).toLocaleString();
                         html='<div class="list_item col-xs-4 col-sm-3 " >'
-                            +'<a id="ml_template" class="ml" href="marketDetail.html">'
+                            +'<a id="ml_template" class="ml" href="marketDetail.html?id='+data[i].cid+'">'
                             +'<div class="pri-name">'+data[i].name+'</div>'
                             +'<div class="pri-code-list">'+data[i].symbol+'</div>'
                             // +'<div class="volume-desc">24h交易量</div>'

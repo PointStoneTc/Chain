@@ -2,8 +2,7 @@ var market={
     id:null,
     init:function () {
         this.id=Common.getQueryString("id");
-        Common.getCategoreType();
-        Common.getUsers();
+        this.getCurrencyInfo();
         // 热门文章
         this.getHotPostsData();
         this.setPagination();
@@ -100,6 +99,26 @@ var market={
             }, this)
         });
     },
+    // 获取指定货币支持的交易所信息
+    getCurrencyInfo:function(){
+        var url='http://data.chainage.jp/blockchain/coinapi/assetInfoExchange?id='+this.id;
+        $.ajax({
+            type: 'GET',
+            url: url,
+            error: function () {
+            },
+            success: function (data) {
+                if (data) {
+                    data=data.list;
+                    var html='';
+                    for (var i = 0; i <data.length; i++) {
+                        html+='<a href="market.html?id='+data[i].eid+'&n='+data[i].name+'"><span>'+data[i].name+'</span></a>'
+                    }
+                    $(".sel_exchange").html(html);
+                }
+            }
+        });
 
+    }
 }
 market.init();

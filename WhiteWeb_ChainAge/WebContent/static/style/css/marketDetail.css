@@ -117,11 +117,13 @@ a:hover {
 
 .sel-list {
     margin-bottom: 20px;
+    margin: 0 auto;
+    width: max-content;
 }
 
 .sel-list span {
     cursor: pointer;
-    width: 60px;
+   padding: 2px 8px;
     color: #333333;
     font-size: 0.12rem;
     text-align: center;
