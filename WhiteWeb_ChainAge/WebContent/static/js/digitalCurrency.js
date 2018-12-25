@@ -2,7 +2,7 @@ var digitalCurrency={
     param:'',
     init:function () {
 
-        this.getCurrencyInfo('ALL');
+        this.getCurrencyInfo('A-C');
         // 热门文章
         this.getAdvertData();
         this.getHotPostsData();

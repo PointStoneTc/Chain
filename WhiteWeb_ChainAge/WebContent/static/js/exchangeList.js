@@ -123,7 +123,7 @@ var digitalCurrency={
                             +'<img src="static/img/exchange/128/' + data[i].eid + '.png">'
                             +'<span class="exchange_name">'+data[i].name+'</span>'
                             +'</div>'
-                            +'<div class="exchange_del">24h交易量：'+volume+'USD</div>'
+                            +'<div class="exchange_del">24h交易量：'+volume+'JPY</div>'
                             +'<div class="exchange_del">24h交易量涨跌：'+percent+'</div>'
                             +'</div>'
                             +'<div class="exchange_right fr">'

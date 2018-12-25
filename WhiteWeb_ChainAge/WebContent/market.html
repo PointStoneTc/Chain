@@ -118,9 +118,9 @@
                     <div>24h交易量：<span class="voloum_total"></span></div>
                     <div>24h交易量涨跌：<span class="percent"></span></div>
                 </div>
-                <div class="col-xs-3">
-                    <div class="join_exchange">进入交易平台</div>
-                </div>
+                <!--<div class="col-xs-3">-->
+                    <!--<div class="join_exchange">进入交易平台</div>-->
+                <!--</div>-->
             </div>
             <div class="row">
                 <div  >
@@ -219,7 +219,7 @@
             <div> <%=changePercent(data[i].data[j].btcprice)%>%</div>
         </div>
         <div class="mr-normal" style="">
-            <div><%=change(data[i].data[j].quoteVolume24hBase)%> <%=data[i].data[j].marketPairBaseSymbol%></div>
+            <div><%=change(data[i].data[j].quoteVolume24hBase)%> JPY</div>
             <div><%=change(data[i].data[j].quoteVolume24hQuote)%> <%=data[i].data[j].marketPairQuoteSymbol%></div>
         </div>
     </div>

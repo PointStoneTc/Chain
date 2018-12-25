@@ -148,6 +148,9 @@ a{
 }
 .rankR .ranking-list .ranking-name{
     width: 160px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .markets {
     background-color: #000;
