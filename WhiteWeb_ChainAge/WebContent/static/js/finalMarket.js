@@ -12,7 +12,7 @@ var market={
     },
     // 获取支持的交易所信息
     getExchangeData: function () {
-        var url = 'http://data.chainage.jp/blockchain/coinapi/marketInfoExchange?base='+this.base+'&quot='+this.quot+'&page=1';
+        var url = 'http://data.chainage.jp/blockchain/coinapi/marketInfoExchange?base='+this.base+'&quote='+this.quot+'&page=1';
         var self = this;
         $.ajax({
             type: 'GET',

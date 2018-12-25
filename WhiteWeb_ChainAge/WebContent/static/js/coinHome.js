@@ -206,7 +206,7 @@ function rankShowFunc(data) {
             numClass = '';
         }
 
-        rankLHtml += '<div class="ranking-list"><a href="./market.html?id='+data[i].exchangeId+'&p='+data[i].bVolume24h+'&n='+data[i].name+'">'
+        rankLHtml += '<div class="ranking-list"><a href="./market.html?id='+data[i].exchangeId+'&p='+data[i].qVolume24h+'&n='+data[i].name+'&per='+data[i].percent_change_volume_24h+'">'
             + '<div class="ranking-num ' + numClass + '">' + (i + 1) + '</div>'
             + '<div class="ranking-icon">'
             + '  <img src="static/img/coin/128/' + data[i].exchangeId + '.png" alt="" width="20px" height="20px">'

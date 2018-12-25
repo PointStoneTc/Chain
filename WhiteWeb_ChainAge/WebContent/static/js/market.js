@@ -2,10 +2,19 @@ var market={
     id:null,
     init:function () {
         this.id=Common.getQueryString("id");
+
         $(".cspa .price").html(parseFloat(Number(Common.getQueryString("p")).toFixed(2)).toLocaleString());
         $(".market_name").html(Common.getQueryString("n"));
         $(".voloum_total").html(parseFloat(Number(Common.getQueryString("p")).toFixed(2)).toLocaleString());
         $(".percent").html(Number(Common.getQueryString("per")).toFixed(2)+'%');
+        if(Common.getQueryString("p")=='null'){
+            $(".cspa .price").html(0);
+            $(".voloum_total").html(0);
+
+        }
+        if(Common.getQueryString("per")=='null'){
+            $(".percent").html('0%');
+        }
         this.getMarketInfo();
         // 热门文章
         this.getHotPostsData();
@@ -118,7 +127,7 @@ var market={
                                 }
                             }
                         }
-                        html1+='<a href="marketDetail.html"><span>'+arr[i].marketPairBaseSymbol+'</span></a>';
+                        html1+='<span>'+arr[i].marketPairBaseSymbol+'</span>';
                     }
                     $(".sel-list1").html(html1);
 

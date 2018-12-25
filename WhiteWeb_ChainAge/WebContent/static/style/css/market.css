@@ -126,7 +126,6 @@ a:hover {
 }
 
 .sel-list span {
-    cursor: pointer;
     width: 60px;
     color: #333333;
     font-size: 0.12rem;

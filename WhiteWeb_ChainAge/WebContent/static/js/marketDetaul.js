@@ -125,7 +125,7 @@ var market = {
                     data = data.list;
                     var html = '';
                     for (var i = 0; i < data.length; i++) {
-                        html += '<a href="market.html?id=' + data[i].eid + '&n=' + data[i].name + '"><span>' + data[i].name + '</span></a>'
+                        html += '<a href="market.html?id=' + data[i].eid + '&n=' + data[i].name + '&p='+data[i].volume_24h+'&per='+data[i].percent_change_volume_24h +'"><span>' + data[i].name + '</span></a>'
                     }
                     $(".sel_exchange").html(html);
                 }
