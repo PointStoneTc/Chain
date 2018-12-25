@@ -1,18 +1,20 @@
-var market={
-    base:null,
-    quot:null,
-    init:function () {
-        this.base=Common.getQueryString("base");
-        this.quot=Common.getQueryString("quot");
+var market = {
+    base: null,
+    quot: null,
+    number:0,
+    init: function () {
+        this.base = Common.getQueryString("base");
+        this.quot = Common.getQueryString("quot");
         $(".mt_h_container span").html(Common.getQueryString("n"));
-        this.getExchangeData();
+        $(".exchange .sel-list").attr('num',0);
+        this.getExchangeData(1);
         // 热门文章
         this.getHotPostsData();
         this.getAdvertData();
     },
     // 获取支持的交易所信息
-    getExchangeData: function () {
-        var url = 'http://data.chainage.jp/blockchain/coinapi/marketInfoExchange?base='+this.base+'&quote='+this.quot+'&page=1';
+    getExchangeData: function (page) {
+        var url = 'http://data.chainage.jp/blockchain/coinapi/marketInfoExchange?base=' + this.base + '&quote=' + this.quot + '&page='+page;
         var self = this;
         $.ajax({
             type: 'GET',
@@ -21,12 +23,42 @@ var market={
             error: function () {
             },
             success: function (data) {
-                if (data && data.length > 0) {
-                    for (var i = 0; i < data.length; i++) {
-                    }
+                if (data) {
+                    $(".expore_name").html(data.market_pairs);
+                    market.loadCommentData(data);
+
                 }
             }
         });
+    },
+    // 加载更多
+    loadCommentData: function (data) {
+        var more = '<div class="more_btn">' +
+            '<img src="static/img/more_icon.png" >' +
+            '</div>';
+        var html = '';
+        if (data.exchangeList.length > 0) {
+
+            for (var i = 0; i < data.exchangeList.length; i++) {
+                market.number++;
+                html += '<a href="market.html?id=' + data.exchangeList[i].exchange.eid + '&n=' + data.exchangeList[i].exchange.name + '&p=' + data.exchangeList[i].quoteVolume24hQuote + '&per="><span>' + data.exchangeList[i].exchange.name + '</span></a>'
+            }
+
+            $(".exchange .sel-list").append(html);
+
+            var num = $(".exchange .sel-list").attr('num');
+            //判断是否需要显示加载更多的按钮
+            if (market.number < data.num_market_pairs) {
+                $(".exchange .sel-list").after(more);
+                $(".more_btn").unbind('click').on('click', function () {
+                    $('.more_btn').remove();  //移除加载更多按钮
+                    $(".exchange .sel-list").attr('num', Number(num) + 1);
+                    market.getExchangeData($(".exchange .sel-list").attr('num'));
+                });
+            } else {
+                $('.more_btn').remove(); // 移除加载更多按钮
+            }
+        }
     },
     // 热门文章
     getHotPostsData: function () {

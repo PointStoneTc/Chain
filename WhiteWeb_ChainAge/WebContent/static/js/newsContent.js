@@ -25,7 +25,7 @@
             this.getHotPostsData();
             $('.comment_list').attr('num', 0);
             // 评论
-            this.getCommentData(1);
+            // this.getCommentData(1);
 
             this.getTagsData();
             this.eventInit()
@@ -269,7 +269,7 @@
                     $(".more_btn").unbind('click').on('click', function () {
                         $('.more_btn').remove();  //移除加载更多按钮
                         $('.comment_list').attr('num', num + 1);
-                       newsContent.getCommentData( $('.comment_list').data('num', num + 1));
+                       newsContent.getCommentData( $('.comment_list').data('num'));
                     });
                 } else {
                     $('.more_btn').remove(); // 移除加载更多按钮

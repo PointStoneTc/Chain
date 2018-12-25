@@ -36,10 +36,8 @@
             margin: 0.55rem 0 0.15rem 0;
         }
         .exchange .sel-list{
-            position: relative;
-            left: 50%;
-            float: left;
             margin-bottom: 0.7rem;
+            width: 92%;
         }
         .exchange .sel-list div{
             width: 1.2rem;
@@ -52,6 +50,11 @@
             background: #F6F6F6;
             position: relative;
             left: -50%;
+        }
+        .more_btn{
+            text-align: center;
+            margin-bottom: 0.6rem;
+            cursor: pointer;
         }
 
     </style>
@@ -130,51 +133,13 @@
     <div class="row contain">
         <div class="market news_con_left col-xs-12" >
             <div class="mt_h_container"><span></span> 市场</div>
-            <div class="row cspa">
-                <div class="col-xs-1 "></div>
-                <div class="col-xs-5 ">
-                    <div class="name">ETH / BDC</div>
-                    <div class="price">222.01</div>
-                    <div class="price-cange">-9.24%</div>
-                </div>
-                <div class="col-xs-5 cspa_r">
-                    <div class="name">ETH / AUD</div>
-                    <div class="price"> 25,014.08</div>
-                    <div class="price-cange">-9.24%</div>
-                </div>
-                <div class="col-xs-1 "></div>
-            </div>
+
             <div class="exchange">
-                <div class="name">支持 ETH / AUD 的交易所</div>
-                <div class="sel-list">
-                    <div>BTC Market</div>
-                    <div>ACX</div>
-                    <div>Liquid</div>
-                    <div>Remitano</div>
+                <div class="name">支持 <span class="expore_name"></span> 的交易所</div>
+                <div class="sel-list clearfix">
+
                 </div>
                 <div style="clear: both"></div>
-            </div>
-
-            <!-- 内容 -->
-            <div class="mr-container">
-                <div class="mr-title">基准市场：United Arab Emirates Dirham（AED）</div>
-                <div class="row mr-list">
-                    <div class="mr-normal" style="width:30%;">
-                        <div style="font-size:22px;">ETH / AED</div>
-                        <div style="color:#999;"> Ethereum Ether / Australian Dollar</div>
-                    </div>
-                    <div class="mr-normal" style="color:#427ADB;width: 20%;">
-                        Remitano
-                    </div>
-                    <div class="mr-normal" style="color:#DB2B37;">
-                        <div style="font-size: 0.21rem"> 850.88 AED</div>
-                        <div> -1.37%</div>
-                    </div>
-                    <div class="mr-normal" style="">
-                        <div>2,216.45 ETH</div>
-                        <div>677,237 AUD</div>
-                    </div>
-                </div>
             </div>
 
         </div>
