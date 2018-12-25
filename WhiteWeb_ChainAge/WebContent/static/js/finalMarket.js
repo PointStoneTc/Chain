@@ -14,7 +14,7 @@ var market = {
     },
     // 获取支持的交易所信息
     getExchangeData: function (page) {
-        var url = 'http://data.chainage.jp/blockchain/coinapi/marketInfoExchange?base=' + this.base + '&quote=' + this.quot + '&page='+page;
+        var url = 'http://data.chainage.jp/blockchain/coinapi/marketInfoExchange?base=' + this.base + '&quote=' + this.quot + '&start='+page;
         var self = this;
         $.ajax({
             type: 'GET',
@@ -48,16 +48,16 @@ var market = {
 
             var num = $(".exchange .sel-list").attr('num');
             //判断是否需要显示加载更多的按钮
-            if (market.number < data.num_market_pairs) {
+            // if (market.number < data.num_market_pairs) {
                 $(".exchange .sel-list").after(more);
                 $(".more_btn").unbind('click').on('click', function () {
                     $('.more_btn').remove();  //移除加载更多按钮
                     $(".exchange .sel-list").attr('num', Number(num) + 1);
-                    market.getExchangeData($(".exchange .sel-list").attr('num'));
+                    market.getExchangeData(data.start);
                 });
-            } else {
-                $('.more_btn').remove(); // 移除加载更多按钮
-            }
+            // } else {
+            //     $('.more_btn').remove(); // 移除加载更多按钮
+            // }
         }
     },
     // 热门文章
