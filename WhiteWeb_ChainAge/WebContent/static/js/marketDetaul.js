@@ -1,8 +1,21 @@
-var market={
-    id:null,
-    init:function () {
-        this.id=Common.getQueryString("id");
-        this.getCurrencyInfo();
+var market = {
+    id: null,
+    param: null,
+    init: function () {
+        this.param = JSON.parse(localStorage.getItem("param"));
+        this.id = this.param.id;
+        $(".mt_h_container").html(this.param.name);
+        $(".symbol").html(this.param.symbol);
+        $(".price").html(this.param.price);
+        $(".price-cange").html(parseFloat(Number(this.param.volume)).toLocaleString());
+        $(".percent").html(Number(this.param.per).toFixed(2)+'%')
+        $(".market_name").html(this.param.symbol);
+        $(".name_del").html(this.param.name);
+        $(".circulatingSupply").html(parseFloat(Number(this.param.circulatingSupply)).toLocaleString());
+        $(".totalSupply").html(parseFloat(Number(this.param.totalSupply)).toLocaleString());
+        $(".quoteMarketCap").html(parseFloat(Number(this.param.quoteMarketCap)).toLocaleString());
+
+        this.getCurrencyInfo(this.id);
         // 热门文章
         this.getHotPostsData();
         this.setPagination();
@@ -81,7 +94,7 @@ var market={
 
     },
     // 分页显示
-    setPagination:function(param){
+    setPagination: function (param) {
         $(".page").pagination(100, {
             'items_per_page': 15,
             'current_page': 0,
@@ -100,8 +113,8 @@ var market={
         });
     },
     // 获取指定货币支持的交易所信息
-    getCurrencyInfo:function(){
-        var url='http://data.chainage.jp/blockchain/coinapi/assetInfoExchange?id='+this.id;
+    getCurrencyInfo: function () {
+        var url = 'http://data.chainage.jp/blockchain/coinapi/assetInfoExchange?id=' + this.id;
         $.ajax({
             type: 'GET',
             url: url,
@@ -109,10 +122,10 @@ var market={
             },
             success: function (data) {
                 if (data) {
-                    data=data.list;
-                    var html='';
-                    for (var i = 0; i <data.length; i++) {
-                        html+='<a href="market.html?id='+data[i].eid+'&n='+data[i].name+'"><span>'+data[i].name+'</span></a>'
+                    data = data.list;
+                    var html = '';
+                    for (var i = 0; i < data.length; i++) {
+                        html += '<a href="market.html?id=' + data[i].eid + '&n=' + data[i].name + '"><span>' + data[i].name + '</span></a>'
                     }
                     $(".sel_exchange").html(html);
                 }

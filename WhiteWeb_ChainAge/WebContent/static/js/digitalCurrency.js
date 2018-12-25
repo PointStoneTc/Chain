@@ -1,4 +1,5 @@
 var digitalCurrency={
+    param:'',
     init:function () {
 
         this.getCurrencyInfo('ALL');
@@ -15,6 +16,22 @@ var digitalCurrency={
                 name='OTHER';
             }
             digitalCurrency.getCurrencyInfo(name);
+        })
+        $("#ml_container").on("click",".list_item",function(){
+            var i=$(this).index();
+            var data=digitalCurrency.param;
+            var arr={
+                id:data[i].cid,
+                price:data[i].quotePrice,
+                volume:data[i].quoteVolume24h,
+                per:data[i].quotePercentChange24h,
+                name:data[i].name,
+                symbol:data[i].symbol,
+                circulatingSupply:data[i].circulatingSupply,
+                totalSupply:data[i].totalSupply,
+                quoteMarketCap:data[i].quoteMarketCap
+            }
+            localStorage.setItem("param",JSON.stringify(arr));
         })
     },
     // 热门文章
@@ -100,7 +117,7 @@ var digitalCurrency={
             success: function (res) {
                 if (res) {
                     $("#ml_container").html('');
-                    console.log(res);
+
                     var html='',data=[];
                     if(name=='ALL'){
                         data=res.ALL;
@@ -113,11 +130,12 @@ var digitalCurrency={
                           data= data.concat(res[key]);
                         }
                     }
-
+                    digitalCurrency.param=data;
                     for (var i = 0; i <data.length; i++) {
                         var volume=parseFloat(Number(data[i].quoteVolume24h).toFixed(2)).toLocaleString();
-                        html='<div class="list_item col-xs-4 col-sm-3 " >'
-                            +'<a id="ml_template" class="ml" href="marketDetail.html?id='+data[i].cid+'">'
+
+                        html='<div class="list_item col-xs-4 col-sm-3 ">'
+                            +'<a id="ml_template" class="ml" href="marketDetail.html">'
                             +'<div class="pri-name">'+data[i].name+'</div>'
                             +'<div class="pri-code-list">'+data[i].symbol+'</div>'
                             // +'<div class="volume-desc">24h交易量</div>'

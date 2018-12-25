@@ -127,7 +127,7 @@ var digitalCurrency={
                             +'<div class="exchange_del">24h交易量涨跌：'+percent+'</div>'
                             +'</div>'
                             +'<div class="exchange_right fr">'
-                            +'<div class="exchange_time">支持<span>23</span>个时长交易</div>'
+                            +'<div class="exchange_time">支持<span>'+data[i].num_market_pairs+'</span>个市场交易</div>'
                             +'<div class="exchange_join">进入交易平台</div>'
                             +'</div>'
                             +'</a>'
