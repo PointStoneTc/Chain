@@ -117,7 +117,7 @@ var digitalCurrency={
                             var percent='0%';
                         }
                         html='<div class="exchange_item clearfix">'
-                            +'<a href="market.html?id='+data[i].eid+'&n='+data[i].name+'">'
+                            +'<a href="market.html?id='+data[i].eid+'&n='+data[i].name+'&p='+data[i].volume_24h+'&per='+data[i].percent_change_volume_24h+'">'
                             +'<div class="exchange_left fl">'
                             +'<div>'
                             +'<img src="static/img/coin/128/' + data[i].eid + '.png">'

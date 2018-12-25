@@ -2,8 +2,10 @@ var market={
     id:null,
     init:function () {
         this.id=Common.getQueryString("id");
-        $(".cspa .price").html(Common.getQueryString("p"));
+        $(".cspa .price").html(parseFloat(Number(Common.getQueryString("p")).toFixed(2)).toLocaleString());
         $(".market_name").html(Common.getQueryString("n"));
+        $(".voloum_total").html(parseFloat(Number(Common.getQueryString("p")).toFixed(2)).toLocaleString());
+        $(".percent").html(Number(Common.getQueryString("per")).toFixed(2)+'%');
         this.getMarketInfo();
         // 热门文章
         this.getHotPostsData();

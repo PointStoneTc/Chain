@@ -219,7 +219,7 @@ var Common = {
             },
             success: function (data) {
                 if (data) {
-                    $(".header-left span").eq(6).html('¥ '+data.list[0].total_volume_24h.toFixed(2));
+                    $(".header-left span").eq(6).html('¥ '+(data.list[0].total_volume_24h/1000000000).toFixed(2)+'B');
                 }
             }
         });
@@ -238,7 +238,7 @@ var Common = {
               if(data){
 
                   var coinData=Common.coinLookUp(data, 'BTC');
-                  $(".header-left span").eq(2).html('¥ '+coinData.specificRate.volume24h.toFixed(2));
+                  $(".header-left span").eq(2).html('¥ '+(coinData.specificRate.volume24h/1000000000).toFixed(2)+'B');
               }
             }
         });

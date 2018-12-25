@@ -205,8 +205,8 @@ function rankShowFunc(data) {
         } else {
             numClass = '';
         }
-        var price=parseFloat(Number(data[i].bVolume24h).toFixed(2)).toLocaleString();
-        rankLHtml += '<div class="ranking-list"><a href="./market.html?id='+data[i].exchangeId+'&p='+price+'&n='+data[i].name+'">'
+
+        rankLHtml += '<div class="ranking-list"><a href="./market.html?id='+data[i].exchangeId+'&p='+data[i].bVolume24h+'&n='+data[i].name+'">'
             + '<div class="ranking-num ' + numClass + '">' + (i + 1) + '</div>'
             + '<div class="ranking-icon">'
             + '  <img src="static/img/coin/128/' + data[i].exchangeId + '.png" alt="" width="20px" height="20px">'
@@ -218,8 +218,8 @@ function rankShowFunc(data) {
 var j=0;
     for (var i = 19; i >= 10; i--) {
         j++;
-        var price=parseFloat(Number(data[i].bVolume24h).toFixed(2)).toLocaleString();
-        rankRHtml += '<div class="ranking-list"><a href="./market.html?id='+data[i].exchangeId+'&p='+price+'&n='+data[i].name+'">'
+
+        rankRHtml += '<div class="ranking-list"><a href="./market.html?id='+data[i].exchangeId+'&p='+data[i].bVolume24h+'&n='+data[i].name+'">'
             + '<div class="ranking-num">' + j + '</div>'
             + '<div class="ranking-icon">'
             + '  <img src="static/img/coin/128/' + data[i].exchangeId + '.png" alt="" width="20px" height="20px">'
