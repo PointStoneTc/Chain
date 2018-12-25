@@ -4,6 +4,7 @@ var market = {
     init: function () {
         this.param = JSON.parse(localStorage.getItem("param"));
         this.id = this.param.id;
+        // $(".market_desc img").attr("src","static/img/exchange/128/"+ this.id + ".png")
         $(".mt_h_container").html(this.param.name);
         $(".symbol").html(this.param.symbol);
         $(".price").html(this.param.price);

@@ -7,6 +7,7 @@ var market={
         $(".market_name").html(Common.getQueryString("n"));
         $(".voloum_total").html(parseFloat(Number(Common.getQueryString("p")).toFixed(2)).toLocaleString());
         $(".percent").html(Number(Common.getQueryString("per")).toFixed(2)+'%');
+        $(".market_desc img").attr("src","static/img/exchange/128/"+ this.id + ".png")
         if(Common.getQueryString("p")=='null'){
             $(".cspa .price").html(0);
             $(".voloum_total").html(0);
