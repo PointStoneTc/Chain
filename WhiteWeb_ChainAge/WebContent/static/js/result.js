@@ -47,34 +47,41 @@ var listNewsPage = {
                             if ($(".news_mobile_container").is(':hidden')) {//pc端
                                 var htm = '';
                                 $('.news_list_con .news_container').html('');
-                               var tagIds=[];
+                                var tagIds=[];
                                 for (var i = 0; i < data.length; i++) {
                                     tagIds.push(data[i].id);
                                     var linkUrl = 'newsContent.html?id=' + data[i].id ;
-                                       htm = '<div class="search_item" ><a href="' + linkUrl + '">'
-                                           + '<div class="publishDate">' + data[i].date.substr(0, 4) + '年' + data[i].date.substr(5, 2) + '月' + data[i].date.substr(8, 2) + '日</div>'
-                                           + '<div class="search_item_tit">' + data[i].title.rendered + '</div>'
-                                           + '<div class="search_item_des">' + data[i].excerpt.rendered + '</div>'
-                                           + '<div class="tags_name" id="'+data[i].id+'"></div>'
-                                           + '</a></div>';
-                                       $('.news_list_con .news_container').append(htm);
-                                       var key = Common.getQueryString('n');
-                                       $(".search_item_tit").html($(".search_item_tit").html().replace(new RegExp(key, 'g'), "<span style='color:red'>" + key + "</span>"));
+                                    htm = '<div class="search_item" ><a href="' + linkUrl + '">'
+                                        + '<div class="publishDate">' + data[i].date.substr(0, 4) + '年' + data[i].date.substr(5, 2) + '月' + data[i].date.substr(8, 2) + '日</div>'
+                                        + '<div class="search_item_tit">' + data[i].title.rendered + '</div>'
+                                        + '<div class="search_item_des">' + data[i].excerpt.rendered + '</div>'
+                                        + '<div class="tags_name"></div>'
+                                        + '</a></div>';
+                                    $('.news_list_con .news_container').append(htm);
+                                    var key = Common.getQueryString('n');
+                                    $(".search_item_tit").html($(".search_item_tit").html().replace(new RegExp(key, 'g'), "<span style='color:red'>" + key + "</span>"));
 
                                 }
-                                for(var i=0;i<tagIds.length;i++){
-                                    listNewsPage.getTagsData(tagIds[i], function (json) {
+
+                                if (callback) {
+                                    callback(JSON.parse(res).total);
+                                }
+
+                                var s=0;
+                                run();
+                                function run(){
+                                    listNewsPage.getTagsData(tagIds[s], function (json) {
                                         var html = '';
                                         for (var j = 0; j < json.length; j++) {
                                             html += '<span id="' + json[j].id + '">' + json[j].name + '</span>';
                                         }
-                                        console.log($(".tags_name").eq(i));
-                                        $(".tags_name").eq(i).html(html);
-                                    })
 
-                                }
-                                if (callback) {
-                                    callback(JSON.parse(res).total);
+                                        $(".tags_name").eq(s).html(html);
+                                        if(s<tagIds.length-1){
+                                            s++;
+                                            run();
+                                        }
+                                    })
                                 }
                             }else {
                                 listNewsPage.loadNewsDataData(data,JSON.parse(res).total);
@@ -84,13 +91,14 @@ var listNewsPage = {
 
                     })
 
+
                 }
             }
         });
 
     },
 
-    // 加载更多
+    // 加载新闻数据
     loadNewsDataData: function (data, total) {
         var more = '<div class="more_btn">加载更多</div>';
         var htm = '';
@@ -146,6 +154,8 @@ var listNewsPage = {
             'next_text': "»",
             'call_callback_at_once': false,
             'callback': $.proxy(function (pageIndex, $page) {
+
+
                 listNewsPage.getNewsListData(pageIndex + 1);
             }, this)
         });
@@ -156,12 +166,11 @@ var listNewsPage = {
         $.ajax({
             type: 'GET',
             url: url,
-            // async: false,
             error: function () {
             },
             success: function (data) {
                 if (data) {
-                   callback(data);
+                    callback(data);
                 }
             }
         });
